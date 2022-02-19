@@ -1,0 +1,3 @@
+[submodule "SimpleUI"]
+	path = SimpleUI
+	url = https://github.com/OSM-Made/SimpleUI
