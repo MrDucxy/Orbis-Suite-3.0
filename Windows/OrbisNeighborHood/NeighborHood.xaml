@@ -1,0 +1,173 @@
+﻿<simpleControls:SimpleWindow x:Class="OrbisNeighborHood.NeighborHood"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrbisNeighborHood"
+        xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
+        xmlns:viewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="NeighborHood" Height="620" Width="940"
+        MinHeight="620" MinWidth="940"
+        MaxHeight="620" MaxWidth="940">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu BG -->
+        <Rectangle Grid.Column="0"
+                   Grid.RowSpan="3"
+            Fill="{DynamicResource ControlDarkBackground}"/>
+        
+        <!-- Current Target -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <!-- Current Title Image -->
+            <Border Grid.Column="0" Grid.Row="1"
+                    BorderThickness="1"
+                    BorderBrush="#333333"
+                    Margin="8">
+                <Image Source="https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png"/>
+            </Border>
+
+            <StackPanel Grid.Column="1" Grid.Row="1"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center">
+                
+                <!-- Target Name -->
+                <StackPanel Grid.ColumnSpan="2" Grid.Row="0"
+                        Orientation="Horizontal">
+
+                    <!-- Target State -->
+                    <Ellipse Grid.ColumnSpan="2" Grid.Row="0"
+                     Fill="Green"
+                     Width="12"
+                     Height="12"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Margin="5 0 5 0"
+                     ToolTip="Online &amp; API Available"/>
+
+                    <!-- Current Target Name -->
+                    <TextBlock Grid.ColumnSpan="2" Grid.Row="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="0 0 0 0"
+                       Text="★OSM's Console"
+                       FontSize="13"
+                       Foreground="{DynamicResource Text}"/>
+
+                </StackPanel>
+
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="5 0 0 0"
+                           Text="Red Dead Redemption 2"
+                           Foreground="{DynamicResource Text}"
+                           FontSize="10"/>
+
+                <TextBlock HorizontalAlignment="Left"
+                           Margin="5 0 0 0"
+                           Text="CUSA08519_00"
+                           Foreground="{DynamicResource Text}"
+                           FontSize="10"/>
+
+            </StackPanel>
+            
+        </Grid>
+
+        <!-- Menu Controls -->
+        <StackPanel Grid.Column="0" Grid.Row="2"
+                    Orientation="Vertical">
+
+            <RadioButton Content="Dashboard"
+                         Height="50"
+                         Foreground="{DynamicResource Text}"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         IsChecked="True"
+                         Command="{Binding DashboardViewCommand}"/>
+
+            <RadioButton Content="Targets"
+                         Height="50"
+                         Foreground="{DynamicResource Text}"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding TargetViewCommand}"/>
+
+            <RadioButton Content="Settings"
+                         Height="50"
+                         Foreground="{DynamicResource Text}"
+                         FontSize="14"
+                         Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding SettingsViewCommand}"/>
+
+        </StackPanel>
+
+        <!-- Seperation Bar -->
+        <StackPanel Grid.Column="0" Grid.Row="2"
+                    Orientation="Vertical"
+                    VerticalAlignment="Bottom"
+                    Height="40">
+            
+            <Rectangle VerticalAlignment="Top" 
+                                    HorizontalAlignment="Stretch"
+                                    Height="1"
+                                    Fill="#333333"
+                                    Margin="0 0 0 1"/>
+            <Rectangle VerticalAlignment="Top" 
+                                    HorizontalAlignment="Stretch"
+                                    Height="1"
+                                    Fill="#515151"/>
+
+        </StackPanel>
+
+        <!-- Target Buttons -->
+        <Grid Grid.Row="2" Grid.Column="0"
+              VerticalAlignment="Bottom"
+              Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <simpleControls:SimpleButton Grid.Column="1"
+                                         Height="26"
+                                         Width="75"
+                                         Content="Add Target"/>
+
+            <simpleControls:SimpleButton Grid.Column="3" 
+                                         Height="26"
+                                         Width="110"
+                                         Content="Set Default Target"/>
+        </Grid>
+
+        <ContentControl Grid.RowSpan="2"
+                        Grid.Column="2"
+                        Margin="0"
+                        Content="{Binding CurrentView}"/>
+
+    </Grid>
+</simpleControls:SimpleWindow>

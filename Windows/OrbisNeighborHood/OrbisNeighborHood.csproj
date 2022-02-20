@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Icons\OrbisConsoleOutput.ico" />
+    <None Remove="Images\Icons\OrbisDebugger.ico" />
+    <None Remove="Images\Icons\OrbisModuleManager.ico" />
+    <None Remove="Images\Icons\OrbisNeighborhood.ico" />
+    <None Remove="Images\Icons\OrbisPeeknPoke.ico" />
+    <None Remove="Images\Icons\OrbisTargetSettings.ico" />
+    <None Remove="Images\Icons\OrbisTaskbarApp.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SimpleUI">
+      <HintPath>..\..\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Icons\OrbisConsoleOutput.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\OrbisDebugger.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\OrbisModuleManager.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\OrbisNeighborhood.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\OrbisPeeknPoke.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\OrbisTargetSettings.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icons\OrbisTaskbarApp.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

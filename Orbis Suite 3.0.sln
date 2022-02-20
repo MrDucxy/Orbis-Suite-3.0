@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Playstation", "Playstation"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{DBCE3AAD-373D-4EB6-8964-2A4BE1E9F575}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbisNeighborHood", "OrbisNeighborHood\OrbisNeighborHood.csproj", "{0969B39B-D5AA-4DFB-B0C4-B881AB3A0CF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrbisNeighborHood", "Windows\OrbisNeighborHood\OrbisNeighborHood.csproj", "{81B068F7-776C-429F-BB7B-5563F75F1A39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +19,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0969B39B-D5AA-4DFB-B0C4-B881AB3A0CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0969B39B-D5AA-4DFB-B0C4-B881AB3A0CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0969B39B-D5AA-4DFB-B0C4-B881AB3A0CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0969B39B-D5AA-4DFB-B0C4-B881AB3A0CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B068F7-776C-429F-BB7B-5563F75F1A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B068F7-776C-429F-BB7B-5563F75F1A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B068F7-776C-429F-BB7B-5563F75F1A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B068F7-776C-429F-BB7B-5563F75F1A39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{72E29C1E-8723-4885-A5ED-BD3A929D81B6} = {8F0E1457-FB1E-47A4-9DA8-74A6B757CAA4}
-		{0969B39B-D5AA-4DFB-B0C4-B881AB3A0CF8} = {8F0E1457-FB1E-47A4-9DA8-74A6B757CAA4}
+		{81B068F7-776C-429F-BB7B-5563F75F1A39} = {8F0E1457-FB1E-47A4-9DA8-74A6B757CAA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B6EE1D0-5ADF-44A2-B6EE-E5C8E110EE47}
