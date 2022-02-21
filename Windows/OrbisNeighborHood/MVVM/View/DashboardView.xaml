@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrbisNeighborHood.MVVM.View"
+             xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
              mc:Ignorable="d" 
              Background="Transparent"
              d:DesignHeight="585" d:DesignWidth="700">
     
     <StackPanel>
-        <TextBlock Text="Dashboard (OSM's Console)"
+        <TextBlock Text="Dashboard (★OSM's Console)"
                    Foreground="{DynamicResource Text}"
                    FontSize="28"
                    HorizontalAlignment="Left"
@@ -24,6 +25,100 @@
                     CornerRadius="10"
                     Background="{DynamicResource ControlDarkBackground}">
 
+                <StackPanel Orientation="Vertical"
+                            Margin="5">
+
+                    <!-- Target Name & State -->
+                    <StackPanel Orientation="Horizontal">
+
+                        <!-- Target State -->
+                        <Ellipse Grid.ColumnSpan="2" Grid.Row="0"
+                         Fill="Green"
+                         Width="14"
+                         Height="14"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="5 0 0 0"
+                         ToolTip="Online &amp; API Available"/>
+
+                        <!-- Target Name -->
+                        <TextBlock Text="★OSM's Console Info"
+                                   Foreground="{DynamicResource Text}"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"
+                                   Margin="5 0 0 0"/>
+                    </StackPanel>
+
+                    <Grid Margin="7 3 7 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Firmware Version -->
+                        <simpleControls:SimpleTextField Grid.Column="0" Grid.Row="0"
+                                                        FieldName="Firmware Version" 
+                                                        FieldText="5.05"
+                                                        Width="135"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+                        
+                        <!-- SDK Version -->
+                        <simpleControls:SimpleTextField Grid.Column="2" Grid.Row="0"
+                                                        FieldName="SDK Version" 
+                                                        FieldText="5.050.031"
+                                                        Width="135"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+                        <!-- IP Address -->
+                        <simpleControls:SimpleTextField Grid.Column="0" Grid.Row="1"
+                                                        FieldName="IP Address" 
+                                                        FieldText="192.168.0.55"
+                                                        Width="135"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+
+                        <!-- Console Type -->
+                        <simpleControls:SimpleTextField Grid.Column="2" Grid.Row="1"
+                                                        FieldName="Console Type" 
+                                                        FieldText="Retail"
+                                                        Width="135"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+
+                        <!-- Console Name -->
+                        <simpleControls:SimpleTextField Grid.Column="0" Grid.Row="2"
+                                                        FieldName="Console Name" 
+                                                        FieldText="PS4-839"
+                                                        Width="135"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+
+                        <StackPanel Grid.Column="2" Grid.Row="2" 
+                                    Orientation="Horizontal"
+                                    Margin="0 5 0 0">
+                            <simpleControls:SimpleButton 
+                                                     Content="Edit"
+                                                     Width="50"
+                                                     Height="35"/>
+
+                            <simpleControls:SimpleButton Margin="5 0 0 0"
+                                                     Content="More Details"
+                                                     Width="80"
+                                                     Height="35"/>
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
+
             </Border>
 
             <Border Width="305"
@@ -32,6 +127,92 @@
                     Margin="0,0,30,0"
                     CornerRadius="10"
                     Background="{DynamicResource ControlDarkBackground}">
+
+                <StackPanel Orientation="Vertical"
+                            Margin="5">
+
+                    <!-- Title Text -->
+                    <TextBlock Text="Quick Launch"
+                           Foreground="{DynamicResource Text}"
+                           FontSize="18"
+                           VerticalAlignment="Center"
+                           Margin="5 0 0 0"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="85"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Current Title Image -->
+                        <Border Grid.Column="0" Grid.Row="1"
+                                BorderThickness="1"
+                                BorderBrush="#333333"
+                                Margin="8">
+                            <Image Source="https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" Grid.Row="1"
+                                    Orientation="Vertical"
+                                    VerticalAlignment="Center">
+
+                            <TextBlock HorizontalAlignment="Left"
+                                       Margin="5 0 0 0"
+                                       Text="Red Dead Redemption 2"
+                                       Foreground="{DynamicResource Text}"
+                                       FontSize="14"/>
+
+                            <TextBlock HorizontalAlignment="Left"
+                                       Margin="5 0 0 0"
+                                       Text="CUSA08519_00"
+                                       Foreground="{DynamicResource Text}"
+                                       FontSize="14"/>
+
+                            <TextBlock HorizontalAlignment="Left"
+                                       Margin="5 0 0 0"
+                                       Text="eboot.bin (79)"
+                                       Foreground="{DynamicResource Text}"
+                                       FontSize="14"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Grid Margin="3 0 7 0">
+                        <Grid.ColumnDefinitions>
+                            
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            
+                        </Grid.ColumnDefinitions>
+
+                        <simpleControls:SimpleButton Grid.Column="0"
+                                                     Margin="5 0 0 0"
+                                                     Content="Debugger"
+                                                     Width="70"
+                                                     Height="35"/>
+
+                        <simpleControls:SimpleButton Grid.Column="2" 
+                                                     Margin="5 0 0 0"
+                                                     Content="Peek n' Poke"
+                                                     Width="85"
+                                                     Height="35"/>
+
+                        <simpleControls:SimpleButton Grid.Column="4"
+                                                     Margin="5 0 0 0"
+                                                     Content="Module Manager"
+                                                     Width="100"
+                                                     Height="35"/>
+                    </Grid>
+
+                </StackPanel>
 
             </Border>
         </StackPanel>
@@ -45,6 +226,46 @@
                     CornerRadius="10"
                     Background="{DynamicResource ControlDarkBackground}">
 
+                <StackPanel Orientation="Vertical"
+                            Margin="5">
+
+                    <!-- Title Text -->
+                    <TextBlock Text="Storage Usage"
+                           Foreground="{DynamicResource Text}"
+                           FontSize="18"
+                           VerticalAlignment="Center"
+                           Margin="5 0 0 0"/>
+
+                    <StackPanel Margin="2 4 0 0" Orientation="Horizontal">
+                        
+                        <!-- Usage Percentage -->
+                        <simpleControls:SimpleCircleProgressBar Name="HDDUsage"
+                                                                Width="125" Height="125"
+                                                                Thickness="18"
+                                                                FontSize="18"
+                                                                ProgressPercentage="76"/>
+                        <!-- Info Fields -->
+                        <StackPanel Margin="3 5 0 0" Orientation="Vertical">
+                            <simpleControls:SimpleTextField FieldName="Used Space" 
+                                                        FieldText="311.8 GB"
+                                                        Width="157"
+                                                        Height="35"/>
+                            
+                            <simpleControls:SimpleTextField FieldName="Free Space" 
+                                                        FieldText="96.7 GB"
+                                                        Width="157"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+
+                            <simpleControls:SimpleTextField FieldName="Total Space" 
+                                                        FieldText="408.5 GB"
+                                                        Width="157"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"/>
+
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
             </Border>
 
             <Border Width="305"
@@ -53,6 +274,73 @@
                     Margin="0,0,30,0"
                     CornerRadius="10"
                     Background="{DynamicResource ControlDarkBackground}">
+
+                <StackPanel Orientation="Vertical"
+                            Margin="5">
+
+                    <!-- Title Text -->
+                    <TextBlock Text="System Stats"
+                           Foreground="{DynamicResource Text}"
+                           FontSize="18"
+                           VerticalAlignment="Center"
+                           Margin="5 0 0 0"/>
+
+                    <StackPanel Margin="2 4 0 0" Orientation="Horizontal">
+
+                        <!-- Usage Percentage -->
+                        <simpleControls:SimpleCircleProgressBar Name="CPUUsage"
+                                                                Width="125" Height="125"
+                                                                Thickness="18"
+                                                                FontSize="18"
+                                                                ProgressPercentage="85"/>
+                        <!-- Info Fields -->
+                        <StackPanel Margin="3 5 0 0" Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                
+                                <simpleControls:SimpleTextField FieldName="CPU Temp" 
+                                                        FieldText="71 °C"
+                                                        Width="73.5"
+                                                        Height="35"
+                                                        Margin="0 0 10 0"/>
+                                
+                                <simpleControls:SimpleTextField FieldName="SOC Temp" 
+                                                        FieldText="68 °C"
+                                                        Width="73.5"
+                                                        Height="35"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
+
+                                <simpleControls:SimpleTextField FieldName="Thread Count" 
+                                                        FieldText="736"
+                                                        Width="73.5"
+                                                        Height="35"
+                                                        Margin="0 0 10 0"/>
+
+                                <simpleControls:SimpleTextField FieldName="Top Core" 
+                                                        FieldText="4"
+                                                        Width="73.5"
+                                                        Height="35"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
+
+                                <simpleControls:SimpleTextField FieldName="Ram Usage" 
+                                                        FieldText="2479 MB"
+                                                        Width="73.5"
+                                                        Height="35"
+                                                        Margin="0 0 10 0"/>
+
+                                <simpleControls:SimpleTextField FieldName="V-Ram Usage" 
+                                                        FieldText="615 MB"
+                                                        Width="73.5"
+                                                        Height="35"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
 
             </Border>
         </StackPanel>

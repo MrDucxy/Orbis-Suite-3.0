@@ -23,6 +23,8 @@ namespace OrbisNeighborHood.MVVM.View
         public DashboardView()
         {
             InitializeComponent();
+            HDDUsage.ProgressPercentage = 75;
+            CPUUsage.ProgressPercentage = 85;
         }
     }
 }
