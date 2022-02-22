@@ -23,6 +23,19 @@ namespace OrbisNeighborHood.MVVM.View
         public TargetView()
         {
             InitializeComponent();
+
+            Target1.TargetStatus = 2;
+            Target1.IsDefault = true;
+            Target1.ConsoleModel = 0;
+
+            Target2.TargetStatus = 0;
+            Target2.IsDefault = false;
+            Target2.ConsoleModel = 2;
+
+            Target3.TargetStatus = 1;
+            Target3.IsDefault = false;
+            Target3.ConsoleModel = 1;
+
         }
     }
 }

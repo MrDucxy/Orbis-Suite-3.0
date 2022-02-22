@@ -124,7 +124,7 @@
         </StackPanel>
 
         <!-- Seperation Bar -->
-        <StackPanel Grid.Column="0" Grid.Row="2"
+        <!-- <StackPanel Grid.Column="0" Grid.Row="2"
                     Orientation="Vertical"
                     VerticalAlignment="Bottom"
                     Height="40">
@@ -139,10 +139,10 @@
                                     Height="1"
                                     Fill="#515151"/>
 
-        </StackPanel>
+        </StackPanel> -->
 
         <!-- Target Buttons -->
-        <Grid Grid.Row="2" Grid.Column="0"
+        <!-- <Grid Grid.Row="2" Grid.Column="0"
               VerticalAlignment="Bottom"
               Margin="0 0 0 5">
             <Grid.ColumnDefinitions>
@@ -162,7 +162,7 @@
                                          Height="26"
                                          Width="110"
                                          Content="Set Default Target"/>
-        </Grid>
+        </Grid> -->
 
         <ContentControl Grid.RowSpan="2"
                         Grid.Column="2"

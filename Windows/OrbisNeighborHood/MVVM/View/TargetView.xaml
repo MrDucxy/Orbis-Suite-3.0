@@ -4,9 +4,77 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrbisNeighborHood.MVVM.View"
+             xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="585" d:DesignWidth="700">
+    <StackPanel>
+        <TextBlock Text="Targets"
+                   Foreground="{DynamicResource Text}"
+                   FontSize="28"
+                   HorizontalAlignment="Left"
+                   Margin="30,10,0,10"/>
+
+        <Grid Margin="20 0 20 30">
+
+            <ListBox Width="660" Height="500"
+                     Background="Transparent"
+                     BorderBrush="Transparent">
+                
+                <!-- Sets the List view to be a uniform grid starting top left with 2 columns. -->
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid VerticalAlignment="Top" Columns="2"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                
+                <!-- Remove Selection & Add Margin to all Items -->
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0 0 0 25" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                
+                <!-- Can be done programatically later -->
+                <controls:TargetView x:Name="Target1"
+                                     TargetName="OSM's Console"
+                                     IsDefault="True"
+                                     FirmwareVersion="5.05"
+                                     SDKVersion="5.050.031"
+                                     IPAddress="192.168.0.55"
+                                     ConsoleName="PS4-839"
+                                     ConsoleType="Retail"/>
+
+                <controls:TargetView x:Name="Target2"
+                                     TargetName="OSM's Pro Console"
+                                     IsDefault="False"
+                                     FirmwareVersion="9.00"
+                                     SDKVersion="9.008.031"
+                                     IPAddress="192.168.0.10"
+                                     ConsoleName="PS4-047"
+                                     ConsoleType="Retail"/>
+
+                <controls:TargetView x:Name="Target3"
+                                     TargetName="OSM's 6.72 Console"
+                                     IsDefault="False"
+                                     FirmwareVersion="6.72"
+                                     SDKVersion="6.720.001"
+                                     IPAddress="192.168.0.56"
+                                     ConsoleName="PS4-085"
+                                     ConsoleType="Retail"/>
+                
+                <controls:NewTargetView/>
+
+            </ListBox>
+        </Grid>
+        
+        
+    </StackPanel>
 </UserControl>
