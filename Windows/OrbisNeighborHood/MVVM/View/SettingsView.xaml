@@ -17,7 +17,7 @@
         <!-- General -->
         <Border Width="640" Height="200"
                 CornerRadius="10"
-                Background="{DynamicResource ControlDarkBackground}">
+                Background="{DynamicResource WindowBar}">
 
             <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -38,7 +38,7 @@
             <Border Width="305" Height="150"
                     Margin="0 0 30 0"
                     CornerRadius="10"
-                    Background="{DynamicResource ControlDarkBackground}">
+                    Background="{DynamicResource WindowBar}">
 
                 <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -55,7 +55,7 @@
 
             <Border Width="305" Height="150"
                     CornerRadius="10"
-                    Background="{DynamicResource ControlDarkBackground}">
+                    Background="{DynamicResource WindowBar}">
 
                 <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -75,7 +75,7 @@
         <!-- Credits / Version / About -->
         <Border Width="640" Height="100"
                 CornerRadius="10"
-                Background="{DynamicResource ControlDarkBackground}">
+                Background="{DynamicResource WindowBar}">
 
             <StackPanel Orientation="Vertical"
                             Margin="5">

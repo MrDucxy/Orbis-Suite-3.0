@@ -23,7 +23,7 @@
                     VerticalAlignment="Center"
                     Margin="30,0,30,0"
                     CornerRadius="10"
-                    Background="{DynamicResource ControlDarkBackground}">
+                    Background="{DynamicResource WindowBar}">
 
                 <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -126,7 +126,7 @@
                     VerticalAlignment="Center"
                     Margin="0,0,30,0"
                     CornerRadius="10"
-                    Background="{DynamicResource ControlDarkBackground}">
+                    Background="{DynamicResource WindowBar}">
 
                 <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -224,7 +224,7 @@
                     VerticalAlignment="Center"
                     Margin="30,0,30,0"
                     CornerRadius="10"
-                    Background="{DynamicResource ControlDarkBackground}">
+                    Background="{DynamicResource WindowBar}">
 
                 <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -273,7 +273,7 @@
                     VerticalAlignment="Center"
                     Margin="0,0,30,0"
                     CornerRadius="10"
-                    Background="{DynamicResource ControlDarkBackground}">
+                    Background="{DynamicResource WindowBar}">
 
                 <StackPanel Orientation="Vertical"
                             Margin="5">
@@ -375,7 +375,7 @@
                         Width="116"
                         Height="116"
                         CornerRadius="10"
-                        Background="{DynamicResource ControlDarkBackground}">
+                        Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
                         <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"/>
@@ -394,7 +394,7 @@
                         Width="116"
                         Height="116"
                         CornerRadius="10"
-                        Background="{DynamicResource ControlDarkBackground}">
+                        Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
                         <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"/>
@@ -413,7 +413,7 @@
                         Width="116"
                         Height="116"
                         CornerRadius="10"
-                        Background="{DynamicResource ControlDarkBackground}">
+                        Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
                         <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisDebugger.ico"/>
@@ -432,7 +432,7 @@
                         Width="116"
                         Height="116"
                         CornerRadius="10"
-                        Background="{DynamicResource ControlDarkBackground}">
+                        Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
                         <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisConsoleOutput.ico"/>
@@ -451,7 +451,7 @@
                         Width="116"
                         Height="116"
                         CornerRadius="10"
-                        Background="{DynamicResource ControlDarkBackground}">
+                        Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
                         <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"/>

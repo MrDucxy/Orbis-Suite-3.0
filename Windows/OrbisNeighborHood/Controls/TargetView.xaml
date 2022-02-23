@@ -11,7 +11,7 @@
              d:DesignHeight="210" d:DesignWidth="305">
     <Border VerticalAlignment="Stretch"
             CornerRadius="10"
-            Background="{DynamicResource ControlDarkBackground}">
+            Background="{DynamicResource WindowBar}">
         
         <!-- Main View -->
         <StackPanel Margin="5">

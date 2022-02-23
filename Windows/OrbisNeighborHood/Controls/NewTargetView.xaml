@@ -9,7 +9,7 @@
              d:DesignHeight="210" d:DesignWidth="315">
     <Border VerticalAlignment="Stretch"
             CornerRadius="10"
-            Background="{DynamicResource ControlDarkBackground}">
+            Background="{DynamicResource WindowBar}">
 
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">

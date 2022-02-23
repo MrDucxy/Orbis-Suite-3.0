@@ -7,9 +7,9 @@
         xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
         xmlns:viewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="NeighborHood" Height="620" Width="940"
-        MinHeight="620" MinWidth="940"
-        MaxHeight="620" MaxWidth="940">
+        Title="NeighborHood" Height="640" Width="960"
+        MinHeight="640" MinWidth="960"
+        MaxHeight="640" MaxWidth="960">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -29,7 +29,7 @@
         <!-- Menu BG -->
         <Rectangle Grid.Column="0"
                    Grid.RowSpan="3"
-            Fill="{DynamicResource ControlDarkBackground}"/>
+            Fill="{DynamicResource WindowBar}"/>
         
         <!-- Current Target -->
         <Grid>
