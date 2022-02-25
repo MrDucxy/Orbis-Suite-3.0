@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:OrbisNeighborHood.MVVM.View"
+             xmlns:local="clr-namespace:OrbisNeighborHood.MVVM.View" xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
+             xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
              mc:Ignorable="d" 
              Background="Transparent"
              d:DesignHeight="585" d:DesignWidth="700">
@@ -14,66 +15,193 @@
                    HorizontalAlignment="Left"
                    Margin="30,10,0,10"/>
 
-        <!-- General -->
-        <Border Width="640" Height="200"
+        <StackPanel Orientation="Horizontal" Margin="30 0 30 30">
+
+            <!-- General -->
+            <Border Width="305" Height="340"
                 CornerRadius="10"
+                Margin="0 0 30 0"
                 Background="{DynamicResource WindowBar}">
 
-            <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Vertical"
                             Margin="5">
 
-                <TextBlock Text="General"
+                    <TextBlock Text="General"
                        Foreground="{DynamicResource Text}"
                        FontSize="18"
                        VerticalAlignment="Center"
                        Margin="5 0 0 0"/>
 
+                    <controls:SettingPanel SettingName="API Port"
+                                           SettingDescription="The port used to communicate with target machines using the Orbislib API."
+                                           Margin="0 0 0 15">
+                        <TextBox 
+                                 Text="9020"
+                                 Width="50"
+                                 Height="18"
+                                 TextAlignment="Right"
+                                 Foreground="{DynamicResource Text}"
+                                 Background="{DynamicResource WindowBackground}"
+                                 BorderBrush="{DynamicResource ButtonBorder}">
+
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsFocused" Value="true">
+                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+
+                        </TextBox>
+                    </controls:SettingPanel>
+                    <controls:SettingPanel SettingName="FTP Port"
+                                           SettingDescription="The port that will be used to access the targets file system using ftp."
+                                           Margin="0 0 0 15">
+                        <TextBox Name="FTPPort"
+                                 Text="1212"
+                                 Width="50"
+                                 Height="18"
+                                 TextAlignment="Right"
+                                 Foreground="{DynamicResource Text}"
+                                 Background="{DynamicResource WindowBackground}"
+                                 BorderBrush="{DynamicResource ButtonBorder}">
+
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsFocused" Value="true">
+                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+
+                        </TextBox>
+                    </controls:SettingPanel>
+                    <controls:SettingPanel SettingName="Klog Port"
+                                           SettingDescription="The port of a klog server that will be used to print console output similar to UART."
+                                           Margin="0 0 0 15">
+                        <TextBox 
+                                 Text="3232"
+                                 Width="50"
+                                 Height="18"
+                                 TextAlignment="Right"
+                                 Foreground="{DynamicResource Text}"
+                                 Background="{DynamicResource WindowBackground}"
+                                 BorderBrush="{DynamicResource ButtonBorder}">
+
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsFocused" Value="true">
+                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+
+                        </TextBox>
+                    </controls:SettingPanel>
+                    <controls:SettingPanel SettingName="Serial Com Port"
+                                           SettingDescription="The USB serial com port name used to connect to the Targets UART."
+                                           Margin="0 0 0 15">
+                        <TextBox 
+                                 Text="com3"
+                                 Width="50"
+                                 Height="18"
+                                 TextAlignment="Right"
+                                 Foreground="{DynamicResource Text}"
+                                 Background="{DynamicResource WindowBackground}"
+                                 BorderBrush="{DynamicResource ButtonBorder}">
+
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsFocused" Value="true">
+                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+
+                        </TextBox>
+                    </controls:SettingPanel>
+                    <controls:SettingPanel SettingName="Start Taskbar App on Boot"
+                                           SettingDescription="Have the Orbis Suite Taskbar App to start when windows starts."
+                                           Margin="0 0 0 15">
+                        <simpleControls:SimpleSwitch Height="15"/>
+                    </controls:SettingPanel>
+
+                </StackPanel>
+            </Border>
+
+            <!-- Skins / Target Settings -->
+            <StackPanel Orientation="Vertical">
+                <Border Width="305" Height="155"
+                    Margin="0 0 0 30"
+                    CornerRadius="10"
+                    Background="{DynamicResource WindowBar}">
+
+                    <StackPanel Orientation="Vertical"
+                            Margin="5">
+
+                        <TextBlock Text="Skins"
+                                   Foreground="{DynamicResource Text}"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"
+                                   Margin="5 0 0 0"/>
+
+                        <controls:SettingPanel SettingName="Theme"
+                                               SettingDescription="Choose which theme will be used across Orbis Suite."
+                                               Margin="0 0 0 15">
+                            
+                        </controls:SettingPanel>
+                        <controls:SettingPanel SettingName="Rainbow Accent Colours"
+                                               SettingDescription="Enables the accent colours to cycle through all colours of the rainbow."
+                                               Margin="0 0 0 15">
+                            <simpleControls:SimpleSwitch Height="15"/>
+                        </controls:SettingPanel>
+
+                    </StackPanel>
+
+                </Border>
+
+                <Border Width="305" Height="155"
+                    CornerRadius="10"
+                    Background="{DynamicResource WindowBar}">
+
+                    <StackPanel Orientation="Vertical"
+                            Margin="5">
+
+                        <TextBlock Text="Target Details"
+                                   Foreground="{DynamicResource Text}"
+                                   FontSize="18"
+                                   VerticalAlignment="Center"
+                                   Margin="5 0 0 0"/>
+
+                        <controls:SettingPanel SettingName="Censor IDPS"
+                                               SettingDescription="When viewd from the target details choose to censor the Target identifier."
+                                               Margin="0 0 0 15">
+                            <simpleControls:SimpleSwitch Height="15"/>
+                        </controls:SettingPanel>
+
+                        <controls:SettingPanel SettingName="Censor PSID"
+                                               SettingDescription="When viewd from the target details choose to censor the Target identifier."
+                                               Margin="0 0 0 15">
+                            <simpleControls:SimpleSwitch Height="15"/>
+                        </controls:SettingPanel>
+
+                    </StackPanel>
+
+                </Border>
             </StackPanel>
-        </Border>
-
-        <!-- Skins / Target Settings -->
-        <StackPanel Orientation="Horizontal"
-                    Margin="30">
-
-            <Border Width="305" Height="150"
-                    Margin="0 0 30 0"
-                    CornerRadius="10"
-                    Background="{DynamicResource WindowBar}">
-
-                <StackPanel Orientation="Vertical"
-                            Margin="5">
-
-                    <TextBlock Text="Skins"
-                       Foreground="{DynamicResource Text}"
-                       FontSize="18"
-                       VerticalAlignment="Center"
-                       Margin="5 0 0 0"/>
-
-                </StackPanel>
-
-            </Border>
-
-            <Border Width="305" Height="150"
-                    CornerRadius="10"
-                    Background="{DynamicResource WindowBar}">
-
-                <StackPanel Orientation="Vertical"
-                            Margin="5">
-
-                    <TextBlock Text="Target Details"
-                       Foreground="{DynamicResource Text}"
-                       FontSize="18"
-                       VerticalAlignment="Center"
-                       Margin="5 0 0 0"/>
-
-                </StackPanel>
-
-            </Border>
 
         </StackPanel>
 
         <!-- Credits / Version / About -->
-        <Border Width="640" Height="100"
+        <Border Width="640" Height="130"
                 CornerRadius="10"
                 Background="{DynamicResource WindowBar}">
 
@@ -86,8 +214,28 @@
                        VerticalAlignment="Center"
                        Margin="5 0 0 0"/>
 
-            </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="18"/>
+                    </Grid.RowDefinitions>
 
+                    <!-- Version -->
+                    <TextBlock Grid.Row="1" 
+                               Text="3.0.127 Dev Build Feb 23rd 11:50 PM"
+                               Foreground="{DynamicResource Text}"
+                               HorizontalAlignment="Left"
+                               FontSize="12"/>
+
+                    <!-- Who made this :) -->
+                    <TextBlock Grid.Row="1" 
+                               Text="Made with tender loving care by Greg ♥"
+                               Foreground="{DynamicResource Text}"
+                               HorizontalAlignment="Right"
+                               FontSize="12"/>
+
+                </Grid>
+            </StackPanel>
         </Border>
         
     </StackPanel>

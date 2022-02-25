@@ -123,47 +123,7 @@
 
         </StackPanel>
 
-        <!-- Seperation Bar -->
-        <!-- <StackPanel Grid.Column="0" Grid.Row="2"
-                    Orientation="Vertical"
-                    VerticalAlignment="Bottom"
-                    Height="40">
-            
-            <Rectangle VerticalAlignment="Top" 
-                                    HorizontalAlignment="Stretch"
-                                    Height="1"
-                                    Fill="#333333"
-                                    Margin="0 0 0 1"/>
-            <Rectangle VerticalAlignment="Top" 
-                                    HorizontalAlignment="Stretch"
-                                    Height="1"
-                                    Fill="#515151"/>
-
-        </StackPanel> -->
-
-        <!-- Target Buttons -->
-        <!-- <Grid Grid.Row="2" Grid.Column="0"
-              VerticalAlignment="Bottom"
-              Margin="0 0 0 5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <simpleControls:SimpleButton Grid.Column="1"
-                                         Height="26"
-                                         Width="75"
-                                         Content="Add Target"/>
-
-            <simpleControls:SimpleButton Grid.Column="3" 
-                                         Height="26"
-                                         Width="110"
-                                         Content="Set Default Target"/>
-        </Grid> -->
-
+        <!-- Current View -->
         <ContentControl Grid.RowSpan="2"
                         Grid.Column="2"
                         Margin="0"
