@@ -29,6 +29,8 @@
     <None Remove="Images\RestMode.png" />
     <None Remove="Images\Send.png" />
     <None Remove="Images\Shutdown.png" />
+    <None Remove="Resources\BuildNumber.txt" />
+    <None Remove="Resources\BuildString.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -105,14 +107,24 @@
     <Resource Include="Images\Shutdown.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <EmbeddedResource Include="Resources\BuildNumber.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BuildString.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="echo $(CurrentDate) &gt; &quot;$(ProjectDir)\Resources\BuildDate.txt" />
+    <Exec Command="call &quot;$(ProjectDir)PreBuild.bat&quot; &quot;$(ProjectDir)&quot; &quot;$(CurrentDate)&quot; &quot;$(ConfigurationName)&quot;" />
   </Target>
 
   <PropertyGroup>
-   <CurrentDate>$([System.DateTime]::Now.ToString("dddd, MMMM dd yyyy h:mm tt"))</CurrentDate>
+   <CurrentDate>$([System.DateTime]::Now.ToString("dddd MMMM dd yyyy h:mm tt"))</CurrentDate>
    <PackageProjectUrl>https://github.com/OSM-Made/Orbis-Suite-3.0</PackageProjectUrl>
    <RepositoryUrl>https://github.com/OSM-Made/Orbis-Suite-3.0</RepositoryUrl>
    <AssemblyVersion>3.0.0</AssemblyVersion>

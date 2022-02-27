@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,25 @@ namespace OrbisNeighborHood.MVVM.View
         public SettingsView()
         {
             InitializeComponent();
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (Stream? stream = assembly.GetManifestResourceStream("OrbisNeighborHood.Resources.BuildString.txt"))
+            using (StreamReader? reader = new StreamReader(stream))
+            {
+                BuildString = reader.ReadToEnd();
+                Console.WriteLine($"BuildString {BuildString}");
+            }
         }
+
+        public string BuildString
+        {
+            get { return (string)GetValue(BuildStringProperty); }
+            set { SetValue(BuildStringProperty, value); }
+        }
+
+        public static readonly DependencyProperty BuildStringProperty =
+            DependencyProperty.Register("BuildString", typeof(string), typeof(SettingsView), new PropertyMetadata(string.Empty));
+
     }
 }
