@@ -195,11 +195,13 @@
                             
                         </Grid.ColumnDefinitions>
 
-                        <simpleControls:SimpleButton Grid.Column="0"
+                        <simpleControls:SimpleButton Name="LaunchDebugger"
+                                                     Grid.Column="0"
                                                      Margin="5 0 0 0"
                                                      Content="Debugger"
                                                      Width="70"
-                                                     Height="35"/>
+                                                     Height="35"
+                                                     Click="LaunchDebugger_Click"/>
 
                         <simpleControls:SimpleButton Grid.Column="2" 
                                                      Margin="5 0 0 0"
@@ -380,7 +382,10 @@
                         Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
-                        <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"/>
+                        <Image Margin="30 20 30 0" 
+                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               RenderOptions.EdgeMode="Aliased"/>
 
                         <TextBlock Text="Peek n' Poke"
                                    FontSize="13"
@@ -399,7 +404,10 @@
                         Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
-                        <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"/>
+                        <Image Margin="30 20 30 0" 
+                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               RenderOptions.EdgeMode="Aliased"/>
 
                         <TextBlock Text="Library Manager"
                                    FontSize="13"
@@ -418,7 +426,10 @@
                         Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
-                        <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisDebugger.ico"/>
+                        <Image Margin="30 20 30 0" 
+                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisDebugger.ico"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               RenderOptions.EdgeMode="Aliased"/>
 
                         <TextBlock Text="Debugger"
                                    FontSize="13"
@@ -437,7 +448,10 @@
                         Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
-                        <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisConsoleOutput.ico"/>
+                        <Image Margin="30 20 30 0" 
+                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisConsoleOutput.ico"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               RenderOptions.EdgeMode="Aliased"/>
 
                         <TextBlock Text="Console Output"
                                    FontSize="13"
@@ -456,7 +470,10 @@
                         Background="{DynamicResource WindowBar}">
 
                     <StackPanel>
-                        <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"/>
+                        <Image Margin="30 20 30 0" 
+                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               RenderOptions.EdgeMode="Aliased"/>
 
                         <TextBlock Text="Taskbar App"
                                    FontSize="13"

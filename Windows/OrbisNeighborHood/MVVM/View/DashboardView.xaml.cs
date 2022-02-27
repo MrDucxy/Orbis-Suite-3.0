@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,8 +25,12 @@ namespace OrbisNeighborHood.MVVM.View
         public DashboardView()
         {
             InitializeComponent();
-            HDDUsage.ProgressPercentage = 75;
-            CPUUsage.ProgressPercentage = 85;
+            
+        }
+
+        private void LaunchDebugger_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

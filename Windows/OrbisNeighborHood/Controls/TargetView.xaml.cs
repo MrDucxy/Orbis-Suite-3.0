@@ -36,36 +36,37 @@ namespace OrbisNeighborHood.Controls
         public int TargetStatus
         {
             get { return (int)GetValue(TargetStatusProperty); }
-            set 
-            { 
-                SetValue(TargetStatusProperty, value); 
-                switch (value)
-                {
-                    case (int)TargetStatusType.Offline:
-                        TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                        TargetStatusElement.ToolTip = "Offline";
-                        break;
-
-                    case (int)TargetStatusType.Online:
-                        TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 140, 0));
-                        TargetStatusElement.ToolTip = "Online";
-                        break;
-
-                    case (int)TargetStatusType.APIAvailable:
-                        TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
-                        TargetStatusElement.ToolTip = "Online &amp; API Available";
-                        break;
-
-                    default:
-                        TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                        TargetStatusElement.ToolTip = "Unknown";
-                        break;
-                }
-            }
+            set { SetValue(TargetStatusProperty, value); }
         }
 
         public static readonly DependencyProperty TargetStatusProperty =
-            DependencyProperty.Register("TargetStatus", typeof(int), typeof(TargetView), new PropertyMetadata(0));
+            DependencyProperty.Register("TargetStatus", typeof(int), typeof(TargetView), new PropertyMetadata(0, TargetStatusProperty_Changed));
+
+        private static void TargetStatusProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            switch ((int)e.NewValue)
+            {
+                case (int)TargetStatusType.Offline:
+                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ((TargetView)d).TargetStatusElement.ToolTip = "Offline";
+                    break;
+
+                case (int)TargetStatusType.Online:
+                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 140, 0));
+                    ((TargetView)d).TargetStatusElement.ToolTip = "Online";
+                    break;
+
+                case (int)TargetStatusType.APIAvailable:
+                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
+                    ((TargetView)d).TargetStatusElement.ToolTip = "Online &amp; API Available";
+                    break;
+
+                default:
+                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ((TargetView)d).TargetStatusElement.ToolTip = "Unknown";
+                    break;
+            }
+        }
 
         public string TargetName
         {
@@ -79,19 +80,19 @@ namespace OrbisNeighborHood.Controls
         public bool IsDefault
         {
             get { return (bool)GetValue(IsDefaultProperty); }
-            set 
-            { 
-                SetValue(IsDefaultProperty, value);
-                if (value)
-                    DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Default.ico"));
-                else 
-                    DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
-            }
+            set { SetValue(IsDefaultProperty, value); }
         }
 
         public static readonly DependencyProperty IsDefaultProperty =
-            DependencyProperty.Register("IsDefault", typeof(bool), typeof(TargetView), new PropertyMetadata(false));
+            DependencyProperty.Register("IsDefault", typeof(bool), typeof(TargetView), new PropertyMetadata(false, IsDefaultProperty_Changed));
 
+        private static void IsDefaultProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue)
+                ((TargetView)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Default.ico"));
+            else
+                ((TargetView)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
+        }
 
         // Info Field
         private enum ConsoleModelType
@@ -104,32 +105,33 @@ namespace OrbisNeighborHood.Controls
         public int ConsoleModel
         {
             get { return (int)GetValue(ConsoleModelProperty); }
-            set 
-            { 
-                SetValue(ConsoleModelProperty, value); 
-                switch (value)
-                {
-                    case (int)ConsoleModelType.Fat:
-                        ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
-                        break;
-
-                    case (int)ConsoleModelType.Slim:
-                        ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Slim.png"));
-                        break;
-
-                    case (int)ConsoleModelType.Pro:
-                        ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Pro.png"));
-                        break;
-
-                    default:
-                        ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
-                        break;
-                }
-            }
+            set { SetValue(ConsoleModelProperty, value); }
         }
 
         public static readonly DependencyProperty ConsoleModelProperty =
-            DependencyProperty.Register("ConsoleModel", typeof(int), typeof(TargetView), new PropertyMetadata(0));
+            DependencyProperty.Register("ConsoleModel", typeof(int), typeof(TargetView), new PropertyMetadata(0, ConsoleModelProperty_Changed));
+
+        private static void ConsoleModelProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            switch ((int)e.NewValue)
+            {
+                case (int)ConsoleModelType.Fat:
+                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
+                    break;
+
+                case (int)ConsoleModelType.Slim:
+                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Slim.png"));
+                    break;
+
+                case (int)ConsoleModelType.Pro:
+                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Pro.png"));
+                    break;
+
+                default:
+                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
+                    break;
+            }
+        }
 
         public string FirmwareVersion
         {

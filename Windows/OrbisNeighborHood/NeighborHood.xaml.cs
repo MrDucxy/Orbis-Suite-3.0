@@ -1,6 +1,7 @@
 ﻿using SimpleUI.Controls;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -25,7 +26,6 @@ namespace OrbisNeighborHood
         public NeighborHood()
         {
             InitializeComponent();
-            Console.WriteLine($"Version {Assembly.GetExecutingAssembly()?.GetName()?.Version?.Major}.{Assembly.GetExecutingAssembly()?.GetName()?.Version?.Minor}.{Assembly.GetExecutingAssembly()?.GetName()?.Version?.Build}");
         }
     }
 }
