@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
@@ -106,5 +106,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo $(CurrentDate) &gt; &quot;$(ProjectDir)\Resources\BuildDate.txt" />
+  </Target>
+
+  <PropertyGroup>
+   <CurrentDate>$([System.DateTime]::Now.ToString("dddd, MMMM dd yyyy h:mm tt"))</CurrentDate>
+   <PackageProjectUrl>https://github.com/OSM-Made/Orbis-Suite-3.0</PackageProjectUrl>
+   <RepositoryUrl>https://github.com/OSM-Made/Orbis-Suite-3.0</RepositoryUrl>
+   <AssemblyVersion>3.0.0</AssemblyVersion>
+  </PropertyGroup>
 
 </Project>

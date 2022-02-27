@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace OrbisNeighborHood
         public NeighborHood()
         {
             InitializeComponent();
+            Console.WriteLine($"Version {Assembly.GetExecutingAssembly()?.GetName()?.Version?.Major}.{Assembly.GetExecutingAssembly()?.GetName()?.Version?.Minor}.{Assembly.GetExecutingAssembly()?.GetName()?.Version?.Build}");
         }
     }
 }
