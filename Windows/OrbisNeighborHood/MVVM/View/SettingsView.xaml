@@ -35,7 +35,7 @@
                     <controls:SettingPanel SettingName="API Port"
                                            SettingDescription="The port used to communicate with target machines using the Orbislib API."
                                            Margin="0 0 0 15">
-                        <TextBox 
+                        <TextBox Tag="APIPort"
                                  Text="9020"
                                  Width="50"
                                  Height="18"
@@ -59,7 +59,7 @@
                     <controls:SettingPanel SettingName="FTP Port"
                                            SettingDescription="The port that will be used to access the targets file system using ftp."
                                            Margin="0 0 0 15">
-                        <TextBox Name="FTPPort"
+                        <TextBox Tag="FTPPort"
                                  Text="1212"
                                  Width="50"
                                  Height="18"
@@ -83,7 +83,7 @@
                     <controls:SettingPanel SettingName="Klog Port"
                                            SettingDescription="The port of a klog server that will be used to print console output similar to UART."
                                            Margin="0 0 0 15">
-                        <TextBox 
+                        <TextBox Tag="KlogPort"
                                  Text="3232"
                                  Width="50"
                                  Height="18"
@@ -107,7 +107,7 @@
                     <controls:SettingPanel SettingName="Serial Com Port"
                                            SettingDescription="The USB serial com port name used to connect to the Targets UART."
                                            Margin="0 0 0 15">
-                        <TextBox 
+                        <TextBox Tag="COMPort"
                                  Text="com3"
                                  Width="50"
                                  Height="18"
@@ -131,7 +131,7 @@
                     <controls:SettingPanel SettingName="Start Taskbar App on Boot"
                                            SettingDescription="Have the Orbis Suite Taskbar App to start when windows starts."
                                            Margin="0 0 0 15">
-                        <simpleControls:SimpleSwitch Height="15"/>
+                        <simpleControls:SimpleSwitch Tag="OnStart" Height="15"/>
                     </controls:SettingPanel>
 
                 </StackPanel>

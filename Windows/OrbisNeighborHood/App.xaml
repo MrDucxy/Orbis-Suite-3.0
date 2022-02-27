@@ -15,8 +15,6 @@
 
                 <!-- Custom Themes -->
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-
-                <ResourceDictionary Source="/OrbisNeighborHood;component/Controls/SettingPanel.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <!-- View Models -->

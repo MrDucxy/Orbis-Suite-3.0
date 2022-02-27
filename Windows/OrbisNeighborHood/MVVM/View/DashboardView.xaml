@@ -33,7 +33,7 @@
 
                         <!-- Target State -->
                         <Ellipse Grid.ColumnSpan="2" Grid.Row="0"
-                         Fill="Green"
+                         Fill="Red"
                          Width="14"
                          Height="14"
                          HorizontalAlignment="Left"
@@ -153,7 +153,9 @@
                                 BorderThickness="1"
                                 BorderBrush="#333333"
                                 Margin="8">
-                            <Image Source="https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png"/>
+                            <Image Source="/OrbisNeighborHood;component/Images/DefaultTitleIcon.png"
+                                   RenderOptions.BitmapScalingMode="Fant"
+                                   RenderOptions.EdgeMode="Aliased"/>
                         </Border>
 
                         <StackPanel Grid.Column="1" Grid.Row="1"
@@ -162,19 +164,19 @@
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
-                                       Text="Red Dead Redemption 2"
+                                       Text="Unkown Title"
                                        Foreground="{DynamicResource Text}"
                                        FontSize="14"/>
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
-                                       Text="CUSA08519_00"
+                                       Text="-"
                                        Foreground="{DynamicResource Text}"
                                        FontSize="14"/>
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
-                                       Text="eboot.bin (79)"
+                                       Text="-"
                                        Foreground="{DynamicResource Text}"
                                        FontSize="14"/>
 
@@ -292,19 +294,19 @@
                                                                 Width="125" Height="125"
                                                                 Thickness="18"
                                                                 FontSize="18"
-                                                                ProgressPercentage="85"/>
+                                                                ProgressPercentage="0"/>
                         <!-- Info Fields -->
                         <StackPanel Margin="3 5 0 0" Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 
                                 <simpleControls:SimpleTextField FieldName="CPU Temp" 
-                                                        FieldText="71 °C"
+                                                        FieldText="- °C"
                                                         Width="73.5"
                                                         Height="35"
                                                         Margin="0 0 10 0"/>
                                 
                                 <simpleControls:SimpleTextField FieldName="SOC Temp" 
-                                                        FieldText="68 °C"
+                                                        FieldText="- °C"
                                                         Width="73.5"
                                                         Height="35"/>
                             </StackPanel>
@@ -312,13 +314,13 @@
                             <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
 
                                 <simpleControls:SimpleTextField FieldName="Thread Count" 
-                                                        FieldText="736"
+                                                        FieldText="-"
                                                         Width="73.5"
                                                         Height="35"
                                                         Margin="0 0 10 0"/>
 
                                 <simpleControls:SimpleTextField FieldName="Top Core" 
-                                                        FieldText="4"
+                                                        FieldText="-"
                                                         Width="73.5"
                                                         Height="35"/>
                             </StackPanel>
@@ -326,13 +328,13 @@
                             <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
 
                                 <simpleControls:SimpleTextField FieldName="Ram Usage" 
-                                                        FieldText="2479 MB"
+                                                        FieldText="- MB"
                                                         Width="73.5"
                                                         Height="35"
                                                         Margin="0 0 10 0"/>
 
                                 <simpleControls:SimpleTextField FieldName="V-Ram Usage" 
-                                                        FieldText="615 MB"
+                                                        FieldText="- MB"
                                                         Width="73.5"
                                                         Height="35"/>
                             </StackPanel>
@@ -389,7 +391,7 @@
 
                 </Border>
 
-                <!-- Module Manager -->
+                <!-- Library Manager -->
                 <Border Grid.Column="3"
                         Width="116"
                         Height="116"
@@ -399,7 +401,7 @@
                     <StackPanel>
                         <Image Margin="30 20 30 0" Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"/>
 
-                        <TextBlock Text="Module Manager"
+                        <TextBlock Text="Library Manager"
                                    FontSize="13"
                                    Margin="0 10 0 0"
                                    Foreground="{DynamicResource Text}"

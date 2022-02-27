@@ -57,7 +57,9 @@
                     <Rectangle Fill="#45494A"/>
 
                     <Image Name="ConsoleImageElement"
-                           Source="/OrbisNeighborHood;component/Images/Consoles/Fat.png"/>
+                           Source="/OrbisNeighborHood;component/Images/Consoles/Fat.png"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           RenderOptions.EdgeMode="Aliased"/>
                 </Grid>
                 
 

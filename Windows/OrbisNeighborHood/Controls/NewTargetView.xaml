@@ -16,7 +16,9 @@
             <Image 
                Width="70"
                Height="70"
-               Source="/OrbisNeighborHood;component/Images/Plus.png"/>
+               Source="/OrbisNeighborHood;component/Images/Plus.png"
+               RenderOptions.BitmapScalingMode="Fant"
+               RenderOptions.EdgeMode="Aliased"/>
 
             <TextBlock Text="Add Target"
                        Foreground="{DynamicResource Text}"

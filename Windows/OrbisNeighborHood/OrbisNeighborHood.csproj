@@ -13,6 +13,8 @@
     <None Remove="Images\Consoles\Pro.png" />
     <None Remove="Images\Consoles\Slim.png" />
     <None Remove="Images\Default.ico" />
+    <None Remove="Images\DefaultAppIcon.png" />
+    <None Remove="Images\DefaultTitleIcon.png" />
     <None Remove="Images\Icons\OrbisConsoleOutput.ico" />
     <None Remove="Images\Icons\OrbisDebugger.ico" />
     <None Remove="Images\Icons\OrbisModuleManager.ico" />
@@ -53,6 +55,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Default.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DefaultAppIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\DefaultTitleIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Icons\OrbisConsoleOutput.ico">

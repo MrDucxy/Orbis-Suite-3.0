@@ -5,6 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -13,6 +20,11 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class SettingPanel : ContentControl
     {
+        public SettingPanel()
+        {
+            InitializeComponent();
+        }
+
         public string? SettingName { get; set; } = string.Empty;
 
         public static readonly DependencyProperty SettingNameProperty =

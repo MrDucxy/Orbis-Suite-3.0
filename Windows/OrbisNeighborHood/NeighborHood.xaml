@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Title="NeighborHood" Height="640" Width="960"
         MinHeight="640" MinWidth="960"
-        MaxHeight="640" MaxWidth="960">
+        MaxHeight="640" MaxWidth="960"
+        UseLayoutRounding="True">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -47,7 +48,9 @@
                     BorderThickness="1"
                     BorderBrush="#333333"
                     Margin="8">
-                <Image Source="https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png"/>
+                <Image Source="/OrbisNeighborHood;component/Images/DefaultTitleIcon.png"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       RenderOptions.EdgeMode="Aliased"/>
             </Border>
 
             <StackPanel Grid.Column="1" Grid.Row="1"
@@ -60,7 +63,7 @@
 
                     <!-- Target State -->
                     <Ellipse Grid.ColumnSpan="2" Grid.Row="0"
-                     Fill="Green"
+                     Fill="Red"
                      Width="12"
                      Height="12"
                      HorizontalAlignment="Left"
@@ -81,13 +84,13 @@
 
                 <TextBlock HorizontalAlignment="Left"
                            Margin="5 0 0 0"
-                           Text="Red Dead Redemption 2"
+                           Text="Unknown Title"
                            Foreground="{DynamicResource Text}"
                            FontSize="10"/>
 
                 <TextBlock HorizontalAlignment="Left"
                            Margin="5 0 0 0"
-                           Text="CUSA08519_00"
+                           Text="-"
                            Foreground="{DynamicResource Text}"
                            FontSize="10"/>
 
