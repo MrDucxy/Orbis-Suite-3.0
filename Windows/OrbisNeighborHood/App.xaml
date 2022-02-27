@@ -15,6 +15,7 @@
 
                 <!-- Custom Themes -->
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/SimpleComboBoxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <!-- View Models -->

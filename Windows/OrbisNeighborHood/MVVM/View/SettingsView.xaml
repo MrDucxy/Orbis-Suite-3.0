@@ -33,102 +33,53 @@
                        VerticalAlignment="Center"
                        Margin="5 0 0 0"/>
 
+                    <!-- API Port -->
                     <controls:SettingPanel SettingName="API Port"
                                            SettingDescription="The port used to communicate with target machines using the Orbislib API."
                                            Margin="0 0 0 15">
-                        <TextBox Tag="APIPort"
+                        <simpleControls:SimpleTextBox Tag="APIPort"
                                  Text="9020"
                                  Width="50"
                                  Height="18"
-                                 TextAlignment="Right"
-                                 Foreground="{DynamicResource Text}"
-                                 Background="{DynamicResource WindowBackground}"
-                                 BorderBrush="{DynamicResource ButtonBorder}">
-
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsFocused" Value="true">
-                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-
-                        </TextBox>
+                                 TextAlignment="Right"/>
                     </controls:SettingPanel>
+
+                    <!-- FTP Port -->
                     <controls:SettingPanel SettingName="FTP Port"
                                            SettingDescription="The port that will be used to access the targets file system using ftp."
                                            Margin="0 0 0 15">
-                        <TextBox Tag="FTPPort"
+                        <simpleControls:SimpleTextBox Tag="FTPPort"
                                  Text="1212"
                                  Width="50"
                                  Height="18"
                                  TextAlignment="Right"
-                                 Foreground="{DynamicResource Text}"
-                                 Background="{DynamicResource WindowBackground}"
-                                 BorderBrush="{DynamicResource ButtonBorder}">
-
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsFocused" Value="true">
-                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-
-                        </TextBox>
+                                 />
                     </controls:SettingPanel>
+
+                    <!-- Klog Port -->
                     <controls:SettingPanel SettingName="Klog Port"
                                            SettingDescription="The port of a klog server that will be used to print console output similar to UART."
                                            Margin="0 0 0 15">
-                        <TextBox Tag="KlogPort"
+                        <simpleControls:SimpleTextBox Tag="KlogPort"
                                  Text="3232"
                                  Width="50"
                                  Height="18"
                                  TextAlignment="Right"
-                                 Foreground="{DynamicResource Text}"
-                                 Background="{DynamicResource WindowBackground}"
-                                 BorderBrush="{DynamicResource ButtonBorder}">
-
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsFocused" Value="true">
-                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-
-                        </TextBox>
+                                 />
                     </controls:SettingPanel>
+
+                    <!-- Serial Com Port -->
                     <controls:SettingPanel SettingName="Serial Com Port"
                                            SettingDescription="The USB serial com port name used to connect to the Targets UART."
                                            Margin="0 0 0 15">
-                        <TextBox Tag="COMPort"
+                        <simpleControls:SimpleTextBox Tag="COMPort"
                                  Text="com3"
                                  Width="50"
                                  Height="18"
-                                 TextAlignment="Right"
-                                 Foreground="{DynamicResource Text}"
-                                 Background="{DynamicResource WindowBackground}"
-                                 BorderBrush="{DynamicResource ButtonBorder}">
-
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsFocused" Value="true">
-                                            <Setter Property="Foreground" Value="{DynamicResource ButtonBorder}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-
-                        </TextBox>
+                                 TextAlignment="Right"/>
                     </controls:SettingPanel>
+
+                    <!-- Start Taskbar App on Boot -->
                     <controls:SettingPanel SettingName="Start Taskbar App on Boot"
                                            SettingDescription="Have the Orbis Suite Taskbar App to start when windows starts."
                                            Margin="0 0 0 15">
@@ -153,16 +104,23 @@
                                    FontSize="18"
                                    VerticalAlignment="Center"
                                    Margin="5 0 0 0"/>
-
+                        <!-- Theme -->
                         <controls:SettingPanel SettingName="Theme"
                                                SettingDescription="Choose which theme will be used across Orbis Suite."
                                                Margin="0 0 0 15">
-                            
+                            <simpleControls:SimpleComboBox Text="Red"
+                                      Width="60"
+                                      Height="20">
+                                <ComboBoxItem Content="Red" />
+                                <ComboBoxItem Content="Blue" />
+                            </simpleControls:SimpleComboBox>
                         </controls:SettingPanel>
+                        
+                        <!-- Rainbow Accents -->
                         <controls:SettingPanel SettingName="Rainbow Accent Colours"
                                                SettingDescription="Enables the accent colours to cycle through all colours of the rainbow."
                                                Margin="0 0 0 15">
-                            <simpleControls:SimpleSwitch Height="15"/>
+                            <simpleControls:SimpleSwitch Tag="RainbowTheme" Height="15"/>
                         </controls:SettingPanel>
 
                     </StackPanel>
@@ -181,13 +139,14 @@
                                    FontSize="18"
                                    VerticalAlignment="Center"
                                    Margin="5 0 0 0"/>
-
+                        <!-- Censor IDPS -->
                         <controls:SettingPanel SettingName="Censor IDPS"
                                                SettingDescription="When viewd from the target details choose to censor the Target identifier."
                                                Margin="0 0 0 15">
                             <simpleControls:SimpleSwitch Height="15"/>
                         </controls:SettingPanel>
-
+                        
+                        <!-- Censor PSID -->
                         <controls:SettingPanel SettingName="Censor PSID"
                                                SettingDescription="When viewd from the target details choose to censor the Target identifier."
                                                Margin="0 0 0 15">
@@ -220,6 +179,20 @@
                         <RowDefinition Height="83"/>
                         <RowDefinition Height="14"/>
                     </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Margin="3 0 3 0">
+                        <TextBlock Text="The next version of Orbis Suite completely rewritten with a new UI. Now running mostly in userland on the PS4 with its own Daemon process gone is the need for a payload! Fully featured suite of tools to help aid in developing and debugging on the PS4 console."
+                                   Foreground="{DynamicResource Text}"
+                                   TextWrapping="Wrap">
+                        </TextBlock>
+
+                        <TextBlock 
+                                   Foreground="{DynamicResource Text}"
+                                   TextWrapping="Wrap">
+                            <Run>Special Thanks to Zenco, Alex / Skiff, Flatz, iMoD1998, ZzReApErzZ, Synful, SiSTR0, LightningMods, kiwidoggie, Al-Azif, My Cats + Many More!</Run>
+                        </TextBlock>
+                    </StackPanel>
 
                     <!-- Version -->
                     <TextBlock Grid.Row="1" 
