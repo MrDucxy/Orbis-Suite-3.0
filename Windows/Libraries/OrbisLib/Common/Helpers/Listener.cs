@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 
 
-namespace OrbisSuite.Common.Helpers
+namespace OrbisSuite.Common
 {
     public class Listener
     {

@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace OrbisSuite.Common.Helpers
+namespace OrbisSuite.Common
 {
     public static class Helpers
     {

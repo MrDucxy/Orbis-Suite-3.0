@@ -1,4 +1,6 @@
 ﻿using System.Data.SQLite;
+using System.Net.Sockets;
+using System.Runtime.InteropServices;
 
 namespace OrbisSuite.Common.DataBase
 {
@@ -444,22 +446,20 @@ namespace OrbisSuite.Common.DataBase
             Target.SDKVersion = $"{((Packet.SDKVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SDKVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.SDKVersion & 0xFFF).ToString("X3")}";
             Target.SoftwareVersion = $"{((Packet.SoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SoftwareVersion >> 16) & 0xFF).ToString("X2")}";
             Target.FactorySoftwareVersion = $"{((Packet.FactorySoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.FactorySoftwareVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.FactorySoftwareVersion & 0xFFF).ToString("X3")}";
-            Target.CPUTemp = Packet.CPUTemp;
-            Target.SOCTemp = Packet.SOCTemp;
-            // CurrentTitleID
+            Target.CurrentTitleID = Packet.CurrentTitleID; // TODO: Implement this on console
             Target.ConsoleName = Packet.ConsoleName;
             Target.MotherboardSerial = Packet.MotherboardSerial;
             Target.Serial = Packet.Serial;
             Target.Model = Packet.Model;
             Target.MACAddressLAN = BitConverter.ToString(Packet.MACAddressLAN).Replace("-", ":");
-            // MACAddressWIFI
+            Target.MACAddressWIFI = "-"; // TODO: Find this on the console. BitConverter.ToString(Packet.MACAddressWIFI).Replace("-", ":");
             Target.UART = Packet.UART > 0;
             Target.IDUMode = Packet.IDUMode > 0;
             Target.IDPS = BitConverter.ToString(Packet.IDPS).Replace("-", string.Empty);
             Target.PSID = BitConverter.ToString(Packet.PSID).Replace("-", string.Empty);
             Target.ConsoleType = ConsoleTypeNames[Packet.ConsoleType];
             Target.Attached = Packet.Attached > 0;
-            Target.CurrentProc = Packet.CurrentProc;
+            Target.CurrentProcessId = 0;// TODO: Update this to process Id Packet.CurrentProc;
 
             // Write to Database.
             using (var connection = new SQLiteConnection($"Data Source={Config.DataBasePath}"))
@@ -471,8 +471,6 @@ namespace OrbisSuite.Common.DataBase
                                         SDKVersion=@SDKVersion, 
                                         SoftwareVersion=@SoftwareVersion, 
                                         FactorySoftwareVersion=@FactorySoftwareVersion, 
-                                        CPUTemp=@CPUTemp, 
-                                        SOCTemp=@SOCTemp, 
                                         CurrentTitleID=@CurrentTitleID, 
                                         ConsoleName=@ConsoleName,
                                         MotherboardSerial=@MotherboardSerial, 
@@ -486,15 +484,16 @@ namespace OrbisSuite.Common.DataBase
                                         PSID=@PSID, 
                                         ConsoleType=@ConsoleType, 
                                         Attached=@Attached, 
-                                        CurrentProc=@CurrentProc 
+                                        CurrentProcessId=@CurrentProcessId,
+                                        HDDUsedSpace=@HDDUsedSpace,
+                                        HDDFreeSpace=@HDDFreeSpace,
+                                        HDDTotalSpace=@HDDTotalSpace 
                                         WHERE TargetName=@Target";
                 command.Parameters.AddWithValue("@Target", TargetName);
 
                 command.Parameters.AddWithValue("@SDKVersion", Target.SDKVersion);
                 command.Parameters.AddWithValue("@SoftwareVersion", Target.SoftwareVersion);
                 command.Parameters.AddWithValue("@FactorySoftwareVersion", Target.FactorySoftwareVersion);
-                command.Parameters.AddWithValue("@CPUTemp", Target.CPUTemp);
-                command.Parameters.AddWithValue("@SOCTemp", Target.SOCTemp);
                 command.Parameters.AddWithValue("@CurrentTitleID", Target.CurrentTitleID);
                 command.Parameters.AddWithValue("@ConsoleName", Target.ConsoleName);
                 command.Parameters.AddWithValue("@MotherboardSerial", Target.MotherboardSerial);
@@ -508,7 +507,11 @@ namespace OrbisSuite.Common.DataBase
                 command.Parameters.AddWithValue("@PSID", Target.PSID);
                 command.Parameters.AddWithValue("@ConsoleType", Target.ConsoleType);
                 command.Parameters.AddWithValue("@Attached", Target.Attached);
-                command.Parameters.AddWithValue("@CurrentProc", Target.CurrentProc);
+                command.Parameters.AddWithValue("@CurrentProcessId", Target.CurrentProcessId);
+                command.Parameters.AddWithValue("@HDDUsedSpace", Target.HDDUsedSpace);
+                command.Parameters.AddWithValue("@HDDFreeSpace", Target.HDDFreeSpace);
+                command.Parameters.AddWithValue("@HDDTotalSpace", Target.HDDTotalSpace);
+                // TODO: Possibly have CPU stats here SOC/CPU Temp, RAM, VRAM, ThreadCount, CPUAverageUsage & CPUUsage[8].
 
                 return (command.ExecuteNonQuery() > 0);
             }

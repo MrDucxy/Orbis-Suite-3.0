@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Common\API\" />
     <Folder Include="Dialog\" />
     <Folder Include="Resources\" />
   </ItemGroup>
