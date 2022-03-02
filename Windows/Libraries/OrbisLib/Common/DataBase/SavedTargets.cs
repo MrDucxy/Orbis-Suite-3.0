@@ -421,7 +421,6 @@ namespace OrbisSuite.Common.DataBase
         public static bool UpdateTargetExtInfo(string TargetName)
         {
             var Target = Targets.Find(x => x.Name == TargetName);
-            var Settings = new Settings();
 
             if (Target == null)
             {

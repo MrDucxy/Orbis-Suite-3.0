@@ -1,22 +1,22 @@
-﻿using System.ServiceProcess;
+﻿using OrbisSuiteService.Service;
+using System.ServiceProcess;
 
 #if DEBUG
-var service = new OrbisSuiteService();
+var service = new Service();
 service.OnStartPublic(new string[0]);
-while (true)
-{
-    //Just spin wait here. 
-    Thread.Sleep(1000);
-}
 #else
-    ServiceBase.Run(new OrbisSuiteService());
+    ServiceBase.Run(new Service());
 #endif
 
-class OrbisSuiteService : ServiceBase
+class Service : ServiceBase
 {
+    bool RunService = true;
+
     public void OnStartPublic(string[] args)
     {
         Console.WriteLine("Starting");
+        var dp = new Dispatcher();
+        while (RunService) { Thread.Sleep(10); }
     }
 
     protected override void OnStart(string[] args)
@@ -26,6 +26,7 @@ class OrbisSuiteService : ServiceBase
     protected override void OnStop()
     {
         Console.WriteLine("Stopping");
+        RunService = false;
     }
     protected override void OnPause()
     {

@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-
 namespace OrbisSuite.Common
 {
     public class Listener

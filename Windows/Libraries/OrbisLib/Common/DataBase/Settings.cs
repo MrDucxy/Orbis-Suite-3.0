@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrbisSuite.Common.DataBase
+﻿namespace OrbisSuite.Common.DataBase
 {
-    internal class Settings
+    public static class Settings
     {
         #region General
 
         /// <summary>
         /// The API port that OrbisLib communicates on.
         /// </summary>
-        public int APIPort
+        public static int APIPort
         {
             get
             {
@@ -29,7 +23,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// The port that will be used to access the targets file system using ftp
         /// </summary>
-        public int FTPPort
+        public static int FTPPort
         {
             get
             {
@@ -45,7 +39,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// The port of a klog server that will be used to print console output similar to UART.
         /// </summary>
-        public int KlogPort
+        public static int KlogPort
         {
             get
             {
@@ -61,7 +55,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// The serial COM port we will listen to for UART output.
         /// </summary>
-        public string COMPort
+        public static string COMPort
         {
             get
             {
@@ -77,7 +71,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// Starts the Orbis Suite taskbar app when windows boots.
         /// </summary>
-        public bool StartOnBoot
+        public static bool StartOnBoot
         {
             get
             {
@@ -109,7 +103,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// Choose which theme will be used across Orbis Suite.
         /// </summary>
-        public int Theme
+        public static int Theme
         {
             get
             {
@@ -125,7 +119,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// Enables the accent colours to cycle through all colours of the rainbow.
         /// </summary>
-        public bool RainbowColours
+        public static bool RainbowColours
         {
             get
             {
@@ -145,7 +139,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// When viewd from the target details choose to censor the Target identifier.
         /// </summary>
-        public bool CensorIDPS
+        public static bool CensorIDPS
         {
             get
             {
@@ -161,7 +155,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// When viewd from the target details choose to censor the Target identifier.
         /// </summary>
-        public bool CensorPSID
+        public static bool CensorPSID
         {
             get
             {
@@ -181,7 +175,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// SHow timestamps on the console output.
         /// </summary>
-        public bool ShowTimestamps
+        public static bool ShowTimestamps
         {
             get
             {
@@ -197,7 +191,7 @@ namespace OrbisSuite.Common.DataBase
         /// <summary>
         /// Word wrap the console output window.
         /// </summary>
-        public bool WordWrap
+        public static bool WordWrap
         {
             get
             {

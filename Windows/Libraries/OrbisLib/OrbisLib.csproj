@@ -8,13 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Dialog\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
+    <PackageReference Include="System.Json" Version="4.7.1" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using SimpleUI.Controls;
+﻿using OrbisSuite;
+using SimpleUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,8 @@ namespace OrbisNeighborHood
     /// </summary>
     public partial class NeighborHood : SimpleWindow
     {
+        OrbisLib PS4 = new OrbisLib();
+
         public NeighborHood()
         {
             InitializeComponent();
