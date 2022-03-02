@@ -284,7 +284,7 @@ namespace OrbisSuite.Common.DataBase
                             Out.PayloadPort = reader.GetInt32((int)DataColumns.PayloadPort);
                             Out.Available = reader.GetBoolean((int)DataColumns.Available);
                             Out.APIAvailable = reader.GetBoolean((int)DataColumns.APIAvailable);
-                            Out.SDKVersion = reader.GetString((int)DataColumns.DefaultTarget);
+                            Out.SDKVersion = reader.GetString((int)DataColumns.SDKVersion);
                             Out.SoftwareVersion = reader.GetString((int)DataColumns.SoftwareVersion);
                             Out.FactorySoftwareVersion = reader.GetString((int)DataColumns.FactorySoftwareVersion);
                             Out.CurrentTitleID = reader.GetString((int)DataColumns.CurrentTitleID);
@@ -679,7 +679,7 @@ namespace OrbisSuite.Common.DataBase
                             Out.PayloadPort = reader.GetInt32((int)DataColumns.PayloadPort);
                             Out.Available = reader.GetBoolean((int)DataColumns.Available);
                             Out.APIAvailable = reader.GetBoolean((int)DataColumns.APIAvailable);
-                            Out.SDKVersion = reader.GetString((int)DataColumns.DefaultTarget);
+                            Out.SDKVersion = reader.GetString((int)DataColumns.SDKVersion);
                             Out.SoftwareVersion = reader.GetString((int)DataColumns.SoftwareVersion);
                             Out.FactorySoftwareVersion = reader.GetString((int)DataColumns.FactorySoftwareVersion);
                             Out.CurrentTitleID = reader.GetString((int)DataColumns.CurrentTitleID);
@@ -781,7 +781,7 @@ namespace OrbisSuite.Common.DataBase
                             temp.PayloadPort = reader.GetInt32((int)DataColumns.PayloadPort);
                             temp.Available = reader.GetBoolean((int)DataColumns.Available);
                             temp.APIAvailable = reader.GetBoolean((int)DataColumns.APIAvailable);
-                            temp.SDKVersion = reader.GetString((int)DataColumns.DefaultTarget);
+                            temp.SDKVersion = reader.GetString((int)DataColumns.SDKVersion);
                             temp.SoftwareVersion = reader.GetString((int)DataColumns.SoftwareVersion);
                             temp.FactorySoftwareVersion = reader.GetString((int)DataColumns.FactorySoftwareVersion);
                             temp.CurrentTitleID = reader.GetString((int)DataColumns.CurrentTitleID);

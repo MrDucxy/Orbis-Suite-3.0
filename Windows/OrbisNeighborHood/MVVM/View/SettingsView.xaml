@@ -41,7 +41,9 @@
                                  Text="9020"
                                  Width="50"
                                  Height="18"
-                                 TextAlignment="Right"/>
+                                 TextAlignment="Right"
+                                 Loaded="APIPort_Loaded"
+                                 LostFocus="APIPort_LostFocus"/>
                     </controls:SettingPanel>
 
                     <!-- FTP Port -->

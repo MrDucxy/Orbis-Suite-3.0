@@ -109,7 +109,7 @@ namespace OrbisSuite
 
         #endregion
 
-        public OrbisLib()
+        private OrbisLib()
         {
             try
             {
@@ -135,6 +135,24 @@ namespace OrbisSuite
             {
 
             }
+        }
+
+        private static OrbisLib? _Instance;
+
+        public static OrbisLib Instance
+        {
+            get 
+            { 
+                if(_Instance == null)
+                    _Instance = new OrbisLib();
+
+                return _Instance; 
+            }
+        }
+
+        public static void Init()
+        {
+            _Instance = new OrbisLib();
         }
     }
 }

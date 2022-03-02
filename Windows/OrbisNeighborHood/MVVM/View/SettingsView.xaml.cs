@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrbisSuite.Common.DataBase;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,5 +45,14 @@ namespace OrbisNeighborHood.MVVM.View
         public static readonly DependencyProperty BuildStringProperty =
             DependencyProperty.Register("BuildString", typeof(string), typeof(SettingsView), new PropertyMetadata(string.Empty));
 
+        private void APIPort_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Settings.APIPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
+        }
+
+        private void APIPort_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.APIPort.ToString();
+        }
     }
 }

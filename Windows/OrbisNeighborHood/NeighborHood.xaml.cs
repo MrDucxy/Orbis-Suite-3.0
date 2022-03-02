@@ -24,11 +24,11 @@ namespace OrbisNeighborHood
     /// </summary>
     public partial class NeighborHood : SimpleWindow
     {
-        OrbisLib PS4 = new OrbisLib();
-
         public NeighborHood()
         {
             InitializeComponent();
+
+            OrbisLib.Init();
         }
     }
 }
