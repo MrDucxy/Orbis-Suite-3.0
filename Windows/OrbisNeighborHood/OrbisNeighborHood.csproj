@@ -115,10 +115,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="call &quot;$(ProjectDir)PreBuild.bat&quot; &quot;$(ProjectDir)&quot; &quot;$(CurrentDate)&quot; &quot;$(ConfigurationName)&quot;" />
   </Target>

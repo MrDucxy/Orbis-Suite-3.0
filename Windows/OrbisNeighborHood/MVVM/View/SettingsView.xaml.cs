@@ -32,7 +32,6 @@ namespace OrbisNeighborHood.MVVM.View
             using (StreamReader? reader = new StreamReader(stream))
             {
                 BuildString = reader.ReadToEnd();
-                Console.WriteLine($"BuildString {BuildString}");
             }
         }
 

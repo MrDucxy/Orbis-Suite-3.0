@@ -49,7 +49,7 @@
                                            SettingDescription="The port that will be used to access the targets file system using ftp."
                                            Margin="0 0 0 15">
                         <simpleControls:SimpleTextBox Tag="FTPPort"
-                                 Text="1212"
+                                 Text="2121"
                                  Width="50"
                                  Height="18"
                                  TextAlignment="Right"
