@@ -123,7 +123,7 @@
         {
             get
             {
-                return Database.GetSetting<int>("RainbowColours");
+                return Database.GetSetting<bool>("RainbowColours");
             }
 
             set
@@ -143,7 +143,7 @@
         {
             get
             {
-                return Database.GetSetting<int>("CensorIDPS");
+                return Database.GetSetting<bool>("CensorIDPS");
             }
 
             set
@@ -159,7 +159,7 @@
         {
             get
             {
-                return Database.GetSetting<int>("CensorPSID");
+                return Database.GetSetting<bool>("CensorPSID");
             }
 
             set

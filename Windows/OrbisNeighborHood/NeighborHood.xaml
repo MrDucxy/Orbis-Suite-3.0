@@ -10,7 +10,8 @@
         Title="NeighborHood" Height="640" Width="960"
         MinHeight="640" MinWidth="960"
         MaxHeight="640" MaxWidth="960"
-        UseLayoutRounding="True">
+        UseLayoutRounding="True"
+        ResizeMode="CanMinimize">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>

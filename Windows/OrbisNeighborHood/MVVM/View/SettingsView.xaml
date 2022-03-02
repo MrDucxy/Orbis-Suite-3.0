@@ -37,55 +37,68 @@
                     <controls:SettingPanel SettingName="API Port"
                                            SettingDescription="The port used to communicate with target machines using the Orbislib API."
                                            Margin="0 0 0 15">
-                        <simpleControls:SimpleTextBox Tag="APIPort"
-                                 Text="9020"
-                                 Width="50"
-                                 Height="18"
-                                 TextAlignment="Right"
-                                 Loaded="APIPort_Loaded"
-                                 LostFocus="APIPort_LostFocus"/>
+                        <simpleControls:SimpleTextBox 
+                            Tag="APIPort"
+                            Text="9020"
+                            Width="50"
+                            Height="18"
+                            TextAlignment="Right"
+                            MaxLength="5"
+                            Loaded="APIPort_Loaded"
+                            LostFocus="APIPort_LostFocus"
+                            PreviewTextInput="AllowOnlyInteger"/>
                     </controls:SettingPanel>
 
                     <!-- FTP Port -->
                     <controls:SettingPanel SettingName="FTP Port"
                                            SettingDescription="The port that will be used to access the targets file system using ftp."
                                            Margin="0 0 0 15">
-                        <simpleControls:SimpleTextBox Tag="FTPPort"
-                                 Text="2121"
-                                 Width="50"
-                                 Height="18"
-                                 TextAlignment="Right"
-                                 />
+                        <simpleControls:SimpleTextBox 
+                            Text="2121"
+                            Width="50"
+                            Height="18"
+                            TextAlignment="Right"
+                            MaxLength="5"
+                            Loaded="FTPPort_Loaded"
+                            LostFocus="FTPPort_LostFocus"
+                            PreviewTextInput="AllowOnlyInteger"/>
                     </controls:SettingPanel>
 
                     <!-- Klog Port -->
                     <controls:SettingPanel SettingName="Klog Port"
                                            SettingDescription="The port of a klog server that will be used to print console output similar to UART."
                                            Margin="0 0 0 15">
-                        <simpleControls:SimpleTextBox Tag="KlogPort"
-                                 Text="3232"
-                                 Width="50"
-                                 Height="18"
-                                 TextAlignment="Right"
-                                 />
+                        <simpleControls:SimpleTextBox 
+                            Text="3232"
+                            Width="50"
+                            Height="18"
+                            TextAlignment="Right"
+                            MaxLength="5"
+                            Loaded="KlogPort_Loaded"
+                            LostFocus="KlogPort_LostFocus"
+                            PreviewTextInput="AllowOnlyInteger"/>
                     </controls:SettingPanel>
 
                     <!-- Serial Com Port -->
                     <controls:SettingPanel SettingName="Serial Com Port"
                                            SettingDescription="The USB serial com port name used to connect to the Targets UART."
                                            Margin="0 0 0 15">
-                        <simpleControls:SimpleTextBox Tag="COMPort"
-                                 Text="com3"
-                                 Width="50"
-                                 Height="18"
-                                 TextAlignment="Right"/>
+                        <simpleControls:SimpleTextBox 
+                            Text="com3"
+                            Width="50"
+                            Height="18"
+                            TextAlignment="Right"
+                            Loaded="COMPort_Loaded"
+                            LostFocus="COMPort_LostFocus"/>
                     </controls:SettingPanel>
 
                     <!-- Start Taskbar App on Boot -->
                     <controls:SettingPanel SettingName="Start Taskbar App on Boot"
                                            SettingDescription="Have the Orbis Suite Taskbar App to start when windows starts."
                                            Margin="0 0 0 15">
-                        <simpleControls:SimpleSwitch Tag="OnStart" Height="15"/>
+                        <simpleControls:SimpleSwitch Tag="OnStart" Height="15"
+                                                     Loaded="StartOnBoot_Loaded"
+                                                     MouseDown="StartOnBoot_MouseDown"/>
                     </controls:SettingPanel>
 
                 </StackPanel>
@@ -110,9 +123,11 @@
                         <controls:SettingPanel SettingName="Theme"
                                                SettingDescription="Choose which theme will be used across Orbis Suite."
                                                Margin="0 0 0 15">
-                            <simpleControls:SimpleComboBox Text="Red"
-                                      Width="60"
-                                      Height="20">
+                            <simpleControls:SimpleComboBox SelectedValuePath="Content"
+                                                           Width="60"
+                                                           Height="20"
+                                                           Loaded="Theme_Loaded"
+                                                           SelectionChanged="Theme_SelectionChanged">
                                 <ComboBoxItem Content="Red" />
                                 <ComboBoxItem Content="Blue" />
                             </simpleControls:SimpleComboBox>
@@ -122,7 +137,9 @@
                         <controls:SettingPanel SettingName="Rainbow Accent Colours"
                                                SettingDescription="Enables the accent colours to cycle through all colours of the rainbow."
                                                Margin="0 0 0 15">
-                            <simpleControls:SimpleSwitch Tag="RainbowTheme" Height="15"/>
+                            <simpleControls:SimpleSwitch Tag="RainbowTheme" Height="15"
+                                                         Loaded="RainbowTheme_Loaded"
+                                                         MouseDown="RainbowTheme_MouseDown"/>
                         </controls:SettingPanel>
 
                     </StackPanel>
@@ -145,15 +162,25 @@
                         <controls:SettingPanel SettingName="Censor IDPS"
                                                SettingDescription="When viewd from the target details choose to censor the Target identifier."
                                                Margin="0 0 0 15">
-                            <simpleControls:SimpleSwitch Height="15"/>
+                            
+                            <simpleControls:SimpleSwitch Height="15"
+                                                         Loaded="CensorIDPS_Loaded"
+                                                         MouseDown="CensorIDPS_MouseDown"/>
+                            
                         </controls:SettingPanel>
                         
                         <!-- Censor PSID -->
                         <controls:SettingPanel SettingName="Censor PSID"
                                                SettingDescription="When viewd from the target details choose to censor the Target identifier."
                                                Margin="0 0 0 15">
-                            <simpleControls:SimpleSwitch Height="15"/>
+
+                            <simpleControls:SimpleSwitch Height="15"
+                                                         Loaded="CensorPSID_Loaded"
+                                                         MouseDown="CensorPSID_MouseDown"/>
+
                         </controls:SettingPanel>
+                        
+
 
                     </StackPanel>
 
