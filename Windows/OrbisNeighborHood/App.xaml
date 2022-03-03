@@ -3,33 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:OrbisNeighborHood"
              StartupUri="NeighborHood.xaml"
-             xmlns:skins="clr-namespace:SimpleUI.Skins;assembly=SimpleUI"
-             xmlns:viewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel"
-             xmlns:view="clr-namespace:OrbisNeighborHood.MVVM.View">
+             xmlns:skins="clr-namespace:SimpleUI.Skins;assembly=SimpleUI">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- SimpleUI -->
                 <skins:SkinResourceDictionary/>
                 <ResourceDictionary Source="/SimpleUI;component/Skins/MyTheme.xaml"/>
-
-                <!-- Custom Themes -->
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/SimpleComboBoxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
-            <!-- View Models -->
-            <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
-                <view:DashboardView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:TargetViewModel}">
-                <view:TargetView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-                <view:SettingsView/>
-            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

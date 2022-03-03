@@ -31,6 +31,11 @@ namespace OrbisNeighborHood.MVVM.View
             }
         }
 
+        ~SettingsView()
+        {
+            
+        }
+
         #region General
 
         private void AllowOnlyInteger(object sender, TextCompositionEventArgs e)

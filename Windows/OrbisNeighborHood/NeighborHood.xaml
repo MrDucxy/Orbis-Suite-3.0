@@ -6,13 +6,35 @@
         xmlns:local="clr-namespace:OrbisNeighborHood"
         xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
         xmlns:viewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel"
+        xmlns:view="clr-namespace:OrbisNeighborHood.MVVM.View"
+        xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
         mc:Ignorable="d"
         Title="NeighborHood" Height="640" Width="960"
         MinHeight="640" MinWidth="960"
         MaxHeight="640" MaxWidth="960"
         UseLayoutRounding="True"
         ResizeMode="CanMinimize">
+    
+    <!-- View Models -->
+    <Window.Resources>
+        <view:DashboardView x:Key="DashboardViewKey"/>
+        <view:TargetView x:Key="TargetViewKey"/>
+        <view:SettingsView x:Key="SettingsViewKey"/>
 
+
+        <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
+            <ContentControl Content="{StaticResource DashboardViewKey}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:TargetViewModel}">
+            <ContentControl Content="{StaticResource TargetViewKey}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <ContentControl Content="{StaticResource SettingsViewKey}" />
+        </DataTemplate>
+    </Window.Resources>
+    
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
@@ -103,27 +125,21 @@
         <StackPanel Grid.Column="0" Grid.Row="2"
                     Orientation="Vertical">
 
-            <RadioButton Content="Dashboard"
-                         Height="50"
-                         Foreground="{DynamicResource Text}"
-                         FontSize="14"
-                         Style="{StaticResource MenuButtonTheme}"
-                         IsChecked="True"
-                         Command="{Binding DashboardViewCommand}"/>
+            <controls:MenuButton ImagePath="/OrbisNeighborHood;component/Images/Home.png"
+                                 Text="Dashboard"
+                                 Height="50"
+                                 IsChecked="True"
+                                 Command="{Binding DashboardViewCommand}"/>
 
-            <RadioButton Content="Targets"
-                         Height="50"
-                         Foreground="{DynamicResource Text}"
-                         FontSize="14"
-                         Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding TargetViewCommand}"/>
+            <controls:MenuButton ImagePath="/OrbisNeighborHood;component/Images/Targets.png"
+                                 Text="Targets"
+                                 Height="50"
+                                 Command="{Binding TargetViewCommand}"/>
 
-            <RadioButton Content="Settings"
-                         Height="50"
-                         Foreground="{DynamicResource Text}"
-                         FontSize="14"
-                         Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding SettingsViewCommand}"/>
+            <controls:MenuButton ImagePath="/OrbisNeighborHood;component/Images/Settings.png"
+                                 Text="Settings"
+                                 Height="50"
+                                 Command="{Binding SettingsViewCommand}"/>
 
         </StackPanel>
 

@@ -15,6 +15,7 @@
     <None Remove="Images\Default.ico" />
     <None Remove="Images\DefaultAppIcon.png" />
     <None Remove="Images\DefaultTitleIcon.png" />
+    <None Remove="Images\Home.png" />
     <None Remove="Images\Icons\OrbisConsoleOutput.ico" />
     <None Remove="Images\Icons\OrbisDebugger.ico" />
     <None Remove="Images\Icons\OrbisModuleManager.ico" />
@@ -28,7 +29,9 @@
     <None Remove="Images\Restart.png" />
     <None Remove="Images\RestMode.png" />
     <None Remove="Images\Send.png" />
+    <None Remove="Images\Settings.png" />
     <None Remove="Images\Shutdown.png" />
+    <None Remove="Images\Targets.png" />
     <None Remove="Resources\BuildNumber.txt" />
     <None Remove="Resources\BuildString.txt" />
   </ItemGroup>
@@ -104,7 +107,16 @@
     <Resource Include="Images\Send.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\Settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Shutdown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Targets.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <EmbeddedResource Include="Resources\BuildNumber.txt">
