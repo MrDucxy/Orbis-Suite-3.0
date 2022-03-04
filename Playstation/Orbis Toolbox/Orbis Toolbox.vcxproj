@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{ced79d48-621a-4076-81e8-11f77de1e41b}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>call Increment.bat "Version.h" "ORBIS_TOOLBOX_BUILDVERSION" 
+call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>
+    </NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del /s /q /f $(IntDir)\*.o
+del /s /q /f $(IntDir)\*.elf
+del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
+    <OutDir>$(SolutionDir)</OutDir>
+    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <IncludePath>C:\OpenOrbis\PS4Toolchain\include\c++\v1;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Build_Overlay.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Daemons.cpp" />
+    <ClCompile Include="GamePad.cpp" />
+    <ClCompile Include="KDriver.cpp" />
+    <ClCompile Include="SysfileUtilWrapper.cpp" />
+    <ClCompile Include="System_Monitor.cpp" />
+    <ClCompile Include="Custom_Content.cpp" />
+    <ClCompile Include="DebugTitleIdLabel.cpp" />
+    <ClCompile Include="Detour.cpp" />
+    <ClCompile Include="DevkitPanel.cpp" />
+    <ClCompile Include="Game_Overlay.cpp" />
+    <ClCompile Include="hde64.cpp" />
+    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LncUtil.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Mono.cpp" />
+    <ClCompile Include="Orbis_Toolbox.cpp" />
+    <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="Patcher.cpp" />
+    <ClCompile Include="Settings_Menu.cpp" />
+    <ClCompile Include="UI_Utilities.cpp" />
+    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="Widget.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Build_Overlay.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Daemons.h" />
+    <ClInclude Include="GamePad.h" />
+    <ClInclude Include="KDriver.h" />
+    <ClInclude Include="SysfileUtilWrapper.h" />
+    <ClInclude Include="System_Monitor.h" />
+    <ClInclude Include="Debug_Features.h" />
+    <ClInclude Include="Detour.h" />
+    <ClInclude Include="Game_Overlay.h" />
+    <ClInclude Include="hde64.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="LncUtil.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Mono.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="Patcher.h" />
+    <ClInclude Include="Settings_Menu.h" />
+    <ClInclude Include="table64.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Utilities.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="Version.h" />
+    <ClInclude Include="Widget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build.bat" />
+    <None Include="Embed.s" />
+    <None Include="Increment.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="external_hdd.xml" />
+    <Xml Include="orbis_toolbox.xml" />
+    <Xml Include="settings_root.xml">
+      <SubType>Designer</SubType>
+    </Xml>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

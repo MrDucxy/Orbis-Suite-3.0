@@ -1,0 +1,1 @@
+call "C:\Users\grego\source\repos\Orbis-Suite-2.0\Misc\Increment.bat" "C:\Users\grego\source\repos\Orbis-Suite-2.0\Playstation\Kernel\Kernel\source\Util\Settings.hpp" "KDRIVER_BUILD_VERSION"

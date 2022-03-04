@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<system_settings version="1.0" plugin="settings_root_plugin">
+
+  <!-- ★Orbis Toolbox -->
+  <setting_list id="id_orbis_toolbox" title="★Orbis Toolbox" initial_focus_to="id_game_package_installer">
+
+    <!-- Power Options -->
+    <setting_list id="power_options" title="Power Options" icon="file://user/data/Orbis Toolbox/Icons/icon_suspend.png" initial_focus_to="id_reboot">
+
+      <!-- Reload ShellUI -->
+      <button id="id_reload_shellui" title="Reload ShellUI" icon="file://user/data/Orbis Toolbox/Icons/icon_reload_ui.png" second_title="Soft reloads the Live Area."/>
+
+      <!-- Reboot -->
+      <button id="id_reboot" title="Reboot" icon="file://user/data/Orbis Toolbox/Icons/icon_reboot.png" second_title="Fully reboots the System."/>
+
+      <!-- Shutdown -->
+      <button id="id_shutdown" title="Shutdown" icon="file://user/data/Orbis Toolbox/Icons/icon_shutdown.png" second_title="Turns off the System."/>
+
+      <!-- Suspend -->
+      <button id="id_suspend" title="Suspend" icon="file://user/data/Orbis Toolbox/Icons/icon_suspend.png" second_title="Suspends the system to the &quot;Rest Mode&quot; state."/>
+
+    </setting_list>
+    
+    <!-- Package Installer -->
+    <link id="id_game_package_installer" title="Package Installer" icon="file://user/data/Orbis Toolbox/Icons/icon_pkg.png" file="PkgInstaller/data/pkginstaller.xml" />
+
+    <!-- Daemon Manager -->
+    <setting_list id="id_daemons" title="Daemon Manager" icon="file://user/data/Orbis Toolbox/Icons/icon_daemon.png" restorable="false">
+      
+      <!-- Options Menu -->
+      <option id="_option" list_highlight="false">
+        <option_item id="id_option_daemon_refresh" title="Refresh"/>
+      </option>
+
+      <!-- Help message -->
+      <label id="daemon_info" title="Daemons are background applications that can be run on your system. Here you can see the status of your Daemons and Manage them.&#xa;Daemons are loaded from &quot;/system/vsh/app/&quot;." style="left" border="true"/>
+      
+      <!-- Creates blank space -->
+      <spacer id="daemon_spacer" height="30"/>
+
+      <!-- 
+        Here is where the Daemons will be shown.
+        
+            Deamon Icon | Name from .sfo | Status ? Running : Stopped or when clicked Stopping/Starting
+            
+            Icons and a description are be loaded from the /system/vsh/app/{TitleId}/sce_sys/ folder
+              - icon0.png is the name of the Icon that is searched for.
+              - param.sfo is the name of the file where the title and desc is parsed from. 
+                - TITLE is the element that holds the name of the Daemon.
+                - PROVIDER is the element that holds the description of the daemon.
+      -->
+      
+    </setting_list>
+
+    <!-- ShellUI Plugin Manager -->
+    <setting_list id="id_plugins" title="ShellUI Plugin Manager" icon="file://user/data/Orbis Toolbox/Icons/icon_plugin.png" restorable="false">
+
+      <!-- Options Menu -->
+      <option id="_option" list_highlight="false">
+        <option_item id="id_option_plugins_refresh" title="Refresh"/>
+      </option>
+
+      <!-- Help message -->
+      <label id="plugin_info" title="ShellUI Plugins are plugins that dont need their own process or are needing to modify the UI.&#xa;ShellUI Plugins are loaded from &quot;/data/Orbis Toolbox/Plugins/&quot;." style="left" border="true"/>
+
+      <!-- Creates blank space -->
+      <spacer id="plugin_spacer" height="30"/>
+
+      <!-- 
+          Here is where the plugins will be shown. 
+          
+          Default Icon | File Name | Status ? Loaded : Not Loaded
+          
+          Just like payloads in the future an icon, names and descriptions may be parsed from here.
+      -->
+      
+    </setting_list>
+
+    <!-- Payload Loader -->
+    <setting_list id="id_payloads" title="Payload Loader" icon="file://user/data/Orbis Toolbox/Icons/icon_payload.png" restorable="false">
+
+      <!-- Options Menu -->
+      <option id="_option" list_highlight="false">
+        <option_item id="id_option_payloads_refresh" title="Refresh"/>
+      </option>
+      
+      <!-- Help message -->
+      <label id="payloads_info" title="Load payloads from the internal HDD of your console or over your network using the &quot;★Custom Payload&quot; Option.&#xa;Payloads are loaded from &quot;/data/Orbis Toolbox/Payloads/&quot;." style="left" border="true"/>
+
+      <!-- Creates blank space -->
+      <spacer id="payloads_spacer" height="30"/>
+
+      <button id="id_Custom_Loader" title="★Custom Payload" second_title="Click here to start listening for payload on port 9020." />
+
+      <!-- 
+          Here is where the payloads found on the HDD will be shown.
+          
+          Default Icon | Name of the File
+          
+          In the future Icons, Names and descriptions may be parsed from this folder.
+       -->
+
+    </setting_list>
+
+    <!-- System Settings -->
+    <setting_list id="system_settings" title="System Settings" icon="file://user/data/Orbis Toolbox/Icons/icon_system_settings.png" initial_focus_to="id_licenseactivation">
+
+      <!-- License Activation -->
+      <setting_list id="id_licenseactivation" title="License Activation" second_title="Enable and disable codecs for consuming media.">
+
+        <!-- MPEG-2 -->
+        <toggle_switch id="id_licenseactivation_mpeg2" title="MPEG-2" key="/SYSTEM/ACTIVATION/mpeg2"/>
+
+        <!-- VC-1 -->
+        <toggle_switch id="id_licenseactivation_vc1" title="VC-1" key="/SYSTEM/ACTIVATION/vc1"/>
+
+        <!-- HEVC -->
+        <toggle_switch id="id_licenseactivation_hevc" title="HEVC" key="/SYSTEM/ACTIVATION/hevc"/>
+
+        <!-- HEVC software decoder -->
+        <toggle_switch id="id_licenseactivation_hevc_soft" title="HEVC software decoder" key="/SYSTEM/ACTIVATION/hevc_soft"/>
+
+      </setting_list>
+
+      <!-- External HDD -->
+      <link id="id_external_hdd" title="External HDD" file="external_hdd.xml" />
+
+      <!-- NP Debug -->
+      <toggle_switch id="id_np_debug" title="NP Debug" second_title="Shows NP debugging popups." key="/NP/debug"/>
+
+    </setting_list>
+    
+    <!-- Orbis Toolbox Settings -->
+    <setting_list id="orbis_toolbox_settings" title="Orbis Toolbox Settings" icon="file://user/data/Orbis Toolbox/Icons/icon_toolbox.png">
+      
+      <!-- Load Config on Startup -->
+      <toggle_switch id="id_load_cfg_on_start" title="Load Config on Startup" second_title="Will attempt to load a config file from &quot;/data/Orbis Toolbox/Settings.cfg&quot;." value="0"/>
+      
+      <!-- Show TitleID Labels -->
+      <toggle_switch id="id_system_disp_titleid" title="Show TitleID Labels" value="0"/>
+
+      <!-- Show Devkit Panel -->
+      <toggle_switch id="id_system_disp_devkit_panel" title="Show Devkit Panel" value="0"/>
+
+      <!-- Show"★Orbis Toolbox" shortcu -->
+      <toggle_switch id="id_system_disp_debug_settings_panel" title="Show &quot;★Orbis Toolbox&quot; shortcut" value="0"/>
+
+      <!-- Show ";★APP_HOME" -->
+      <toggle_switch id="id_system_disp_app_home_panel" title="Show &quot;★APP_HOME&quot;" value="0"/>
+
+      <!-- Debug Overlay -->
+      <toggle_switch id="id_overlay_dbg" title="Debug Overlay" value="0"/>
+
+      <!-- Game Overlay -->
+      <setting_list id="game_overlay" title="Game Overlay">
+
+        <!-- Overlay Location -->
+        <list id="id_overlay_loc" title="Overlay Location" value="Left" >
+          <list_item id="id_overlay_Left" title="Left" value="Left"/>
+          <list_item id="id_overlay_right" title="Right" value="Right"/>
+          <list_item id="id_overlay_center" title="Center" value="Center"/>
+        </list>
+
+        <!-- CPU Usage -->
+        <toggle_switch id="id_overlay_cpu_usage" title="CPU Usage" value="0"/>
+
+        <!-- Thread Count -->
+        <toggle_switch id="id_overlay_thr_count" title="Thread Count" value="0"/>
+
+        <!-- RAM Usage -->
+        <toggle_switch id="id_overlay_ram" title="RAM Usage" value="0"/>
+
+        <!-- Video RAM Usage -->
+        <toggle_switch id="id_overlay_vram" title="Video RAM Usage" value="0"/>
+        
+        <!-- CPU Temperature -->
+        <toggle_switch id="id_overlay_cpu" title="CPU Temperature" value="0"/>
+
+        <!-- SOC Temperature -->
+        <toggle_switch id="id_overlay_soc" title="SOC Temperature" value="0"/>
+        
+      </setting_list>
+
+      <!-- Load Settings -->
+      <button id="id_load_settings" title="Load Settings"/>
+
+      <!-- Save Settings -->
+      <button id="id_save_settings" title="Save Settings"/>
+
+    </setting_list>
+
+	<!-- Orbis Suite Debug -->
+	<setting_list id="orbs_debug" title="Orbis Suite Debug">
+
+		<button id="id_orbs_kern" title="Restart Kernel Executable" second_title="Restarts the Kernel ELF." />
+
+	</setting_list>
+
+    <button id="id_internal_debug_settings" title="Open Internal Debug Settings" second_title="Use at your own risk. I have included this at request some of these options may mess up your console."/>
+    
+  </setting_list>
+
+</system_settings>
