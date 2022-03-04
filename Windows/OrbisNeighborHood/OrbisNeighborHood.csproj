@@ -45,7 +45,7 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.0\Libraries\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="SimpleUI">
-      <HintPath>..\..\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
+      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
