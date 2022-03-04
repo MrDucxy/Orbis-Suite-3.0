@@ -1,3 +1,6 @@
 [submodule "SimpleUI"]
 	path = SimpleUI
 	url = https://github.com/OSM-Made/SimpleUI
+[submodule "FreeBSD-Includes"]
+	path = FreeBSD-Includes
+	url = https://github.com/OSM-Made/FreeBSD-Includes
