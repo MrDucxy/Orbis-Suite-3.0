@@ -18,7 +18,8 @@
 
             <ListBox Width="660" Height="500"
                      Background="Transparent"
-                     BorderBrush="Transparent">
+                     BorderBrush="Transparent"
+                     x:Name="TargetList">
                 
                 <!-- Sets the List view to be a uniform grid starting top left with 2 columns. -->
                 <ListBox.ItemsPanel>
@@ -41,40 +42,6 @@
                         </Setter>
                     </Style>
                 </ListBox.ItemContainerStyle>
-                
-                <!-- Can be done programatically later -->
-                <controls:TargetView x:Name="Target1"
-                                     TargetName="OSM's Console"
-                                     IsDefault="True"
-                                     ConsoleModel="0"
-                                     TargetStatus="0"
-                                     FirmwareVersion="5.05"
-                                     SDKVersion="5.050.031"
-                                     IPAddress="192.168.0.55"
-                                     ConsoleName="PS4-839"
-                                     ConsoleType="Retail"/>
-
-                <controls:TargetView x:Name="Target2"
-                                     TargetName="OSM's Pro Console"
-                                     IsDefault="False"
-                                     ConsoleModel="2"
-                                     TargetStatus="0"
-                                     FirmwareVersion="9.00"
-                                     SDKVersion="9.008.031"
-                                     IPAddress="192.168.0.10"
-                                     ConsoleName="PS4-047"
-                                     ConsoleType="Retail"/>
-
-                <controls:TargetView x:Name="Target3"
-                                     TargetName="OSM's 6.72 Console"
-                                     IsDefault="False"
-                                     ConsoleModel="1"
-                                     TargetStatus="1"
-                                     FirmwareVersion="6.72"
-                                     SDKVersion="6.720.001"
-                                     IPAddress="192.168.0.56"
-                                     ConsoleName="PS4-085"
-                                     ConsoleType="Retail"/>
                 
                 <controls:NewTargetView/>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OrbisSuite;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -20,45 +22,101 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class TargetView : UserControl
     {
-        public TargetView()
+        public TargetView(string TargetName)
         {
             InitializeComponent();
+
+            var Target = OrbisLib.Instance.Targets[TargetName];
+            this.TargetName = TargetName;
+
+            if (Target.Info.APIAvailable)
+                TargetStatus = TargetStatusType.APIAvailable;
+            else if (Target.Info.Available)
+                TargetStatus = TargetStatusType.Online;
+            else
+                TargetStatus = TargetStatusType.Offline;
+
+            // ConsoleModel
+            // CUH-1XXXX Fat
+            // CUH-2XXXX Slim
+            // CUH-7XXXX Pro
+
+            if (Target.Info.Model.Length > 4)//(Regex.Match(Target.Info.Model, @"CUH-\d{5}\w{4}").Success)
+            {
+                switch (char.IsDigit(Target.Info.Model[4]) ? int.Parse(Target.Info.Model[4].ToString()) : 0)
+                {
+                    case 1:
+                        ConsoleModel = ConsoleModelType.Fat;
+                        break;
+
+                    case 2:
+                        ConsoleModel = ConsoleModelType.Slim;
+                        break;
+
+                    case 7:
+                        ConsoleModel = ConsoleModelType.Pro;
+                        break;
+
+
+                    default:
+                        ConsoleModel = ConsoleModelType.Fat;
+                        break;
+                }
+            }
+
+            IsDefault = Target.Info.Default;
+            FirmwareVersion = string.Format("{0:N2}", (double)Target.Info.Firmware / 100);
+            SDKVersion = Target.Info.SDKVersion;
+            IPAddress = Target.Info.IPAddr;
+            ConsoleName = Target.Info.ConsoleName;
+            ConsoleType = Target.Info.ConsoleType;
         }
+
+        #region Properties
+
+        private string TargetName
+        {
+            get { return (string)GetValue(TargetNameProperty); }
+            set { SetValue(TargetNameProperty, value); }
+        }
+
+        private static readonly DependencyProperty TargetNameProperty =
+            DependencyProperty.Register("TargetName", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
         private enum TargetStatusType
         {
+            None,
             Offline,
             Online,
             APIAvailable
         };
 
-        // Target Info
-        public int TargetStatus
+        private TargetStatusType TargetStatus
         {
-            get { return (int)GetValue(TargetStatusProperty); }
+            get { return (TargetStatusType)GetValue(TargetStatusProperty); }
             set { SetValue(TargetStatusProperty, value); }
         }
 
-        public static readonly DependencyProperty TargetStatusProperty =
-            DependencyProperty.Register("TargetStatus", typeof(int), typeof(TargetView), new PropertyMetadata(0, TargetStatusProperty_Changed));
+        private static readonly DependencyProperty TargetStatusProperty =
+            DependencyProperty.Register("TargetStatus", typeof(TargetStatusType), typeof(TargetView), new PropertyMetadata(TargetStatusType.None, TargetStatusProperty_Changed));
 
         private static void TargetStatusProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            switch ((int)e.NewValue)
+            switch ((TargetStatusType)e.NewValue)
             {
-                case (int)TargetStatusType.Offline:
+                case TargetStatusType.Offline:
                     ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                     ((TargetView)d).TargetStatusElement.ToolTip = "Offline";
                     break;
 
-                case (int)TargetStatusType.Online:
+                case TargetStatusType.Online:
                     ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 140, 0));
                     ((TargetView)d).TargetStatusElement.ToolTip = "Online";
                     break;
 
-                case (int)TargetStatusType.APIAvailable:
+                case TargetStatusType.APIAvailable:
                     ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
-                    ((TargetView)d).TargetStatusElement.ToolTip = "Online &amp; API Available";
+                    ((TargetView)d).TargetStatusElement.ToolTip = "Online & API Available";
                     break;
 
                 default:
@@ -68,22 +126,13 @@ namespace OrbisNeighborHood.Controls
             }
         }
 
-        public string TargetName
-        {
-            get { return (string)GetValue(TargetNameProperty); }
-            set { SetValue(TargetNameProperty, value); }
-        }
-
-        public static readonly DependencyProperty TargetNameProperty =
-            DependencyProperty.Register("TargetName", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
-
-        public bool IsDefault
+        private bool IsDefault
         {
             get { return (bool)GetValue(IsDefaultProperty); }
             set { SetValue(IsDefaultProperty, value); }
         }
 
-        public static readonly DependencyProperty IsDefaultProperty =
+        private static readonly DependencyProperty IsDefaultProperty =
             DependencyProperty.Register("IsDefault", typeof(bool), typeof(TargetView), new PropertyMetadata(false, IsDefaultProperty_Changed));
 
         private static void IsDefaultProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -94,36 +143,36 @@ namespace OrbisNeighborHood.Controls
                 ((TargetView)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
         }
 
-        // Info Field
         private enum ConsoleModelType
         {
+            Unknown,
             Fat,
             Slim,
             Pro
         };
 
-        public int ConsoleModel
+        private ConsoleModelType ConsoleModel
         {
-            get { return (int)GetValue(ConsoleModelProperty); }
+            get { return (ConsoleModelType)GetValue(ConsoleModelProperty); }
             set { SetValue(ConsoleModelProperty, value); }
         }
 
-        public static readonly DependencyProperty ConsoleModelProperty =
-            DependencyProperty.Register("ConsoleModel", typeof(int), typeof(TargetView), new PropertyMetadata(0, ConsoleModelProperty_Changed));
+        private static readonly DependencyProperty ConsoleModelProperty =
+            DependencyProperty.Register("ConsoleModel", typeof(ConsoleModelType), typeof(TargetView), new PropertyMetadata(ConsoleModelType.Unknown, ConsoleModelProperty_Changed));
 
         private static void ConsoleModelProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            switch ((int)e.NewValue)
+            switch ((ConsoleModelType)e.NewValue)
             {
-                case (int)ConsoleModelType.Fat:
+                case ConsoleModelType.Fat:
                     ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
                     break;
 
-                case (int)ConsoleModelType.Slim:
+                case ConsoleModelType.Slim:
                     ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Slim.png"));
                     break;
 
-                case (int)ConsoleModelType.Pro:
+                case ConsoleModelType.Pro:
                     ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Pro.png"));
                     break;
 
@@ -133,52 +182,54 @@ namespace OrbisNeighborHood.Controls
             }
         }
 
-        public string FirmwareVersion
+        private string FirmwareVersion
         {
             get { return (string)GetValue(FirmwareVersionProperty); }
-            set 
-            { 
-                SetValue(FirmwareVersionProperty, value); 
+            set
+            {
+                SetValue(FirmwareVersionProperty, value);
             }
         }
 
         public static readonly DependencyProperty FirmwareVersionProperty =
             DependencyProperty.Register("FirmwareVersion", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
-        public string SDKVersion
+        private string SDKVersion
         {
             get { return (string)GetValue(SDKVersionProperty); }
             set { SetValue(SDKVersionProperty, value); }
         }
 
-        public static readonly DependencyProperty SDKVersionProperty =
+        private static readonly DependencyProperty SDKVersionProperty =
             DependencyProperty.Register("SDKVersion", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
-        public string IPAddress
+        private string IPAddress
         {
             get { return (string)GetValue(IPAddressProperty); }
             set { SetValue(IPAddressProperty, value); }
         }
 
-        public static readonly DependencyProperty IPAddressProperty =
+        private static readonly DependencyProperty IPAddressProperty =
             DependencyProperty.Register("IPAddress", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
-        public string ConsoleName
+        private string ConsoleName
         {
             get { return (string)GetValue(ConsoleNameProperty); }
             set { SetValue(ConsoleNameProperty, value); }
         }
 
-        public static readonly DependencyProperty ConsoleNameProperty =
+        private static readonly DependencyProperty ConsoleNameProperty =
             DependencyProperty.Register("ConsoleName", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
-        public string ConsoleType
+        private string ConsoleType
         {
             get { return (string)GetValue(ConsoleTypeProperty); }
             set { SetValue(ConsoleTypeProperty, value); }
         }
 
-        public static readonly DependencyProperty ConsoleTypeProperty =
+        private static readonly DependencyProperty ConsoleTypeProperty =
             DependencyProperty.Register("ConsoleType", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+
+        #endregion
     }
 }

@@ -44,7 +44,9 @@
                 <Image Name="DefaultTargetElement"
                        Source="/OrbisNeighborHood;component/Images/NotDefault.ico"
                        Height="20"
-                       HorizontalAlignment="Right"/>
+                       HorizontalAlignment="Right"
+                       Cursor="Hand"
+                       ForceCursor="True"/>
             </Grid>
             
             <!-- Target Image / Details -->

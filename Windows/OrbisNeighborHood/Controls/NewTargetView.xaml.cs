@@ -24,5 +24,10 @@ namespace OrbisNeighborHood.Controls
         {
             InitializeComponent();
         }
+
+        private void AddTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SimpleUI.Controls.SimpleMessageBox.ShowInformation(Window.GetWindow(this), "Not Done yet :)", "Coming Soon!");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OrbisSuite.Common;
 using OrbisSuite.Common.Dispatcher;
 using System.Net.Sockets;
+using System.Text;
 
 namespace OrbisSuite
 {
@@ -32,7 +33,7 @@ namespace OrbisSuite
                         break;
 
                     // Debugging
-                    /*case ForwardPacket.PacketType.Print:
+                    case ForwardPacket.PacketType.Print:
                         PS4.DefaultTarget.Events.RaiseProcPrintEvent(Packet.SenderIPAddress, Packet.Print.Sender, Packet.Print.Data);
                         PS4.SelectedTarget.Events.RaiseProcPrintEvent(Packet.SenderIPAddress, Packet.Print.Sender, Packet.Print.Data);
                         break;
@@ -99,7 +100,7 @@ namespace OrbisSuite
                     // Misc
                     case ForwardPacket.PacketType.DBTouched:
                         PS4.Events.FireDBTouched();
-                        break;*/
+                        break;
                 }
             }
             catch (Exception ex)

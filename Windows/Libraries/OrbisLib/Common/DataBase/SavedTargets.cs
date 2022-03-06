@@ -437,10 +437,16 @@ namespace OrbisSuite.Common.DataBase
 
             var Packet = new TargetInfoPacket();
             var RawPacket = new byte[Marshal.SizeOf(Packet)];
-            Sock.Receive(RawPacket);
+            var bytes = Sock.Receive(RawPacket);
+
+            if (bytes <= 0)
+                return false;
 
             Helpers.BytestoStruct(RawPacket, ref Packet);
             API.CompleteCall(Sock);
+
+            if (Packet.ConsoleName == null || Packet.ConsoleName == string.Empty)
+                return false;
 
             Target.SDKVersion = $"{((Packet.SDKVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SDKVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.SDKVersion & 0xFFF).ToString("X3")}";
             Target.SoftwareVersion = $"{((Packet.SoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SoftwareVersion >> 16) & 0xFF).ToString("X2")}";

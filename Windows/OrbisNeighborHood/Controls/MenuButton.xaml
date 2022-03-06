@@ -6,7 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrbisNeighborHood.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="240">
+             d:DesignHeight="50" d:DesignWidth="240"
+             ForceCursor="True">
 
     <RadioButton.Style>
         <Style BasedOn="{StaticResource {x:Type RadioButton}}"
@@ -44,12 +45,14 @@
 
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
 
             </Style.Setters>
 
             <Style.Triggers>
                 <Trigger Property="IsChecked" Value="True">
                     <Setter Property="Background" Value="{DynamicResource SwitchButton}"/>
+                    <Setter Property="Cursor" Value="Arrow"/>
                 </Trigger>
             </Style.Triggers>
 

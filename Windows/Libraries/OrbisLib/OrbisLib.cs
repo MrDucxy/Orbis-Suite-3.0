@@ -64,7 +64,7 @@ namespace OrbisSuite
         }
 
         private Dictionary<string, Target> Internal_Targets = new Dictionary<string, Target>();
-        public Dictionary<string, Target> Target
+        public Dictionary<string, Target> Targets
         {
             get
             {
