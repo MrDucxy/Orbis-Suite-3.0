@@ -41,7 +41,7 @@ namespace OrbisNeighborHood.Controls
             // CUH-2XXXX Slim
             // CUH-7XXXX Pro
 
-            if (Target.Info.Model.Length > 4)//(Regex.Match(Target.Info.Model, @"CUH-\d{5}\w{4}").Success)
+            if (Regex.Match(Target.Info.Model, @"CUH-\d{1}\w{4}").Success)
             {
                 switch (char.IsDigit(Target.Info.Model[4]) ? int.Parse(Target.Info.Model[4].ToString()) : 0)
                 {
