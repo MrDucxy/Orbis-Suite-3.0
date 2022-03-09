@@ -1,1 +1,1 @@
-Version 3.0.579 Debug Build Monday March 07 2022 11:06 PM 
+Version 3.0.592 Debug Build Tuesday March 08 2022 10:22 PM 

@@ -1,5 +1,4 @@
-﻿using OrbisNeighborHood.MVVM.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OrbisNeighborHood.Controls
+namespace OrbisNeighborHood.MVVM.View.SubView
 {
     /// <summary>
-    /// Interaction logic for NewTargetView.xaml
+    /// Interaction logic for AddTargetView.xaml
     /// </summary>
-    public partial class NewTargetView : UserControl
+    public partial class AddTargetView : UserControl
     {
-        public NewTargetView()
+        public AddTargetView()
         {
             InitializeComponent();
-        }
-
-        private void AddTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MainViewModel.Instance.CurrentView = MainViewModel.Instance.AddTargetVM;
         }
     }
 }

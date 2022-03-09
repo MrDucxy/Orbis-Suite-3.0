@@ -28,6 +28,7 @@
     <None Remove="Images\Plus.png" />
     <None Remove="Images\Restart.png" />
     <None Remove="Images\RestMode.png" />
+    <None Remove="Images\ReturnArrow.png" />
     <None Remove="Images\Send.png" />
     <None Remove="Images\Settings.png" />
     <None Remove="Images\Shutdown.png" />

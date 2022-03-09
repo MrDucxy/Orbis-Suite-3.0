@@ -10,6 +10,7 @@
              d:DesignHeight="210" d:DesignWidth="315"
              ForceCursor="True" Cursor="Hand"
              MouseDown="AddTargetElement_MouseDown">
+
     <Border VerticalAlignment="Stretch"
             CornerRadius="10"
             Background="{DynamicResource WindowBar}">

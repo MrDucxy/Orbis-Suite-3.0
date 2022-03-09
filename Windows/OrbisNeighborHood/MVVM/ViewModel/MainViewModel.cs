@@ -1,9 +1,5 @@
 ﻿using OrbisNeighborHood.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OrbisNeighborHood.MVVM.ViewModel.SubView;
 
 namespace OrbisNeighborHood.MVVM.ViewModel
 {
@@ -24,6 +20,12 @@ namespace OrbisNeighborHood.MVVM.ViewModel
         public SettingsViewModel SettingsVM { get; set; }
 
 
+        //SubViews
+        public RelayCommand AddTargetViewCommand { get; set; }
+
+        public AddTargetViewModel AddTargetVM { get; set; }
+
+
         private object _currentView;
         public object CurrentView
         {
@@ -35,14 +37,26 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             }
         }
 
+
+        public static MainViewModel Instance { get; private set; }
+
+
         public MainViewModel()
         {
+            Instance = this;
+
+            // MainViews
             DashboardHomeVM = new DashboardViewModel();
             TargetVM = new TargetViewModel();
             SettingsVM = new SettingsViewModel();
 
+            // Sub Views
+            AddTargetVM = new AddTargetViewModel();
+
+            // Set Current View.
             CurrentView = DashboardHomeVM;
 
+            //Set up relay commands.
             DashboardViewCommand = new RelayCommand(o =>
             {
                 CurrentView = DashboardHomeVM;
@@ -56,6 +70,11 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             SettingsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = SettingsVM;
+            });
+
+            AddTargetViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = AddTargetVM;
             });
         }
     }

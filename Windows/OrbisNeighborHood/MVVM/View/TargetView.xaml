@@ -7,6 +7,7 @@
              xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="585" d:DesignWidth="700">
+
     <StackPanel>
         <TextBlock Text="Targets"
                    Foreground="{DynamicResource Text}"
@@ -42,9 +43,6 @@
                         </Setter>
                     </Style>
                 </ListBox.ItemContainerStyle>
-                
-                <controls:NewTargetView/>
-
             </ListBox>
         </Grid>
         
