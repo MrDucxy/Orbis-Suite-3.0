@@ -48,7 +48,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            return API.Call(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SHUTDOWN });
+            return API.Call(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SHUTDOWN });
         }
 
         public APIResults Reboot()
@@ -59,7 +59,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            return API.Call(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_REBOOT });
+            return API.Call(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_REBOOT });
         }
 
         public APIResults Suspend()
@@ -70,7 +70,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            return API.Call(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_RESTMODE });
+            return API.Call(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_RESTMODE });
         }
 
         public APIResults Notify(string Message)
@@ -81,7 +81,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;
@@ -101,7 +101,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;
@@ -121,7 +121,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_BUZZER }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_BUZZER }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;
@@ -141,7 +141,7 @@ namespace OrbisSuite
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SET_LED }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SET_LED }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;

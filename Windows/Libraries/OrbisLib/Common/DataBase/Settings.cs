@@ -6,178 +6,111 @@ namespace OrbisSuite.Common.Database
     /// Used to get/set the settings of Orbis Suite.
     /// </summary>
     [Table("Settings")]
+    [Preserve(AllMembers = true)]
     public class Settings
     {
-        private int _APIPort;
-        private int _FTPPort;
-        private int _KlogPort;
-        private string? _COMPort;
-        private bool _StartOnBoot;
-        private int _Theme;
-        private bool _RainbowColours;
-        private bool _CensorIDPS;
-        private bool _CensorPSID;
-        private bool _ShowTimestamps;
-        private bool _WordWrap;
+        [PrimaryKey, AutoIncrement, NotNull]
+        public int Id { get; set; }
 
         /// <summary>
         /// The API port that OrbisLib communicates on.
         /// </summary>
-        public int APIPort
-        {
-            get { return _APIPort; }
-            set 
-            { 
-                _APIPort = value;
-                Save();
-            }
-        }
-       
+        [NotNull]
+        public int APIPort { get; set; } = 6900;
+
         /// <summary>
         /// The port that will be used to access the targets file system using ftp
         /// </summary>
-        public int FTPPort
-        {
-            get { return _FTPPort; }
-            set 
-            { 
-                _FTPPort = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public int FTPPort { get; set; } = 2121;
 
         /// <summary>
         /// The port of a klog server that will be used to print console output similar to UART.
         /// </summary>
-        public int KlogPort
-        {
-            get { return _KlogPort; }
-            set 
-            { 
-                _KlogPort = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public int KlogPort { get; set; } = 3232;
 
         /// <summary>
         /// The serial COM port we will listen to for UART output.
         /// </summary>
-        public string? COMPort
-        {
-            get { return _COMPort; }
-            set 
-            { 
-                _COMPort = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public string? COMPort { get; set; } = "-";
 
         /// <summary>
         /// Starts the Orbis Suite taskbar app when windows boots.
         /// </summary>
-        public bool StartOnBoot
-        {
-            get { return _StartOnBoot; }
-            set 
-            { 
-                _StartOnBoot = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public bool StartOnBoot { get; set; } = false;
 
         /// <summary>
         /// Choose which theme will be used across Orbis Suite.
         /// </summary>
-        public int Theme
-        {
-            get { return _Theme; }
-            set
-            {
-                _Theme = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public int Theme { get; set; } = 0;
 
         /// <summary>
         /// Enables the accent colours to cycle through all colours of the rainbow.
         /// </summary>
-        public bool RainbowColours
-        {
-            get { return _RainbowColours; }
-            set 
-            { 
-                _RainbowColours = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public bool RainbowColours { get; set; } = false;
 
         /// <summary>
         /// When viewd from the target details choose to censor the Target identifier.
         /// </summary>
-        public bool CensorIDPS
-        {
-            get { return _CensorIDPS; }
-            set 
-            { 
-                _CensorIDPS = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public bool CensorIDPS { get; set; } = false;
 
         /// <summary>
         /// When viewd from the target details choose to censor the Target identifier.
         /// </summary>
-        public bool CensorPSID
-        {
-            get { return _CensorPSID; }
-            set
-            {
-                _CensorPSID = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public bool CensorPSID { get; set; } = false;
 
         /// <summary>
         /// SHow timestamps on the console output.
         /// </summary>
-        public bool ShowTimestamps
-        {
-            get { return _ShowTimestamps; }
-            set 
-            {
-                _ShowTimestamps = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public bool ShowTimestamps { get; set; } = false;
 
         /// <summary>
         /// Word wrap the console output window.
         /// </summary>
-        public bool WordWrap
-        {
-            get { return _WordWrap; }
-            set 
-            { 
-                _WordWrap = value;
-                Save();
-            }
-        }
+        [NotNull]
+        public bool WordWrap { get; set; } = false;
 
-        public static Settings Instance
+        public static Settings CreateInstance()
         {
-            get
+            var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<Settings>();
+
+            // Try to pull the entries of the settings
+            var list = db.Table<Settings>();
+            if(list.Count() > 0)
             {
-                var db = new SQLiteConnection(Config.DataBasePath);
-                var instance = db.Table<Settings>().First();
+                var instance = list.First();
                 db.Close();
                 return instance;
             }
+            else
+            {
+                // Create settings entry since it doesn't exist.
+                var instance = new Settings();
+                var result = db.Insert(instance);
+                db.Close();
+
+                if (result > 0)
+                    return instance;
+                else
+                    throw new Exception("Failed to create settings row into database.");
+            }
         }
 
-        private static void Save()
+        public void Save()
         {
-            var db = new SQLiteConnection(Config.DataBasePath);
-            db.Insert(Instance);
+            var db = new SQLiteConnection(Config.DataBasePath, SQLiteOpenFlags.ReadWrite);
+            db.Update(this);
             db.Close();
         }
     }

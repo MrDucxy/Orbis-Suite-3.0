@@ -55,11 +55,11 @@ namespace OrbisSuite
         public System.Windows.Forms.DialogResult Settings(FormStartPosition startPosition = FormStartPosition.CenterParent)
         {
             Settings Settings = new Settings(PS4);
-            Settings.Instance.StartPosition = startPosition;
-            DialogResult Result = Settings.Instance.ShowDialog();
+            Settings.CreateInstance().StartPosition = startPosition;
+            DialogResult Result = Settings.CreateInstance().ShowDialog();
             if (Result == DialogResult.OK)
-                Settings.Instance.SaveSettings();
-            Settings.Instance.Close();
+                Settings.CreateInstance().SaveSettings();
+            Settings.CreateInstance().Close();
             return Result;
         }
 

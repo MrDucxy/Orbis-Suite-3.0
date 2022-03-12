@@ -82,6 +82,7 @@ namespace OrbisSuite.Common.Database
         /// </summary>
         private enum DataColumns : int
         {
+            Id,
             DefaultTarget,
             TargetName,
             IPAddress,
@@ -428,7 +429,7 @@ namespace OrbisSuite.Common.Database
                 return false;
             }
 
-            if (API.CallLong(Target.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_INFO }, out Socket Sock) != APIResults.API_OK)
+            if (API.CallLong(Target.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_INFO }, out Socket Sock) != APIResults.API_OK)
             {
                 Sock.Close();
 

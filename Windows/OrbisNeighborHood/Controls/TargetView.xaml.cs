@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OrbisSuite;
+using OrbisSuite.Common.Database;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -83,14 +84,6 @@ namespace OrbisNeighborHood.Controls
         private static readonly DependencyProperty TargetNameProperty =
             DependencyProperty.Register("TargetName", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
-        private enum TargetStatusType
-        {
-            None,
-            Offline,
-            Online,
-            APIAvailable
-        };
-
         private TargetStatusType TargetStatus
         {
             get { return (TargetStatusType)GetValue(TargetStatusProperty); }
@@ -142,14 +135,6 @@ namespace OrbisNeighborHood.Controls
             else
                 ((TargetView)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
         }
-
-        private enum ConsoleModelType
-        {
-            Unknown,
-            Fat,
-            Slim,
-            Pro
-        };
 
         private ConsoleModelType ConsoleModel
         {

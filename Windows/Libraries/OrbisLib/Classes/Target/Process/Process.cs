@@ -57,7 +57,7 @@ namespace OrbisSuite
                     yield break;
                 }
 
-                if (API.CallLong(Target.Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_PROC_GET_LIST }, out Socket Sock) != APIResults.API_OK)
+                if (API.CallLong(Target.Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_PROC_GET_LIST }, out Socket Sock) != APIResults.API_OK)
                 {
                     Sock.Close();
 

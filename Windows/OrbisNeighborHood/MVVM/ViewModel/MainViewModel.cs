@@ -30,8 +30,7 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             }
         }
 
-
-        public static MainViewModel Instance { get; private set; }
+        public static MainViewModel? Instance { get; private set; }
 
 
         public MainViewModel()

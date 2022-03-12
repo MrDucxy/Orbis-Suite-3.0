@@ -26,7 +26,7 @@ namespace OrbisSuiteService.Service
                     var OldAPIAvailable = Target.APIAvailable;
 
                     Target.Available = Helpers.PingHost(Target.IPAddr);
-                    Target.APIAvailable = Helpers.TestTcpConnection(Target.IPAddr, Settings.Instance.APIPort);
+                    Target.APIAvailable = Helpers.TestTcpConnection(Target.IPAddr, Settings.CreateInstance().APIPort);
                     SavedTargets.SetTargetExt(Target.Name, Target);
 
                     if (Target.APIAvailable)
