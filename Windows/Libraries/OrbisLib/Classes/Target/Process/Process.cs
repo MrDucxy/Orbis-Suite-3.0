@@ -1,5 +1,5 @@
 ﻿using OrbisSuite.Common;
-using OrbisSuite.Common.DataBase;
+using OrbisSuite.Common.Database;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 
@@ -57,7 +57,7 @@ namespace OrbisSuite
                     yield break;
                 }
 
-                if (API.CallLong(Target.Info.IPAddr, Settings.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_PROC_GET_LIST }, out Socket Sock) != APIResults.API_OK)
+                if (API.CallLong(Target.Info.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_PROC_GET_LIST }, out Socket Sock) != APIResults.API_OK)
                 {
                     Sock.Close();
 

@@ -132,6 +132,11 @@
     <ProjectReference Include="..\Libraries\OrbisLib\OrbisLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MVVM\ViewModel\SubView\" />
+    <Folder Include="MVVM\View\SubView\" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="call &quot;$(ProjectDir)PreBuild.bat&quot; &quot;$(ProjectDir)&quot; &quot;$(CurrentDate)&quot; &quot;$(ConfigurationName)&quot;" />
   </Target>

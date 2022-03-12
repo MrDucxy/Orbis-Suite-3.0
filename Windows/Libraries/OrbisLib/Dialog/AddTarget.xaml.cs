@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OrbisNeighborHood.MVVM.View.SubView
+namespace OrbisSuite.Dialog
 {
     /// <summary>
-    /// Interaction logic for AddTargetView.xaml
+    /// Interaction logic for AddTarget.xaml
     /// </summary>
-    public partial class AddTargetView : UserControl
+    public partial class AddTarget : UserControl
     {
-        public AddTargetView()
+        public AddTarget()
         {
             InitializeComponent();
         }

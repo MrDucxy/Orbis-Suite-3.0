@@ -1,4 +1,4 @@
-﻿using OrbisSuite.Common.DataBase;
+﻿using OrbisSuite.Common.Database;
 
 namespace OrbisSuite
 {

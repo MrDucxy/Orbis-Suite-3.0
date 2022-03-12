@@ -1,5 +1,5 @@
 ﻿using OrbisSuite.Common;
-using OrbisSuite.Common.DataBase;
+using OrbisSuite.Common.Database;
 using OrbisSuite.Common.Dispatcher;
 
 namespace OrbisSuiteService.Service
@@ -26,7 +26,7 @@ namespace OrbisSuiteService.Service
                     var OldAPIAvailable = Target.APIAvailable;
 
                     Target.Available = Helpers.PingHost(Target.IPAddr);
-                    Target.APIAvailable = Helpers.TestTcpConnection(Target.IPAddr, Settings.APIPort);
+                    Target.APIAvailable = Helpers.TestTcpConnection(Target.IPAddr, Settings.Instance.APIPort);
                     SavedTargets.SetTargetExt(Target.Name, Target);
 
                     if (Target.APIAvailable)

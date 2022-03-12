@@ -28,7 +28,7 @@ namespace OrbisNeighborHood.Controls
 
         private void AddTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainViewModel.Instance.CurrentView = MainViewModel.Instance.AddTargetVM;
+            
         }
     }
 }

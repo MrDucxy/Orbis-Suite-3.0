@@ -1,4 +1,4 @@
-﻿using OrbisSuite.Common.DataBase;
+﻿using OrbisSuite.Common.Database;
 using SimpleUI.Skins;
 using System;
 using System.Collections.Generic;
@@ -41,52 +41,52 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void APIPort_LostFocus(object sender, RoutedEventArgs e)
         {
-            Settings.APIPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
+            Settings.Instance.APIPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
         }
 
         private void APIPort_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.APIPort.ToString();
+            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.Instance.APIPort.ToString();
         }
 
         private void FTPPort_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.FTPPort.ToString();
+            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.Instance.FTPPort.ToString();
         }
 
         private void FTPPort_LostFocus(object sender, RoutedEventArgs e)
         {
-            Settings.FTPPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
+            Settings.Instance.FTPPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
         }
 
         private void KlogPort_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.KlogPort.ToString();
+            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.Instance.KlogPort.ToString();
         }
 
         private void KlogPort_LostFocus(object sender, RoutedEventArgs e)
         {
-            Settings.KlogPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
+            Settings.Instance.KlogPort = Convert.ToInt32(((SimpleUI.Controls.SimpleTextBox)sender).Text);
         }
 
         private void COMPort_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.COMPort;
+            ((SimpleUI.Controls.SimpleTextBox)sender).Text = Settings.Instance.COMPort;
         }
 
         private void COMPort_LostFocus(object sender, RoutedEventArgs e)
         {
-            Settings.COMPort = ((SimpleUI.Controls.SimpleTextBox)sender).Text;
+            Settings.Instance.COMPort = ((SimpleUI.Controls.SimpleTextBox)sender).Text;
         }
 
         private void StartOnBoot_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.StartOnBoot;
+            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.Instance.StartOnBoot;
         }
 
         private void StartOnBoot_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Settings.StartOnBoot = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
+            Settings.Instance.StartOnBoot = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
         }
 
         #endregion
@@ -97,7 +97,7 @@ namespace OrbisNeighborHood.MVVM.View
         {
             var Theme = StringtoTheme(name);
             SkinResourceDictionary.ChangeTheme((SkinResourceDictionary.Themes)Theme);
-            Settings.Theme = Theme;
+            Settings.Instance.Theme = Theme;
         }
 
         private int StringtoTheme(string Name)
@@ -122,7 +122,7 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void Theme_Loaded(object sender, RoutedEventArgs e)
         {
-            var ThemeName = ThemetoString(Settings.Theme);
+            var ThemeName = ThemetoString(Settings.Instance.Theme);
             ((SimpleUI.Controls.SimpleComboBox)sender).SelectedValue = ThemeName;
             SelectTheme(ThemeName);
         }
@@ -134,12 +134,12 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void RainbowTheme_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.RainbowColours;
+            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.Instance.RainbowColours;
         }
 
         private void RainbowTheme_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Settings.RainbowColours = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
+            Settings.Instance.RainbowColours = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
         }
 
         #endregion
@@ -148,22 +148,22 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void CensorIDPS_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.CensorIDPS;
+            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.Instance.CensorIDPS;
         }
 
         private void CensorIDPS_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Settings.CensorIDPS = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
+            Settings.Instance.CensorIDPS = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
         }
 
         private void CensorPSID_Loaded(object sender, RoutedEventArgs e)
         {
-            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.CensorPSID;
+            ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled = Settings.Instance.CensorPSID;
         }
 
         private void CensorPSID_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Settings.CensorPSID = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
+            Settings.Instance.CensorPSID = ((SimpleUI.Controls.SimpleSwitch)sender).IsToggled;
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.IO;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;

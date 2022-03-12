@@ -1,209 +1,194 @@
-﻿namespace OrbisSuite.Common.DataBase
-{
-    public static class Settings
-    {
-        #region General
+﻿using SQLite;
 
+namespace OrbisSuite.Common.Database
+{
+    /// <summary>
+    /// Used to get/set the settings of Orbis Suite.
+    /// </summary>
+    [Table("Settings")]
+    public class Settings
+    {
         /// <summary>
         /// The API port that OrbisLib communicates on.
         /// </summary>
-        public static int APIPort
-        {
-            get
-            {
-                return Database.GetSetting<int>("APIPort");
-            }
+        private int _APIPort;
 
-            set
-            {
-                Database.SetSetting("APIPort", value);
+        public int APIPort
+        {
+            get { return _APIPort; }
+            set 
+            { 
+                _APIPort = value;
+                Save();
             }
         }
 
         /// <summary>
         /// The port that will be used to access the targets file system using ftp
         /// </summary>
-        public static int FTPPort
-        {
-            get
-            {
-                return Database.GetSetting<int>("FTPPort");
-            }
+        private int _FTPPort;
 
-            set
-            {
-                Database.SetSetting("FTPPort", value);
+        public int FTPPort
+        {
+            get { return _FTPPort; }
+            set 
+            { 
+                _FTPPort = value;
+                Save();
             }
         }
 
         /// <summary>
         /// The port of a klog server that will be used to print console output similar to UART.
         /// </summary>
-        public static int KlogPort
-        {
-            get
-            {
-                return Database.GetSetting<int>("KlogPort");
-            }
+        private int _KlogPort;
 
-            set
-            {
-                Database.SetSetting("KlogPort", value);
+        public int KlogPort
+        {
+            get { return _KlogPort; }
+            set 
+            { 
+                _KlogPort = value;
+                Save();
             }
         }
 
         /// <summary>
         /// The serial COM port we will listen to for UART output.
         /// </summary>
-        public static string COMPort
-        {
-            get
-            {
-                return Database.GetSetting<string>("COMPort");
-            }
+        private string? _COMPort;
 
-            set
-            {
-                Database.SetSetting("COMPort", value);
+        public string? COMPort
+        {
+            get { return _COMPort; }
+            set 
+            { 
+                _COMPort = value;
+                Save();
             }
         }
 
         /// <summary>
         /// Starts the Orbis Suite taskbar app when windows boots.
         /// </summary>
-        public static bool StartOnBoot
+        private bool _StartOnBoot;
+
+        public bool StartOnBoot
         {
-            get
-            {
-                return Database.GetSetting<bool>("StartOnBoot");
-            }
-
-            set
-            {
-                Database.SetSetting("StartOnBoot", value);
-
-                //Get windows registry key to set app on start up.
-                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-
-                //add or remove the value.
-                if (value)
-                    key.SetValue("OrbisTaskbarApp", AppDomain.CurrentDomain.BaseDirectory + "OrbisTaskbarApp.exe");
-                else
-                    key.DeleteValue("OrbisTaskbarApp", false);
-
-                //Close the key after use.
-                key?.Close();
+            get { return _StartOnBoot; }
+            set 
+            { 
+                _StartOnBoot = value;
+                Save();
             }
         }
-
-        #endregion
-
-        #region Themes
 
         /// <summary>
         /// Choose which theme will be used across Orbis Suite.
         /// </summary>
-        public static int Theme
-        {
-            get
-            {
-                return Database.GetSetting<int>("Theme");
-            }
+        private int _Theme;
 
+        public int Theme
+        {
+            get { return _Theme; }
             set
             {
-                Database.SetSetting("Theme", value);
+                _Theme = value;
+                Save();
             }
         }
 
         /// <summary>
         /// Enables the accent colours to cycle through all colours of the rainbow.
         /// </summary>
-        public static bool RainbowColours
+        private bool _RainbowColours;
+
+        public bool RainbowColours
         {
-            get
-            {
-                return Database.GetSetting<bool>("RainbowColours");
-            }
-
-            set
-            {
-                Database.SetSetting("RainbowColours", value);
-            }
-        }
-
-        #endregion
-
-        #region TargetInfo
-
-        /// <summary>
-        /// When viewd from the target details choose to censor the Target identifier.
-        /// </summary>
-        public static bool CensorIDPS
-        {
-            get
-            {
-                return Database.GetSetting<bool>("CensorIDPS");
-            }
-
-            set
-            {
-                Database.SetSetting("CensorIDPS", value);
+            get { return _RainbowColours; }
+            set 
+            { 
+                _RainbowColours = value;
+                Save();
             }
         }
 
         /// <summary>
         /// When viewd from the target details choose to censor the Target identifier.
         /// </summary>
-        public static bool CensorPSID
-        {
-            get
-            {
-                return Database.GetSetting<bool>("CensorPSID");
-            }
+        private bool _CensorIDPS;
 
-            set
-            {
-                Database.SetSetting("CensorPSID", value);
+        public bool MyProperty
+        {
+            get { return _CensorIDPS; }
+            set 
+            { 
+                _CensorIDPS = value;
+                Save();
             }
         }
 
-        #endregion
+        /// <summary>
+        /// When viewd from the target details choose to censor the Target identifier.
+        /// </summary>
+        private bool _CensorPSID;
 
-        #region ConsoleOutput
+        public bool CensorPSID
+        {
+            get { return _CensorPSID; }
+            set
+            {
+                _CensorPSID = value;
+                Save();
+            }
+        }
 
         /// <summary>
         /// SHow timestamps on the console output.
         /// </summary>
-        public static bool ShowTimestamps
-        {
-            get
-            {
-                return Database.GetSetting<int>("ShowTimestamps");
-            }
+        private bool _ShowTimestamps;
 
-            set
+        public bool ShowTimestamps
+        {
+            get { return _ShowTimestamps; }
+            set 
             {
-                Database.SetSetting("ShowTimestamps", value);
+                _ShowTimestamps = value;
+                Save();
             }
         }
 
         /// <summary>
         /// Word wrap the console output window.
         /// </summary>
-        public static bool WordWrap
-        {
-            get
-            {
-                return Database.GetSetting<int>("WordWrap");
-            }
+        private bool _WordWrap;
 
-            set
-            {
-                Database.SetSetting("WordWrap", value);
+        public bool WordWrap
+        {
+            get { return _WordWrap; }
+            set 
+            { 
+                _WordWrap = value;
+                Save();
             }
         }
 
-        #endregion
+        public static Settings Instance
+        {
+            get
+            {
+                var db = new SQLiteConnection(Config.DataBasePath);
+                var instance = db.Table<Settings>().First();
+                db.Close();
+                return instance;
+            }
+        }
+
+        private static void Save()
+        {
+            var db = new SQLiteConnection(Config.DataBasePath);
+            db.Insert(Instance);
+            db.Close();
+        }
     }
 }

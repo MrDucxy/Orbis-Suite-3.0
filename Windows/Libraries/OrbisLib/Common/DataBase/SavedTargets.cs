@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 
-namespace OrbisSuite.Common.DataBase
+namespace OrbisSuite.Common.Database
 {
     public class TargetInfo
     {
@@ -428,7 +428,7 @@ namespace OrbisSuite.Common.DataBase
                 return false;
             }
 
-            if (API.CallLong(Target.IPAddr, Settings.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_INFO }, out Socket Sock) != APIResults.API_OK)
+            if (API.CallLong(Target.IPAddr, Settings.Instance.APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_INFO }, out Socket Sock) != APIResults.API_OK)
             {
                 Sock.Close();
 

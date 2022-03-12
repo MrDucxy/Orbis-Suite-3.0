@@ -8,8 +8,6 @@
         xmlns:viewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel"
         xmlns:view="clr-namespace:OrbisNeighborHood.MVVM.View"
         xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
-        xmlns:subViewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel.SubView"
-        xmlns:subView="clr-namespace:OrbisNeighborHood.MVVM.View.SubView"
         mc:Ignorable="d"
         Title="NeighborHood" Height="640" Width="960"
         MinHeight="640" MinWidth="960"
@@ -22,11 +20,6 @@
         <view:DashboardView x:Key="DashboardViewKey"/>
         <view:TargetView x:Key="TargetViewKey"/>
         <view:SettingsView x:Key="SettingsViewKey"/>
-        <subView:AddTargetView x:Key="AddTargetViewKey"/>
-
-        <DataTemplate DataType="{x:Type subViewModel:AddTargetViewModel}">
-            <ContentControl Content="{StaticResource AddTargetViewKey}" />
-        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
             <ContentControl Content="{StaticResource DashboardViewKey}" />
