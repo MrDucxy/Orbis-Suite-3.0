@@ -5,43 +5,25 @@
         public DBTouchedEvent() { }
     }
 
-    public class TargetAvailableEvent : EventArgs
+    public class TargetStateChangedEvent : EventArgs
     {
-        public string TargetName { get; private set; }
-
-        public TargetAvailableEvent(string TargetName)
+        public enum TargetState
         {
-            this.TargetName = TargetName;
-        }
-    }
+            None,
+            Available,
+            UnAvailable,
+            APIAvailable,
+            APIUnAvailable,
+        };
 
-    public class TargetUnAvailableEvent : EventArgs
-    {
-        public string TargetName { get; private set; }
+        public TargetState State { get; private set; }
 
-        public TargetUnAvailableEvent(string TargetName)
+        public string Name { get; private set; }
+
+        public TargetStateChangedEvent(string Name, TargetState State)
         {
-            this.TargetName = TargetName;
-        }
-    }
-
-    public class TargetAPIAvailableEvent : EventArgs
-    {
-        public string TargetName { get; private set; }
-
-        public TargetAPIAvailableEvent(string TargetName)
-        {
-            this.TargetName = TargetName;
-        }
-    }
-
-    public class TargetAPIUnAvailableEvent : EventArgs
-    {
-        public string TargetName { get; private set; }
-
-        public TargetAPIUnAvailableEvent(string TargetName)
-        {
-            this.TargetName = TargetName;
+            this.Name = Name;
+            this.State = State;
         }
     }
 }

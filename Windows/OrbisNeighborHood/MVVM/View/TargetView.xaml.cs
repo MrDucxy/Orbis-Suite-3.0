@@ -10,36 +10,16 @@ namespace OrbisNeighborHood.MVVM.View
     /// </summary>
     public partial class TargetView : UserControl
     {
-
-
         public TargetView()
         {
             InitializeComponent();
             RefreshTargets();
 
             OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
-            OrbisLib.Instance.Events.TargetAvailable += Events_TargetAvailable;
-            OrbisLib.Instance.Events.TargetAPIAvailable += Events_TargetAPIAvailable;
-            OrbisLib.Instance.Events.TargetUnAvailable += Events_TargetUnAvailable;
-            OrbisLib.Instance.Events.TargetAPIUnAvailable += Events_TargetAPIUnAvailable;
+            OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
         }
 
-        private void Events_TargetAPIUnAvailable(object? sender, TargetAPIUnAvailableEvent e)
-        {
-            Dispatcher.Invoke(() => { RefreshTargets(); });
-        }
-
-        private void Events_TargetUnAvailable(object? sender, TargetUnAvailableEvent e)
-        {
-            Dispatcher.Invoke(() => { RefreshTargets(); });
-        }
-
-        private void Events_TargetAPIAvailable(object? sender, TargetAPIAvailableEvent e)
-        {
-            Dispatcher.Invoke(() => { RefreshTargets(); });
-        }
-
-        private void Events_TargetAvailable(object? sender, TargetAvailableEvent e)
+        private void Events_TargetStateChanged(object? sender, TargetStateChangedEvent e)
         {
             Dispatcher.Invoke(() => { RefreshTargets(); });
         }
@@ -52,6 +32,9 @@ namespace OrbisNeighborHood.MVVM.View
         private void RefreshTargets()
         {
             TargetList.Items.Clear();
+
+            if (OrbisLib.Instance.TargetManagement.TargetList == null)
+                return;
 
             foreach (var Target in OrbisLib.Instance.TargetManagement.TargetList)
                 TargetList.Items.Add(new OrbisNeighborHood.Controls.TargetView(Target.Name));

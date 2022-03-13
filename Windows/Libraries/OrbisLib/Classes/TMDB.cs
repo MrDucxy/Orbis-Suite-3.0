@@ -36,8 +36,8 @@ namespace OrbisSuite
         public int FormatVersion { get; private set; }
         public string NPTitleID { get; private set; }
         public string Console { get; private set; }
-        public string[] Names { get; private set; } = new string[10];
-        public string[] Icons { get; private set; } = new string[10];
+        public string[] Names { get; private set; } = new string[20];
+        public string[] Icons { get; private set; } = new string[20];
         public int ParentalLevel { get; private set; }
         public string Pronunciation { get; private set; }
         public string ContentID { get; private set; }
