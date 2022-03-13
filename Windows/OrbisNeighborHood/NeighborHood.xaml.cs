@@ -30,6 +30,9 @@ namespace OrbisNeighborHood
             InitializeComponent();
 
             OrbisLib.Init();
+
+            var defaultTarget = TargetInfo2.FindDefaultTarget();
+            Console.WriteLine($"Default Target: {defaultTarget?.TargetName}");
         }
     }
 }

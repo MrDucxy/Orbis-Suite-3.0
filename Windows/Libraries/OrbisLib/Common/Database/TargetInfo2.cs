@@ -11,8 +11,8 @@ namespace OrbisSuite.Common.Database
     /// <summary>
     /// Information about the targets saved.
     /// </summary>
-    [Table("Targets2")]
-    internal class TargetInfo2
+    [Table("Targets")]
+    public class TargetInfo2
     {
         [PrimaryKey, AutoIncrement, NotNull]
         public int Id { get; set; }
@@ -21,7 +21,8 @@ namespace OrbisSuite.Common.Database
         /// Weather or not this is our default target to be selected on start up.
         /// </summary>
         [NotNull]
-        public bool IsDefault { get; set; } = true;
+        [Column("DefaultTarget")]
+        public bool IsDefault { get; set; } = false;
 
         /// <summary>
         /// The name given to the target.
@@ -256,9 +257,12 @@ namespace OrbisSuite.Common.Database
             return (result > 0);
         }
 
-        public TargetInfo2 FindDefaultTarget()
+        public static TargetInfo2 FindDefaultTarget()
         {
-
+            var db = new SQLiteConnection(Config.DataBasePath);
+            var result = db.Find<TargetInfo2>(x => x.IsDefault == true);
+            db.Close();
+            return result;
         }
     }
 }

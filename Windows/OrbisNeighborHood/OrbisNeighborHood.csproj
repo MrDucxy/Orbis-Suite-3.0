@@ -42,15 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.Expression.Drawing">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.0\Libraries\Microsoft.Expression.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleUI">
-      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\Consoles\Fat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -135,6 +126,15 @@
   <ItemGroup>
     <Folder Include="MVVM\ViewModel\SubView\" />
     <Folder Include="MVVM\View\SubView\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\..\External\SimpleUI\SimpleUI\Libraries\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleUI">
+      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
