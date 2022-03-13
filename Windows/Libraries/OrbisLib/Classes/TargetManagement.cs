@@ -10,7 +10,7 @@ namespace OrbisSuite
             this.PS4 = PS4;
         }
 
-        public TargetInfo DefaultTarget
+        public TargetInfo? DefaultTarget
         {
             get
             {
@@ -18,7 +18,7 @@ namespace OrbisSuite
             }
         }
 
-        public List<TargetInfo> TargetList
+        public List<TargetInfo>? TargetList
         {
             get
             {
@@ -28,47 +28,42 @@ namespace OrbisSuite
 
         public bool DoesDefaultTargetExist()
         {
-            return SavedTargets.DoesDefaultTargetExist();
-        }
-
-        public bool DoesTargetExist(string TargetName)
-        {
-            return SavedTargets.DoesTargetExist(TargetName);
-        }
-
-        public bool DoesTargetExistIP(string IPAddr)
-        {
-            return SavedTargets.DoesTargetExistIP(IPAddr);
+            return (DefaultTarget != null);
         }
 
         public bool GetTarget(string TargetName, out TargetInfo Out)
         {
-            return SavedTargets.GetTarget(TargetName, out Out);
+            Out = TargetInfo.FindTarget(x => x.Name == TargetName);
+            return (Out != null);
         }
 
-        public bool SetTarget(string TargetName, bool Default, string NewTargetName, string IPAddr, int Firmware, int PayloadPort)
+        public bool SetTarget(string TargetName, bool Default, string NewTargetName, string IPAddress, int Firmware, int PayloadPort)
         {
-            return SavedTargets.SetTarget(TargetName, new TargetInfo(Default, NewTargetName, IPAddr, Firmware, PayloadPort));
+            var Target = TargetInfo.FindTarget(x => x.Name == TargetName);
+
+            Target.IsDefault = Default;
+            Target.Name = NewTargetName;
+            Target.IPAddress = IPAddress;
+            Target.Firmware = Firmware;
+            Target.PayloadPort = PayloadPort;
+
+            return Target.Save();
         }
 
         public bool DeleteTarget(string TargetName)
         {
-            return SavedTargets.DeleteTarget(TargetName);
+            var Target = TargetInfo.FindTarget(x => x.Name == TargetName);
+            return Target.Remove();
         }
 
-        public bool NewTarget(bool Default, string TargetName, string IPAddr, int Firmware, int PayloadPort)
+        public bool NewTarget(bool Default, string TargetName, string IPAddress, int Firmware, int PayloadPort)
         {
-            return SavedTargets.NewTarget(Default, TargetName, IPAddr, Firmware, PayloadPort);
+            return new TargetInfo { IsDefault = Default, Name = TargetName, IPAddress = IPAddress, Firmware = Firmware, PayloadPort = PayloadPort }.Add();
         }
 
         public int GetTargetCount()
         {
-            return SavedTargets.GetTargetCount();
-        }
-
-        public void SetDefault(string TargetName)
-        {
-            SavedTargets.SetDefaultTarget(TargetName);
+            return SavedTargets.TargetCount;
         }
 
         public void SetSelected(string TargetName)

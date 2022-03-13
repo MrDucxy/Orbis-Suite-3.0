@@ -1,7 +1,9 @@
-﻿using SQLite;
+﻿using OrbisSuite.Common.Database.Types;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ namespace OrbisSuite.Common.Database
     /// Information about the targets saved.
     /// </summary>
     [Table("Targets")]
-    public class TargetInfo2
+    public class TargetInfo
     {
         [PrimaryKey, AutoIncrement, NotNull]
         public int Id { get; set; }
@@ -27,14 +29,15 @@ namespace OrbisSuite.Common.Database
         /// <summary>
         /// The name given to the target.
         /// </summary>
-        [NotNull, Unique]        
-        public string? TargetName { get; set; } = "-";
+        [NotNull, Unique]
+        [Column("TargetName")]
+        public string Name { get; set; } = "-";
 
         /// <summary>
         /// The IP Address as a string.
         /// </summary>
         [NotNull, Unique]
-        public string? IPAddress { get; set; } = "-";
+        public string IPAddress { get; set; } = "-";
 
         /// <summary>
         /// The firmware version as an int32.
@@ -52,13 +55,15 @@ namespace OrbisSuite.Common.Database
         /// Will be true if a tcp connection can be achieved on the saved IP Address.
         /// </summary>
         [NotNull]
-        public bool Available { get; set; } = false;
+        [Column("Available")]
+        public bool IsAvailable { get; set; } = false;
 
         /// <summary>
         /// Will be true if the Orbis Suite API is running on the target.
         /// </summary>
         [NotNull]
-        public bool APIAvailable { get; set; } = false;
+        [Column("APIAvailable")]
+        public bool IsAPIAvailable { get; set; } = false;
 
         /// <summary>
         /// The power/API status of the target.
@@ -67,9 +72,9 @@ namespace OrbisSuite.Common.Database
         {
             get 
             {
-                if (APIAvailable)
+                if (IsAPIAvailable)
                     return TargetStatusType.APIAvailable;
-                else if (Available)
+                else if (IsAvailable)
                     return TargetStatusType.Online;
                 else
                     return TargetStatusType.Offline;
@@ -128,6 +133,11 @@ namespace OrbisSuite.Common.Database
         { 
             get
             {
+                // ConsoleModel
+                // CUH-1XXXX Fat
+                // CUH-2XXXX Slim
+                // CUH-7XXXX Pro
+
                 if (Model == null || !Regex.Match(Model, @"CUH-\d{1}\w{4}").Success)
                     return ConsoleModelType.Fat;
 
@@ -189,13 +199,14 @@ namespace OrbisSuite.Common.Database
         /// The console type like Retail/TestKit/Devkit.
         /// </summary>
         [NotNull]
-        public int ConsoleType { get; set; } = 0;
+        public ConsoleType ConsoleType { get; set; } = 0;
 
         /// <summary>
         /// Will be true if the Orbis Suite Debugger is attached to a process.
         /// </summary>
         [NotNull]
-        public bool Attached { get; set; } = false;
+        [Column("Attached")]
+        public bool IsAttached { get; set; } = false;
 
         /// <summary>
         /// The current processId being debugged by the OrbisSuite Debugger.
@@ -222,12 +233,31 @@ namespace OrbisSuite.Common.Database
         public int HDDTotalSpace { get; set; } = 0;
 
         /// <summary>
+        /// Remove the default tag from the other row.
+        /// </summary>
+        private void CheckDefault()
+        {
+            var defaultTarget = FindDefaultTarget();
+            if (IsDefault && defaultTarget != null)
+            {
+                defaultTarget.IsDefault = false;
+                defaultTarget.Save();
+            }
+        }
+
+        /// <summary>
         /// Saves the current information about the target to the database.
         /// </summary>
         /// <returns>Returns true if any rows were effected.</returns>
         public bool Save()
         {
+            CheckDefault();
+
             var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
             var result = db.Update(this);
             db.Close();
             return (result > 0);
@@ -239,7 +269,13 @@ namespace OrbisSuite.Common.Database
         /// <returns>Returns true if a row was added to the database.</returns>
         public bool Add()
         {
+            CheckDefault();
+
             var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
             var result = db.InsertOrReplace(this);
             db.Close();
             return (result > 0);
@@ -257,12 +293,62 @@ namespace OrbisSuite.Common.Database
             return (result > 0);
         }
 
-        public static TargetInfo2 FindDefaultTarget()
+        public static List<TargetInfo> GetTargetList()
         {
             var db = new SQLiteConnection(Config.DataBasePath);
-            var result = db.Find<TargetInfo2>(x => x.IsDefault == true);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
+            var result = db.Table<TargetInfo>().ToList();
             db.Close();
             return result;
+        }
+
+        public static TargetInfo FindDefaultTarget()
+        {
+            var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
+            var result = db.Find<TargetInfo>(x => x.IsDefault == true);
+            db.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Find a saved Target by a specific value using a predicate.
+        /// </summary>
+        /// <param name="predicate">The predicate of the columns we want to match on.</param>
+        /// <returns>Returns the first object that matches the predicate.</returns>
+        public static TargetInfo FindTarget(Expression<Func<TargetInfo, bool>> predicate)
+        {
+            var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
+            var result = db.Find(predicate);
+            db.Close();
+            return result;
+        }
+
+        /// <summary>
+        /// Find weahter or not a Target by specific value exists by using a predicate.
+        /// </summary>
+        /// <param name="predicate">The predicate of the columns we want to match on.</param>
+        /// <returns>Returns true if we found a match.</returns>
+        public static bool DoesTargetExist(Expression<Func<TargetInfo, bool>> predicate)
+        {
+            var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
+            var result = db.Find(predicate);
+            db.Close();
+            return (result != null);
         }
     }
 }

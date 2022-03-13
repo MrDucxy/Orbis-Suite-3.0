@@ -26,7 +26,7 @@ namespace OrbisSuite
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 socket.ReceiveTimeout = 1000;
                 socket.SendTimeout = 1000;
-                IAsyncResult result = socket.BeginConnect(Target.Info.IPAddr, Target.Info.PayloadPort, null, null);
+                IAsyncResult result = socket.BeginConnect(Target.Info.IPAddress, Target.Info.PayloadPort, null, null);
 
                 result.AsyncWaitHandle.WaitOne(3000, true);
 

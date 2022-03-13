@@ -28,7 +28,7 @@
         /// <param name="Data"></param>
         internal void RaiseProcPrintEvent(string SenderIPAddress, string Sender, string Data)
         {
-            if (SenderIPAddress.Equals(Target.Info.IPAddr))
+            if (SenderIPAddress.Equals(Target.Info.IPAddress))
                 Print?.Invoke(null, new PrintEvent(Sender, Data));
         }
 
@@ -38,7 +38,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseProcInterceptEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
             {
                 ProcIntercept?.Invoke(null, new ProcInterceptEvent());
             }
@@ -50,7 +50,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseProcContinueEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 ProcContinue?.Invoke(null, new ProcContinueEvent());
         }
 
@@ -60,7 +60,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseProcDieEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 ProcDie?.Invoke(null, new ProcDieEvent());
         }
 
@@ -71,7 +71,7 @@
         /// <param name="NewProcName">The name of the process were attaching to.</param>
         internal void RaiseProcAttachEvent(string IPAddr, string NewProcName)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 ProcAttach?.Invoke(null, new ProcAttachEvent(NewProcName));
         }
 
@@ -81,7 +81,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseProcDetachEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 ProcDetach?.Invoke(null, new ProcDetachEvent());
         }
 
@@ -91,7 +91,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseTargetSuspendEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 TargetSuspend?.Invoke(null, new TargetSuspendEvent());
         }
 
@@ -101,7 +101,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseTargetResumeEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 TargetResume?.Invoke(null, new TargetResumeEvent());
         }
 
@@ -111,7 +111,7 @@
         /// <param name="IPAddr">The sending Target Address.</param>
         internal void RaiseTargetShutdownEvent(string IPAddr)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 TargetShutdown?.Invoke(null, new TargetShutdownEvent());
         }
 
@@ -122,7 +122,7 @@
         /// <param name="TitleID">The next title index our Target will be running.</param>
         internal void RaiseTargetNewTitleEvent(string IPAddr, string TitleID)
         {
-            if (IPAddr.Equals(Target.Info.IPAddr))
+            if (IPAddr.Equals(Target.Info.IPAddress))
                 TargetNewTitle?.Invoke(null, new TargetNewTitleEvent(TitleID));
         }
     }

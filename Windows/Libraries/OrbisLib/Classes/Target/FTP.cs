@@ -19,7 +19,7 @@ namespace OrbisSuite
             try
             {
                 //Set our host to connect to and remote file path. Connect using the anonymous anonymous creds.
-                FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create($"ftp://{ Target.Info.IPAddr }:{Config.FTPPort}/{RemoteFilePath}");
+                FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create($"ftp://{ Target.Info.IPAddress }:{Config.FTPPort}/{RemoteFilePath}");
                 ftp.Credentials = new NetworkCredential("anonymous", "anonymous");
 
                 ftp.UseBinary = true;
@@ -66,7 +66,7 @@ namespace OrbisSuite
             try
             {
                 string Directory = Dir;
-                FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create($"ftp://{ Target.Info.IPAddr }:{Config.FTPPort}/{Directory}");
+                FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create($"ftp://{ Target.Info.IPAddress }:{Config.FTPPort}/{Directory}");
 
                 ftp.Credentials = new NetworkCredential("anonymous", "anonymous");
 

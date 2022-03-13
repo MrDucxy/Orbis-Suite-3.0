@@ -28,49 +28,16 @@ namespace OrbisNeighborHood.Controls
             InitializeComponent();
 
             var Target = OrbisLib.Instance.Targets[TargetName];
-            this.TargetName = TargetName;
 
-            if (Target.Info.APIAvailable)
-                TargetStatus = TargetStatusType.APIAvailable;
-            else if (Target.Info.Available)
-                TargetStatus = TargetStatusType.Online;
-            else
-                TargetStatus = TargetStatusType.Offline;
-
-            // ConsoleModel
-            // CUH-1XXXX Fat
-            // CUH-2XXXX Slim
-            // CUH-7XXXX Pro
-
-            if (Regex.Match(Target.Info.Model, @"CUH-\d{1}\w{4}").Success)
-            {
-                switch (char.IsDigit(Target.Info.Model[4]) ? int.Parse(Target.Info.Model[4].ToString()) : 0)
-                {
-                    case 1:
-                        ConsoleModel = ConsoleModelType.Fat;
-                        break;
-
-                    case 2:
-                        ConsoleModel = ConsoleModelType.Slim;
-                        break;
-
-                    case 7:
-                        ConsoleModel = ConsoleModelType.Pro;
-                        break;
-
-
-                    default:
-                        ConsoleModel = ConsoleModelType.Fat;
-                        break;
-                }
-            }
-
-            IsDefault = Target.Info.Default;
+            this.TargetName = Target.Info.Name;
+            TargetStatus = Target.Info.Status;
+            ConsoleModel = Target.Info.ModelType;
+            IsDefault = Target.Info.IsDefault;
             FirmwareVersion = string.Format("{0:N2}", (double)Target.Info.Firmware / 100);
             SDKVersion = Target.Info.SDKVersion;
-            IPAddress = Target.Info.IPAddr;
+            IPAddress = Target.Info.IPAddress;
             ConsoleName = Target.Info.ConsoleName;
-            ConsoleType = Target.Info.ConsoleType;
+            ConsoleType = Target.Info.ConsoleType.ToString();
         }
 
         #region Properties

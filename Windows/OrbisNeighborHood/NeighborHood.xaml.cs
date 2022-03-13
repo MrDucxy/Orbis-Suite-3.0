@@ -31,8 +31,9 @@ namespace OrbisNeighborHood
 
             OrbisLib.Init();
 
-            var defaultTarget = TargetInfo2.FindDefaultTarget();
-            Console.WriteLine($"Default Target: {defaultTarget?.TargetName}");
+            var defaultTarget = TargetInfo.FindDefaultTarget();
+            Console.WriteLine($"Default Target: {defaultTarget?.ModelType.ToString()}");
+
         }
     }
 }

@@ -22,30 +22,30 @@ namespace OrbisSuiteService.Service
             {
                 Parallel.ForEach(SavedTargets.Targets, Target =>
                 {
-                    var oldAvailable = Target.Available;
-                    var OldAPIAvailable = Target.APIAvailable;
+                    var oldAvailable = Target.IsAvailable;
+                    var OldAPIAvailable = Target.IsAPIAvailable;
 
-                    Target.Available = Helpers.PingHost(Target.IPAddr);
-                    Target.APIAvailable = Helpers.TestTcpConnection(Target.IPAddr, Settings.CreateInstance().APIPort);
-                    SavedTargets.SetTargetExt(Target.Name, Target);
+                    Target.IsAvailable = Helpers.PingHost(Target.IPAddress);
+                    Target.IsAPIAvailable = Helpers.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
+                    Target.Save();
 
-                    if (Target.APIAvailable)
-                        SavedTargets.UpdateTargetExtInfo(Target.Name);
+                    if (Target.IsAPIAvailable)
+                        SavedTargets.UpdateTargetInfo(Target.Name);
 
                     // Forward Target Availability.
-                    if (oldAvailable != Target.Available)
+                    if (oldAvailable != Target.IsAvailable)
                     {
-                        var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAvailability, Target.IPAddr);
-                        Packet.TargetAvailability.Available = Target.Available;
+                        var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAvailability, Target.IPAddress);
+                        Packet.TargetAvailability.Available = Target.IsAvailable;
                         Packet.TargetAvailability.Name = Target.Name;
                         _dispatcher.ForwardPacketAll(Packet);
                     }
 
                     // Forward API Availability.
-                    if (OldAPIAvailable != Target.APIAvailable)
+                    if (OldAPIAvailable != Target.IsAPIAvailable)
                     {
-                        var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAPIAvailability, Target.IPAddr);
-                        Packet.TargetAPIAvailability.Available = Target.Available;
+                        var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAPIAvailability, Target.IPAddress);
+                        Packet.TargetAPIAvailability.Available = Target.IsAvailable;
                         Packet.TargetAPIAvailability.Name = Target.Name;
                         _dispatcher.ForwardPacketAll(Packet);
                     }

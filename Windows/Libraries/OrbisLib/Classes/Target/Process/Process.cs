@@ -52,12 +52,12 @@ namespace OrbisSuite
         {
             get
             {
-                if (!Target.Info.APIAvailable)
+                if (!Target.Info.IsAPIAvailable)
                 {
                     yield break;
                 }
 
-                if (API.CallLong(Target.Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_PROC_GET_LIST }, out Socket Sock) != APIResults.API_OK)
+                if (API.CallLong(Target.Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_PROC_GET_LIST }, out Socket Sock) != APIResults.API_OK)
                 {
                     Sock.Close();
 

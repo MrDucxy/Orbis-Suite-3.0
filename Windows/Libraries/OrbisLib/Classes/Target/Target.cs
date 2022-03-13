@@ -42,46 +42,46 @@ namespace OrbisSuite
 
         public APIResults Shutdown()
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            return API.Call(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SHUTDOWN });
+            return API.Call(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SHUTDOWN });
         }
 
         public APIResults Reboot()
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            return API.Call(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_REBOOT });
+            return API.Call(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_REBOOT });
         }
 
         public APIResults Suspend()
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            return API.Call(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_RESTMODE });
+            return API.Call(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_RESTMODE });
         }
 
         public APIResults Notify(string Message)
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;
@@ -95,13 +95,13 @@ namespace OrbisSuite
 
         public APIResults Notify(string IconURI, string Message)
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_NOTIFY }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;
@@ -115,13 +115,13 @@ namespace OrbisSuite
 
         public APIResults Buzzer(BuzzerType Type)
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_BUZZER }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_BUZZER }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;
@@ -135,13 +135,13 @@ namespace OrbisSuite
 
         public APIResults SetLED(ConsoleLEDColours Colour)
         {
-            if (!Info.APIAvailable)
+            if (!Info.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
             }
 
-            APIResults Result = API.CallLong(Info.IPAddr, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SET_LED }, out Socket Sock);
+            APIResults Result = API.CallLong(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SET_LED }, out Socket Sock);
 
             if (Result != APIResults.API_OK)
                 return Result;

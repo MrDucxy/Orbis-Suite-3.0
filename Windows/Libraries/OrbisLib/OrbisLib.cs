@@ -19,10 +19,16 @@ namespace OrbisSuite
                 if (Internal_DefaultTarget == null)
                     Internal_DefaultTarget = new Target(this);
 
+                if (TargetManagement.TargetList == null)
+                {
+                    Internal_DefaultTarget.Active = false;
+                    return Internal_DefaultTarget;
+                }
+                    
                 bool FoundDefaultTarget = false;
                 foreach (TargetInfo Target in TargetManagement.TargetList)
                 {
-                    if (Target.Default)
+                    if (Target.IsDefault)
                     {
                         Internal_DefaultTarget.Info = Target;
                         FoundDefaultTarget = true;
@@ -46,10 +52,13 @@ namespace OrbisSuite
                 if (internal_SelectedTarget == null)
                     internal_SelectedTarget = new Target(this);
 
-                TargetInfo TargetInfo;
-                if ((TargetInfo = TargetManagement.TargetList.Find(x => x.Name == internal_SelectedTarget.Info.Name)) != null)
+                if (TargetManagement.TargetList == null)
+                    return internal_SelectedTarget;
+
+                TargetInfo targetInfo = TargetInfo.FindTarget(x => x.Name == internal_SelectedTarget.Info.Name);
+                if (targetInfo != null)
                 {
-                    TargetManagement.GetTarget(internal_SelectedTarget.Info.Name, out internal_SelectedTarget.Info);
+                    internal_SelectedTarget.Info = targetInfo;
                     internal_SelectedTarget.Active = true;
                 }
                 else if (DefaultTarget.Active)
@@ -73,6 +82,9 @@ namespace OrbisSuite
                 //Need to test and see if the overhead on this is too much.
                 try
                 {
+                    if(TargetManagement.TargetList == null)
+                        return Internal_Targets;
+
                     foreach (TargetInfo TargetInfo in TargetManagement.TargetList)
                     {
                         if (Internal_Targets.ContainsKey(TargetInfo.Name))
