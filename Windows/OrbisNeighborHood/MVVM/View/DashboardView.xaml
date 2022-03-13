@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrbisNeighborHood.MVVM.View"
+             xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
              xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
              mc:Ignorable="d" 
              Background="Transparent"
@@ -372,117 +373,36 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="0" />
                 </Grid.ColumnDefinitions>
-                
-                
+
                 <!-- Peek n' Poke -->
-                <Border Grid.Column="1"
-                        Width="116"
-                        Height="116"
-                        CornerRadius="10"
-                        Background="{DynamicResource WindowBar}">
-
-                    <StackPanel>
-                        <Image Margin="30 20 30 0" 
-                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"
-                               RenderOptions.BitmapScalingMode="Fant"
-                               RenderOptions.EdgeMode="Aliased"/>
-
-                        <TextBlock Text="Peek n' Poke"
-                                   FontSize="13"
-                                   Margin="0 10 0 0"
-                                   Foreground="{DynamicResource Text}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-
-                </Border>
+                <controls:AppLauncherButton 
+                    Grid.Column="1"
+                    Text="Peek n' Poke"
+                    Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"/>
 
                 <!-- Library Manager -->
-                <Border Grid.Column="3"
-                        Width="116"
-                        Height="116"
-                        CornerRadius="10"
-                        Background="{DynamicResource WindowBar}">
-
-                    <StackPanel>
-                        <Image Margin="30 20 30 0" 
-                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"
-                               RenderOptions.BitmapScalingMode="Fant"
-                               RenderOptions.EdgeMode="Aliased"/>
-
-                        <TextBlock Text="Library Manager"
-                                   FontSize="13"
-                                   Margin="0 10 0 0"
-                                   Foreground="{DynamicResource Text}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-
-                </Border>
+                <controls:AppLauncherButton 
+                    Grid.Column="3"
+                    Text="Library Manager"
+                    Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"/>
 
                 <!-- Debugger -->
-                <Border Grid.Column="5"
-                        Width="116"
-                        Height="116"
-                        CornerRadius="10"
-                        Background="{DynamicResource WindowBar}">
-
-                    <StackPanel>
-                        <Image Margin="30 20 30 0" 
-                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisDebugger.ico"
-                               RenderOptions.BitmapScalingMode="Fant"
-                               RenderOptions.EdgeMode="Aliased"/>
-
-                        <TextBlock Text="Debugger"
-                                   FontSize="13"
-                                   Margin="0 10 0 0"
-                                   Foreground="{DynamicResource Text}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-
-                </Border>
+                <controls:AppLauncherButton 
+                    Grid.Column="5"
+                    Text="Debugger"
+                    Source="/OrbisNeighborHood;component/Images/Icons/OrbisDebugger.ico"/>
 
                 <!-- Console Output -->
-                <Border Grid.Column="7"
-                        Width="116"
-                        Height="116"
-                        CornerRadius="10"
-                        Background="{DynamicResource WindowBar}">
-
-                    <StackPanel>
-                        <Image Margin="30 20 30 0" 
-                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisConsoleOutput.ico"
-                               RenderOptions.BitmapScalingMode="Fant"
-                               RenderOptions.EdgeMode="Aliased"/>
-
-                        <TextBlock Text="Console Output"
-                                   FontSize="13"
-                                   Margin="0 10 0 0"
-                                   Foreground="{DynamicResource Text}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-
-                </Border>
+                <controls:AppLauncherButton 
+                    Grid.Column="7"
+                    Text="Console Output"
+                    Source="/OrbisNeighborHood;component/Images/Icons/OrbisConsoleOutput.ico"/>
 
                 <!-- Taskbar App -->
-                <Border Grid.Column="9"
-                        Width="116"
-                        Height="116"
-                        CornerRadius="10"
-                        Background="{DynamicResource WindowBar}">
-
-                    <StackPanel>
-                        <Image Margin="30 20 30 0" 
-                               Source="/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"
-                               RenderOptions.BitmapScalingMode="Fant"
-                               RenderOptions.EdgeMode="Aliased"/>
-
-                        <TextBlock Text="Taskbar App"
-                                   FontSize="13"
-                                   Margin="0 10 0 0"
-                                   Foreground="{DynamicResource Text}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-
-                </Border>
+                <controls:AppLauncherButton 
+                    Grid.Column="9"
+                    Text="Taskbar App"
+                    Source="/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"/>
             </Grid>
         </StackPanel>
 
