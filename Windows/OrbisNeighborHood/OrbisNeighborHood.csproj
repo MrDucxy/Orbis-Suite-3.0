@@ -134,6 +134,7 @@
     </Reference>
     <Reference Include="SimpleUI">
       <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
+      <CopyLocal>True</CopyLocal>
     </Reference>
   </ItemGroup>
 

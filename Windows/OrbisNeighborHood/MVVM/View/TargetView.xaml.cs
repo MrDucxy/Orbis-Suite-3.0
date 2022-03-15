@@ -13,7 +13,7 @@ namespace OrbisNeighborHood.MVVM.View
         public TargetView()
         {
             InitializeComponent();
-            RefreshTargets();
+            //RefreshTargets();
 
             OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
             OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
@@ -21,12 +21,12 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void Events_TargetStateChanged(object? sender, TargetStateChangedEvent e)
         {
-            Dispatcher.Invoke(() => { RefreshTargets(); });
+            //Dispatcher.Invoke(() => { RefreshTargets(); });
         }
 
         private void Events_DBTouched(object? sender, DBTouchedEvent e)
         {
-            Dispatcher.Invoke(() => { RefreshTargets(); });
+            //Dispatcher.Invoke(() => { RefreshTargets(); });
         }
 
         private void RefreshTargets()

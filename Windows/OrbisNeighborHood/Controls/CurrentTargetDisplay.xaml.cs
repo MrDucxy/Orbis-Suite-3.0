@@ -72,6 +72,7 @@ namespace OrbisNeighborHood.Controls
 
                 CurrentTargetName.Text = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
 
+                CurrentTarget.CurrentTitleID = "CUSA03041";
                 if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
                 {
                     CurrentTargetTitleName.Text = "Unknown Title";
@@ -82,9 +83,10 @@ namespace OrbisNeighborHood.Controls
                 {
                     var Title = new TMDB(CurrentTarget.CurrentTitleID);
                     Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
-                    CurrentTargetTitleName.Text = rgx.Replace(Title.Names[0], "");
-                    CurrentTargetTitleId.Text = Title.TitleID;
-                    CurrentTargetTitleImage.Source = new BitmapImage(new Uri(Title.Icons[0]));
+                    CurrentTargetTitleName.Text = Title.Names.First();
+                    CurrentTargetTitleId.Text = Title.NPTitleID;
+                    var test = Title.BGM;
+                    CurrentTargetTitleImage.Source = new BitmapImage(new Uri(Title.Icons.First()));
                 }
             }
         }
