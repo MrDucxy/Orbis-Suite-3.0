@@ -7,6 +7,8 @@
         xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
         xmlns:viewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel"
         xmlns:view="clr-namespace:OrbisNeighborHood.MVVM.View"
+        xmlns:subViewModel="clr-namespace:OrbisNeighborHood.MVVM.ViewModel.SubView"
+        xmlns:subView="clr-namespace:OrbisNeighborHood.MVVM.View.SubView"
         xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
         mc:Ignorable="d"
         Title="NeighborHood" Height="640" Width="960"
@@ -30,6 +32,13 @@
 
         <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
             <ContentControl Content="{StaticResource SettingsViewKey}" />
+        </DataTemplate>
+        
+        <!-- Sub View Models -->
+        <subView:AddTargetView x:Key="AddTargetViewKey"/>
+
+        <DataTemplate DataType="{x:Type subViewModel:AddTargetViewModel}">
+            <ContentControl Content="{StaticResource AddTargetViewKey}" />
         </DataTemplate>
     </Window.Resources>
     

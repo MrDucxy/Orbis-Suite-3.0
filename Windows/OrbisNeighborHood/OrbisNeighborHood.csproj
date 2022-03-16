@@ -124,11 +124,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MVVM\ViewModel\SubView\" />
-    <Folder Include="MVVM\View\SubView\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing">
       <HintPath>..\..\External\SimpleUI\SimpleUI\Libraries\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>

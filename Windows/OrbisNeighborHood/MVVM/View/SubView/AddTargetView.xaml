@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="OrbisNeighborHood.MVVM.View.SubView.AddTargetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrbisNeighborHood.MVVM.View.SubView"
+             xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
+             xmlns:controls="clr-namespace:OrbisNeighborHood.Controls"
+             mc:Ignorable="d" 
+             Background="Transparent"
+             d:DesignHeight="585" d:DesignWidth="700">
+
+    <StackPanel>
+        <TextBlock Text="Add Target"
+                   Foreground="{DynamicResource Text}"
+                   FontSize="28"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="30,10,0,10"/>
+
+        <Border Name="TestBoarder" Width="630"
+                    Height="500"
+                    VerticalAlignment="Center"
+                    Margin="30,0,30,0"
+                    CornerRadius="10"
+                    Background="{DynamicResource WindowBar}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <!-- Main View Area -->
+                <StackPanel>
+
+                    <!-- Target Info Region -->
+                    <Label Content="Target Information"
+                       FontSize="18"
+                       Margin="20 20 20 10"
+                       Foreground="{DynamicResource Text}"/>
+
+                    <controls:InputPanel InputName="Name"
+                                         InputDescription="A unique name to give the Target.">
+                        <simpleControls:SimpleTextBox Height="30"
+                                                  VerticalContentAlignment="Center"
+                                                  HorizontalAlignment="Stretch"/>
+                    </controls:InputPanel>
+                    <controls:InputPanel InputName="IP Address"
+                                         InputDescription="The IP Address of the Target.">
+                        <simpleControls:SimpleTextBox Height="30"
+                                                  VerticalContentAlignment="Center"
+                                                  HorizontalAlignment="Stretch"/>
+                    </controls:InputPanel>
+                    <controls:InputPanel InputName="Payload Port"
+                                         InputDescription="The port to send payloads to the Target.">
+                        <simpleControls:SimpleTextBox Height="30"
+                                                  VerticalContentAlignment="Center"
+                                                  HorizontalAlignment="Stretch"/>
+                    </controls:InputPanel>
+
+                    <Label Content="Target Settings"
+                       FontSize="18"
+                       Margin="20 20 20 10"
+                       Foreground="{DynamicResource Text}"/>
+
+                </StackPanel>
+
+                <!-- Button Area -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Row="1"
+                            Margin="0 0 10 10">
+
+                    <!-- Cancel -->
+                    <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="1" 
+                                            Content="Cancel" x:Name="Cancel"
+                                            Click="Cancel_Click"
+                                            Width="75" Height="26" 
+                                            Margin="0 0 8 0"/>
+
+                    <!-- Save -->
+                    <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="1" 
+                                            Content="Save" x:Name="Save" 
+                                            Click="Save_Click"
+                                            Width="75" Height="26" 
+                                            Margin="0 0 8 0"/>
+                </StackPanel>
+
+            </Grid>
+
+            
+
+        </Border>
+    </StackPanel>
+</UserControl>

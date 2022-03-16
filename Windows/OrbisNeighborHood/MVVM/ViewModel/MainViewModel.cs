@@ -1,4 +1,9 @@
 ﻿using OrbisNeighborHood.Core;
+using OrbisNeighborHood.MVVM.ViewModel.SubView;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace OrbisNeighborHood.MVVM.ViewModel
 {
@@ -17,6 +22,12 @@ namespace OrbisNeighborHood.MVVM.ViewModel
         public TargetViewModel TargetVM { get; set; }
 
         public SettingsViewModel SettingsVM { get; set; }
+
+
+        //SubViews
+        public RelayCommand AddTargetViewCommand { get; set; }
+
+        public AddTargetViewModel AddTargetVM { get; set; }
 
 
         private object _currentView;
@@ -42,6 +53,9 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             TargetVM = new TargetViewModel();
             SettingsVM = new SettingsViewModel();
 
+            // Sub Views
+            AddTargetVM = new AddTargetViewModel();
+
             // Set Current View.
             CurrentView = DashboardHomeVM;
 
@@ -59,6 +73,11 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             SettingsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = SettingsVM;
+            });
+
+            AddTargetViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = AddTargetVM;
             });
         }
     }
