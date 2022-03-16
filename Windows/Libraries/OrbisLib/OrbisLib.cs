@@ -1,4 +1,5 @@
 ﻿using OrbisSuite.Common.Database;
+using OrbisSuite.Dialog;
 using System.IO;
 
 namespace OrbisSuite
@@ -165,7 +166,7 @@ namespace OrbisSuite
 
         public static void Init()
         {
-            _Instance = new OrbisLib();
+            //_Instance = new OrbisLib();
         }
     }
 }

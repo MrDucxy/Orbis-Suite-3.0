@@ -1,10 +1,12 @@
-﻿using System;
+﻿using SimpleUI.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-namespace OrbisSuite
+namespace OrbisSuite.Dialog
 {
     public class Dialogs
     {
@@ -16,16 +18,13 @@ namespace OrbisSuite
         }
 
         // TODO: Port these to WPF.
-        /*public System.Windows.Forms.DialogResult AddTarget(FormStartPosition startPosition = FormStartPosition.CenterParent)
+
+        public SimpleDialogResult AddTarget(Window Owner, WindowStartupLocation startPosition = WindowStartupLocation.CenterOwner)
         {
-            AddTarget AddTarget = new AddTarget(PS4);
-            AddTarget.StartPosition = startPosition;
-            System.Windows.Forms.DialogResult Result = AddTarget.ShowDialog();
-            AddTarget.Close();
-            return Result;
+            return AddTargetDialog.ShowDialog(Owner, startPosition);
         }
 
-        public System.Windows.Forms.DialogResult EditTarget(string TargetName, FormStartPosition startPosition = FormStartPosition.CenterParent)
+        /*public System.Windows.Forms.DialogResult EditTarget(string TargetName, FormStartPosition startPosition = FormStartPosition.CenterParent)
         {
             EditTarget EditTarget = new EditTarget(PS4, TargetName);
             EditTarget.StartPosition = startPosition;

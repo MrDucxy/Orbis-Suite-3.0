@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleUI.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,25 @@ namespace OrbisSuite.Dialog
     /// <summary>
     /// Interaction logic for AddTarget.xaml
     /// </summary>
-    public partial class AddTarget : UserControl
+    public partial class AddTargetDialog : SimpleDialog
     {
-        public AddTarget()
+        public AddTargetDialog(Window Owner, WindowStartupLocation StartPosition)
+            : base(Owner, "Save", "Cancel", "Add Target", StartPosition)
         {
             InitializeComponent();
+        }
+
+        public static SimpleDialogResult ShowDialog(Window Owner, WindowStartupLocation StartPosition)
+        {
+            var dlg = new AddTargetDialog(Owner, StartPosition);
+            dlg.ShowDialog();
+
+            if(dlg.Result == SimpleDialogResult.Button1)
+            {
+                Console.WriteLine("Save");
+            }
+
+            return dlg.Result;
         }
     }
 }

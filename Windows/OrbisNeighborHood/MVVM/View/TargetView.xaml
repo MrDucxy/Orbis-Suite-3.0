@@ -43,14 +43,6 @@
                         </Setter>
                     </Style>
                 </ListBox.ItemContainerStyle>
-
-                <controls:NewTargetView/>
-                <controls:NewTargetView/>
-                <controls:NewTargetView/>
-                <controls:NewTargetView/>
-                <controls:NewTargetView/>
-                <controls:NewTargetView/>
-                <controls:NewTargetView/>
             </ListBox>
         </Grid>
         

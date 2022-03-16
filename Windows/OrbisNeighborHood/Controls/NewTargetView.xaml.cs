@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OrbisSuite;
+using OrbisSuite.Dialog;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -28,7 +30,7 @@ namespace OrbisNeighborHood.Controls
 
         private void AddTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            OrbisLib.Instance.Dialogs.AddTarget(Window.GetWindow(this));
         }
     }
 }

@@ -28,8 +28,6 @@ namespace OrbisNeighborHood
         public NeighborHood()
         {
             InitializeComponent();
-
-            OrbisLib.Init();
         }
     }
 }

@@ -9,14 +9,14 @@
              mc:Ignorable="d" 
              Background="Transparent"
              d:DesignHeight="585" d:DesignWidth="700">
-    
+
     <StackPanel>
         <TextBlock Text="Dashboard (★OSM's Console)"
                    Foreground="{DynamicResource Text}"
                    FontSize="28"
                    HorizontalAlignment="Left"
                    Margin="30,10,0,10"/>
-        
+
         <!-- First Row -->
         <StackPanel Orientation="Horizontal" Height="175">
             <Border Width="305"
@@ -62,7 +62,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        
+
                         <!-- Firmware Version -->
                         <simpleControls:SimpleTextField Grid.Column="0" Grid.Row="0"
                                                         FieldName="Firmware Version" 
@@ -70,7 +70,7 @@
                                                         Width="135"
                                                         Height="35"
                                                         Margin="0 5 0 0"/>
-                        
+
                         <!-- SDK Version -->
                         <simpleControls:SimpleTextField Grid.Column="2" Grid.Row="0"
                                                         FieldName="SDK Version" 
@@ -142,7 +142,8 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="85"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="23*"/>
+                            <ColumnDefinition Width="19*"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -150,18 +151,18 @@
                         </Grid.RowDefinitions>
 
                         <!-- Current Title Image -->
-                        <Border Grid.Column="0" Grid.Row="1"
+                        <Border Grid.Column="0"
                                 BorderThickness="1"
                                 BorderBrush="#333333"
-                                Margin="8">
+                                Margin="8,8,8,8">
                             <Image Source="/OrbisNeighborHood;component/Images/DefaultTitleIcon.png"
                                    RenderOptions.BitmapScalingMode="Fant"
                                    RenderOptions.EdgeMode="Aliased"/>
                         </Border>
 
-                        <StackPanel Grid.Column="1" Grid.Row="1"
+                        <StackPanel Grid.Column="1"
                                     Orientation="Vertical"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Grid.ColumnSpan="2">
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
@@ -187,13 +188,13 @@
 
                     <Grid Margin="3 0 7 0">
                         <Grid.ColumnDefinitions>
-                            
+
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
-                            
+
                         </Grid.ColumnDefinitions>
 
                         <simpleControls:SimpleButton Name="LaunchDebugger"
@@ -242,7 +243,7 @@
                            Margin="5 0 0 0"/>
 
                     <StackPanel Margin="2 4 0 0" Orientation="Horizontal">
-                        
+
                         <!-- Usage Percentage -->
                         <simpleControls:SimpleCircleProgressBar Name="HDDUsage"
                                                                 Width="125" Height="125"
@@ -255,7 +256,7 @@
                                                         FieldText="311.8 GB"
                                                         Width="157"
                                                         Height="35"/>
-                            
+
                             <simpleControls:SimpleTextField FieldName="Free Space" 
                                                         FieldText="96.7 GB"
                                                         Width="157"
@@ -301,13 +302,13 @@
                         <!-- Info Fields -->
                         <StackPanel Margin="3 5 0 0" Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                
+
                                 <simpleControls:SimpleTextField FieldName="CPU Temp" 
                                                         FieldText="- °C"
                                                         Width="73.5"
                                                         Height="35"
                                                         Margin="0 0 10 0"/>
-                                
+
                                 <simpleControls:SimpleTextField FieldName="SOC Temp" 
                                                         FieldText="- °C"
                                                         Width="73.5"
@@ -349,7 +350,7 @@
 
             </Border>
         </StackPanel>
-        
+
         <!-- App Selection -->
         <StackPanel  Margin="0,0,0,0">
             <TextBlock Text="Orbis Suite Apps"
