@@ -72,7 +72,6 @@ namespace OrbisNeighborHood.Controls
 
                 CurrentTargetName.Text = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
 
-                CurrentTarget.CurrentTitleID = "CUSA03041";
                 if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
                 {
                     CurrentTargetTitleName.Text = "Unknown Title";

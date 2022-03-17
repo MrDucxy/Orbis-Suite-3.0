@@ -8,7 +8,7 @@ namespace OrbisNeighborHood.MVVM.View
     /// <summary>
     /// Interaction logic for TargetView.xaml
     /// </summary>
-    public partial class TargetView : UserControl
+    public partial class TargetView : UserControl, ITargetView
     {
         public TargetView()
         {
@@ -29,7 +29,7 @@ namespace OrbisNeighborHood.MVVM.View
             Dispatcher.Invoke(() => { RefreshTargets(); });
         }
 
-        private void RefreshTargets()
+        public void RefreshTargets()
         {
             TargetList.Items.Clear();
 
@@ -37,9 +37,19 @@ namespace OrbisNeighborHood.MVVM.View
                 return;
 
             foreach (var Target in OrbisLib.Instance.TargetManagement.TargetList)
-                TargetList.Items.Add(new OrbisNeighborHood.Controls.TargetView(Target.Name));
+            {
+                var targetView = new OrbisNeighborHood.Controls.TargetView(Target.Name);
+                targetView.TargetChanged += Target_TargetChanged;
+                TargetList.Items.Add(targetView);
+            }
+            var newTargetView = new NewTargetView();
+            newTargetView.TargetChanged += Target_TargetChanged;
+            TargetList.Items.Add(newTargetView);
+        }
 
-            TargetList.Items.Add(new NewTargetView());
+        private void Target_TargetChanged(object? sender, System.Windows.RoutedEventArgs e)
+        {
+            Dispatcher.Invoke(() => { RefreshTargets(); });
         }
     }
 }

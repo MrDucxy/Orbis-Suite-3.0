@@ -85,49 +85,49 @@ namespace OrbisSuite.Common.Database
         /// The SDK Version of the software installed on the target.
         /// </summary>
         [NotNull]
-        public string? SDKVersion { get; set; } = "-";
+        public string SDKVersion { get; set; } = "-";
 
         /// <summary>
         /// The full software version installed on the target.
         /// </summary>
         [NotNull]
-        public string? SoftwareVersion { get; set; } = "-";
+        public string SoftwareVersion { get; set; } = "-";
 
         /// <summary>
         /// The software version first installed on the target when sold.
         /// </summary>
         [NotNull]
-        public string? FactorySoftwareVersion { get; set; } = "-";
+        public string FactorySoftwareVersion { get; set; } = "-";
 
         /// <summary>
         /// The current big game titleId running on the target.
         /// </summary>
         [NotNull]
-        public string? CurrentTitleID { get; set; } = "-";
+        public string CurrentTitleID { get; set; } = "-";
 
         /// <summary>
         /// The name of the target as set on the target.
         /// </summary>
         [NotNull]
-        public string? ConsoleName { get; set; } = "-";
+        public string ConsoleName { get; set; } = "-";
 
         /// <summary>
         /// The serial number of the targets motherboard.
         /// </summary>
         [NotNull]
-        public string? MotherboardSerial { get; set; } = "-";
+        public string MotherboardSerial { get; set; } = "-";
 
         /// <summary>
         /// The seraial number of the target.
         /// </summary>
         [NotNull]
-        public string? Serial { get; set; } = "-";
+        public string Serial { get; set; } = "-";
 
         /// <summary>
         /// The model number of the target.
         /// </summary>
         [NotNull]
-        public string? Model { get; set; } = "-";
+        public string Model { get; set; } = "-";
 
         public ConsoleModelType ModelType 
         { 
@@ -163,13 +163,13 @@ namespace OrbisSuite.Common.Database
         /// The MAC address of the target LAN adapter.
         /// </summary>
         [NotNull]
-        public string? MACAddressLAN { get; set; } = "-";
+        public string MACAddressLAN { get; set; } = "-";
 
         /// <summary>
         /// The MAC address of the target WIFI adapter.
         /// </summary>
         [NotNull]
-        public string? MACAddressWIFI { get; set; } = "-";
+        public string MACAddressWIFI { get; set; } = "-";
 
         /// <summary>
         /// Will be true if the UART flag is set in the targets flash.
@@ -187,13 +187,13 @@ namespace OrbisSuite.Common.Database
         /// A unique string used to identify the target.
         /// </summary>
         [NotNull]
-        public string? IDPS { get; set; } = "-";
+        public string IDPS { get; set; } = "-";
 
         /// <summary>
         /// A unique string used to identify the target.
         /// </summary>
         [NotNull]
-        public string? PSID { get; set; } = "-";
+        public string PSID { get; set; } = "-";
 
         /// <summary>
         /// The console type like Retail/TestKit/Devkit.
@@ -269,16 +269,23 @@ namespace OrbisSuite.Common.Database
         /// <returns>Returns true if a row was added to the database.</returns>
         public bool Add()
         {
-            CheckDefault();
+            try
+            {
+                CheckDefault();
 
-            var db = new SQLiteConnection(Config.DataBasePath);
+                var db = new SQLiteConnection(Config.DataBasePath);
 
-            // Create the table if it doesn't exist already.
-            db.CreateTable<TargetInfo>();
+                // Create the table if it doesn't exist already.
+                db.CreateTable<TargetInfo>();
 
-            var result = db.InsertOrReplace(this);
-            db.Close();
-            return (result > 0);
+                var result = db.Insert(this);
+                db.Close();
+                return (result > 0);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         /// <summary>

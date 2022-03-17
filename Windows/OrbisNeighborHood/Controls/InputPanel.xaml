@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:OrbisNeighborHood.Controls"
              xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
              mc:Ignorable="d"
-             Width="630" Height="60"
              d:DesignHeight="60" d:DesignWidth="630">
 
     <ContentControl.Resources>
@@ -14,10 +13,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:InputPanel}">
-                        <Grid Margin="30 0">
+                        <Grid Margin="30 5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" Orientation="Vertical">
@@ -27,6 +26,7 @@
                                            Foreground="{DynamicResource Text}"
                                            FontWeight="Bold"
                                            FontSize="12"/>
+                                
                                 <!-- Description of Input -->
                                 <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=InputDescription}"
                                            Foreground="{DynamicResource Text}"

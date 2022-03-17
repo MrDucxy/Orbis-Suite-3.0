@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using OrbisSuite;
 using OrbisSuite.Common.Database;
+using SimpleUI.Controls;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -23,11 +24,16 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class TargetView : UserControl
     {
+        private TargetInfo _thisTarget;
+
+        public event EventHandler<RoutedEventArgs>? TargetChanged;
+
         public TargetView(string TargetName)
         {
             InitializeComponent();
 
             var Target = OrbisLib.Instance.Targets[TargetName];
+            _thisTarget = Target.Info;
 
             this.TargetName = Target.Info.Name;
             TargetStatus = Target.Info.Status;
@@ -183,5 +189,15 @@ namespace OrbisNeighborHood.Controls
             DependencyProperty.Register("ConsoleType", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
 
         #endregion
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var result = SimpleMessageBox.ShowWarning(Window.GetWindow(this), "Are you sure you want to delete this target?", "Delete this Target?", SimpleUI.SimpleMessageBoxButton.YesNo);
+            if(result == SimpleUI.SimpleMessageBoxResult.Yes)
+            {
+                _thisTarget.Remove();
+                TargetChanged?.Invoke(this, e);
+            }  
+        }
     }
 }

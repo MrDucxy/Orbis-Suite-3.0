@@ -23,6 +23,8 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class NewTargetView : UserControl
     {
+        public event EventHandler<RoutedEventArgs>? TargetChanged;
+
         public NewTargetView()
         {
             InitializeComponent();
@@ -31,7 +33,16 @@ namespace OrbisNeighborHood.Controls
         private void AddTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if(MainViewModel.Instance != null)
+            {
+                MainViewModel.Instance.AddTargetVM.TargetChanged += AddTargetVM_TargetChanged;
                 MainViewModel.Instance.CurrentView = MainViewModel.Instance.AddTargetVM;
+
+            }  
+        }
+
+        private void AddTargetVM_TargetChanged(object? sender, RoutedEventArgs e)
+        {
+            TargetChanged?.Invoke(sender, e);
         }
     }
 }
