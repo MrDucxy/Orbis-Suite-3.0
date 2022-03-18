@@ -36,9 +36,14 @@
         
         <!-- Sub View Models -->
         <subView:AddTargetView x:Key="AddTargetViewKey"/>
+        <subView:EditTargetView x:Key="EditTargetViewKey"/>
 
         <DataTemplate DataType="{x:Type subViewModel:AddTargetViewModel}">
             <ContentControl Content="{StaticResource AddTargetViewKey}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type subViewModel:EditTargetViewModel}">
+            <ContentControl Content="{StaticResource EditTargetViewKey}" />
         </DataTemplate>
     </Window.Resources>
     

@@ -8,8 +8,10 @@ namespace OrbisNeighborHood.MVVM.View
     /// <summary>
     /// Interaction logic for TargetView.xaml
     /// </summary>
-    public partial class TargetView : UserControl, ITargetView
+    public partial class TargetView : UserControl
     {
+        #region Constructor
+
         public TargetView()
         {
             InitializeComponent();
@@ -18,6 +20,10 @@ namespace OrbisNeighborHood.MVVM.View
             OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
             OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
         }
+
+        #endregion
+
+        #region Events
 
         private void Events_TargetStateChanged(object? sender, TargetStateChangedEvent e)
         {
@@ -29,6 +35,13 @@ namespace OrbisNeighborHood.MVVM.View
             Dispatcher.Invoke(() => { RefreshTargets(); });
         }
 
+        private void Target_TargetChanged(object? sender, System.Windows.RoutedEventArgs e)
+        {
+            Dispatcher.Invoke(() => { RefreshTargets(); });
+        }
+
+        #endregion
+
         public void RefreshTargets()
         {
             TargetList.Items.Clear();
@@ -38,18 +51,13 @@ namespace OrbisNeighborHood.MVVM.View
 
             foreach (var Target in OrbisLib.Instance.TargetManagement.TargetList)
             {
-                var targetView = new OrbisNeighborHood.Controls.TargetView(Target.Name);
+                var targetView = new TargetPanel(Target.Name);
                 targetView.TargetChanged += Target_TargetChanged;
                 TargetList.Items.Add(targetView);
             }
-            var newTargetView = new NewTargetView();
+            var newTargetView = new NewTargetPanel();
             newTargetView.TargetChanged += Target_TargetChanged;
             TargetList.Items.Add(newTargetView);
-        }
-
-        private void Target_TargetChanged(object? sender, System.Windows.RoutedEventArgs e)
-        {
-            Dispatcher.Invoke(() => { RefreshTargets(); });
         }
     }
 }

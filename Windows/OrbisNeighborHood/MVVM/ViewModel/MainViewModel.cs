@@ -29,8 +29,12 @@ namespace OrbisNeighborHood.MVVM.ViewModel
 
         public AddTargetViewModel AddTargetVM { get; set; }
 
+        public RelayCommand EditTargetViewCommand { get; set; }
 
-        private object _currentView;
+        public EditTargetViewModel EditTargetVM { get; set; }
+
+
+        private object? _currentView;
         public object CurrentView
         {
             get { return _currentView; }
@@ -55,6 +59,7 @@ namespace OrbisNeighborHood.MVVM.ViewModel
 
             // Sub Views
             AddTargetVM = new AddTargetViewModel();
+            EditTargetVM = new EditTargetViewModel();
 
             // Set Current View.
             CurrentView = DashboardHomeVM;
@@ -75,9 +80,15 @@ namespace OrbisNeighborHood.MVVM.ViewModel
                 CurrentView = SettingsVM;
             });
 
+            // Sub Views Relay Commands
             AddTargetViewCommand = new RelayCommand(o =>
             {
                 CurrentView = AddTargetVM;
+            });
+
+            EditTargetViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = EditTargetVM;
             });
         }
     }

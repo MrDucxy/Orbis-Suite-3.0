@@ -21,11 +21,11 @@ namespace OrbisNeighborHood.Controls
     /// <summary>
     /// Interaction logic for NewTargetView.xaml
     /// </summary>
-    public partial class NewTargetView : UserControl
+    public partial class NewTargetPanel : UserControl
     {
         public event EventHandler<RoutedEventArgs>? TargetChanged;
 
-        public NewTargetView()
+        public NewTargetPanel()
         {
             InitializeComponent();
         }
@@ -36,7 +36,6 @@ namespace OrbisNeighborHood.Controls
             {
                 MainViewModel.Instance.AddTargetVM.TargetChanged += AddTargetVM_TargetChanged;
                 MainViewModel.Instance.CurrentView = MainViewModel.Instance.AddTargetVM;
-
             }  
         }
 

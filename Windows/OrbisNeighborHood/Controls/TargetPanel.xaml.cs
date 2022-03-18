@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OrbisNeighborHood.MVVM.ViewModel;
 using OrbisSuite;
 using OrbisSuite.Common.Database;
 using SimpleUI.Controls;
@@ -22,13 +23,13 @@ namespace OrbisNeighborHood.Controls
     /// <summary>
     /// Interaction logic for TargetView.xaml
     /// </summary>
-    public partial class TargetView : UserControl
+    public partial class TargetPanel : UserControl
     {
         private TargetInfo _thisTarget;
 
         public event EventHandler<RoutedEventArgs>? TargetChanged;
 
-        public TargetView(string TargetName)
+        public TargetPanel(string TargetName)
         {
             InitializeComponent();
 
@@ -55,7 +56,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty TargetNameProperty =
-            DependencyProperty.Register("TargetName", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("TargetName", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         private TargetStatusType TargetStatus
         {
@@ -64,30 +65,30 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty TargetStatusProperty =
-            DependencyProperty.Register("TargetStatus", typeof(TargetStatusType), typeof(TargetView), new PropertyMetadata(TargetStatusType.None, TargetStatusProperty_Changed));
+            DependencyProperty.Register("TargetStatus", typeof(TargetStatusType), typeof(TargetPanel), new PropertyMetadata(TargetStatusType.None, TargetStatusProperty_Changed));
 
         private static void TargetStatusProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             switch ((TargetStatusType)e.NewValue)
             {
                 case TargetStatusType.Offline:
-                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                    ((TargetView)d).TargetStatusElement.ToolTip = "Offline";
+                    ((TargetPanel)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ((TargetPanel)d).TargetStatusElement.ToolTip = "Offline";
                     break;
 
                 case TargetStatusType.Online:
-                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 140, 0));
-                    ((TargetView)d).TargetStatusElement.ToolTip = "Online";
+                    ((TargetPanel)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 140, 0));
+                    ((TargetPanel)d).TargetStatusElement.ToolTip = "Online";
                     break;
 
                 case TargetStatusType.APIAvailable:
-                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
-                    ((TargetView)d).TargetStatusElement.ToolTip = "Online & API Available";
+                    ((TargetPanel)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(0, 128, 0));
+                    ((TargetPanel)d).TargetStatusElement.ToolTip = "Online & API Available";
                     break;
 
                 default:
-                    ((TargetView)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                    ((TargetView)d).TargetStatusElement.ToolTip = "Unknown";
+                    ((TargetPanel)d).TargetStatusElement.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ((TargetPanel)d).TargetStatusElement.ToolTip = "Unknown";
                     break;
             }
         }
@@ -99,14 +100,14 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty IsDefaultProperty =
-            DependencyProperty.Register("IsDefault", typeof(bool), typeof(TargetView), new PropertyMetadata(false, IsDefaultProperty_Changed));
+            DependencyProperty.Register("IsDefault", typeof(bool), typeof(TargetPanel), new PropertyMetadata(false, IsDefaultProperty_Changed));
 
         private static void IsDefaultProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue)
-                ((TargetView)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Default.ico"));
+                ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Default.ico"));
             else
-                ((TargetView)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
+                ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
         }
 
         private ConsoleModelType ConsoleModel
@@ -116,26 +117,26 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty ConsoleModelProperty =
-            DependencyProperty.Register("ConsoleModel", typeof(ConsoleModelType), typeof(TargetView), new PropertyMetadata(ConsoleModelType.Unknown, ConsoleModelProperty_Changed));
+            DependencyProperty.Register("ConsoleModel", typeof(ConsoleModelType), typeof(TargetPanel), new PropertyMetadata(ConsoleModelType.Unknown, ConsoleModelProperty_Changed));
 
         private static void ConsoleModelProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             switch ((ConsoleModelType)e.NewValue)
             {
                 case ConsoleModelType.Fat:
-                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
+                    ((TargetPanel)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
                     break;
 
                 case ConsoleModelType.Slim:
-                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Slim.png"));
+                    ((TargetPanel)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Slim.png"));
                     break;
 
                 case ConsoleModelType.Pro:
-                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Pro.png"));
+                    ((TargetPanel)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Pro.png"));
                     break;
 
                 default:
-                    ((TargetView)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
+                    ((TargetPanel)d).ConsoleImageElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Consoles/Fat.png"));
                     break;
             }
         }
@@ -150,7 +151,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         public static readonly DependencyProperty FirmwareVersionProperty =
-            DependencyProperty.Register("FirmwareVersion", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("FirmwareVersion", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         private string SDKVersion
         {
@@ -159,7 +160,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty SDKVersionProperty =
-            DependencyProperty.Register("SDKVersion", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("SDKVersion", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         private string IPAddress
         {
@@ -168,7 +169,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty IPAddressProperty =
-            DependencyProperty.Register("IPAddress", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("IPAddress", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         private string ConsoleName
         {
@@ -177,7 +178,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty ConsoleNameProperty =
-            DependencyProperty.Register("ConsoleName", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("ConsoleName", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         private string ConsoleType
         {
@@ -186,7 +187,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         private static readonly DependencyProperty ConsoleTypeProperty =
-            DependencyProperty.Register("ConsoleType", typeof(string), typeof(TargetView), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("ConsoleType", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         #endregion
 
@@ -198,6 +199,22 @@ namespace OrbisNeighborHood.Controls
                 _thisTarget.Remove();
                 TargetChanged?.Invoke(this, e);
             }  
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (MainViewModel.Instance != null)
+            {
+                var editTargetViewModel = MainViewModel.Instance.EditTargetVM;
+                editTargetViewModel.TargetChanged += EditTargetVM_TargetChanged;
+                editTargetViewModel.CurrentTarget = _thisTarget;
+                MainViewModel.Instance.CurrentView = editTargetViewModel;
+            }
+        }
+
+        private void EditTargetVM_TargetChanged(object? sender, RoutedEventArgs e)
+        {
+            TargetChanged?.Invoke(this, e);
         }
     }
 }
