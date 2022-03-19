@@ -238,7 +238,7 @@ namespace OrbisSuite.Common.Database
         private void CheckDefault()
         {
             var defaultTarget = FindDefaultTarget();
-            if (IsDefault && defaultTarget != null)
+            if (IsDefault && defaultTarget != null && defaultTarget.Id != Id)
             {
                 defaultTarget.IsDefault = false;
                 defaultTarget.Save();

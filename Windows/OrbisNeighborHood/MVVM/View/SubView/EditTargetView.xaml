@@ -16,7 +16,8 @@
                    FontSize="28"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   Margin="30,10,0,10"/>
+                   Margin="30,10,0,10"
+                   Loaded="Title_Loaded"/>
 
         <Border Name="TestBoarder" Width="630"
                     Height="500"

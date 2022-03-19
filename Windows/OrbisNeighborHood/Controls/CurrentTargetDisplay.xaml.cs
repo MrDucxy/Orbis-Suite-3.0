@@ -29,6 +29,7 @@ namespace OrbisNeighborHood.Controls
 
             OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
             OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
+            RefreshTarget();
         }
 
         private void Events_TargetStateChanged(object? sender, TargetStateChangedEvent e)

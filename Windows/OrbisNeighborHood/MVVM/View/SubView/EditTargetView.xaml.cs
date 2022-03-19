@@ -136,5 +136,11 @@ namespace OrbisNeighborHood.MVVM.View.SubView
                 _thisTarget = dc.CurrentTarget;
             }
         }
+
+        private void Title_Loaded(object sender, RoutedEventArgs e)
+        {
+            var Textbox = (TextBlock)sender;
+            Textbox.Text = $"Edit Target ({_thisTarget.Name})";
+        }
     }
 }

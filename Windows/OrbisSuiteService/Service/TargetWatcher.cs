@@ -27,7 +27,7 @@ namespace OrbisSuiteService.Service
 
                     Target.IsAvailable = Helpers.PingHost(Target.IPAddress);
                     Target.IsAPIAvailable = Helpers.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
-                    Target.Save();
+                    //Target.Save();
 
                     if (Target.IsAPIAvailable)
                         SavedTargets.UpdateTargetInfo(Target.Name);

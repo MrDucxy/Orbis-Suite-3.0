@@ -25,19 +25,17 @@ namespace OrbisSuite
                     Internal_DefaultTarget.Active = false;
                     return Internal_DefaultTarget;
                 }
-                    
-                bool FoundDefaultTarget = false;
-                foreach (TargetInfo Target in TargetManagement.TargetList)
-                {
-                    if (Target.IsDefault)
-                    {
-                        Internal_DefaultTarget.Info = Target;
-                        FoundDefaultTarget = true;
-                    }
-                }
 
-                //If we dont find the default target we set the Active flag as false
-                Internal_DefaultTarget.Active = FoundDefaultTarget;
+                var target = TargetInfo.FindDefaultTarget();
+                if(target != null)
+                {
+                    Internal_DefaultTarget.Info = target;
+                    Internal_DefaultTarget.Active = true;
+                }
+                else
+                {
+                    Internal_DefaultTarget.Active = false;
+                }
 
                 //Return the instanced version of the default target.
                 return Internal_DefaultTarget;

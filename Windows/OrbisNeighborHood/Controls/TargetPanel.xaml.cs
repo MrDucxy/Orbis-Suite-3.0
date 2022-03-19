@@ -104,10 +104,22 @@ namespace OrbisNeighborHood.Controls
 
         private static void IsDefaultProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if ((bool)e.NewValue)
+            /*if ((bool)e.NewValue)
                 ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Default.ico"));
             else
-                ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));
+                ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));*/
+
+            if ((bool)e.NewValue)
+            {
+                ((TargetPanel)d).DefaultTargetElement.Foreground = new SolidColorBrush(Color.FromRgb(220, 220, 220));
+                ((TargetPanel)d).DefaultTargetElement.Cursor = Cursors.Arrow;
+            }
+                
+            else
+            {
+                ((TargetPanel)d).DefaultTargetElement.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                ((TargetPanel)d).DefaultTargetElement.Cursor = Cursors.Hand;
+            }
         }
 
         private ConsoleModelType ConsoleModel
@@ -215,6 +227,16 @@ namespace OrbisNeighborHood.Controls
         private void EditTargetVM_TargetChanged(object? sender, RoutedEventArgs e)
         {
             TargetChanged?.Invoke(this, e);
+        }
+
+        private void DefaultTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!_thisTarget.IsDefault)
+            {
+                _thisTarget.IsDefault = true;
+                _thisTarget.Save();
+                TargetChanged?.Invoke(this, e);
+            }
         }
     }
 }
