@@ -5,13 +5,15 @@ namespace OrbisSuiteService.Service
     public class DBWatcher
     {
         public delegate void DBChangedHandler();
-        public event DBChangedHandler DBChanged;
+        public event DBChangedHandler? DBChanged;
+
+        private FileSystemWatcher? _Watcher;
 
         public DBWatcher()
         {
-            var watcher = new FileSystemWatcher(Config.OrbisPath);
+            _Watcher = new FileSystemWatcher(Config.OrbisPath);
 
-            watcher.NotifyFilter = NotifyFilters.Attributes
+            _Watcher.NotifyFilter = NotifyFilters.Attributes
                          | NotifyFilters.CreationTime
                          | NotifyFilters.DirectoryName
                          | NotifyFilters.FileName
@@ -20,11 +22,11 @@ namespace OrbisSuiteService.Service
                          | NotifyFilters.Security
                          | NotifyFilters.Size;
 
-            watcher.Changed += OnChanged;
+            _Watcher.Changed += OnChanged;
 
-            watcher.Filter = Config.DataBaseName;
-            watcher.IncludeSubdirectories = true;
-            watcher.EnableRaisingEvents = true;
+            _Watcher.Filter = Config.DataBaseName;
+            _Watcher.IncludeSubdirectories = true;
+            _Watcher.EnableRaisingEvents = true;
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e)

@@ -25,7 +25,8 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class TargetPanel : UserControl
     {
-        private TargetInfo _thisTarget;
+        private TargetInfo _thisTargetInfo;
+        private readonly Target _thisTarget;
 
         public event EventHandler<RoutedEventArgs>? TargetChanged;
 
@@ -33,24 +34,24 @@ namespace OrbisNeighborHood.Controls
         {
             InitializeComponent();
 
-            var Target = OrbisLib.Instance.Targets[TargetName];
-            _thisTarget = Target.Info;
+            _thisTarget = OrbisLib.Instance.Targets[TargetName];
+            _thisTargetInfo = _thisTarget.Info;
 
-            this.TargetName = Target.Info.Name;
-            TargetStatus = Target.Info.Status;
-            ConsoleModel = Target.Info.ModelType;
-            IsDefault = Target.Info.IsDefault;
-            FirmwareVersion = Target.Info.SoftwareVersion;
-            SDKVersion = Target.Info.SDKVersion;
-            IPAddress = Target.Info.IPAddress;
-            ConsoleName = Target.Info.ConsoleName;
-            PayloadPort = Target.Info.PayloadPort.ToString();
+            this.TargetName = _thisTarget.Info.Name;
+            TargetStatus = _thisTarget.Info.Status;
+            ConsoleModel = _thisTarget.Info.ModelType;
+            IsDefault = _thisTarget.Info.IsDefault;
+            FirmwareVersion = _thisTarget.Info.SoftwareVersion;
+            SDKVersion = _thisTarget.Info.SDKVersion;
+            IPAddress = _thisTarget.Info.IPAddress;
+            ConsoleName = _thisTarget.Info.ConsoleName;
+            PayloadPort = _thisTarget.Info.PayloadPort.ToString();
 
-            LocateTarget.IsEnabled = Target.Info.IsAPIAvailable;
-            SendPayload.IsEnabled = Target.Info.IsAPIAvailable;
-            RestartTarget.IsEnabled = Target.Info.IsAPIAvailable;
-            ShutdownTarget.IsEnabled = Target.Info.IsAPIAvailable;
-            SuspendTarget.IsEnabled = Target.Info.IsAPIAvailable;
+            LocateTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            SendPayload.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            RestartTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            ShutdownTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            SuspendTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
         }
 
         #region Properties
@@ -204,12 +205,14 @@ namespace OrbisNeighborHood.Controls
 
         #endregion
 
+        #region Buttons
+
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             var result = SimpleMessageBox.ShowWarning(Window.GetWindow(this), "Are you sure you want to delete this target?", "Delete this Target?", SimpleUI.SimpleMessageBoxButton.YesNo);
             if(result == SimpleUI.SimpleMessageBoxResult.Yes)
             {
-                _thisTarget.Remove();
+                _thisTargetInfo.Remove();
                 TargetChanged?.Invoke(this, e);
             }  
         }
@@ -220,7 +223,7 @@ namespace OrbisNeighborHood.Controls
             {
                 var editTargetViewModel = MainViewModel.Instance.EditTargetVM;
                 editTargetViewModel.TargetChanged += EditTargetVM_TargetChanged;
-                editTargetViewModel.CurrentTarget = _thisTarget.Clone();
+                editTargetViewModel.CurrentTarget = _thisTargetInfo.Clone();
                 MainViewModel.Instance.CurrentView = editTargetViewModel;
             }
         }
@@ -232,12 +235,39 @@ namespace OrbisNeighborHood.Controls
 
         private void DefaultTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!_thisTarget.IsDefault)
+            if (!_thisTargetInfo.IsDefault)
             {
-                _thisTarget.IsDefault = true;
-                _thisTarget.Save();
+                _thisTargetInfo.IsDefault = true;
+                _thisTargetInfo.Save();
                 TargetChanged?.Invoke(this, e);
             }
         }
+
+        private void LocateTarget_Click(object sender, RoutedEventArgs e)
+        {
+            _thisTarget.Buzzer(OrbisSuite.Common.BuzzerType.RingThree);
+        }
+
+        private void SendPayload_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RestartTarget_Click(object sender, RoutedEventArgs e)
+        {
+            _thisTarget.Reboot();
+        }
+
+        private void ShutdownTarget_Click(object sender, RoutedEventArgs e)
+        {
+            _thisTarget.Shutdown();
+        }
+
+        private void SuspendTarget_Click(object sender, RoutedEventArgs e)
+        {
+            _thisTarget.Suspend();
+        }
+
+        #endregion
     }
 }

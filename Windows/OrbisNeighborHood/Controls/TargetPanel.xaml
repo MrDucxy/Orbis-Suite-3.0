@@ -137,7 +137,8 @@
                                    ToolTip="Locate Target"
                                    Margin="0 0 5 0"
                                    ImageSource="/OrbisNeighborHood;component/Images/Locate.png"
-                                   ImageMargin="4"/>
+                                   ImageMargin="4"
+                                   Click="LocateTarget_Click"/>
 
                 <!-- Send Payload -->
                 <local:ImageButton x:Name="SendPayload"
@@ -146,7 +147,8 @@
                                    ToolTip="Send Payload"
                                    Margin="0 0 5 0"
                                    ImageSource="/OrbisNeighborHood;component/Images/Send.png"
-                                   ImageMargin="4"/>
+                                   ImageMargin="4"
+                                   Click="SendPayload_Click"/>
 
                 <!-- Reboot -->
                 <local:ImageButton x:Name="RestartTarget"
@@ -155,7 +157,8 @@
                                    ToolTip="Restart the Target"
                                    Margin="0 0 5 0"
                                    ImageSource="/OrbisNeighborHood;component/Images/Restart.png"
-                                   ImageMargin="0"/>
+                                   ImageMargin="0"
+                                   Click="RestartTarget_Click"/>
 
                 <!-- Shutdown -->
                 <local:ImageButton x:Name="ShutdownTarget"
@@ -164,7 +167,8 @@
                                    ToolTip="Shutdown the Target"
                                    Margin="0 0 5 0"
                                    ImageSource="/OrbisNeighborHood;component/Images/Shutdown.png"
-                                   ImageMargin="0"/>
+                                   ImageMargin="0"
+                                   Click="ShutdownTarget_Click"/>
 
                 <!-- Restmode -->
                 <local:ImageButton x:Name="SuspendTarget"
@@ -173,7 +177,8 @@
                                    ToolTip="Set the Target into Restmode"
                                    Margin="0 0 5 0"
                                    ImageSource="/OrbisNeighborHood;component/Images/Restmode.png"
-                                   ImageMargin="0"/>
+                                   ImageMargin="0"
+                                   Click="SuspendTarget_Click"/>
 
                 <!-- Edit -->
                 <simpleControls:SimpleButton 

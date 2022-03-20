@@ -20,6 +20,8 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class ImageButton : UserControl
     {
+        public event EventHandler<RoutedEventArgs>? Click;
+
         public ImageButton()
         {
             InitializeComponent();
@@ -54,6 +56,11 @@ namespace OrbisNeighborHood.Controls
         {
             ButtonImage.Source = new BitmapImage(new Uri($"pack://application:,,,{ImageSource}"));
             ButtonImage.Opacity = IsEnabled ? 1 : 0.5;
+        }
+
+        private void SimpleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Click?.Invoke(sender, e);
         }
     }
 }

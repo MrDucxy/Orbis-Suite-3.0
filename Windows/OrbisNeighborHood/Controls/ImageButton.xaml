@@ -10,7 +10,7 @@
              IsEnabledChanged="ImageButtonElement_IsEnabledChanged"
              d:DesignHeight="35" d:DesignWidth="35">
     <Grid>
-        <simpleControls:SimpleButton Content=""/>
+        <simpleControls:SimpleButton Content="" Click="SimpleButton_Click"/>
 
         <Image Source="{Binding ElementName=ImageButtonElement, Path=ImageSource}"
                    Margin="{Binding ElementName=ImageButtonElement, Path=ImageMargin}"
