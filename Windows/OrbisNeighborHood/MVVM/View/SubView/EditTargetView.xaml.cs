@@ -93,7 +93,54 @@ namespace OrbisNeighborHood.MVVM.View.SubView
 
         #region Target Settings
 
+        private void ShowTitleIdLabels_Loaded(object sender, RoutedEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            Switch.IsToggled = _thisTarget.ShowTitleId;
 
+        }
+
+        private void ShowTitleIdLabels_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            _thisTarget.ShowTitleId = Switch.IsToggled;
+        }
+
+        private void ShowDevkitPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            Switch.IsToggled = _thisTarget.ShowDevkitPanel;
+        }
+
+        private void ShowDevkitPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            _thisTarget.ShowDevkitPanel = Switch.IsToggled;
+        }
+
+        private void ShowToolboxShortcut_Loaded(object sender, RoutedEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            Switch.IsToggled = _thisTarget.ShowToolboxShortcut;
+        }
+
+        private void ShowToolboxShortcut_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            _thisTarget.ShowToolboxShortcut = Switch.IsToggled;
+        }
+
+        private void ShowAppHome_Loaded(object sender, RoutedEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            Switch.IsToggled = _thisTarget.ShowAppHome;
+        }
+
+        private void ShowAppHome_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var Switch = (SimpleSwitch)sender;
+            _thisTarget.ShowAppHome = Switch.IsToggled;
+        }
 
         #endregion
 

@@ -2,6 +2,7 @@
 using OrbisSuite.Common.Database;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -89,6 +90,23 @@ namespace OrbisNeighborHood.Controls
                     CurrentTargetTitleImage.Source = new BitmapImage(new Uri(Title.Icons.First()));
                 }
             }
+        }
+
+        private void CurrentTargetTitleImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
+
+            if (CurrentTarget != null && CurrentTarget.CurrentTitleID != null && Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
+            {
+                var Title = new TMDB(CurrentTarget.CurrentTitleID);
+                var url = $"https://store.playstation.com/product/{Title.ContentID}/";
+
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }  
         }
     }
 }

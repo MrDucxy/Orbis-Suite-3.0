@@ -40,11 +40,11 @@ namespace OrbisNeighborHood.Controls
             TargetStatus = Target.Info.Status;
             ConsoleModel = Target.Info.ModelType;
             IsDefault = Target.Info.IsDefault;
-            FirmwareVersion = string.Format("{0:N2}", (double)Target.Info.Firmware / 100);
+            FirmwareVersion = Target.Info.SoftwareVersion;
             SDKVersion = Target.Info.SDKVersion;
             IPAddress = Target.Info.IPAddress;
             ConsoleName = Target.Info.ConsoleName;
-            ConsoleType = Target.Info.ConsoleType.ToString();
+            PayloadPort = Target.Info.PayloadPort.ToString();
         }
 
         #region Properties
@@ -104,11 +104,6 @@ namespace OrbisNeighborHood.Controls
 
         private static void IsDefaultProperty_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            /*if ((bool)e.NewValue)
-                ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/Default.ico"));
-            else
-                ((TargetPanel)d).DefaultTargetElement.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/NotDefault.ico"));*/
-
             if ((bool)e.NewValue)
             {
                 ((TargetPanel)d).DefaultTargetElement.Foreground = new SolidColorBrush(Color.FromRgb(220, 220, 220));
@@ -117,7 +112,7 @@ namespace OrbisNeighborHood.Controls
                 
             else
             {
-                ((TargetPanel)d).DefaultTargetElement.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                ((TargetPanel)d).DefaultTargetElement.Foreground = new SolidColorBrush(Color.FromRgb(69, 73, 74));
                 ((TargetPanel)d).DefaultTargetElement.Cursor = Cursors.Hand;
             }
         }
@@ -192,14 +187,14 @@ namespace OrbisNeighborHood.Controls
         private static readonly DependencyProperty ConsoleNameProperty =
             DependencyProperty.Register("ConsoleName", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
-        private string ConsoleType
+        public string PayloadPort
         {
-            get { return (string)GetValue(ConsoleTypeProperty); }
-            set { SetValue(ConsoleTypeProperty, value); }
+            get { return (string)GetValue(PayloadPortProperty); }
+            set { SetValue(PayloadPortProperty, value); }
         }
 
-        private static readonly DependencyProperty ConsoleTypeProperty =
-            DependencyProperty.Register("ConsoleType", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty PayloadPortProperty =
+            DependencyProperty.Register("PayloadPort", typeof(string), typeof(TargetPanel), new PropertyMetadata(string.Empty));
 
         #endregion
 

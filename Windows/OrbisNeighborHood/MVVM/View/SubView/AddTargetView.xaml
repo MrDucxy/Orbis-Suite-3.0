@@ -83,28 +83,36 @@
                     <controls:InputPanel InputName="Show TitleId Labels"
                                          InputDescription="Shows the Title number of the games on the home screen of this target.">
                         <simpleControls:SimpleSwitch Tag="ShowTitleIdLabels" 
-                                                     Height="17"/>
+                                                     Height="17"
+                                                     Loaded="ShowTitleIdLabels_Loaded"
+                                                     MouseDown="ShowTitleIdLabels_MouseDown"/>
                     </controls:InputPanel>
 
                     <!-- Show Devkit Panel -->
                     <controls:InputPanel InputName="Show Devkit Panel"
                                          InputDescription="Shows the devkit information display panel that will show some information about the target like the IP Address.">
                         <simpleControls:SimpleSwitch Tag="ShowDevkitPanel" 
-                                                     Height="17"/>
+                                                     Height="17"
+                                                     Loaded="ShowDevkitPanel_Loaded"
+                                                     MouseDown="ShowDevkitPanel_MouseDown"/>
                     </controls:InputPanel>
                     
                     <!-- Show Orbis Toolbox Shortcut -->
                     <controls:InputPanel InputName="Show '★Orbis Toolbox' Shortcut"
                                          InputDescription="Shows a shortcut on the Home screen that can be used to quickly access the Orbis Toolbox menu.">
                         <simpleControls:SimpleSwitch Tag="ShowToolboxShortcut" 
-                                                     Height="17"/>
+                                                     Height="17"
+                                                     Loaded="ShowToolboxShortcut_Loaded"
+                                                     MouseDown="ShowToolboxShortcut_MouseDown"/>
                     </controls:InputPanel>
 
                     <!-- Show APP_HOME -->
                     <controls:InputPanel InputName="Show '★APP_HOME'"
                                          InputDescription="Shows the '★APP_HOME' on the home screen that can be used to quickly launch home brew to debug it with out a pkg.">
                         <simpleControls:SimpleSwitch Tag="ShowAppHome" 
-                                                     Height="17"/>
+                                                     Height="17"
+                                                     Loaded="ShowAppHome_Loaded"
+                                                     MouseDown="ShowAppHome_MouseDown"/>
                     </controls:InputPanel>
 
                 </StackPanel>

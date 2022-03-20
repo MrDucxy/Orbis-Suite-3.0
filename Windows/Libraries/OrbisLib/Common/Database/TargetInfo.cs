@@ -40,12 +40,6 @@ namespace OrbisSuite.Common.Database
         public string IPAddress { get; set; } = "-";
 
         /// <summary>
-        /// The firmware version as an int32.
-        /// </summary>
-        [NotNull]
-        public int Firmware { get; set; }
-
-        /// <summary>
         /// The port used to send payloads to the saved IP Address.
         /// </summary>
         [NotNull]
@@ -233,6 +227,30 @@ namespace OrbisSuite.Common.Database
         public int HDDTotalSpace { get; set; } = 0;
 
         /// <summary>
+        /// Shows the Title number of the games on the home screen of this target.
+        /// </summary>
+        [NotNull]
+        public bool ShowTitleId { get; set; } = false;
+
+        /// <summary>
+        /// Shows the devkit information display panel that will show some information about the target like the IP Address.
+        /// </summary>
+        [NotNull]
+        public bool ShowDevkitPanel { get; set; } = false;
+
+        /// <summary>
+        /// Shows a shortcut on the Home screen that can be used to quickly access the Orbis Toolbox menu.
+        /// </summary>
+        [NotNull]
+        public bool ShowToolboxShortcut { get; set; } = false;
+
+        /// <summary>
+        /// Shows the '★APP_HOME' on the home screen that can be used to quickly launch home brew to debug it with out a pkg.
+        /// </summary>
+        [NotNull]
+        public bool ShowAppHome { get; set; } = false;
+
+        /// <summary>
         /// Remove the default tag from the other row.
         /// </summary>
         private void CheckDefault()
@@ -259,6 +277,18 @@ namespace OrbisSuite.Common.Database
             db.CreateTable<TargetInfo>();
 
             var result = db.Update(this);
+            db.Close();
+            return (result > 0);
+        }
+
+        public bool SaveStatus()
+        {
+            var db = new SQLiteConnection(Config.DataBasePath);
+
+            // Create the table if it doesn't exist already.
+            db.CreateTable<TargetInfo>();
+
+            var result = db.Execute("UPDATE Targets SET Available=?, APIAvailable=? WHERE TargetName=?", IsAvailable, IsAPIAvailable, Name);
             db.Close();
             return (result > 0);
         }

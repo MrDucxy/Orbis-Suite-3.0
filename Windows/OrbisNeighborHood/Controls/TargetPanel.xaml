@@ -41,16 +41,9 @@
                 </StackPanel>
                     
                 <!-- Default Selection -->
-                <!-- <Image Name="DefaultTargetElement"
-                       Source="/OrbisNeighborHood;component/Images/NotDefault.ico"
-                       Height="20"
-                       HorizontalAlignment="Right"
-                       Cursor="Hand"
-                       ForceCursor="True"/> -->
-
                 <TextBlock Name="DefaultTargetElement"
                            Text="★"
-                           Foreground="Black"
+                           Foreground="#45494A"
                            FontSize="25"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Center"
@@ -117,7 +110,7 @@
                                 Grid.Row="4">
                         <!-- Payload Port -->
                         <simpleControls:SimpleTextField FieldName="Payload Port" 
-                                                        FieldText="{Binding ElementName=TargetViewElement, Path=ConsoleType}"
+                                                        FieldText="{Binding ElementName=TargetViewElement, Path=PayloadPort}"
                                                         Width="80"
                                                         Height="35"
                                                         Margin="0 5 5 0"/>

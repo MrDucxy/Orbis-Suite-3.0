@@ -37,14 +37,13 @@ namespace OrbisSuite
             return (Out != null);
         }
 
-        public bool SetTarget(string TargetName, bool Default, string NewTargetName, string IPAddress, int Firmware, int PayloadPort)
+        public bool SetTarget(string TargetName, bool Default, string NewTargetName, string IPAddress, int PayloadPort)
         {
             var Target = TargetInfo.FindTarget(x => x.Name == TargetName);
 
             Target.IsDefault = Default;
             Target.Name = NewTargetName;
             Target.IPAddress = IPAddress;
-            Target.Firmware = Firmware;
             Target.PayloadPort = PayloadPort;
 
             return Target.Save();
@@ -56,9 +55,9 @@ namespace OrbisSuite
             return Target.Remove();
         }
 
-        public bool NewTarget(bool Default, string TargetName, string IPAddress, int Firmware, int PayloadPort)
+        public bool NewTarget(bool Default, string TargetName, string IPAddress, int PayloadPort)
         {
-            return new TargetInfo { IsDefault = Default, Name = TargetName, IPAddress = IPAddress, Firmware = Firmware, PayloadPort = PayloadPort }.Add();
+            return new TargetInfo { IsDefault = Default, Name = TargetName, IPAddress = IPAddress, PayloadPort = PayloadPort }.Add();
         }
 
         public int GetTargetCount()
