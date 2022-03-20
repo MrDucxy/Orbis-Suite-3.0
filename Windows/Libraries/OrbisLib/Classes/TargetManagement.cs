@@ -37,18 +37,6 @@ namespace OrbisSuite
             return (Out != null);
         }
 
-        public bool SetTarget(string TargetName, bool Default, string NewTargetName, string IPAddress, int PayloadPort)
-        {
-            var Target = TargetInfo.FindTarget(x => x.Name == TargetName);
-
-            Target.IsDefault = Default;
-            Target.Name = NewTargetName;
-            Target.IPAddress = IPAddress;
-            Target.PayloadPort = PayloadPort;
-
-            return Target.Save();
-        }
-
         public bool DeleteTarget(string TargetName)
         {
             var Target = TargetInfo.FindTarget(x => x.Name == TargetName);

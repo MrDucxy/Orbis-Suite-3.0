@@ -137,7 +137,9 @@
                                         ToolTip="Locate Target"
                                         Margin="0 0 5 0">
                     <Image Source="/OrbisNeighborHood;component/Images/Locate.png"
-                           Margin="4"/>
+                           Margin="4"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           RenderOptions.EdgeMode="Aliased"/>
                 </simpleControls:SimpleButton>
 
                 <!-- Send Payload -->
@@ -146,8 +148,11 @@
                                         Height="35"
                                         ToolTip="Send Payload"
                                         Margin="0 0 5 0">
-                    <Image Source="/OrbisNeighborHood;component/Images/Send.png"
-                           Margin="4"/>
+                    <Image Tag="image" 
+                               Source="/OrbisNeighborHood;component/Images/Send.png"
+                               Margin="4"
+                           RenderOptions.BitmapScalingMode="Fant"
+                   RenderOptions.EdgeMode="Aliased"/>
                 </simpleControls:SimpleButton>
                 
                 <!-- Reboot -->
@@ -157,7 +162,9 @@
                                         ToolTip="Restart the Target"
                                         Margin="0 0 5 0">
                     <Image Source="/OrbisNeighborHood;component/Images/Restart.png"
-                           Margin="0"/>
+                           Margin="0"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           RenderOptions.EdgeMode="Aliased"/>
                 </simpleControls:SimpleButton>
                 
                 <!-- Shutdown -->
@@ -167,7 +174,9 @@
                                         ToolTip="Shutdown the Target"
                                         Margin="0 0 5 0">
                     <Image Source="/OrbisNeighborHood;component/Images/Shutdown.png"
-                           Margin="0"/>
+                           Margin="0"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           RenderOptions.EdgeMode="Aliased"/>
                 </simpleControls:SimpleButton>
                 
                 <!-- Restmode -->
@@ -177,7 +186,9 @@
                                         ToolTip="Set the Target into Restmode"
                                         Margin="0 0 5 0">
                     <Image Source="/OrbisNeighborHood;component/Images/Restmode.png"
-                           Margin="0"/>
+                           Margin="0"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           RenderOptions.EdgeMode="Aliased"/>
                 </simpleControls:SimpleButton>
                 
                 <!-- Edit -->

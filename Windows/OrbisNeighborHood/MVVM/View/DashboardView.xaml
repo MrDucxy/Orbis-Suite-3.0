@@ -378,30 +378,40 @@
                 <!-- Peek n' Poke -->
                 <controls:AppLauncherButton 
                     Grid.Column="1"
+                    IsEnabled="False"
+                    ToolTip="Currently under development."
                     Text="Peek n' Poke"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"/>
 
                 <!-- Library Manager -->
                 <controls:AppLauncherButton 
                     Grid.Column="3"
+                    IsEnabled="False"
+                    ToolTip="Currently under development."
                     Text="Library Manager"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"/>
 
                 <!-- Debugger -->
                 <controls:AppLauncherButton 
                     Grid.Column="5"
+                    IsEnabled="False"
+                    ToolTip="Currently under development."
                     Text="Debugger"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisDebugger.ico"/>
 
                 <!-- Console Output -->
                 <controls:AppLauncherButton 
                     Grid.Column="7"
+                    IsEnabled="False"
+                    ToolTip="Currently under development."
                     Text="Console Output"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisConsoleOutput.ico"/>
 
                 <!-- Taskbar App -->
                 <controls:AppLauncherButton 
                     Grid.Column="9"
+                    IsEnabled="False"
+                    ToolTip="Currently under development."
                     Text="Taskbar App"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"/>
             </Grid>

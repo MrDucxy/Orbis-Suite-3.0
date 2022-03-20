@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,11 +43,44 @@ namespace OrbisNeighborHood.Controls
         }
 
         public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(string), typeof(AppLauncherButton), new PropertyMetadata("/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico"));
+            DependencyProperty.Register("Source", typeof(string), typeof(AppLauncherButton), new PropertyMetadata("/OrbisNeighborHood;component/Images/Icons/OrbisTaskbarApp.ico", Source_Changed));
+
+        private static void Source_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var currentControl = ((AppLauncherButton)d);
+            var bitmapImage = new BitmapImage(new Uri($"pack://application:,,,{(string)e.NewValue}"));
+            if (currentControl.IsEnabled)
+            {
+                ((AppLauncherButton)d).IconImage.Source = bitmapImage;
+                ((AppLauncherButton)d).IconText.Opacity = 1;
+            }
+            else
+            {
+                var grayBitmapSource = new FormatConvertedBitmap(bitmapImage, PixelFormats.Gray8, null, 1);
+                ((AppLauncherButton)d).IconImage.Source = grayBitmapSource;
+                ((AppLauncherButton)d).IconText.Opacity = 0.5;
+            }
+        }
 
         private void AppLauncherButtonElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void AppLauncherButtonElement_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var bitmapImage = new BitmapImage(new Uri($"pack://application:,,,{Source}"));
+            if (IsEnabled)
+            {
+                IconImage.Source = bitmapImage;
+                IconText.Opacity = 1;
+            }
+            else
+            {
+                var grayBitmapSource = new FormatConvertedBitmap(bitmapImage, PixelFormats.Gray8, null, 1);
+                IconImage.Source = grayBitmapSource;
+                IconText.Opacity = 0.5;
+            }
         }
     }
 }

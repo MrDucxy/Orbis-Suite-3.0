@@ -214,7 +214,7 @@ namespace OrbisNeighborHood.Controls
             {
                 var editTargetViewModel = MainViewModel.Instance.EditTargetVM;
                 editTargetViewModel.TargetChanged += EditTargetVM_TargetChanged;
-                editTargetViewModel.CurrentTarget = _thisTarget;
+                editTargetViewModel.CurrentTarget = _thisTarget.Clone();
                 MainViewModel.Instance.CurrentView = editTargetViewModel;
             }
         }

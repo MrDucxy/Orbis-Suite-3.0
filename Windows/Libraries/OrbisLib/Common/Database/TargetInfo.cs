@@ -281,6 +281,15 @@ namespace OrbisSuite.Common.Database
             return (result > 0);
         }
 
+        public TargetInfo Clone()
+        {
+            return (TargetInfo)this.MemberwiseClone();
+        }
+
+        /// <summary>
+        /// Saves only specifically the target status.
+        /// </summary>
+        /// <returns>Returns true if any rows were effected.</returns>
         public bool SaveStatus()
         {
             var db = new SQLiteConnection(Config.DataBasePath);
