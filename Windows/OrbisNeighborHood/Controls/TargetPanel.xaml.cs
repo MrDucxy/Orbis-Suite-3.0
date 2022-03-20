@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using OrbisNeighborHood.MVVM.ViewModel;
 using OrbisSuite;
 using OrbisSuite.Common.Database;
@@ -48,7 +50,7 @@ namespace OrbisNeighborHood.Controls
             PayloadPort = _thisTarget.Info.PayloadPort.ToString();
 
             LocateTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
-            SendPayload.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            SendPayload.IsEnabled = _thisTarget.Info.IsAvailable;
             RestartTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
             ShutdownTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
             SuspendTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
@@ -250,7 +252,54 @@ namespace OrbisNeighborHood.Controls
 
         private void SendPayload_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                string PayloadPath = string.Empty;
+                var openFileDialog = new OpenFileDialog();
 
+                openFileDialog.Title = "Open BIN File...";
+                openFileDialog.CheckFileExists = true;
+                openFileDialog.CheckPathExists = true;
+                openFileDialog.InitialDirectory = Properties.Settings.Default.LastPayloadPath;
+                openFileDialog.Filter = "BIN files (*.BIN)|*.BIN";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    PayloadPath = openFileDialog.FileName;
+                    Properties.Settings.Default.LastPayloadPath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
+                    Properties.Settings.Default.Save();
+                }
+                else
+                    return;
+
+                FileStream fPayload = File.Open(PayloadPath, FileMode.Open);
+                if (fPayload.CanRead)
+                {
+                    byte[] PayloadBuffer = new byte[fPayload.Length];
+
+                    if (fPayload.Read(PayloadBuffer, 0, (int)fPayload.Length) == fPayload.Length)
+                    {
+                        if (!_thisTarget.Payload.InjectPayload(PayloadBuffer))
+                        {
+                            SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed to send payload to target please try again.", "Error: Failed to inject payload.");
+                        }
+                        else
+                        {
+                            SimpleMessageBox.ShowInformation(Window.GetWindow(this), "The payload has been sucessfully sent.", "Payload Sent!");
+                        }
+                    }
+                    else
+                        SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed read payload from disc to target please try again.", "Error: Failed to inject payload.");
+                }
+
+                fPayload.Close();
+            }
+            catch
+            {
+
+            }
         }
 
         private void RestartTarget_Click(object sender, RoutedEventArgs e)

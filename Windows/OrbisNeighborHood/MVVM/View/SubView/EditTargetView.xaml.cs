@@ -160,7 +160,6 @@ namespace OrbisNeighborHood.MVVM.View.SubView
                 return;
             }
 
-
             if (_thisTarget.IPAddress == string.Empty || _thisTarget.IPAddress == "-")
             {
                 SimpleMessageBox.ShowError(Window.GetWindow(this), "You must give the target an IP Address.", "Failed to save the changes to this target!");
