@@ -16,6 +16,7 @@
                    Margin="{Binding ElementName=ImageButtonElement, Path=ImageMargin}"
                    RenderOptions.BitmapScalingMode="Fant"
                    RenderOptions.EdgeMode="Aliased"
-                   Name="ButtonImage"/>
+                   Name="ButtonImage"
+                   IsHitTestVisible="False"/>
     </Grid>
 </UserControl>
