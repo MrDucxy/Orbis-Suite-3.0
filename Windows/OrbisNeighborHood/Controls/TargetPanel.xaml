@@ -131,66 +131,50 @@
             <StackPanel Orientation="Horizontal"
                         Margin="0 3 0 0">
                 <!-- Locate -->
-                <simpleControls:SimpleButton 
-                                        Width="35"
-                                        Height="35"
-                                        ToolTip="Locate Target"
-                                        Margin="0 0 5 0">
-                    <Image Source="/OrbisNeighborHood;component/Images/Locate.png"
-                           Margin="4"
-                           RenderOptions.BitmapScalingMode="Fant"
-                           RenderOptions.EdgeMode="Aliased"/>
-                </simpleControls:SimpleButton>
+                <local:ImageButton x:Name="LocateTarget"
+                                   Width="35"
+                                   Height="35"
+                                   ToolTip="Locate Target"
+                                   Margin="0 0 5 0"
+                                   ImageSource="/OrbisNeighborHood;component/Images/Locate.png"
+                                   ImageMargin="4"/>
 
                 <!-- Send Payload -->
-                <simpleControls:SimpleButton 
-                                        Width="35"
-                                        Height="35"
-                                        ToolTip="Send Payload"
-                                        Margin="0 0 5 0">
-                    <Image Tag="image" 
-                               Source="/OrbisNeighborHood;component/Images/Send.png"
-                               Margin="4"
-                           RenderOptions.BitmapScalingMode="Fant"
-                   RenderOptions.EdgeMode="Aliased"/>
-                </simpleControls:SimpleButton>
-                
+                <local:ImageButton x:Name="SendPayload"
+                                   Width="35"
+                                   Height="35"
+                                   ToolTip="Send Payload"
+                                   Margin="0 0 5 0"
+                                   ImageSource="/OrbisNeighborHood;component/Images/Send.png"
+                                   ImageMargin="4"/>
+
                 <!-- Reboot -->
-                <simpleControls:SimpleButton 
-                                        Width="35"
-                                        Height="35"
-                                        ToolTip="Restart the Target"
-                                        Margin="0 0 5 0">
-                    <Image Source="/OrbisNeighborHood;component/Images/Restart.png"
-                           Margin="0"
-                           RenderOptions.BitmapScalingMode="Fant"
-                           RenderOptions.EdgeMode="Aliased"/>
-                </simpleControls:SimpleButton>
-                
+                <local:ImageButton x:Name="RestartTarget"
+                                   Width="35"
+                                   Height="35"
+                                   ToolTip="Restart the Target"
+                                   Margin="0 0 5 0"
+                                   ImageSource="/OrbisNeighborHood;component/Images/Restart.png"
+                                   ImageMargin="0"/>
+
                 <!-- Shutdown -->
-                <simpleControls:SimpleButton 
-                                        Width="35"
-                                        Height="35"
-                                        ToolTip="Shutdown the Target"
-                                        Margin="0 0 5 0">
-                    <Image Source="/OrbisNeighborHood;component/Images/Shutdown.png"
-                           Margin="0"
-                           RenderOptions.BitmapScalingMode="Fant"
-                           RenderOptions.EdgeMode="Aliased"/>
-                </simpleControls:SimpleButton>
-                
+                <local:ImageButton x:Name="ShutdownTarget"
+                                   Width="35"
+                                   Height="35"
+                                   ToolTip="Shutdown the Target"
+                                   Margin="0 0 5 0"
+                                   ImageSource="/OrbisNeighborHood;component/Images/Shutdown.png"
+                                   ImageMargin="0"/>
+
                 <!-- Restmode -->
-                <simpleControls:SimpleButton 
-                                        Width="35"
-                                        Height="35"
-                                        ToolTip="Set the Target into Restmode"
-                                        Margin="0 0 5 0">
-                    <Image Source="/OrbisNeighborHood;component/Images/Restmode.png"
-                           Margin="0"
-                           RenderOptions.BitmapScalingMode="Fant"
-                           RenderOptions.EdgeMode="Aliased"/>
-                </simpleControls:SimpleButton>
-                
+                <local:ImageButton x:Name="SuspendTarget"
+                                   Width="35"
+                                   Height="35"
+                                   ToolTip="Set the Target into Restmode"
+                                   Margin="0 0 5 0"
+                                   ImageSource="/OrbisNeighborHood;component/Images/Restmode.png"
+                                   ImageMargin="0"/>
+
                 <!-- Edit -->
                 <simpleControls:SimpleButton 
                                         Content="Edit"

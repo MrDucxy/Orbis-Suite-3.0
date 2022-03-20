@@ -45,6 +45,12 @@ namespace OrbisNeighborHood.Controls
             IPAddress = Target.Info.IPAddress;
             ConsoleName = Target.Info.ConsoleName;
             PayloadPort = Target.Info.PayloadPort.ToString();
+
+            LocateTarget.IsEnabled = Target.Info.IsAPIAvailable;
+            SendPayload.IsEnabled = Target.Info.IsAPIAvailable;
+            RestartTarget.IsEnabled = Target.Info.IsAPIAvailable;
+            ShutdownTarget.IsEnabled = Target.Info.IsAPIAvailable;
+            SuspendTarget.IsEnabled = Target.Info.IsAPIAvailable;
         }
 
         #region Properties

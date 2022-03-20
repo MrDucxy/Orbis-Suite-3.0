@@ -51,14 +51,14 @@ namespace OrbisNeighborHood.Controls
             var bitmapImage = new BitmapImage(new Uri($"pack://application:,,,{(string)e.NewValue}"));
             if (currentControl.IsEnabled)
             {
-                ((AppLauncherButton)d).IconImage.Source = bitmapImage;
-                ((AppLauncherButton)d).IconText.Opacity = 1;
+                currentControl.IconImage.Source = bitmapImage;
+                currentControl.IconText.Opacity = 1;
             }
             else
             {
                 var grayBitmapSource = new FormatConvertedBitmap(bitmapImage, PixelFormats.Gray8, null, 1);
-                ((AppLauncherButton)d).IconImage.Source = grayBitmapSource;
-                ((AppLauncherButton)d).IconText.Opacity = 0.5;
+                currentControl.IconImage.Source = grayBitmapSource;
+                currentControl.IconText.Opacity = 0.5;
             }
         }
 
