@@ -161,7 +161,20 @@ namespace OrbisNeighborHood.MVVM.View.SubView
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if(_newTarget.Add())
+            if (_newTarget.Name == string.Empty || _newTarget.Name == "-")
+            {
+                SimpleMessageBox.ShowError(Window.GetWindow(this), "You must give the target a name.", "Failed to add target to the Database!");
+                return;
+            }
+                
+
+            if (_newTarget.IPAddress == string.Empty || _newTarget.IPAddress == "-")
+            {
+                SimpleMessageBox.ShowError(Window.GetWindow(this), "You must give the target an IP Address.", "Failed to add target to the Database!");
+                return;
+            }
+               
+            if (_newTarget.Add())
             {
                 var dc = DataContext as AddTargetViewModel;
                 if (dc != null)
@@ -172,7 +185,7 @@ namespace OrbisNeighborHood.MVVM.View.SubView
             }
             else
             {
-                SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed to add this target to the Database! Maybe a target with this Name or IP Address already exists.", "Failed to add target to the Database!");
+                SimpleMessageBox.ShowError(Window.GetWindow(this), "Maybe a target with this Name or IP Address already exists.", "Failed to add target to the Database!");
             }
         }
 

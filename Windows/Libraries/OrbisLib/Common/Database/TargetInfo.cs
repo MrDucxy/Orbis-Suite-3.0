@@ -269,6 +269,12 @@ namespace OrbisSuite.Common.Database
         /// <returns>Returns true if any rows were effected.</returns>
         public bool Save()
         {
+            if (Name == string.Empty || Name == "-")
+                return false;
+
+            if (IPAddress == string.Empty || IPAddress == "-")
+                return false;
+
             CheckDefault();
 
             var db = new SQLiteConnection(Config.DataBasePath);
@@ -310,6 +316,12 @@ namespace OrbisSuite.Common.Database
         {
             try
             {
+                if (Name == string.Empty || Name == "-")
+                    return false;
+
+                if (IPAddress == string.Empty || IPAddress == "-")
+                    return false;
+
                 CheckDefault();
 
                 var db = new SQLiteConnection(Config.DataBasePath);

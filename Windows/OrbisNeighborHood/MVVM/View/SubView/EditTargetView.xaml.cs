@@ -154,6 +154,19 @@ namespace OrbisNeighborHood.MVVM.View.SubView
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if (_thisTarget.Name == string.Empty || _thisTarget.Name == "-")
+            {
+                SimpleMessageBox.ShowError(Window.GetWindow(this), "You must give the target a name.", "Failed to save the changes to this target!");
+                return;
+            }
+
+
+            if (_thisTarget.IPAddress == string.Empty || _thisTarget.IPAddress == "-")
+            {
+                SimpleMessageBox.ShowError(Window.GetWindow(this), "You must give the target an IP Address.", "Failed to save the changes to this target!");
+                return;
+            }
+
             if (_thisTarget.Save())
             {
                 var dc = DataContext as EditTargetViewModel;
@@ -165,7 +178,7 @@ namespace OrbisNeighborHood.MVVM.View.SubView
             }
             else
             {
-                SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed to save this target. Maybe another target exists with a similar Name or IP Address?", "Failed to save this target!");
+                SimpleMessageBox.ShowError(Window.GetWindow(this), "Maybe another target exists with a similar Name or IP Address?", "Failed to save the changes to this target!");
             }
         }
 
