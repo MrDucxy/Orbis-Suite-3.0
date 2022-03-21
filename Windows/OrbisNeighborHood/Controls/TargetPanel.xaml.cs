@@ -160,10 +160,7 @@ namespace OrbisNeighborHood.Controls
         private string FirmwareVersion
         {
             get { return (string)GetValue(FirmwareVersionProperty); }
-            set
-            {
-                SetValue(FirmwareVersionProperty, value);
-            }
+            set { SetValue(FirmwareVersionProperty, value); }
         }
 
         public static readonly DependencyProperty FirmwareVersionProperty =

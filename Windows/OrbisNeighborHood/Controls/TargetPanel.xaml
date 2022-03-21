@@ -96,34 +96,31 @@
                                                         Width="80"
                                                         Height="35"/>
                     </StackPanel>
-                    
-
-                    <!-- IP Address -->
-                    <simpleControls:SimpleTextField FieldName="IP Address" 
-                                                    FieldText="{Binding ElementName=TargetViewElement, Path=IPAddress}"
-                                                    Width="165"
-                                                    Height="35"
-                                                    Margin="0 5 0 0"
-                                                    Grid.Row="2"/>
 
                     <StackPanel Orientation="Horizontal"
-                                Grid.Row="4">
+                                Grid.Row="2">
+                        <!-- IP Address -->
+                        <simpleControls:SimpleTextField FieldName="IP Address" 
+                                                    FieldText="255.255.255.255"
+                                                    Width="100"
+                                                    Height="35"
+                                                    Margin="0 5 5 0"/>
+
                         <!-- Payload Port -->
                         <simpleControls:SimpleTextField FieldName="Payload Port" 
                                                         FieldText="{Binding ElementName=TargetViewElement, Path=PayloadPort}"
-                                                        Width="80"
-                                                        Height="35"
-                                                        Margin="0 5 5 0"/>
-                        
-                        <!-- Console Name -->
-                        <simpleControls:SimpleTextField FieldName="Console Name" 
-                                                        FieldText="{Binding ElementName=TargetViewElement, Path=ConsoleName}"
-                                                        Width="80"
+                                                        Width="60"
                                                         Height="35"
                                                         Margin="0 5 0 0"/>
                     </StackPanel>
 
-                    
+                    <!-- Console Name -->
+                    <simpleControls:SimpleTextField FieldName="Console Name" 
+                                                        FieldText="{Binding ElementName=TargetViewElement, Path=ConsoleName}"
+                                                        Width="165"
+                                                        Height="35"
+                                                        Margin="0 5 0 0"
+                                                        Grid.Row="4"/>
                 </Grid>
             </StackPanel>
             
