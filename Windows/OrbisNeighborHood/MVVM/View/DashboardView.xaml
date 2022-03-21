@@ -162,7 +162,8 @@
                                 Margin="8,8,8,8">
                             <Image Source="/OrbisNeighborHood;component/Images/DefaultTitleIcon.png"
                                    RenderOptions.BitmapScalingMode="Fant"
-                                   RenderOptions.EdgeMode="Aliased"/>
+                                   RenderOptions.EdgeMode="Aliased"
+                                   Name="TitleImage"/>
                         </Border>
 
                         <StackPanel Grid.Column="1"
@@ -171,19 +172,19 @@
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
-                                       Text="Unkown Title"
+                                       Text="{Binding ElementName=DashboardElement, Path=TitleName}"
                                        Foreground="{DynamicResource Text}"
                                        FontSize="14"/>
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
-                                       Text="-"
+                                       Text="{Binding ElementName=DashboardElement, Path=TitleId}"
                                        Foreground="{DynamicResource Text}"
                                        FontSize="14"/>
 
                             <TextBlock HorizontalAlignment="Left"
                                        Margin="5 0 0 0"
-                                       Text="-"
+                                       Text="{Binding ElementName=DashboardElement, Path=ProcessName}"
                                        Foreground="{DynamicResource Text}"
                                        FontSize="14"/>
 
@@ -203,6 +204,7 @@
                         </Grid.ColumnDefinitions>
 
                         <simpleControls:SimpleButton Name="LaunchDebugger"
+                                                     IsEnabled="False"
                                                      Grid.Column="0"
                                                      Margin="5 0 0 0"
                                                      Content="Debugger"
@@ -210,17 +212,23 @@
                                                      Height="35"
                                                      Click="LaunchDebugger_Click"/>
 
-                        <simpleControls:SimpleButton Grid.Column="2" 
+                        <simpleControls:SimpleButton Name="LaunchPeekPoke"
+                                                     IsEnabled="False"
+                                                     Grid.Column="2" 
                                                      Margin="5 0 0 0"
                                                      Content="Peek n' Poke"
                                                      Width="85"
-                                                     Height="35"/>
+                                                     Height="35"
+                                                     Click="LaunchPeekPoke_Click"/>
 
-                        <simpleControls:SimpleButton Grid.Column="4"
+                        <simpleControls:SimpleButton Name="LaunchLibraryManager"
+                                                     IsEnabled="False"
+                                                     Grid.Column="4"
                                                      Margin="5 0 0 0"
-                                                     Content="Module Manager"
+                                                     Content="Library Manager"
                                                      Width="100"
-                                                     Height="35"/>
+                                                     Height="35"
+                                                     Click="LaunchLibraryManager_Click"/>
                     </Grid>
 
                 </StackPanel>

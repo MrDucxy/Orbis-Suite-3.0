@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -147,6 +148,37 @@ namespace OrbisNeighborHood.MVVM.View
 
         #endregion
 
+        #region Title Info
+
+        public string TitleName
+        {
+            get { return (string)GetValue(TitleNameProperty); }
+            set { SetValue(TitleNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleNameProperty =
+            DependencyProperty.Register("TitleName", typeof(string), typeof(DashboardView), new PropertyMetadata(string.Empty));
+
+        public string TitleId
+        {
+            get { return (string)GetValue(TitleIdProperty); }
+            set { SetValue(TitleIdProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleIdProperty =
+            DependencyProperty.Register("TitleId", typeof(string), typeof(DashboardView), new PropertyMetadata(string.Empty));
+
+        public string ProcessName
+        {
+            get { return (string)GetValue(ProcessNameProperty); }
+            set { SetValue(ProcessNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty ProcessNameProperty =
+            DependencyProperty.Register("ProcessName", typeof(string), typeof(DashboardView), new PropertyMetadata(string.Empty));
+
+        #endregion
+
         #endregion
 
         #region Events / Refresh Target
@@ -175,6 +207,24 @@ namespace OrbisNeighborHood.MVVM.View
                 IPAddress = CurrentTarget.IPAddress;
                 ConsoleName = CurrentTarget.ConsoleName;
                 PayloadPort = CurrentTarget.PayloadPort.ToString();
+
+                if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
+                {
+                    TitleName = "Unknown Title";
+                    TitleId = "-";
+                    ProcessName = "-";
+                    TitleImage.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisNeighborHood;component/Images/DefaultTitleIcon.png"));
+                }
+                else
+                {
+                    var Title = new TMDB(CurrentTarget.CurrentTitleID);
+                    Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
+                    TitleName = Title.Names.First();
+                    TitleId = Title.NPTitleID;
+                    ProcessName = "-"; // TODO: In the future we will need to pull the processname(processId) for the current big app.
+                    var test = Title.BGM;
+                    TitleImage.Source = new BitmapImage(new Uri(Title.Icons.First()));
+                }
             }
         }
 
@@ -194,6 +244,21 @@ namespace OrbisNeighborHood.MVVM.View
 
         #region Title Info
 
+        private void LaunchDebugger_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Laucnh with select process.
+        }
+
+        private void LaunchPeekPoke_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Laucnh with select process.
+        }
+
+        private void LaunchLibraryManager_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Laucnh with select process.
+        }
+
         #endregion
 
         #region HDD Info
@@ -208,13 +273,8 @@ namespace OrbisNeighborHood.MVVM.View
 
         #region App Launcher Buttons
 
-        private void LaunchDebugger_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+
 
         #endregion
-
-        
     }
 }
