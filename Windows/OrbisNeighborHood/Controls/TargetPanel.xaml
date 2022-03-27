@@ -101,7 +101,7 @@
                                 Grid.Row="2">
                         <!-- IP Address -->
                         <simpleControls:SimpleTextField FieldName="IP Address" 
-                                                    FieldText="255.255.255.255"
+                                                    FieldText="{Binding ElementName=TargetViewElement, Path=IPAddress}"
                                                     Width="100"
                                                     Height="35"
                                                     Margin="0 5 5 0"/>
