@@ -36,7 +36,7 @@ void Menu::Init()
 		int fd;
 		OrbisKernelStat stats;
 		char* Dent_Buffer;
-		OrbisKernelDirents *dent;
+		OrbisKernelDirent *dent;
 		int bpos;
 
 		//Open a file descriptor on the directory where daemons are stored.
@@ -57,7 +57,7 @@ void Menu::Init()
 			for (bpos = 0; bpos < nread;) 
 			{
 				//dent is our curent directory.
-				dent = (OrbisKernelDirents*) (Dent_Buffer + bpos);
+				dent = (OrbisKernelDirent*) (Dent_Buffer + bpos);
 
 				//Find any daemons that arent system. Making sure the type is directory and its name doesnt contain NPXS.
 				if (dent->d_type == DT_DIR && !strstr(dent->d_name, "NPXS") && !strstr(dent->d_name, ".") && !strstr(dent->d_name, PAYLOAD_DAEMON))
@@ -83,7 +83,7 @@ void Menu::Init()
 		int fd;
 		OrbisKernelStat stats;
 		char* Dent_Buffer;
-		OrbisKernelDirents *dent;
+		OrbisKernelDirent *dent;
 		int bpos;
 
 		//Open a file descriptor on the directory where daemons are stored.
@@ -104,7 +104,7 @@ void Menu::Init()
 			for (bpos = 0; bpos < nread;)
 			{
 				//dent is our curent directory.
-				dent = (OrbisKernelDirents*)(Dent_Buffer + bpos);
+				dent = (OrbisKernelDirent*)(Dent_Buffer + bpos);
 
 				//Find any daemons that arent system. Making sure the type is directory and its name doesnt contain NPXS.
 				if (dent->d_type == DT_DIR && !strstr(dent->d_name, "NPXS") && !strstr(dent->d_name, ".") && !strstr(dent->d_name, PAYLOAD_DAEMON)) 

@@ -158,7 +158,7 @@ Config::Data_s* Config::Data;
 
 bool Config::Read(const char* File)
 {
-	int fd = sceKernelOpen(File, SCE_KERNEL_O_RDONLY, 0511);
+	int fd = sceKernelOpen(File, ORBIS_KERNEL_O_RDONLY, 0511);
 
 	if (fd)
 	{
@@ -217,7 +217,7 @@ bool Config::Parse(const char* File)
 
 bool Config::Write(const char* File)
 {
-	int fd = sceKernelOpen(File, SCE_KERNEL_O_CREAT | SCE_KERNEL_O_WRONLY, 0777);
+	int fd = sceKernelOpen(File, ORBIS_KERNEL_O_CREAT | ORBIS_KERNEL_O_WRONLY, 0777);
 
 	if (fd)
 	{

@@ -50,17 +50,16 @@ bool Mono::Init()
 	Vsh_Lx = Get_Image("/%s/common/lib/Sce.Vsh.Lx.dll", sceKernelGetFsSandboxRandomWord());
 	SysfileUtilWrapper = Get_Image("/%s/common/lib/Sce.Vsh.SysfileUtilWrapper.dll", sceKernelGetFsSandboxRandomWord());
 
-	SceKernelSystemSwVersion Version;
-	Version.Size = sizeof(SceKernelSystemSwVersion);
+	OrbisKernelSwVersion Version;
 	sceKernelGetSystemSwVersion(&Version);
-	char Version_Short[] = { Version.info[1], Version.info[3], Version.info[4] };
+	char Version_Short[] = { Version.s_version[1], Version.s_version[3], Version.s_version[4] };
 	Software_Version = atoi(Version_Short);
-	klog("Software Version: %s %i\n", Version.info, Software_Version);
+	klog("Software Version: %s %i\n", Version.s_version, Software_Version);
 
 	switch (Software_Version)
 	{
 	default:
-		klog("Unsuported Software Version!! \"%s\"(%i)\n", Version.info, Software_Version);
+		klog("Unsuported Software Version!! \"%s\"(%i)\n", Version.s_version, Software_Version);
 		break;
 
 	case 505:

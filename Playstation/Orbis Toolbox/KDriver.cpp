@@ -3,7 +3,7 @@
 
 bool KDriver::TestDriver()
 {
-	int fd = sceKernelOpen("/dev/OrbisSuite", SCE_KERNEL_O_RDONLY, 0);
+	int fd = sceKernelOpen("/dev/OrbisSuite", ORBIS_KERNEL_O_RDONLY, 0);
 	if (fd > 0)
 	{
 		klog("Driver Installed...\n");
