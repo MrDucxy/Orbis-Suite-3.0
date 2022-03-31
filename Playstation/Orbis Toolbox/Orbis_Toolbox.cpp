@@ -5,7 +5,7 @@
 
 extern "C"
 {
-	int __cdecl module_start(size_t argc, const void *args)
+	int __cdecl module_start1(size_t argc, const void *args)
 	{
 		klog("!! Hello World !!\n");
 
@@ -26,7 +26,7 @@ extern "C"
 		return 0;
 	}
 
-	int __cdecl module_stop(size_t argc, const void *args)
+	int __cdecl module_stop1(size_t argc, const void *args)
 	{
 		klog("!! BYE !!\n");
 

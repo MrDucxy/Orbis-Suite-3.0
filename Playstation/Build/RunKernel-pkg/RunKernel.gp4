@@ -19,18 +19,12 @@
     <file targ_path="sce_sys/pic0.png" orig_path="sce_sys\pic0.png" />
     <file targ_path="sce_sys/pic1.png" orig_path="sce_sys\pic1.png" />
     <file targ_path="eboot.bin" orig_path="eboot.bin" />
-    <file targ_path="Kernel/Kernel.505.ELF" orig_path="Kernel\Kernel.505.ELF" />
-    <file targ_path="Kernel/Kernel.672.ELF" orig_path="Kernel\Kernel.672.ELF" />
-    <file targ_path="Kernel/Kernel.702.ELF" orig_path="Kernel\Kernel.702.ELF" />
-    <file targ_path="Kernel/Kernel.755.ELF" orig_path="Kernel\Kernel.755.ELF" />
-    <file targ_path="Kernel/Kernel.900.ELF" orig_path="Kernel\Kernel.900.ELF" />
     <file targ_path="sce_module/libc.prx" orig_path="sce_module\libc.prx" />
     <file targ_path="sce_module/libjbc.sprx" orig_path="sce_module\libjbc.sprx" />
     <file targ_path="sce_module/libSceFios2.prx" orig_path="sce_module\libSceFios2.prx" />
   </files>
   <rootdir>
     <dir targ_name="sce_sys" />
-    <dir targ_name="Kernel" />
     <dir targ_name="sce_module" />
   </rootdir>
 </psproject>

@@ -26,6 +26,7 @@ struct InstallArgs {
 int install_orbis(struct thread* td, struct InstallArgs* args)
 {
 	uint64_t kernbase = getkernbase();
+	auto Log = (void(*)(vm_map_t, vm_size_t))(kernbase + OffsetTable->kmem_alloc);
 	auto kmem_alloc = (vm_offset_t(*)(vm_map_t, vm_size_t))(kernbase + OffsetTable->kmem_alloc);
 	auto kernel_map = *(vm_map_t*)(kernbase + OffsetTable->kernel_map);
 
