@@ -17,6 +17,8 @@ int main()
 		return 0;
 	}
 
+	klog("UID: %i\n", getuid());
+
 	// Break Free
 	if (!Jailbreak())
 	{
@@ -24,6 +26,8 @@ int main()
 		sceSystemServiceLoadExec("exit", 0);
 		return 0;
 	}
+
+	klog("UID: %i\n", getuid());
 
 	// Get Firmware Version
 	SoftwareVersion = GetUpdateVersion();

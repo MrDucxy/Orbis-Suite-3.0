@@ -40,21 +40,21 @@ bool LoadModules()
 		return false;
 	}
 
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_USER_SERVICE);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYS_CORE);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NETCTL);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NET);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_HTTP);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_BGFT);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_APPINSTUTIL);
-	_sceSysmoduleLoadModuleInternal(0xA4);
 
 	return true;
 }
 #pragma endregion
 
 #pragma region Misc
+
+unsigned long Syscall(unsigned int n, ...) {
+	asm(".intel_syntax noprefix");
+	asm("xor %rax, %rax");
+	asm("mov %r10, %rcx");
+	asm("syscall");
+	asm("ret");
+}
 
 void Notify(const char* MessageFMT, ...)
 {

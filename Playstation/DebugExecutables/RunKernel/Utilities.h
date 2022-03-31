@@ -9,6 +9,7 @@ extern void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for 
 bool LoadModules();
 
 //Misc
+unsigned long Syscall(unsigned int n, ...);
 void Notify(const char* MessageFMT, ...);
 void klog(const char* fmt, ...);
 int GetUpdateVersion();

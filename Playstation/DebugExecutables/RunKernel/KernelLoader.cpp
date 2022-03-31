@@ -4,6 +4,7 @@
 #include "Utilities.h"
 #include "../../../Misc/DriverDefinitions.h"
 #include "OrbisDriver.h"
+#include <sys/syscall.h> 
 
 _OffsetTable* OffsetTable;
 
@@ -26,14 +27,19 @@ struct InstallArgs {
 int install_orbis(struct thread* td, struct InstallArgs* args)
 {
 	uint64_t kernbase = getkernbase();
-	auto Log = (void(*)(vm_map_t, vm_size_t))(kernbase + OffsetTable->kmem_alloc);
+	auto Log = (void(*)(const char* fmt, ...))(kernbase + 0x436040);
 	auto kmem_alloc = (vm_offset_t(*)(vm_map_t, vm_size_t))(kernbase + OffsetTable->kmem_alloc);
 	auto kernel_map = *(vm_map_t*)(kernbase + OffsetTable->kernel_map);
 
+	Log("Hello.\n");
+
+	Log("elf_mapped_size.\n");
 	size_t msize = 0;
 	if (elf_mapped_size(args->payload, &msize)) {
 		return 1;
 	}
+
+	Log("kmem_alloc.\n");
 
 	int s = (msize + 0x3FFFull) & ~0x3FFFull;
 	void* payloadbase = (void*)kmem_alloc(kernel_map, s);
@@ -45,14 +51,18 @@ int install_orbis(struct thread* td, struct InstallArgs* args)
 	DriverInfo.ELFBase = payloadbase;
 	DriverInfo.Size = s;
 
+	Log("load_elf.\n");
 	int r = 0;
 	if ((r = load_elf(args->payload, args->psize, payloadbase, msize, (void**)&DriverInfo.Entry))) {
 		return r;
 	}
 
+	Log("Entry.\n");
 	if (DriverInfo.Entry(&DriverInfo)) {
 		return 1;
 	}
+
+	Log("done.\n");
 
 	return 0;
 }
@@ -65,15 +75,19 @@ struct RemoveArgs {
 int Remove_Orbis(thread* td, RemoveArgs* Args)
 {
 	uint64_t kernbase = getkernbase();
+	auto Log = (void(*)(const char* fmt, ...))(kernbase + 0x436040);
 	auto kmem_free = (void(*)(void* map, void* addr, size_t size))(kernbase + OffsetTable->kmem_free);
 	auto kernel_map = *(vm_map_t*)(kernbase + OffsetTable->kernel_map);
 
+	Log("Shutdown.\n");
 	int res = Args->Info->Shutdown();
 	if (res != 0)
 		return 1;
 
+	Log("kmem_free.\n");
 	kmem_free((void*)kernel_map, Args->Info->ELFBase, Args->Info->Size);
 
+	Log("done.\n");
 	return 0;
 }
 
@@ -157,7 +171,7 @@ bool LoadKernel(char* Path, int Firmware)
 		return false;
 	}
 
-	int res = syscall(11, install_orbis, File_Data, Stats.st_size);
+	int res = Syscall(11, install_orbis, File_Data, Stats.st_size);
 	if (res != 0)
 	{
 		klog("LoadKernel syscall failed with %i\n", res);
@@ -181,7 +195,7 @@ bool UnloadKernel()
 	KDriver_Info Info;
 	if (OrbisDriver::GetDriverInfo(&Info))
 	{
-		int res = syscall(11, Remove_Orbis, &Info);
+		int res = Syscall(11, Remove_Orbis, &Info);
 		if (res != 0)
 		{
 			klog("LoadKernel syscall failed with %i\n", res);
