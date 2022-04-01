@@ -1,7 +1,43 @@
-#include <stdio.h>
+#include "Common.h"
+#include "OrbisDriver.h"
 
 int main()
 {
-    // Your code here...
-    return 0;
+	// Load internal system modules.
+	if (!LoadModules())
+	{
+		Notify("Failed to Load Modules...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
+	// Break Free
+	if (!Jailbreak())
+	{
+		Notify("Jailbreak failed...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
+	if (OrbisDriver::TestDriver())
+	{
+		OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox.sprx");
+		sceKernelSleep(1.5);
+		int handle = OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/Orbis Toolbox.sprx");
+		if (handle > 0)
+		{
+			Notify("Orbis Toolbox loaded! %d\n", handle);
+			klog("Orbis Toolbox loaded! %d\n", handle);
+		}
+		else
+		{
+			Notify("Orbis Toolbox failed to load! :( %d\n", handle);
+			klog("Orbis Toolbox failed to load! :( %d\n", handle);
+		}
+	}
+	else
+	{
+		Notify("Could not Load: Kernel Driver not running!!");
+		klog("Could not Load: Kernel Driver not running!!\n");
+	}
 }

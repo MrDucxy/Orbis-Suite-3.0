@@ -5,11 +5,10 @@
 
 //Modules.
 extern bool(*Jailbreak)();
-extern void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
 bool LoadModules();
 
 //Misc
-unsigned long Syscall(unsigned int n, ...);
+long Syscall(long n, ...);
 void Notify(const char* MessageFMT, ...);
 void klog(const char* fmt, ...);
 int GetUpdateVersion();

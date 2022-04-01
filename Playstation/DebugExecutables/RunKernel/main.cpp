@@ -10,14 +10,12 @@ int main()
 	int Handle = 0;
 
 	// Load internal system modules.
-	if (!LoadModules())
+	/*if (!LoadModules())
 	{
 		Notify("Failed to Load Modules...");
 		sceSystemServiceLoadExec("exit", 0);
 		return 0;
 	}
-
-	klog("UID: %i\n", getuid());
 
 	// Break Free
 	if (!Jailbreak())
@@ -26,8 +24,6 @@ int main()
 		sceSystemServiceLoadExec("exit", 0);
 		return 0;
 	}
-
-	klog("UID: %i\n", getuid());
 
 	// Get Firmware Version
 	SoftwareVersion = GetUpdateVersion();
@@ -64,7 +60,7 @@ int main()
 			Notify("Un-Loaded Kernel ELF Successfully!");
 			klog("Un-Loaded Kernel ELF Successfully!\n");
 		}
-	}
+	}*/
 
 	while (true) sceKernelSleep(1);
 

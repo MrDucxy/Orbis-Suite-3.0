@@ -46,6 +46,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="build.bat" />
+    <ClCompile Include="OrbisDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="sce_sys\icon0.png">
@@ -77,5 +83,16 @@
     <None Include="assets\videos\.gitkeep">
       <Filter>Resource Files\assets\videos</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OrbisDriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
