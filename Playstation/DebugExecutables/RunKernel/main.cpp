@@ -6,11 +6,13 @@
 
 int main()
 {
+	klog("Hello World\n");
+
 	int SoftwareVersion = 0;
 	int Handle = 0;
 
 	// Load internal system modules.
-	/*if (!LoadModules())
+	if (!LoadModules())
 	{
 		Notify("Failed to Load Modules...");
 		sceSystemServiceLoadExec("exit", 0);
@@ -60,7 +62,7 @@ int main()
 			Notify("Un-Loaded Kernel ELF Successfully!");
 			klog("Un-Loaded Kernel ELF Successfully!\n");
 		}
-	}*/
+	}
 
 	while (true) sceKernelSleep(1);
 

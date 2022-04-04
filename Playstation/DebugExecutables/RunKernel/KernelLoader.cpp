@@ -158,7 +158,7 @@ bool LoadKernel(char* Path, int Firmware)
 		return false;
 	}
 
-	int res = Syscall(11, install_orbis, File_Data, Stats.st_size);
+	int res = syscall(11, install_orbis, File_Data, Stats.st_size);
 	if (res != 0)
 	{
 		klog("LoadKernel syscall failed with %i\n", res);
@@ -182,7 +182,7 @@ bool UnloadKernel()
 	KDriver_Info Info;
 	if (OrbisDriver::GetDriverInfo(&Info))
 	{
-		int res = Syscall(11, Remove_Orbis, &Info);
+		int res = syscall(11, Remove_Orbis, &Info);
 		if (res != 0)
 		{
 			klog("LoadKernel syscall failed with %i\n", res);

@@ -1,12 +1,13 @@
 SETLOCAL EnableDelayedExpansion
 
 Rem Libraries to link in
-set libraries=-lc++ -lc -lSceSysModule -lkernel -lSceSystemService
+set libraries=-lc++ -lc -lSceSysModule -lkernel -lSceVideoOut -lSceSystemService -lSceSysCore -lSceSystemStateMgr -lSceNet -lScePad -lSceUserService -lSceRegMgr -lSceFreeType -lSceMsgDialog -lSceCommonDialog
 
 Rem Read the script arguments into local vars
 set intdir=%1
 set targetname=%~2
 set outputPath=%3
+set authinfo=000000000000000000000000001C004000FF000000000080000000000000000000000000000000000000008000400040000000000000008000000000000000080040FFFF000000F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 set outputElf=%intdir%%targetname%.elf
 set outputOelf=%intdir%%targetname%.oelf
@@ -24,7 +25,7 @@ Rem Link the input ELF
 ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\\lib" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crt1.o" %obj_files%
 
 Rem Create the eboot
-%OO_PS4_TOOLCHAIN%\bin\windows\create-eboot.exe -in "%outputElf%" --out "%outputOelf%" 
+%OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin"
 
 Rem Cleanup
 copy "eboot.bin" %outputPath%\Playstation\Build\RunKernel-pkg\eboot.bin
