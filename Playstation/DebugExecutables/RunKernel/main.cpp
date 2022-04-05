@@ -6,8 +6,6 @@
 
 int main()
 {
-	klog("Hello World\n");
-
 	int SoftwareVersion = 0;
 	int Handle = 0;
 
@@ -63,8 +61,6 @@ int main()
 			klog("Un-Loaded Kernel ELF Successfully!\n");
 		}
 	}
-
-	while (true) sceKernelSleep(1);
 
 	sceSystemServiceLoadExec("exit", 0);
 

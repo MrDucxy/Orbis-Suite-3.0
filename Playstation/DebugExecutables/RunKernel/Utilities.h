@@ -8,7 +8,6 @@ extern bool(*Jailbreak)();
 bool LoadModules();
 
 //Misc
-long Syscall(long n, ...);
 void Notify(const char* MessageFMT, ...);
 void klog(const char* fmt, ...);
 int GetUpdateVersion();

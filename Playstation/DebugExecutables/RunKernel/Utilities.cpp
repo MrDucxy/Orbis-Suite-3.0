@@ -48,14 +48,6 @@ bool LoadModules()
 
 #pragma region Misc
 
-long Syscall(long n, ...) {
-	asm(".intel_syntax noprefix");
-	asm("xor %rax, %rax");
-	asm("mov %r10, %rcx");
-	asm("syscall");
-	asm("ret");
-}
-
 void Notify(const char* MessageFMT, ...)
 {
 	OrbisNotificationRequest Buffer;
