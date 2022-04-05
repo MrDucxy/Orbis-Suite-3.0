@@ -4,6 +4,7 @@
 #pragma region Modules
 
 bool(*Jailbreak)();
+void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
 
 bool LoadModules()
 {
@@ -20,7 +21,6 @@ bool LoadModules()
 		return false;
 	}
 
-
 	//Load the sysmodule library and import for sceSysmoduleLoadModuleInternal for some reason wouldnt auto import.
 	char Buffer[0x200];
 	sprintf(Buffer, "/%s/common/lib/libSceSysmodule.sprx", sceKernelGetFsSandboxRandomWord());
@@ -29,6 +29,14 @@ bool LoadModules()
 		klog("Failed to load libSceSysmodule Library.\n");
 		return false;
 	}
+
+	sceKernelDlsym(ModuleHandle, "sceSysmoduleLoadModuleInternal", (void**)&_sceSysmoduleLoadModuleInternal);
+	if (_sceSysmoduleLoadModuleInternal == nullptr) {
+		klog("Failed to load _sceSysmoduleLoadModuleInternal Import.\n");
+		return false;
+	}
+
+	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE);
 
 	return true;
 }

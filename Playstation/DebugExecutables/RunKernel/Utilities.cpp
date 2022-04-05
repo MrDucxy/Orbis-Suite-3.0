@@ -24,7 +24,6 @@ bool LoadModules()
 		return false;
 	}
 
-
 	//Load the sysmodule library and import for sceSysmoduleLoadModuleInternal for some reason wouldnt auto import.
 	char Buffer[0x200];
 	sprintf(Buffer, "/%s/common/lib/libSceSysmodule.sprx", sceKernelGetFsSandboxRandomWord());

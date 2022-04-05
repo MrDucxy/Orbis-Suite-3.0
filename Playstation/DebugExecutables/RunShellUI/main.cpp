@@ -22,14 +22,9 @@ int main()
 	if (OrbisDriver::TestDriver())
 	{
 		OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox.sprx");
-		sceKernelSleep(1.5);
+		sceKernelSleep(1);
 		int handle = OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/Orbis Toolbox.sprx");
-		if (handle > 0)
-		{
-			Notify("Orbis Toolbox loaded! %d\n", handle);
-			klog("Orbis Toolbox loaded! %d\n", handle);
-		}
-		else
+		if (handle < 0)
 		{
 			Notify("Orbis Toolbox failed to load! :( %d\n", handle);
 			klog("Orbis Toolbox failed to load! :( %d\n", handle);
@@ -40,4 +35,8 @@ int main()
 		Notify("Could not Load: Kernel Driver not running!!");
 		klog("Could not Load: Kernel Driver not running!!\n");
 	}
+
+	sceSystemServiceLoadExec("exit", 0);
+
+	return 0;
 }
