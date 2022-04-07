@@ -43,7 +43,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>call "$(SolutionDir)\Misc\Increment.bat" "Version.h" "ORBIS_TOOLBOX_BUILDVERSION" 
+call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>del /s /q /f $(IntDir)\*.o
 del /s /q /f $(IntDir)\*.elf
 del /s /q /f $(IntDir)\*.oelf
@@ -64,10 +65,65 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="build.bat" />
+    <None Include="Embed.s" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Build_Overlay.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Daemons.h" />
+    <ClInclude Include="Debug_Features.h" />
+    <ClInclude Include="Detour.h" />
+    <ClInclude Include="GamePad.h" />
+    <ClInclude Include="Game_Overlay.h" />
+    <ClInclude Include="hde64.h" />
+    <ClInclude Include="KDriver.h" />
+    <ClInclude Include="Label.h" />
+    <ClInclude Include="LncUtil.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Mono.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="Patcher.h" />
+    <ClInclude Include="Settings_Menu.h" />
+    <ClInclude Include="SysfileUtilWrapper.h" />
+    <ClInclude Include="System_Monitor.h" />
+    <ClInclude Include="table64.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Utilities.h" />
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="Version.h" />
+    <ClInclude Include="Widget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Build_Overlay.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Custom_Content.cpp" />
+    <ClCompile Include="Daemons.cpp" />
+    <ClCompile Include="DebugTitleIdLabel.cpp" />
+    <ClCompile Include="Detour.cpp" />
+    <ClCompile Include="DevkitPanel.cpp" />
+    <ClCompile Include="GamePad.cpp" />
+    <ClCompile Include="Game_Overlay.cpp" />
+    <ClCompile Include="hde64.cpp" />
+    <ClCompile Include="KDriver.cpp" />
+    <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LncUtil.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Mono.cpp" />
+    <ClCompile Include="OrbisToolbox.cpp" />
+    <ClCompile Include="Panel.cpp" />
+    <ClCompile Include="Patcher.cpp" />
+    <ClCompile Include="Settings_Menu.cpp" />
+    <ClCompile Include="SysfileUtilWrapper.cpp" />
+    <ClCompile Include="System_Monitor.cpp" />
+    <ClCompile Include="UI_Utilities.cpp" />
+    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="Widget.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="external_hdd.xml" />
+    <Xml Include="orbis_toolbox.xml" />
+    <Xml Include="settings_root.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,29 +1,26 @@
 SETLOCAL EnableDelayedExpansion
 
 Rem Libraries to link in
-set libraries=-lc -lkernel -lc++
-
-Rem set extra_flags=
+set libraries=-lSceLibcInternal -lSceLibcInternalExt -lkernel -lmonosgen -lSceSystemService -lSceLncUtil
 
 Rem Read the script arguments into local vars
 set intdir=%1
 set targetname=%~2
-set outputPath=%3
+set outputPath=%~3
 
-set outputElf=%intdir%\%targetname%.elf
-set outputOelf=%intdir%\%targetname%.oelf
-set outputPrx=%targetname%.prx
-set outputStub=%targetname%_stub.so
+set outputElf=%intdir%%targetname%.elf
+set outputOelf=%intdir%%targetname%.oelf
+set outputPrx=%intdir%%targetname%.prx
+set outputStub=%intdir%%targetname%_stub.so
 
-@mkdir %intdir%
-
-Rem Compile object files for all the source files
-for %%f in (*.c) do (
-    clang --target=x86_64-pc-freebsd12-elf -fPIC -funwind-tables -I"%OO_PS4_TOOLCHAIN%\\include" %extra_flags% -c -o %intdir%\%%~nf.o %%~nf.c
+Rem Compile object files for all the source files   -DORBIS_TOOLBOX_DEBUG
+for %%f in (*.cpp) do (
+    clang++ -cc1 -triple x86_64-scei-ps4-elf -I"%OO_PS4_TOOLCHAIN%\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -emit-obj -o %intdir%\%%~nf.o %%~nf.cpp
 )
 
-for %%f in (*.cpp) do (
-    clang++ --target=x86_64-pc-freebsd12-elf -fPIC -funwind-tables -I"%OO_PS4_TOOLCHAIN%\\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" %extra_flags% -c -o %intdir%\%%~nf.o %%~nf.cpp
+Rem Compile object files for all the assembly files
+for %%f in (*.s) do (
+	clang -m64 -nodefaultlibs -nostdlib --target=x86_64-scei-ps4-elf -c -o %intdir%\%%~nf.o %%~nf.s
 )
 
 Rem Get a list of object files for linking
@@ -34,10 +31,6 @@ Rem Link the input ELF
 ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\lib" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crtlib.o" %obj_files%
 
 Rem Create stub shared libraries
-for %%f in (*.c) do (
-    clang -target x86_64-pc-linux-gnu -ffreestanding -nostdlib -fno-builtin -fPIC -c -I"%OO_PS4_TOOLCHAIN%\include" -o %intdir%\%%~nf.o.stub %%~nf.cpp
-)
-
 for %%f in (*.cpp) do (
     clang++ -target x86_64-pc-linux-gnu -ffreestanding -nostdlib -fno-builtin -fPIC -c -I"%OO_PS4_TOOLCHAIN%\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -o %intdir%\%%~nf.o.stub %%~nf.cpp
 )
@@ -50,12 +43,6 @@ clang++ -target x86_64-pc-linux-gnu -shared -fuse-ld=lld -ffreestanding -nostdli
 Rem Create the prx
 %OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --lib "%outputPrx%" --paid 0x3800000000010003
 
-Rem Eboot cleanup
-copy %outputPrx% %outputPath%\%outputPrx%
-copy %outputStub%%outputPath%\%outputStub%
-del %outputPrx%
-del %outputStub%
-
-Rem cleanup...
-rd /s /q %intdir%
-Rem rd /s /q %intdir%\..\
+Rem Cleanup
+copy "%outputPrx%" "%outputPath%\Playstation\Build\pkg\Orbis Toolbox\%targetname%.sprx"
+del "%outputPrx%"

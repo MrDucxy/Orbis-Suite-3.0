@@ -16,16 +16,215 @@
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{a1e7d8c0-9965-4dae-9e21-fec87fa057a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\API">
+      <UniqueIdentifier>{531e5d39-42b8-4cf7-93d0-9fc3bd9fe82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\API">
+      <UniqueIdentifier>{a61efd8d-78d4-4ce2-bf65-9db8d0c6c6f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Toolbox">
+      <UniqueIdentifier>{128fb9c5-726e-4ead-9a69-eacccaf065c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolbox">
+      <UniqueIdentifier>{c2914927-ce60-49d6-8347-dda39e2b5f1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Toolbox\Debug Features">
+      <UniqueIdentifier>{436fc168-d46b-41f0-bdc8-abe0e210642e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolbox\Debug Features">
+      <UniqueIdentifier>{af6bfa7a-ad5f-49a0-9358-d0eaa2814bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolbox\Menu">
+      <UniqueIdentifier>{ad533448-fd2b-43f1-8ec0-ed384863fe03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Toolbox\Menu">
+      <UniqueIdentifier>{55d149ba-c24f-4a7f-bd90-dab4084dc805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Toolbox\UI">
+      <UniqueIdentifier>{65077391-6e0e-48f7-b7cc-670ae6760503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolbox\UI">
+      <UniqueIdentifier>{deb889c0-d6c3-4667-9cb5-d896b97a85da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolbox\XML">
+      <UniqueIdentifier>{27650f36-b0f3-464a-9957-1fc95d4bdefc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{5edb94ae-740f-4192-81dc-a2decba078b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Toolbox\UI\Elements">
+      <UniqueIdentifier>{e6c0d70c-61c3-4a63-ba8d-65f75af5112f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Toolbox\UI\Elements">
+      <UniqueIdentifier>{71a68f5f-0868-4608-b063-7a5913039770}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="build.bat" />
+    <None Include="Embed.s">
+      <Filter>Source Files\Toolbox\XML</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="hde64.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="KDriver.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="LncUtil.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Mono.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Patcher.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="SysfileUtilWrapper.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="System_Monitor.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="table64.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
     <ClInclude Include="Version.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Debug_Features.h">
+      <Filter>Header Files\Toolbox\Debug Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Toolbox\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings_Menu.h">
+      <Filter>Header Files\Toolbox\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Daemons.h">
+      <Filter>Header Files\Toolbox\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Build_Overlay.h">
+      <Filter>Header Files\Toolbox\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Overlay.h">
+      <Filter>Header Files\Toolbox\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Utilities.h">
+      <Filter>Header Files\Toolbox\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Header Files\Toolbox\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Panel.h">
+      <Filter>Header Files\Toolbox\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>Header Files\Toolbox\UI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files\Toolbox\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OrbisToolbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="hde64.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="KDriver.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="LncUtil.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Mono.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Patcher.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="SysfileUtilWrapper.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="System_Monitor.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Custom_Content.cpp">
+      <Filter>Source Files\Toolbox\Debug Features</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugTitleIdLabel.cpp">
+      <Filter>Source Files\Toolbox\Debug Features</Filter>
+    </ClCompile>
+    <ClCompile Include="DevkitPanel.cpp">
+      <Filter>Source Files\Toolbox\Debug Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Daemons.cpp">
+      <Filter>Source Files\Toolbox\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Toolbox\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings_Menu.cpp">
+      <Filter>Source Files\Toolbox\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Build_Overlay.cpp">
+      <Filter>Source Files\Toolbox\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game_Overlay.cpp">
+      <Filter>Source Files\Toolbox\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Utilities.cpp">
+      <Filter>Source Files\Toolbox\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Source Files\Toolbox\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Panel.cpp">
+      <Filter>Source Files\Toolbox\UI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>Source Files\Toolbox\UI\Elements</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="external_hdd.xml">
+      <Filter>Source Files\Toolbox\XML</Filter>
+    </Xml>
+    <Xml Include="orbis_toolbox.xml">
+      <Filter>Source Files\Toolbox\XML</Filter>
+    </Xml>
+    <Xml Include="settings_root.xml">
+      <Filter>Source Files\Toolbox\XML</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
