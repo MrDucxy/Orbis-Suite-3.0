@@ -96,10 +96,10 @@ void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total)
 {
 	int _Total = 0, _Free = 0;
 
-	/*if (get_page_table_stats(vm, type, &_Total, &_Free) == -1) {
+	if (get_page_table_stats(vm, type, &_Total, &_Free) == -1) {
 		klog("get_page_table_stats() Failed.\n");
 		return;
-	}*/
+	}
 
 	if (Used)
 		*Used = (_Total - _Free);
