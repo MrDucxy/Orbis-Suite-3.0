@@ -11,11 +11,19 @@
 #include <unistd.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <signal.h>
 #include <orbis/libkernel.h>
 #include <orbis/libmonovm.h>
+#include <orbis/RegMgr.h>
+#include <orbis/Net.h>
+#include <orbis/NetCtl.h>
+#include <orbis/SystemService.h>
+#include <orbis/UserService.h>
+#include <orbis/Sysmodule.h>
 
 #include "Version.h"
 #include "Utilities.h"
+#include "APIPackets.h"
 #include "Mono.h"
 #include "Detour.h"
 #include "Patcher.h"

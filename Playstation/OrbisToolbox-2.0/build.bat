@@ -1,7 +1,7 @@
 SETLOCAL EnableDelayedExpansion
 
 Rem Libraries to link in
-set libraries=-lSceLibcInternal -lSceLibcInternalExt -lkernel -lmonosgen -lSceSystemService -lSceLncUtil
+set libraries=-lSceLibcInternal -lSceLibcInternalExt -lkernel -lmonosgen -lSceSystemService -lSceLncUtil -lSceUserService -lSceRegMgr -lSceFreeType -lSceSysCore -lSceSystemStateMgr -lSceNet
 
 Rem Read the script arguments into local vars
 set intdir=%1

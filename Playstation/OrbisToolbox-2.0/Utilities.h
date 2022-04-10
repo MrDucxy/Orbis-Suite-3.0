@@ -18,5 +18,6 @@ typedef unsigned char vm_prot_t;	/* protection codes */
 
 void klog(const char* fmt, ...);
 void Notify(const char* MessageFMT, ...);
+void Notify_Custom(const char* IconURI, const char* MessageFMT, ...);
 
 void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total);

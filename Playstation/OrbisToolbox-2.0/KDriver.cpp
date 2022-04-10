@@ -76,7 +76,6 @@ int KDriver::GetProcessList(int ProcessCount, ProcInfo* ProcList)
 
 int KDriver::LoadSPRX(const char* ProccessName, const char* Path, bool ShouldCallEntry)
 {
-	klog("OrbisDriver::LoadSPRX\n");
 	auto fd = sceKernelOpen("/dev/OrbisSuite", 0, 0);
 	if (fd > 0)
 	{
@@ -100,7 +99,6 @@ int KDriver::LoadSPRX(const char* ProccessName, const char* Path, bool ShouldCal
 
 int KDriver::UnLoadSPRX(const char* ProccessName, const char* Name, bool ShouldCallExit)
 {
-	klog("OrbisDriver::UnLoadSPRX\n");
 	auto fd = sceKernelOpen("/dev/OrbisSuite", 0, 0);
 	if (fd > 0)
 	{
@@ -124,7 +122,6 @@ int KDriver::UnLoadSPRX(const char* ProccessName, const char* Name, bool ShouldC
 
 int KDriver::UnLoadSPRX(const char* ProccessName, int ModuleHandle, bool ShouldCallExit)
 {
-	klog("OrbisDriver::UnLoadSPRX\n");
 	auto fd = sceKernelOpen("/dev/OrbisSuite", 0, 0);
 	if (fd > 0)
 	{
