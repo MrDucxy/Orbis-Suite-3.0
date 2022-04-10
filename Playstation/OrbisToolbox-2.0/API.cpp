@@ -1,9 +1,13 @@
 #include "Common.h"
 #include "API.h"
 
+Proc* API::Proc;
+Debug* API::Debug;
+Target* API::Target;
+SocketListener* API::Listener;
+
 void API::ListenerCallback(void* tdParam, OrbisNetId s)
 {
-	auto API = (class API*)tdParam;
 	auto Packet = RecievePacket<APIPacket>(s);
 
 	if (Packet != nullptr)
@@ -26,11 +30,11 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s)
 			break;
 
 		case APICommands::PROC_START ... APICommands::PROC_END:
-			API->Proc->HandleAPI(s, Packet);
+			Proc->HandleAPI(s, Packet);
 			break;
 
 		case APICommands::DBG_START ... APICommands::DBG_END:
-			API->Debug->HandleAPI(s, Packet);
+			Debug->HandleAPI(s, Packet);
 			break;
 
 		case APICommands::KERN_START ... APICommands::KERN_END:
@@ -39,7 +43,7 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s)
 			break;
 
 		case APICommands::TARGET_START ... APICommands::TARGET_END:
-			API->Target->HandleAPI(s, Packet);
+			Target->HandleAPI(s, Packet);
 			break;
 
 		}
@@ -49,16 +53,16 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s)
 	free(Packet);
 }
 
-API::API()
+void API::Init()
 {
 	klog("API Startup.\n");
 	Proc = new class Proc();
 	Debug = new class Debug();
 	Target = new class Target();
-	Listener = new SocketListener(ListenerCallback, this, 6900);
+	Listener = new SocketListener(ListenerCallback, NULL, 6900);
 }
 
-API::~API()
+void API::Term()
 {
 	delete Proc;
 	delete Debug;

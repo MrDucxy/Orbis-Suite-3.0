@@ -2,6 +2,7 @@
 #include "Settings_Menu.h"
 #include "System_Monitor.h"
 #include "GamePad.h"
+#include "API.h"
 
 extern "C"
 {
@@ -17,9 +18,13 @@ extern "C"
 			return 0;
 		}
 
+		// Toolbox
 		System_Monitor::Init();
 		Settings_Menu::Init();
 		//Title_Menu::Init();	
+
+		// API
+		API::Init();
 
 		Notify(ORBIS_TOOLBOX_NOTIFY);
 
@@ -30,9 +35,13 @@ extern "C"
 	{
 		klog("!! BYE !!\n");
 
+		// Toolbox
 		Settings_Menu::Term();
 		System_Monitor::Term();
 		//Title_Menu::Term();
+
+		// API
+		API::Term();
 
 		sceKernelSleep(4);
 

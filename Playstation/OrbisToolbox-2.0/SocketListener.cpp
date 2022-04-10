@@ -42,55 +42,74 @@ void* SocketListener::DoWork()
 	{
 		klog("Failed to bind Listener to port %i\n", this->Port);
 
-		// Clean up.
-		sceNetSocketClose(this->Socket);
-
-		// Kill our thread and exit.
-		scePthreadExit(NULL);
-		return nullptr;
+		goto Cleanup;
 	}
 
 	if (sceNetListen(this->Socket, 100) != 0)
 	{
 		klog("Failed to start listening on Socket.\n");
 
-		// Clean up.
-		sceNetSocketClose(this->Socket);
-
-		// Kill our thread and exit.
-		scePthreadExit(NULL);
-		return nullptr;
+		goto Cleanup;
 	}
 
 	while (this->ServerRunning)
 	{
+		fd_set set;
+		struct timeval timeout;
+		FD_ZERO(&set); /* clear the set */
+		FD_SET(this->Socket, &set); /* add our file descriptor to the set */
+
+		timeout.tv_sec = 2;
+		timeout.tv_usec = 0;
+
 		// Wait fo rincoming connections.
-		OrbisNetSockaddrIn ClientAddr = { 0 };
-		OrbisNetSocklen_t addrlen = sizeof(OrbisNetSockaddrIn);
-		auto ClientSocket = sceNetAccept(this->Socket, (OrbisNetSockaddr*)&ClientAddr, &addrlen);
-
-		if (ClientSocket != -1)
+		auto rv = select((int)this->Socket + 1, &set, NULL, NULL, &timeout);
+		if (rv == -1)
+			goto Cleanup;
+		else if (rv == 0)
 		{
-			//klog("New Connection from %i.%i.%i.%i!\n", ClientAddr.sin_addr.s_addr & 0xFF, (ClientAddr.sin_addr.s_addr >> 8) & 0xFF, (ClientAddr.sin_addr.s_addr >> 16) & 0xFF, (ClientAddr.sin_addr.s_addr >> 24) & 0xFF);
-
-			int optval = 1;
-			sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
-			// Set up thread params.
-			ClientThreadParams* Params = new ClientThreadParams();
-			Params->socketListener = this;
-			Params->Sock = ClientSocket;
-
-			// Create Thread to handle connection.
-			OrbisPthread* Thread;
-			scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
-
-			// Reset ClientSocket.
-			ClientSocket = -1;
+			if (!this->ServerRunning)
+				goto Cleanup;
+			continue;
 		}
+		else 
+		{
+			if (!this->ServerRunning)
+				goto Cleanup;
 
+			OrbisNetSockaddrIn ClientAddr = { 0 };
+			OrbisNetSocklen_t addrlen = sizeof(OrbisNetSockaddrIn);
+			auto ClientSocket = sceNetAccept(this->Socket, (OrbisNetSockaddr*)&ClientAddr, &addrlen);
+
+			if (ClientSocket != -1)
+			{
+				//klog("New Connection from %i.%i.%i.%i!\n", ClientAddr.sin_addr.s_addr & 0xFF, (ClientAddr.sin_addr.s_addr >> 8) & 0xFF, (ClientAddr.sin_addr.s_addr >> 16) & 0xFF, (ClientAddr.sin_addr.s_addr >> 24) & 0xFF);
+
+				int optval = 1;
+				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
+				// Set up thread params.
+				ClientThreadParams* Params = new ClientThreadParams();
+				Params->socketListener = this;
+				Params->Sock = ClientSocket;
+
+				// Create Thread to handle connection.
+				OrbisPthread* Thread;
+				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
+
+				// Reset ClientSocket.
+				ClientSocket = -1;
+			}
+		}
 	}
 
+Cleanup:
 	klog("Listener Thread Exiting!\n");
+
+	// Clean up.
+	this->ThreadCleanedUp = true;
+
+	// Clean up.
+	sceNetSocketClose(this->Socket);
 
 	// Kill our thread and exit.
 	scePthreadExit(NULL);
@@ -117,6 +136,10 @@ SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId S
 
 SocketListener::~SocketListener()
 {
+	klog("~Socket Listener.\n");
+
 	this->ServerRunning = false;
-	scePthreadCancel(*ListenThreadHandle);
+	while (!this->ThreadCleanedUp) { sceKernelUsleep(10); }
+
+	klog("Destruction sucessful.\n");
 }

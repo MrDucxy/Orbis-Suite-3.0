@@ -8,14 +8,14 @@
 class API
 {
 private:
-	Proc* Proc;
-	Debug* Debug;
-	Target* Target;
-	SocketListener* Listener;
+	static Proc* Proc;
+	static Debug* Debug;
+	static Target* Target;
+	static SocketListener* Listener;
 
 	static void ListenerCallback(void* tdParam, OrbisNetId s);
 
 public:
-	API();
-	~API();
+	static void Init();
+	static void Term();
 };
