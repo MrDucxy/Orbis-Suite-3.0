@@ -30,17 +30,22 @@ void* SocketListener::DoWork()
 	addr.sin_addr.s_addr = ORBIS_NET_INADDR_ANY; // Any incoming address
 	addr.sin_port = sceNetHtons(this->Port); // Our desired listen port
 
-	//Make new TCP Socket
+	// Make new TCP Socket
 	this->Socket = sceNetSocket("Listener Socket", ORBIS_NET_AF_INET, ORBIS_NET_SOCK_STREAM, ORBIS_NET_IPPROTO_TCP);
 
-	//Set Sending and reciving time out to 1000 ms
+	// Set Sending and reciving time out to 1000 ms
 	int sock_timeout = 10000;
 	sceNetSetsockopt(this->Socket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_SNDTIMEO, &sock_timeout, sizeof(sock_timeout));
 	sceNetSetsockopt(this->Socket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_RCVTIMEO, &sock_timeout, sizeof(sock_timeout));
 
-	if (sceNetBind(this->Socket, (OrbisNetSockaddr*)&addr, sizeof(addr)) != 0)
+	// Make sure every time we can rebind to the port.
+	int reusePort = 1;
+	sceNetSetsockopt(this->Socket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_REUSEPORT, &reusePort, sizeof(reusePort));
+
+	auto bindError = sceNetBind(this->Socket, (OrbisNetSockaddr*)&addr, sizeof(addr));
+	if (bindError != 0)
 	{
-		klog("Failed to bind Listener to port %i\n", this->Port);
+		klog("Failed to bind Listener to port %i\nError: %X", this->Port, bindError);
 
 		goto Cleanup;
 	}

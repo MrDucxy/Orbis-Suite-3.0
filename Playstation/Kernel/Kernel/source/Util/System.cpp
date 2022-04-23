@@ -327,21 +327,32 @@ bool MountShellUIDirs(proc* p, vnode* jdir, bool Mount)
             klog("Failed to Mount /System.");
             return false;
         }
+
         if(!MountDir(td, s_SandboxPath, "/data", MNT_SYNCHRONOUS))
         {
             klog("Failed to Mount /data.");
             return false;
         }
+
         if(!MountDir(td, s_SandboxPath, "/host", MNT_SYNCHRONOUS))
         {
             klog("Failed to Mount /host.");
             return false;
         }
+
         if(!MountDir(td, s_SandboxPath, "/hostapp", MNT_SYNCHRONOUS))
         {
             klog("Failed to Mount /hostapp.");
             return false;
         }
+
+        if(!MountDir(td, s_SandboxPath, "/dev", MNT_SYNCHRONOUS))
+        {
+            klog("Failed to Mount /dev.");
+            return false;
+        }
+
+        kchmod("/dev", 0777, td);
 
         return true;
     }
@@ -352,19 +363,28 @@ bool MountShellUIDirs(proc* p, vnode* jdir, bool Mount)
             klog("Failed to Un-Mount /system.");
             return false;
         }
+
         if(!UnMountDir(td, s_SandboxPath, "/data", MNT_FORCE))
         {
             klog("Failed to Un-Mount /data.");
             return false;
         }
+
         if(!UnMountDir(td, s_SandboxPath, "/host", MNT_FORCE))
         {
             klog("Failed to Un-Mount /host.");
             return false;
         }
+
         if(!UnMountDir(td, s_SandboxPath, "/hostapp", MNT_FORCE))
         {
             klog("Failed to Un-Mount /hostapp.");
+            return false;
+        }
+
+        if(!UnMountDir(td, s_SandboxPath, "/dev", MNT_FORCE))
+        {
+            klog("Failed to Un-Mount /dev.");
             return false;
         }
 
@@ -392,7 +412,7 @@ bool DoShellUIMount(proc* p, bool Mount)
 
             Sleep(3000);
 
-            LoadSPRX("SceShellUI", "/data/Orbis Toolbox/Orbis Toolbox.sprx");
+            LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
         }
 
         return res;

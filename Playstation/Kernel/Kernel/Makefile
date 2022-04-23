@@ -42,7 +42,7 @@ clean:
 copy:
 	cp $(shell basename "$(CURDIR)").elf ../../Build/pkg/Kernel/$(shell basename "$(CURDIR)").$(VERSION).ELF
 
-	echo open 192.168.0.55 2121> temp.txt
+	echo open 192.168.0.54 2121> temp.txt
 	echo user anonymous anonymous>> temp.txt
 	echo put \"$(shell pwd)/$(shell basename "$(CURDIR)").elf\" \"/data/Orbis Suite/$(shell basename "$(CURDIR)").$(VERSION).ELF\">> temp.txt
 	echo bye>> temp.txt

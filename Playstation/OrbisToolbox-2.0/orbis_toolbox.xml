@@ -191,9 +191,9 @@
     </setting_list>
 
 	<!-- Orbis Suite Debug -->
-	<setting_list id="orbs_debug" title="Orbis Suite Debug">
+	<setting_list id="orbis_debug" title="Orbis Suite Debug">
 
-		<button id="id_orbs_kern" title="Restart Kernel Executable" second_title="Restarts the Kernel ELF." />
+		<button id="id_orbis_api" title="Restart API" second_title="Restarts the Orbis Suite API." />
 
 	</setting_list>
 

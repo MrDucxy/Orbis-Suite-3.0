@@ -1,5 +1,6 @@
 ﻿using OrbisNeighborHood.MVVM.ViewModel;
 using OrbisNeighborHood.MVVM.ViewModel.SubView;
+using OrbisSuite;
 using OrbisSuite.Common.Database;
 using SimpleUI.Controls;
 using System;
@@ -104,6 +105,9 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         {
             var Switch = (SimpleSwitch)sender;
             _thisTarget.ShowTitleId = Switch.IsToggled;
+
+            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
+            currentTarget.SetSettings(_thisTarget.ShowTitleId, _thisTarget.ShowDevkitPanel, _thisTarget.ShowToolboxShortcut, _thisTarget.ShowAppHome);
         }
 
         private void ShowDevkitPanel_Loaded(object sender, RoutedEventArgs e)
@@ -116,6 +120,9 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         {
             var Switch = (SimpleSwitch)sender;
             _thisTarget.ShowDevkitPanel = Switch.IsToggled;
+
+            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
+            currentTarget.SetSettings(_thisTarget.ShowTitleId, _thisTarget.ShowDevkitPanel, _thisTarget.ShowToolboxShortcut, _thisTarget.ShowAppHome);
         }
 
         private void ShowToolboxShortcut_Loaded(object sender, RoutedEventArgs e)
@@ -128,6 +135,9 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         {
             var Switch = (SimpleSwitch)sender;
             _thisTarget.ShowToolboxShortcut = Switch.IsToggled;
+
+            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
+            currentTarget.SetSettings(_thisTarget.ShowTitleId, _thisTarget.ShowDevkitPanel, _thisTarget.ShowToolboxShortcut, _thisTarget.ShowAppHome);
         }
 
         private void ShowAppHome_Loaded(object sender, RoutedEventArgs e)
@@ -140,6 +150,9 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         {
             var Switch = (SimpleSwitch)sender;
             _thisTarget.ShowAppHome = Switch.IsToggled;
+
+            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
+            currentTarget.SetSettings(_thisTarget.ShowTitleId, _thisTarget.ShowDevkitPanel, _thisTarget.ShowToolboxShortcut, _thisTarget.ShowAppHome);
         }
 
         #endregion

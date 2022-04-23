@@ -22,7 +22,6 @@ int main()
 	if (OrbisDriver::TestDriver())
 	{
 		OrbisDriver::UnLoadSPRX("SceShellUI", "OrbisToolbox-2.0.sprx");
-		sceKernelSleep(1);
 		int handle = OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 		if (handle < 0)
 		{

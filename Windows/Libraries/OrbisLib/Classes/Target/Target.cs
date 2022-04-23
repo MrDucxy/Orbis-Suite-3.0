@@ -167,5 +167,31 @@ namespace OrbisSuite
 
             return Result;
         }*/
+
+        public APIResults SetSettings(bool ShowDebugTitleIdLabel, bool ShowDevkitPanel, bool ShowDebugSettings, bool ShowAppHome)
+        {
+            if (!Info.IsAPIAvailable)
+            {
+                Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
+                return APIResults.API_ERROR_NOT_CONNECTED;
+            }
+
+            APIResults Result = API.CallLong(Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_TARGET_SET_SETTINGS }, out Socket Sock);
+
+            if (Result != APIResults.API_OK)
+                return Result;
+
+            Result = API.SendNextPacket(Sock, new TargetSettingsPacket() 
+            { 
+                ShowDebugTitleIdLabel = Convert.ToInt32(ShowDebugTitleIdLabel), 
+                ShowDevkitPanel = Convert.ToInt32(ShowDevkitPanel), 
+                ShowDebugSettings = Convert.ToInt32(ShowDebugSettings), 
+                ShowAppHome = Convert.ToInt32(ShowAppHome) 
+            });
+
+            Sock.Close();
+
+            return Result;
+        }
     }
 }

@@ -4,6 +4,8 @@
 #include "Registry.h"
 #include "System.h"
 #include "Flash.h"
+#include "Config.h"
+#include "Debug_Features.h"
 
 void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -69,6 +71,12 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	case APICommands::API_TARGET_DUMP_PROC:
 
 		break;
+
+	case APICommands::API_TARGET_SET_SETTINGS:
+
+		SetSettings(Sock);
+
+		break;
 	}
 }
 
@@ -124,4 +132,20 @@ void Target::DoNotify(OrbisNetId Sock)
 		Notify_Custom(Packet->IconURI, Packet->Message);
 
 	SendStatus(Sock, APIResults::API_OK);
+}
+
+void Target::SetSettings(OrbisNetId Sock)
+{
+	auto Packet = new TargetSettingsPacket();
+
+	sceNetRecv(Sock, Packet, sizeof(TargetSettingsPacket), 0);
+
+	Debug_Feature::DebugTitleIdLabel::ShowLabels = Config::Data->Show_DebugTitleIdLabel = Packet->ShowDebugTitleIdLabel;
+	Debug_Feature::DevkitPanel::ShowPanel = Config::Data->Show_DevkitPanel = Packet->ShowDevkitPanel;
+	Debug_Feature::Custom_Content::Show_Debug_Settings = Config::Data->Show_Debug_Settings = Packet->ShowDebugSettings;
+	Debug_Feature::Custom_Content::Show_App_Home = Config::Data->Show_App_Home = Packet->ShowAppHome;
+
+	SendStatus(Sock, APIResults::API_OK);
+
+	Config::SetSettingsNow = true;
 }

@@ -1,4 +1,4 @@
-open 192.168.0.55 2121
+open 192.168.0.54 2121
 user anonymous anonymous
 put "/mnt/e/Greg/Repos/Orbis-Suite-3.0/Playstation/Kernel/Kernel/Kernel.elf" "/data/Orbis Suite/Kernel.505.ELF"
 bye

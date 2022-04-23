@@ -87,6 +87,7 @@ enum APICommands
 	API_TARGET_BUZZER,
 	API_TARGET_SET_LED,
 	API_TARGET_DUMP_PROC,
+	API_TARGET_SET_SETTINGS,
 	//API_TARGET_LOAD_VSH_MODULE
 	TARGET_END,
 	/* ############################## */
@@ -115,6 +116,8 @@ struct APIPacket
 	char ProcName[32];
 };
 
+#pragma region Process
+
 struct ProcPacket
 {
 	int32_t ProcessID; //0x00
@@ -137,6 +140,45 @@ struct ModuleListPacket
 	uint64_t DataSegmentBase; //0x138
 	uint64_t DataSegmentLen; //0x140
 };
+
+
+struct ProcRWPacket
+{
+	uint64_t Address;
+	uint64_t Length;
+};
+
+struct ProcSPRXPacket
+{
+	char Name[256];
+	char Path[256];
+	int ModuleHandle;
+	int Flags;
+};
+
+struct ProcBreakpointPacket
+{
+	int Index;
+	uint64_t Address;
+	int Enable;
+};
+
+#pragma endregion
+
+#pragma region Debug
+
+
+
+#pragma endregion
+
+
+#pragma region Kernel
+
+
+
+#pragma endregion
+
+#pragma region Target
 
 enum ConsoleTypes
 {
@@ -171,29 +213,28 @@ struct TargetInfoPacket
 	char CurrentProc[32];
 }; //0x104
 
-struct ProcRWPacket
-{
-	uint64_t Address;
-	uint64_t Length;
-};
-
-struct ProcSPRXPacket
-{
-	char Name[256];
-	char Path[256];
-	int ModuleHandle;
-	int Flags;
-};
-
-struct ProcBreakpointPacket
-{
-	int Index;
-	uint64_t Address;
-	int Enable;
-};
-
 struct TargetNotifyPacket
 {
 	char IconURI[1024];
 	char Message[1024];
 };
+
+struct TargetSettingsPacket
+{
+	int AutoLoadSettings;
+	int ShowDebugTitleIdLabel;
+	int ShowDevkitPanel;
+	int ShowDebugSettings;
+	int ShowAppHome;
+	int ShowBuildOverlay;
+
+	char GameOverlayLocation[256];
+	int ShowCPUUsage;
+	int ShowThreadCount;
+	int Showram;
+	int Showvram;
+	int ShowCPUTemp;
+	int ShowSOCTemp;
+};
+
+#pragma endregion

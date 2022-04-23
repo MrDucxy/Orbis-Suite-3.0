@@ -9,6 +9,7 @@ public:
 
 	void SendTargetInfo(OrbisNetId Sock);
 	void DoNotify(OrbisNetId Sock);
+	void SetSettings(OrbisNetId Sock);
 
 private:
 

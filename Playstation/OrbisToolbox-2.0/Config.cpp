@@ -154,6 +154,7 @@ std::string Config::Read_String(const char* Section, const char* Member)
 }*/
 
 Config::Data_s* Config::Data;
+bool Config::SetSettingsNow;
 #define CFG_VERSION 1
 
 bool Config::Read(const char* File)
@@ -252,6 +253,24 @@ bool Config::Write(const char* File)
 	{
 		klog("[Config] File: %s Does not exist & Could not be created.\n", File);
 		return false;
+	}
+}
+
+void Config::UpdateSettings()
+{
+	if (SetSettingsNow)
+	{
+		//Call functions to reflect update
+		Debug_Feature::DebugTitleIdLabel::Update();
+		Debug_Feature::DevkitPanel::Update();
+		UI::Utilities::ReloadItemList();
+		Build_Overlay::Update();
+		Game_Overlay::Update_Location();
+		Game_Overlay::Update();
+
+		Write(SETTIN_DIR);
+
+		SetSettingsNow = false;
 	}
 }
 

@@ -9,6 +9,7 @@
 #include "LncUtil.h"
 #include "Daemons.h"
 #include "KDriver.h"
+#include "API.h"
 
 std::map<char*, MenuOption*>* Menu::Options;
 bool Menu::Auto_Load_Settings;
@@ -196,6 +197,14 @@ void Menu::Init()
 			Notify("Orbis Toolbox: Failed to Load Settings...");
 	});
 	Add_Option("id_save_settings", []() -> void { Config::Write(SETTIN_DIR) ? Notify("Orbis Toolbox: Saved Settings Sucessfully!") : Notify("Orbis Toolbox: Failed to Save Settings..."); });
+
+	// Orbis Suite Debug
+	Add_Option("id_orbis_api", []() -> void 
+	{ 
+		API::Term();
+		API::Init();
+		Notify("API Restarted!");
+	});
 }
 
 void Menu::Term()

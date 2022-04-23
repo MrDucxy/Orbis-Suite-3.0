@@ -126,3 +126,25 @@ int kunmount(const char* path, int flags, struct thread* td)
 	// success
 	return td->td_retval[0];
 }
+
+int kchmod(const char *path, int mode, struct thread* td)
+{
+	chmod_args uap;
+	sysent* sysents = sysvec->sv_table;
+	auto sys_chmod = (int(*)(struct thread*, struct chmod_args*))sysents[15].sy_call;
+	if (!sys_chmod)
+		return -1;
+
+	// clear errors
+	td->td_retval[0] = 0;
+
+	// call syscall
+	uap.path = (char*)path;
+	uap.mode = mode;
+	kern_errorno = sys_chmod(td, &uap);
+	if (kern_errorno)
+		return -kern_errorno;
+
+	// return socket
+	return td->td_retval[0];
+}

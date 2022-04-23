@@ -87,6 +87,7 @@ namespace OrbisSuite.Common
         API_TARGET_BUZZER,
         API_TARGET_SET_LED,
         API_TARGET_DUMP_PROC,
+        API_TARGET_SET_SETTINGS,
         //API_TARGET_LOAD_VSH_MODULE
         TARGET_END,
         /* ############################## */
@@ -240,4 +241,24 @@ namespace OrbisSuite.Common
         ThreeLongRing,
         ThreeLongDoubleBeeps,
     }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct TargetSettingsPacket
+    {
+        public int AutoLoadSettings;
+        public int ShowDebugTitleIdLabel;
+        public int ShowDevkitPanel;
+        public int ShowDebugSettings;
+        public int ShowAppHome;
+        public int ShowBuildOverlay;
+
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string GameOverlayLocation;
+        public int ShowCPUUsage;
+        public int ShowThreadCount;
+        public int Showram;
+        public int Showvram;
+        public int ShowCPUTemp;
+        public int ShowSOCTemp;
+    };
 }

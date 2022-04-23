@@ -52,10 +52,12 @@ private:
 
 public:
 	static Data_s* Data;
+	static bool SetSettingsNow;
 
 	static bool Read(const char* File);
 	static bool Parse(const char* File);
 	static bool Write(const char* File);
+	static void UpdateSettings();
 
 	static void Init();
 	static void Term();
