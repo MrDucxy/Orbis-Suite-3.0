@@ -1,6 +1,6 @@
 ![Header](/Assets/Header.png?raw=true)
 #
-The next version of Orbis Suite completely rewritten with a new UI. Now running mostly in userland on the PS4 with its own Daemon process gone is the need for a payload! Fully featured suite of tools to help aid in developing and debugging on the PS4 console. 
+The next version of Orbis Suite completely rewritten with a new GUI. Now launchable through a homebrew app gone is the need for a payload! Fully featured suite of tools to help aid in developing and debugging on the PS4 console. 
 
 # Features
 - Library / API for integrating with the Target Console.
@@ -15,12 +15,13 @@ The next version of Orbis Suite completely rewritten with a new UI. Now running 
 - Many More!..
 
 # NeighborHood
-![](https://i.imgur.com/tsur1PM.png)
-![](https://i.imgur.com/53p0S0q.png)
+![](https://i.imgur.com/qXyssyK.png)
+![](https://i.imgur.com/CXOJsNg.png)
+![](https://i.imgur.com/B8DgWyV.png)
 
 # Orbis Toolbox
-![](https://i.imgur.com/aJ9zWM6.png)
-![](https://i.imgur.com/HljNpkl.png)
+![](https://i.imgur.com/2Ql98B9.png)
+![](https://i.imgur.com/DWbgEsN.png)
 
 # Dependencies
 
