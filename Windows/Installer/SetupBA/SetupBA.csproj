@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+	<UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BootstrapperCore">
+      <HintPath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\BootstrapperCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Deployment.WindowsInstaller">
+      <HintPath>C:\Program Files (x86)\WiX Toolset v3.11\SDK\Microsoft.Deployment.WindowsInstaller.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

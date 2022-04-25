@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<!-- Fixed upgrade Id -->
+	<?define UpgradeCode = "{45b486b6-1b9b-47ab-9e94-e393827973af}" ?>
+
+	<!-- Define main product -->
+	<Product
+		Id="*"
+		Name="!(loc.ProductName)"
+		Language="!(loc.Language)"
+		Version="$(var.BuildVersion)"
+		Manufacturer="!(loc.Company)"
+		UpgradeCode="$(var.UpgradeCode)">
+
+		<!-- Provide package details -->
+		<Package
+		  InstallerVersion="405"
+		  Compressed="yes"
+		  InstallScope="perMachine"
+		  Manufacturer="!(loc.Company)"
+		  Description="!(loc.Description)"
+		  Keywords="!(loc.Keywords)"
+		  Comments="!(loc.Comments)"
+		  Languages="!(loc.Language)"/>
+
+		<!-- Downgrade error message -->
+		<MajorUpgrade Schedule="afterInstallInitialize" AllowSameVersionUpgrades="yes" DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
+
+		<!-- Include .cab file into .msi file -->
+		<MediaTemplate
+		  EmbedCab="yes"
+		/>
+
+		<!-- Define components, shortcuts, files etc... for installer -->
+		<Feature Id="ProductFeature" Title="Orbis Suite" Level="1">
+
+			<!-- <ComponentGroupRef Id="ProductComponents" /> -->
+
+		</Feature>
+	</Product>
+</Wix>

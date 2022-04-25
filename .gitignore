@@ -367,3 +367,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Playstation/Build/pkg/Orbis Toolbox/sflash0
+/Windows/Installer/BootstrapperSetup/aspnetcore-runtime-6.0.4-win-x64.exe
