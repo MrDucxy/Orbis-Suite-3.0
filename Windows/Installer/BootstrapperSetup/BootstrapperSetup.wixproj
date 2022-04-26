@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>0978d0b2-ffa5-42b2-81ac-0cfd85de9184</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>BootstrapperSetup</OutputName>
+    <OutputName>Orbis Suite Setup</OutputName>
     <OutputType>Bundle</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
-	<Bundle Name="Orbis Suite" Version="3.0" Manufacturer="OSM-Made" UpgradeCode="0978d0b2-ffa5-42b2-81ac-0cfd85de9184">
+	<Bundle Name="Orbis Suite Installer" Version="3.0" Manufacturer="OSM-Made" UpgradeCode="0978d0b2-ffa5-42b2-81ac-0cfd85de9184" IconSourceFile='..\..\..\Assets\OrbisTaskbarApp\OrbisTaskbarApp.ico'>
+		
+		<!-- Installer and its dependancies -->
 		<BootstrapperApplicationRef Id="ManagedBootstrapperApplicationHost">
 			<Payload SourceFile="..\SetupBA\BootstrapperCore.config"/>
 			<Payload SourceFile="..\SetupBA\bin\Release\SetupBA.dll"/>
 			<Payload SourceFile="..\SetupBA\bin\Release\SimpleUI.dll"/>
 			<Payload SourceFile="..\SetupBA\bin\Release\Microsoft.Expression.Drawing.dll"/>
-			
 			<Payload SourceFile="C:\Program Files (x86)\WiX Toolset v3.11\SDK\Microsoft.Deployment.WindowsInstaller.dll"/>
 		</BootstrapperApplicationRef>
 
+		<!-- The chain of things to install. -->
 		<Chain>
 			<PackageGroupRef Id="dotnet6"/>
 			<MsiPackage SourceFile="..\DummyInstaller\bin\Release\en-us\DummyInstaller.msi" Id="DummyInstallationPackageId" Cache="yes" Visible="no"/>
