@@ -3,12 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SetupBA.MVVM.View" xmlns:skins="clr-namespace:SimpleUI.Skins;assembly=SimpleUI"
+             xmlns:local="clr-namespace:SetupBA.MVVM.View" 
+             xmlns:skins="clr-namespace:SimpleUI.Skins;assembly=SimpleUI"
+             xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
              mc:Ignorable="d" 
-             Width="600" Height="500">
+             Width="580" Height="380">
 
     <Border Background="{DynamicResource WindowBackground}">
-        
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Main View Area -->
+            <StackPanel Orientation="Vertical">
+
+                <Image Source="pack://application:,,,/SetupBA;component/Resources/Header.png"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       RenderOptions.EdgeMode="Aliased"
+                       Name="TitleImage"/>
+
+                <TextBlock Text="Welcome to the Orbis Suite 3.0 Setup Wizard."
+                       FontSize="22"
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="20 20 20 0"/>
+
+                <TextBlock Text="The next version of Orbis Suite completely rewritten with a new GUI. Now launchable through a homebrew app gone is the need for a payload! Fully featured suite of tools to help aid in developing and debugging on the PS4 console."
+                       FontSize="18"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="30 35 30 0"/>
+
+
+            </StackPanel>
+
+            <!-- Button Area -->
+            <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Row="1"
+                            Margin="0 0 10 10">
+
+                <!-- Cancel -->
+                <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="1" 
+                                            Content="Cancel" x:Name="Cancel"
+                                            Width="75" Height="26" 
+                                            Margin="0 0 8 0"/>
+
+                <!-- Save -->
+                <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="1" 
+                                            Content="Next" x:Name="Next" 
+                                            Width="75" Height="26" 
+                                            Margin="0 0 8 0"/>
+            </StackPanel>
+        </Grid>
     </Border>
-    
 </UserControl>

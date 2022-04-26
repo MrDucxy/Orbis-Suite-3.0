@@ -11,7 +11,7 @@
                               mc:Ignorable="d" 
                               Title="Orbis Suite Installer" 
                               Width="600" MinWidth="600" 
-                              Height="400" MinHeight="400">
+                              Height="430" MinHeight="430">
     
     <simpleControls:SimpleWindow.Resources>
         <ResourceDictionary>
