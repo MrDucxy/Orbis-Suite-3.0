@@ -59,7 +59,7 @@
                                             Width="75" Height="26" 
                                             Margin="0 0 8 0" Click="Cancel_Click"/>
 
-                <!-- Save -->
+                <!-- Next -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Grid.Column="1" Grid.Row="1" 

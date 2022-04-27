@@ -17,13 +17,25 @@
 
         <!-- Main View Area -->
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Install"
-                       FontSize="22"
+            <TextBlock Text="Installing Orbis Suite..."
+                       FontSize="18"
                        FontWeight="Bold"
                        TextWrapping="Wrap"
+                       TextAlignment="Center"
                        Foreground="White"
                        HorizontalAlignment="Center"
-                       Margin="20 20 20 0"/>
+                       Margin="0 20 0 10"/>
+            
+            <simpleControls:SimpleCircleProgressBar Width="200" Height="200" 
+                                                    ProgressPercentage="20"
+                                                    Margin="0 20 0 10"/>
+
+            <TextBlock Text="This is what will be installed right now."
+                       FontSize="12"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
         </StackPanel>
 
         <!-- Button Area -->
@@ -32,13 +44,23 @@
                             Grid.Row="1"
                             Margin="0 0 10 10">
 
+            <!-- Cancel -->
+            <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                         VerticalAlignment="Center"
+                                         Grid.Column="1" Grid.Row="1" 
+                                         Content="Cancel" x:Name="Cancel"
+                                         Width="75" Height="26" 
+                                         Margin="0 0 8 0" Click="Cancel_Click"/>
+
             <!-- Next -->
             <simpleControls:SimpleButton HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="1" 
-                                            Content="Next" x:Name="Next" 
-                                            Width="75" Height="26" 
-                                            Margin="0 0 8 0" Click="Next_Click"/>
+                                         VerticalAlignment="Center"
+                                         Grid.Column="1" Grid.Row="1" 
+                                         Content="Next" x:Name="Next" 
+                                         Width="75" Height="26" 
+                                         Margin="0 0 8 0" 
+                                         IsEnabled="False"
+                                         Click="Next_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

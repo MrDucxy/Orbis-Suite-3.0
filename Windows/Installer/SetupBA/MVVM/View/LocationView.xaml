@@ -34,7 +34,7 @@
                             Grid.Row="1"
                             Margin="0 0 10 10">
 
-                <!-- Cancel -->
+                <!-- Back -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Grid.Column="1" Grid.Row="1" 
@@ -42,7 +42,7 @@
                                             Width="75" Height="26" 
                                             Margin="0 0 8 0" Click="Back_Click"/>
 
-                <!-- Save -->
+                <!-- Next -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Grid.Column="1" Grid.Row="1" 
