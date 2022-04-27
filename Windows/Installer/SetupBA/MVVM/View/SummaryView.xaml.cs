@@ -29,5 +29,25 @@ namespace SetupBA.MVVM.View
         {
             SetupBA.BootstrapperDispatcher.InvokeShutdown();
         }
+
+        private void Github_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/OSM-Made/Orbis-Suite-3.0");
+        }
+
+        private void Discord_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://discord.com/invite/yHcWMwQj4G");
+        }
+
+        private void Twitter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://twitter.com/LegendaryOSM");
+        }
+
+        private void Youtube_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.youtube.com/channel/UCx4U5AfiVgpiu5WHuP0SqbQ");
+        }
     }
 }

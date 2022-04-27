@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SetupBA.MVVM.View"
              xmlns:skins="clr-namespace:SimpleUI.Skins;assembly=SimpleUI"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
              mc:Ignorable="d" 
              Width="580" Height="380">
@@ -17,13 +18,75 @@
 
         <!-- Main View Area -->
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Install"
-                       FontSize="22"
+            <Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/SetupBA;component/Resources/Duck.gif"
+                   RenderOptions.BitmapScalingMode="Fant"
+                   RenderOptions.EdgeMode="Aliased"
+                   Name="Duck"
+                   Width="120"
+                   Margin="20"/>
+
+            <TextBlock Text="Thanks for Installing Orbis Suite 3.0!"
+                       FontSize="18"
                        FontWeight="Bold"
                        TextWrapping="Wrap"
+                       TextAlignment="Center"
                        Foreground="White"
                        HorizontalAlignment="Center"
-                       Margin="20 20 20 0"/>
+                       Margin="30 0 30 0"/>
+
+            <TextBlock Text="Special thank you to all the people who have supported this project. If there are any issues you can report bugs on the repo, PR's are welcome :)"
+                       FontSize="16"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="30 0 30 0"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0 30 0 0"
+                        HorizontalAlignment="Center">
+                
+                <Image Source="pack://application:,,,/SetupBA;component/Resources/Github.png"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       RenderOptions.EdgeMode="Aliased"
+                       Width="35"
+                       Name="Github"
+                       Margin="5 0"
+                       ForceCursor="True"
+                       Cursor="Hand"
+                       MouseDown="Github_MouseDown"/>
+
+                <Image Source="pack://application:,,,/SetupBA;component/Resources/Discord.png"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       RenderOptions.EdgeMode="Aliased"
+                       Width="35"
+                       Name="Discord"
+                       Margin="5 0"
+                       ForceCursor="True"
+                       Cursor="Hand"
+                       MouseDown="Discord_MouseDown"/>
+
+                <Image Source="pack://application:,,,/SetupBA;component/Resources/Twitter.png"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       RenderOptions.EdgeMode="Aliased"
+                       Width="30"
+                       Name="Twitter"
+                       Margin="5 0"
+                       ForceCursor="True"
+                       Cursor="Hand"
+                       MouseDown="Twitter_MouseDown"/>
+
+                <Image Source="pack://application:,,,/SetupBA;component/Resources/Youtube.png"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       RenderOptions.EdgeMode="Aliased"
+                       Width="35"
+                       Name="Youtube"
+                       Margin="5 0"
+                       ForceCursor="True"
+                       Cursor="Hand"
+                       MouseDown="Youtube_MouseDown"/>
+
+            </StackPanel>
+
         </StackPanel>
 
         <!-- Button Area -->

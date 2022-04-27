@@ -7,6 +7,7 @@
 			<Payload SourceFile="..\SetupBA\BootstrapperCore.config"/>
 			<Payload SourceFile="..\SetupBA\bin\Release\SetupBA.dll"/>
 			<Payload SourceFile="..\SetupBA\bin\Release\SimpleUI.dll"/>
+			<Payload SourceFile="..\SetupBA\bin\Release\WpfAnimatedGif.dll"/>
 			<Payload SourceFile="..\SetupBA\bin\Release\Microsoft.Expression.Drawing.dll"/>
 			<Payload SourceFile="C:\Program Files (x86)\WiX Toolset v3.11\SDK\Microsoft.Deployment.WindowsInstaller.dll"/>
 		</BootstrapperApplicationRef>
