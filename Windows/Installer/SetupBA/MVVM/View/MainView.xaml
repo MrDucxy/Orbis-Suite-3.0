@@ -20,13 +20,41 @@
                 <skins:SkinResourceDictionary/>
                 <ResourceDictionary Source="/SimpleUI;component/Styles/CustomStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            
             <!-- View Models -->
-            <view:InitialView x:Key="InitialViewKey"/>
 
+            <!-- Initial View -->
+            <view:InitialView x:Key="InitialViewKey"/>
             <DataTemplate DataType="{x:Type viewModel:InitialViewModel}">
                 <ContentControl Content="{StaticResource InitialViewKey}" />
             </DataTemplate>
+
+            <!-- License View -->
+            <view:LicenseView x:Key="LicenseViewKey"/>
+            <DataTemplate DataType="{x:Type viewModel:LicenseViewModel}">
+                <ContentControl Content="{StaticResource LicenseViewKey}" />
+            </DataTemplate>
+
+            <!-- Location View -->
+            <view:LocationView x:Key="LocationViewKey"/>
+            <DataTemplate DataType="{x:Type viewModel:LocationViewModel}">
+                <ContentControl Content="{StaticResource LocationViewKey}" />
+            </DataTemplate>
+
+            <!-- Install View -->
+            <view:InstallView x:Key="InstallViewKey"/>
+            <DataTemplate DataType="{x:Type viewModel:InstallViewModel}">
+                <ContentControl Content="{StaticResource InstallViewKey}" />
+            </DataTemplate>
+
+            <!-- Summary View -->
+            <view:SummaryView x:Key="SummaryViewKey"/>
+            <DataTemplate DataType="{x:Type viewModel:SummaryViewModel}">
+                <ContentControl Content="{StaticResource SummaryViewKey}" />
+            </DataTemplate>
+
+            <!--=============-->
+            
         </ResourceDictionary>
     </simpleControls:SimpleWindow.Resources>
 

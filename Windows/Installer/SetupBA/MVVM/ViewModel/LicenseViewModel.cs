@@ -8,5 +8,11 @@ namespace SetupBA.MVVM.ViewModel
 {
     public class LicenseViewModel
     {
+        public LicenseViewModel(MainViewModel mainViewModel)
+        {
+            MainVM = mainViewModel;
+        }
+
+        public MainViewModel MainVM { get; set; }
     }
 }

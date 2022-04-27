@@ -1,5 +1,4 @@
-﻿using SetupBA.MVVM.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,22 +16,16 @@ using System.Windows.Shapes;
 namespace SetupBA.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for InitialView.xaml
+    /// Interaction logic for SummaryView.xaml
     /// </summary>
-    public partial class InitialView : UserControl
+    public partial class SummaryView : UserControl
     {
-        public InitialView()
+        public SummaryView()
         {
             InitializeComponent();
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
-        {
-            var dc = DataContext as InitialViewModel;
-            dc.MainVM.CurrentView = dc.MainVM.LicenseVM;
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Finish_Click(object sender, RoutedEventArgs e)
         {
             SetupBA.BootstrapperDispatcher.InvokeShutdown();
         }

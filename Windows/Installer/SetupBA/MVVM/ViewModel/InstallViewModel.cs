@@ -8,5 +8,11 @@ namespace SetupBA.MVVM.ViewModel
 {
     public class InstallViewModel
     {
+        public InstallViewModel(MainViewModel mainViewModel)
+        {
+            MainVM = mainViewModel;
+        }
+
+        public MainViewModel MainVM { get; set; }
     }
 }

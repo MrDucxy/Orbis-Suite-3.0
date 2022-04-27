@@ -17,24 +17,25 @@ using System.Windows.Shapes;
 namespace SetupBA.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for InitialView.xaml
+    /// Interaction logic for LicenseView.xaml
     /// </summary>
-    public partial class InitialView : UserControl
+    public partial class LicenseView : UserControl
     {
-        public InitialView()
+        public LicenseView()
         {
             InitializeComponent();
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var dc = DataContext as InitialViewModel;
-            dc.MainVM.CurrentView = dc.MainVM.LicenseVM;
+            var dc = DataContext as LicenseViewModel;
+            dc.MainVM.CurrentView = dc.MainVM.InitialVM;
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Next_Click(object sender, RoutedEventArgs e)
         {
-            SetupBA.BootstrapperDispatcher.InvokeShutdown();
+            var dc = DataContext as LicenseViewModel;
+            dc.MainVM.CurrentView = dc.MainVM.LocationVM;
         }
     }
 }

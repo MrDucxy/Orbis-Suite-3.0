@@ -85,6 +85,15 @@
     <Compile Include="MVVM\View\InitialView.xaml.cs">
       <DependentUpon>InitialView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\InstallView.xaml.cs">
+      <DependentUpon>InstallView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\LicenseView.xaml.cs">
+      <DependentUpon>LicenseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\LocationView.xaml.cs">
+      <DependentUpon>LocationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -94,6 +103,9 @@
     <Compile Include="MVVM\ViewModel\LicenseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\LocationViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SummaryViewModel.cs" />
+    <Compile Include="MVVM\View\SummaryView.xaml.cs">
+      <DependentUpon>SummaryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupBA.cs" />
   </ItemGroup>
@@ -102,7 +114,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\InstallView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\LicenseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\LocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\SummaryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

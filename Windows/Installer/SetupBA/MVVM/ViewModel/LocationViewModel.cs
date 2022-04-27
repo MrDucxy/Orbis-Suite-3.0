@@ -8,5 +8,11 @@ namespace SetupBA.MVVM.ViewModel
 {
     public class LocationViewModel
     {
+        public LocationViewModel(MainViewModel mainViewModel)
+        {
+            MainVM = mainViewModel;
+        }
+
+        public MainViewModel MainVM { get; set; }
     }
 }

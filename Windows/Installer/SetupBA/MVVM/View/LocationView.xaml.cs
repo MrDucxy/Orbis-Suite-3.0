@@ -17,24 +17,27 @@ using System.Windows.Shapes;
 namespace SetupBA.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for InitialView.xaml
+    /// Interaction logic for LocationView.xaml
     /// </summary>
-    public partial class InitialView : UserControl
+    public partial class LocationView : UserControl
     {
-        public InitialView()
+        public LocationView()
         {
             InitializeComponent();
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var dc = DataContext as InitialViewModel;
+            var dc = DataContext as LocationViewModel;
             dc.MainVM.CurrentView = dc.MainVM.LicenseVM;
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Install_Click(object sender, RoutedEventArgs e)
         {
-            SetupBA.BootstrapperDispatcher.InvokeShutdown();
+            var dc = DataContext as LocationViewModel;
+            dc.MainVM.CurrentView = dc.MainVM.InstallVM;
+
+            // Trigger the install...
         }
     }
 }

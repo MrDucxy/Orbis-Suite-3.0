@@ -8,5 +8,11 @@ namespace SetupBA.MVVM.ViewModel
 {
     public class SummaryViewModel
     {
+        public SummaryViewModel(MainViewModel mainViewModel)
+        {
+            MainVM = mainViewModel;
+        }
+
+        public MainViewModel MainVM { get; set; }
     }
 }

@@ -11,33 +11,17 @@ namespace SetupBA.MVVM.ViewModel
             Bootstrapper = bootstrapper;
 
             // View Models.
-            InitialVM = new InitialViewModel();
-            LicenseVM = new LicenseViewModel();
-            LocationVM = new LocationViewModel();
-            InstallVM = new InstallViewModel();
-            SummaryVM = new SummaryViewModel();
+            InitialVM = new InitialViewModel(this);
+            LicenseVM = new LicenseViewModel(this);
+            LocationVM = new LocationViewModel(this);
+            InstallVM = new InstallViewModel(this);
+            SummaryVM = new SummaryViewModel(this);
 
             // Set Current View.
             CurrentView = InitialVM;
         }
 
         public BootstrapperApplication Bootstrapper { get; private set; }
-
-        // Commands
-        private RelayCommand initialViewCommand;
-        public RelayCommand InitialViewCommand { get { return initialViewCommand != null ? initialViewCommand : initialViewCommand = new RelayCommand(() => CurrentView = InitialVM); } }
-        
-        private RelayCommand licenseViewCommand;
-        public RelayCommand LicenseViewCommand { get { return licenseViewCommand != null ? licenseViewCommand : licenseViewCommand = new RelayCommand(() => CurrentView = LicenseVM); } }
-
-        private RelayCommand locationViewCommand;
-        public RelayCommand LocationViewCommand { get { return locationViewCommand != null ? locationViewCommand : locationViewCommand = new RelayCommand(() => CurrentView = LocationVM); } }
-
-        private RelayCommand installViewCommand;
-        public RelayCommand InstallViewCommand { get { return installViewCommand != null ? installViewCommand : installViewCommand = new RelayCommand(() => CurrentView = InstallVM); } }
-
-        private RelayCommand summaryViewCommand;
-        public RelayCommand SummaryViewCommand { get { return summaryViewCommand != null ? summaryViewCommand : summaryViewCommand = new RelayCommand(() => CurrentView = SummaryVM); } }
 
         // View Models
         public InitialViewModel InitialVM { get; set; }
