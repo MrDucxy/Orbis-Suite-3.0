@@ -69,6 +69,7 @@ struct _OffsetTable
 
 extern _OffsetTable* OffsetTable;
 
+void CopyKernelELF(int Firmware);
 bool SetKernelVersion(int Firmware);
 bool LoadKernel(char* Path, int Firmware);
 bool UnloadKernel();

@@ -39,7 +39,7 @@ int main()
 	MakeDir("/data/Orbis Suite");
 
 	// Copy Kernel ELF
-	// CopyKernelELF(SoftwareVersion);
+	CopyKernelELF(SoftwareVersion);
 
 	// Set the Kernel Version.
 	SetKernelVersion(SoftwareVersion);
@@ -48,9 +48,9 @@ int main()
 	mount_large_fs("/dev/da0x4.crypt", "/system", "exfatfs", "511", MNT_UPDATE);
 
 	// Install all the things! :D
-	InstallDaemon("ORBS30000"); // Orbis Lib
-	InstallDaemon("OFTP00001"); // Orbis FTP
-	InstallDaemon("PLDR00000"); // Orbis Payload Loader
+	//InstallDaemon("ORBS30000"); // Orbis Lib
+	//InstallDaemon("OFTP00001"); // Orbis FTP
+	//InstallDaemon("PLDR00000"); // Orbis Payload Loader
 	InstallOrbisToolbox();
 
 	// Init Kernel driver if not present.
@@ -83,6 +83,8 @@ int main()
 			{
 			case ORBIS_MSG_DIALOG_BUTTON_ID_BUTTON1:
 				OrbisDriver::UnLoadSPRX("SceShellUI", "OrbisToolbox-2.0.sprx");
+
+				sceKernelSleep(3.0);
 
 				if (!UnloadKernel())
 				{
