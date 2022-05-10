@@ -29,7 +29,6 @@
     <file targ_path="Orbis Toolbox/Icons/icon_suspend.png" orig_path="Orbis Toolbox\Icons\icon_suspend.png" />
     <file targ_path="Orbis Toolbox/Icons/icon_system_settings.png" orig_path="Orbis Toolbox\Icons\icon_system_settings.png" />
     <file targ_path="Orbis Toolbox/Icons/icon_toolbox.png" orig_path="Orbis Toolbox\Icons\icon_toolbox.png" />
-    <file targ_path="Orbis Toolbox/Orbis Toolbox.sprx" orig_path="Orbis Toolbox\Orbis Toolbox.sprx" />
     <file targ_path="sce_module/libc.prx" orig_path="sce_module\libc.prx" />
     <file targ_path="sce_module/libjbc.sprx" orig_path="sce_module\libjbc.sprx" />
     <file targ_path="sce_module/libSceFios2.prx" orig_path="sce_module\libSceFios2.prx" />
@@ -50,6 +49,7 @@
     <file targ_path="Daemons/PLDR00000/eboot.bin" orig_path="Daemons\PLDR00000\eboot.bin" />
     <file targ_path="Kernel/Kernel.900.ELF" orig_path="Kernel\Kernel.900.ELF" />
     <file targ_path="Daemons/OFTP00001/sce_sys/icon0.png" orig_path="Daemons\OFTP00001\sce_sys\icon0.png" />
+    <file targ_path="Orbis Toolbox/OrbisToolbox-2.0.sprx" orig_path="Orbis Toolbox\OrbisToolbox-2.0.sprx" />
   </files>
   <rootdir>
     <dir targ_name="Kernel" />

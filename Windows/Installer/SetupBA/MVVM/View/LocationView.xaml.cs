@@ -36,8 +36,12 @@ namespace SetupBA.MVVM.View
         {
             var dc = DataContext as LocationViewModel;
             dc.MainVM.CurrentView = dc.MainVM.InstallVM;
+        }
 
-            // Trigger the install...
+        private void UnInstall_Click(object sender, RoutedEventArgs e)
+        {
+            var dc = DataContext as LocationViewModel;
+            dc.MainVM.CurrentView = dc.MainVM.InstallVM;
         }
     }
 }

@@ -42,13 +42,25 @@
                                             Width="75" Height="26" 
                                             Margin="0 0 8 0" Click="Back_Click"/>
 
-                <!-- Next -->
+                <!-- UnInstall -->
+                <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" Grid.Row="1" 
+                                            Content="UnInstall" x:Name="UnInstall" 
+                                            Width="75" Height="26" 
+                                            Margin="0 0 8 0" 
+                                            Click="UnInstall_Click"
+                                            Command="{Binding Path=UnInstallCommand}"/>
+
+                <!-- Install -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Grid.Column="1" Grid.Row="1" 
                                             Content="Install" x:Name="Install" 
                                             Width="75" Height="26" 
-                                            Margin="0 0 8 0" Click="Install_Click"/>
+                                            Margin="0 0 8 0" 
+                                            Click="Install_Click"
+                                            Command="{Binding Path=InstallCommand}"/>
             </StackPanel>
         </Grid>
     </Border>

@@ -27,8 +27,10 @@
                        Margin="0 20 0 10"/>
             
             <simpleControls:SimpleCircleProgressBar Width="200" Height="200" 
-                                                    ProgressPercentage="20"
-                                                    Margin="0 20 0 10"/>
+                                                    ProgressPercentage="{Binding Path=ProgressPercentage}"
+                                                    Margin="0 20 0 10"
+                                                    Name="InstallProgress"
+                                                    />
 
             <TextBlock Text="This is what will be installed right now."
                        FontSize="12"
@@ -50,7 +52,7 @@
                                          Grid.Column="1" Grid.Row="1" 
                                          Content="Cancel" x:Name="Cancel"
                                          Width="75" Height="26" 
-                                         Margin="0 0 8 0" Click="Cancel_Click"/>
+                                         Margin="0 0 8 0"/>
 
             <!-- Next -->
             <simpleControls:SimpleButton HorizontalAlignment="Right"
@@ -59,7 +61,6 @@
                                          Content="Next" x:Name="Next" 
                                          Width="75" Height="26" 
                                          Margin="0 0 8 0" 
-                                         IsEnabled="False"
                                          Click="Next_Click"/>
         </StackPanel>
     </Grid>

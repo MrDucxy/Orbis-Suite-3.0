@@ -13,15 +13,15 @@
 	|==========================================================|
 */
 
-SceMsgDialogResult MsgDialog::DialogResult;
+OrbisMsgDialogResult MsgDialog::DialogResult;
 
 bool MsgDialog::DialogRunning;
 
-SceMsgDialogParam DialogParam;
-SceMsgDialogUserMessageParam UserMsgParam;
-SceMsgDialogButtonsParam ButtonsParam;
+OrbisMsgDialogParam DialogParam;
+OrbisMsgDialogUserMessageParam UserMsgParam;
+OrbisMsgDialogButtonsParam ButtonsParam;
 
-void MsgDialog::Open(const char* Msg, bool Blocking, SceMsgDialogButtonType ButtonType, SceMsgDialogMode Mode, const char* Button1, const char* Button2)
+void MsgDialog::Open(const char* Msg, bool Blocking, OrbisMsgDialogButtonType ButtonType, OrbisMsgDialogMode Mode, const char* Button1, const char* Button2)
 {
 	//klog("MsgDialog::Open()\n");
 
@@ -43,7 +43,7 @@ void MsgDialog::Open(const char* Msg, bool Blocking, SceMsgDialogButtonType Butt
 	UserMsgParam.msg = Msg;
 	UserMsgParam.buttonType = ButtonType;
 	DialogParam.mode = Mode;
-	if (ButtonType == SCE_MSG_DIALOG_BUTTON_TYPE_2BUTTONS)
+	if (ButtonType == ORBIS_MSG_DIALOG_BUTTON_TYPE_2BUTTONS)
 	{
 		ButtonsParam.msg1 = Button1;
 		ButtonsParam.msg2 = Button2;
@@ -62,7 +62,7 @@ void MsgDialog::Open(const char* Msg, bool Blocking, SceMsgDialogButtonType Butt
 	if (Blocking)
 	{
 		klog("Waiting...\n");
-		while (sceMsgDialogUpdateStatus() != SCE_COMMON_DIALOG_STATUS_FINISHED) { sceKernelUsleep(100); } 
+		while (sceMsgDialogUpdateStatus() != ORBIS_COMMON_DIALOG_STATUS_FINISHED) { sceKernelUsleep(100); }
 	}
 }
 
@@ -78,12 +78,12 @@ void MsgDialog::Close()
 	DialogRunning = false;
 }
 
-SceCommonDialogStatus MsgDialog::Status()
+OrbisCommonDialogStatus MsgDialog::Status()
 {
 	if (DialogRunning)
 		return sceMsgDialogUpdateStatus();
 	else
-		return SCE_COMMON_DIALOG_STATUS_FINISHED;
+		return ORBIS_COMMON_DIALOG_STATUS_FINISHED;
 }
 
 bool MsgDialog::Result()

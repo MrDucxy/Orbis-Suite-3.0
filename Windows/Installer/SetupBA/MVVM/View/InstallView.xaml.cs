@@ -29,6 +29,8 @@ namespace SetupBA.MVVM.View
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             var dc = DataContext as InstallViewModel;
+
+            // Check if we are Installing or Uninstalling to set the next step as installed summary or uninstalled summary.
             dc.MainVM.CurrentView = dc.MainVM.SummaryVM;
         }
     }

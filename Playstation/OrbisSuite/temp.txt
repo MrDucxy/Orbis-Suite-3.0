@@ -1,0 +1,6 @@
+open 192.168.0.55 2121
+anonymous
+anonymous
+cd "/data/app/"
+send ""E:\Greg\Repos\Orbis-Suite-3.0\"\Playstation\Build\pkg\eboot.bin"
+quit

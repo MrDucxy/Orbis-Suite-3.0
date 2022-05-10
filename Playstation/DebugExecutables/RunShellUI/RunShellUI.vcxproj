@@ -55,6 +55,14 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>eboot.bin</NMakeOutput>
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeReBuildCommandLine>del /s /q /f $(IntDir)\*.o
+del /s /q /f $(IntDir)\*.elf
+del /s /q /f $(IntDir)\*.oelf
+call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del /s /q /f $(IntDir)\*.o
+del /s /q /f $(IntDir)\*.elf
+del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

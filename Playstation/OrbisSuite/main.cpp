@@ -68,23 +68,21 @@ int main()
 
 		klog("[Orbis Suite] Launching Toolbox!!\n");
 		// Init Orbis Toolbox
-		Handle = OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/Orbis Toolbox.sprx");
+		Handle = OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 		if (Handle > 0)
 			klog("Orbis Toolbox loaded! %d\n", Handle);
-
-		// TODO: Have toolbox launch API... config option?
 	}
 	else
 	{
 		sceSystemServiceHideSplashScreen();
-		MsgDialog::Open("Orbis Suite is currently running...\nWould you like to:", true, SCE_MSG_DIALOG_BUTTON_TYPE_2BUTTONS, SCE_MSG_DIALOG_MODE_USER_MSG, "Unload Orbis Suite", "Reload Toolbox");
+		MsgDialog::Open("Orbis Suite is currently running...\nWould you like to:", true, ORBIS_MSG_DIALOG_BUTTON_TYPE_2BUTTONS, ORBIS_MSG_DIALOG_MODE_USER_MSG, "Unload Orbis Suite", "Reload Toolbox");
 
 		if (MsgDialog::Result())
 		{
 			switch (MsgDialog::DialogResult.buttonId)
 			{
-			case SCE_MSG_DIALOG_BUTTON_ID_BUTTON1:
-				// OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox.sprx");
+			case ORBIS_MSG_DIALOG_BUTTON_ID_BUTTON1:
+				OrbisDriver::UnLoadSPRX("SceShellUI", "OrbisToolbox-2.0.sprx");
 
 				if (!UnloadKernel())
 				{
@@ -92,10 +90,10 @@ int main()
 				}
 				break;
 
-			case SCE_MSG_DIALOG_BUTTON_ID_BUTTON2:
+			case ORBIS_MSG_DIALOG_BUTTON_ID_BUTTON2:
 				OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox.sprx");
 				sceKernelSleep(1.5);
-				OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/Orbis Toolbox.sprx");
+				OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 				break;
 
 			default:

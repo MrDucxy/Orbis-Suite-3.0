@@ -126,7 +126,7 @@ bool LoadKernel(char* Path, int Firmware)
 {
 	klog("Loading Kernel \"%s\"\n", Path);
 
-	int FileHandle = sceKernelOpen(Path, SCE_KERNEL_O_RDONLY, 0);
+	int FileHandle = sceKernelOpen(Path, ORBIS_KERNEL_O_RDONLY, 0);
 
 	if (FileHandle < 0)
 	{

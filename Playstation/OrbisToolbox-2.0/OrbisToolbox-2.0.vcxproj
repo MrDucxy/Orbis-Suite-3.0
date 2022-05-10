@@ -60,6 +60,15 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>call ..\..\Misc\Increment.bat "Version.h" "ORBIS_TOOLBOX_BUILDVERSION" 
+call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>del /s /q /f $(IntDir)\*.o
+del /s /q /f $(IntDir)\*.elf
+del /s /q /f $(IntDir)\*.oelf
+call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del /s /q /f $(IntDir)\*.o
+del /s /q /f $(IntDir)\*.elf
+del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
