@@ -1,6 +1,8 @@
 [submodule "SimpleUI"]
 	path = External/SimpleUI
 	url = https://github.com/OSM-Made/SimpleUI
+	shallow = true
 [submodule "FreeBSD-Includes"]
 	path = External/FreeBSD-Includes
 	url = https://github.com/OSM-Made/FreeBSD-Includes
+	shallow = true
