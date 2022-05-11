@@ -29,14 +29,19 @@ namespace SetupBA.MVVM.View
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             var dc = DataContext as InitialViewModel;
-
-            // Decide if we are Installing or Uninstalling.
             dc.MainVM.CurrentView = dc.MainVM.LicenseVM;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             SetupBA.BootstrapperDispatcher.InvokeShutdown();
+        }
+
+        private void UnInstall_Click(object sender, RoutedEventArgs e)
+        {
+            var dc = DataContext as InitialViewModel;
+            dc.MainVM.UninstallExecute();
+            dc.MainVM.CurrentView = dc.MainVM.InstallVM;
         }
     }
 }

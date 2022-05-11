@@ -17,7 +17,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            
+
             <!-- Main View Area -->
             <StackPanel Orientation="Vertical">
 
@@ -59,13 +59,48 @@
                                             Width="75" Height="26" 
                                             Margin="0 0 8 0" Click="Cancel_Click"/>
 
-                <!-- Next -->
+                <!-- UnInstall -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Grid.Column="1" Grid.Row="1" 
-                                            Content="Next" x:Name="Next" 
+                                            Content="UnInstall" x:Name="UnInstall" 
                                             Width="75" Height="26" 
-                                            Margin="0 0 8 0" Click="Next_Click"/>
+                                            Margin="0 0 8 0" 
+                                            Click="UnInstall_Click">
+
+                    <simpleControls:SimpleButton.Resources>
+                        <Style TargetType="simpleControls:SimpleButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=MainVM.InstallEnabled}" Value="true">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </simpleControls:SimpleButton.Resources>
+
+                </simpleControls:SimpleButton>
+
+                <!-- Next -->
+                <simpleControls:SimpleButton HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Grid.Column="1" Grid.Row="1" 
+                                        Content="Next" x:Name="Next" 
+                                        Width="75" Height="26" 
+                                        Margin="0 0 8 0" Click="Next_Click">
+
+                    <simpleControls:SimpleButton.Resources>
+                        <Style TargetType="simpleControls:SimpleButton">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=MainVM.InstallEnabled}" Value="false">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </simpleControls:SimpleButton.Resources>
+
+                </simpleControls:SimpleButton>
+                
+                
             </StackPanel>
         </Grid>
     </Border>

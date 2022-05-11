@@ -32,7 +32,7 @@
                                                     Name="InstallProgress"
                                                     />
 
-            <TextBlock Text="This is what will be installed right now."
+            <TextBlock Text="{Binding Path=MainVM.Message}"
                        FontSize="12"
                        TextWrapping="Wrap"
                        TextAlignment="Center"

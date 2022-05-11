@@ -193,19 +193,19 @@ namespace SetupBA.MVVM.ViewModel
             }
         }
 
-        private void InstallExecute()
+        public void InstallExecute()
         {
             IsThinking = true;
             Bootstrapper.Engine.Plan(LaunchAction.Install);
         }
 
-        private void UninstallExecute()
+        public void UninstallExecute()
         {
             IsThinking = true;
             Bootstrapper.Engine.Plan(LaunchAction.Uninstall);
         }
 
-        private void ExitExecute()
+        public void ExitExecute()
         {
             SetupBA.BootstrapperDispatcher.InvokeShutdown();
         }
