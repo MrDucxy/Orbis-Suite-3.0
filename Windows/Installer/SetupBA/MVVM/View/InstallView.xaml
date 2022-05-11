@@ -27,7 +27,7 @@
                        Margin="0 20 0 10"/>
             
             <simpleControls:SimpleCircleProgressBar Width="200" Height="200" 
-                                                    ProgressPercentage="{Binding Path=ProgressPercentage}"
+                                                    ProgressPercentage="{Binding Path=MainVM.ProgressPercentage}"
                                                     Margin="0 20 0 10"
                                                     Name="InstallProgress"
                                                     />

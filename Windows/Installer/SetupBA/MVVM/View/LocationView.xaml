@@ -60,7 +60,7 @@
                                             Width="75" Height="26" 
                                             Margin="0 0 8 0" 
                                             Click="Install_Click"
-                                            Command="{Binding Path=InstallCommand}"/>
+                                            Command="{Binding Path=InstallCommanda}"/>
             </StackPanel>
         </Grid>
     </Border>

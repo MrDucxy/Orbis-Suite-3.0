@@ -1,4 +1,5 @@
-﻿using SetupBA.MVVM.ViewModel;
+﻿using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
+using SetupBA.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,12 +36,20 @@ namespace SetupBA.MVVM.View
         private void Install_Click(object sender, RoutedEventArgs e)
         {
             var dc = DataContext as LocationViewModel;
+
+            dc.MainVM.IsThinking = true;
+            dc.MainVM.Bootstrapper.Engine.Plan(LaunchAction.Install);
+
             dc.MainVM.CurrentView = dc.MainVM.InstallVM;
         }
 
         private void UnInstall_Click(object sender, RoutedEventArgs e)
         {
             var dc = DataContext as LocationViewModel;
+
+            dc.MainVM.IsThinking = true;
+            dc.MainVM.Bootstrapper.Engine.Plan(LaunchAction.Uninstall);
+
             dc.MainVM.CurrentView = dc.MainVM.InstallVM;
         }
     }

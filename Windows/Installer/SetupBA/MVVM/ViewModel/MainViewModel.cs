@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
 using SetupBA.Helpers;
+using System;
 
 namespace SetupBA.MVVM.ViewModel
 {
@@ -139,11 +140,14 @@ namespace SetupBA.MVVM.ViewModel
 
         private void Bootstrapper_ExecuteMsiMessage(object sender, ExecuteMsiMessageEventArgs e)
         {
+            Bootstrapper.Engine.Log(LogLevel.Verbose, e.Message);
             Message = e.Message;
         }
 
         private void Bootstrapper_PlanComplete(object sender, PlanCompleteEventArgs e)
         {
+            Bootstrapper.Engine.Log(LogLevel.Verbose, "PlanComplete.");
+
             if (e.Status >= 0)
                 Bootstrapper.Engine.Apply(System.IntPtr.Zero);
         }
@@ -154,12 +158,14 @@ namespace SetupBA.MVVM.ViewModel
             {
                 if (e.State == PackageState.Absent)
                 {
+                    Bootstrapper.Engine.Log(LogLevel.Verbose, "Absent.");
                     CurrentInstallState = InstallState.Install;
                     DetectState = DetectionState.Absent;
                     InstallEnabled = true;
                 }
                 else if (e.State == PackageState.Present)
                 {
+                    Bootstrapper.Engine.Log(LogLevel.Verbose, "Present.");
                     CurrentInstallState = InstallState.UnInstall;
                     DetectState = DetectionState.Absent;
                     UnInstallEnabled = true;
@@ -170,6 +176,8 @@ namespace SetupBA.MVVM.ViewModel
 
         private void Bootstrapper_ApplyComplete(object sender, ApplyCompleteEventArgs e)
         {
+            Bootstrapper.Engine.Log(LogLevel.Verbose, "Done.");
+
             // Done...
             IsThinking = false;
             InstallEnabled = false;
@@ -180,8 +188,66 @@ namespace SetupBA.MVVM.ViewModel
         {
             if(IsThinking)
             {
+                Bootstrapper.Engine.Log(LogLevel.Verbose, $"Progres.... {e.ProgressPercentage}");
                 ProgressPercentage = e.ProgressPercentage;
             }
         }
+
+        private void InstallExecute()
+        {
+            IsThinking = true;
+            Bootstrapper.Engine.Plan(LaunchAction.Install);
+        }
+
+        private void UninstallExecute()
+        {
+            IsThinking = true;
+            Bootstrapper.Engine.Plan(LaunchAction.Uninstall);
+        }
+
+        private void ExitExecute()
+        {
+            SetupBA.BootstrapperDispatcher.InvokeShutdown();
+        }
+
+        #region RelayCommands
+
+        private RelayCommand installCommand;
+        public RelayCommand InstallCommand
+        {
+            get
+            {
+                if (installCommand == null)
+                    installCommand = new RelayCommand(() => InstallExecute(), () => InstallEnabled == true);
+
+                return installCommand;
+            }
+        }
+
+        private RelayCommand uninstallCommand;
+        public RelayCommand UninstallCommand
+        {
+            get
+            {
+                if (uninstallCommand == null)
+                    uninstallCommand = new RelayCommand(() => UninstallExecute(), () => UnInstallEnabled == true);
+
+                return uninstallCommand;
+            }
+        }
+
+        private RelayCommand exitCommand;
+        public RelayCommand ExitCommand
+        {
+            get
+            {
+                if (exitCommand == null)
+                    exitCommand = new RelayCommand(() => ExitExecute());
+
+                return exitCommand;
+            }
+        }
+
+        #endregion
     }
 }

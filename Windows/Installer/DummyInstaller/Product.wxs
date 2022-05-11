@@ -35,7 +35,7 @@
 		<!-- Define components, shortcuts, files etc... for installer -->
 		<Feature Id="ProductFeature" Title="Orbis Suite" Level="1">
 
-			<!-- <ComponentGroupRef Id="ProductComponents" /> -->
+			<ComponentGroupRef Id="ProductComponents" />
 
 		</Feature>
 	</Product>

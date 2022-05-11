@@ -14,7 +14,7 @@
 
 		<!-- The chain of things to install. -->
 		<Chain>
-			<PackageGroupRef Id="dotnet6"/>
+			<!-- <PackageGroupRef Id="dotnet6"/> -->
 			<MsiPackage SourceFile="..\DummyInstaller\bin\Release\en-us\DummyInstaller.msi" Id="DummyInstallationPackageId" Cache="yes" Visible="no"/>
 		</Chain>
 

@@ -30,6 +30,8 @@ namespace SetupBA.MVVM.ViewModel
     /// </summary>
     public class InstallViewModel : PropertyNotifyBase
     {
+        
+
         public InstallViewModel(MainViewModel mainViewModel)
         {
             MainVM = mainViewModel;
@@ -51,18 +53,6 @@ namespace SetupBA.MVVM.ViewModel
                     default:
                         return "Unknown";
                 }
-            }
-        }
-
-        private RelayCommand exitCommand;
-        public RelayCommand ExitCommand
-        {
-            get
-            {
-                if (exitCommand == null)
-                    exitCommand = new RelayCommand(() => SetupBA.BootstrapperDispatcher.InvokeShutdown());
-
-                return exitCommand;
             }
         }
     }
