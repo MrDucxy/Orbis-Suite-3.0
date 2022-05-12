@@ -39,16 +39,23 @@ namespace SetupBA.MVVM.ViewModel
 
         public MainViewModel MainVM { get; set; }
 
+        //TODO: Move to main vm and set when changes happen so view is updated.
         public string Title { 
             get
             {
                 switch (MainVM.CurrentInstallState)
                 {
-                    case InstallState.Installing:
-                        return "Installing Orbis Suite...";
+                    case InstallState.Install:
+                        if (MainVM.IsThinking)
+                            return "Installing Orbis Suite...";
+                        else
+                            return "Installation Complete.";
 
-                    case InstallState.UnInstalling:
-                        return "Un-Installing Orbis Suite...";
+                    case InstallState.UnInstall:
+                        if (MainVM.IsThinking)
+                            return "Un-Installing Orbis Suite...";
+                        else
+                            return "Un-Installation Complete.";
                     
                     default:
                         return "Unknown";

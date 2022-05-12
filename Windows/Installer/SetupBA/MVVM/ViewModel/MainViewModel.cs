@@ -140,8 +140,10 @@ namespace SetupBA.MVVM.ViewModel
 
         private void Bootstrapper_ExecuteMsiMessage(object sender, ExecuteMsiMessageEventArgs e)
         {
-            Bootstrapper.Engine.Log(LogLevel.Verbose, e.Message);
-            Message = e.Message;
+            if (e.MessageType == InstallMessage.ActionStart)
+            {
+                Message = e.Message;
+            }
         }
 
         private void Bootstrapper_PlanComplete(object sender, PlanCompleteEventArgs e)
@@ -178,12 +180,10 @@ namespace SetupBA.MVVM.ViewModel
 
         private void Bootstrapper_ApplyComplete(object sender, ApplyCompleteEventArgs e)
         {
-            Bootstrapper.Engine.Log(LogLevel.Verbose, "Done.");
+            Message = "";
 
             // Done...
             IsThinking = false;
-            InstallEnabled = false;
-            UnInstallEnabled = false;
         }
 
         private void Bootstrapper_Progress(object sender, ProgressEventArgs e)
