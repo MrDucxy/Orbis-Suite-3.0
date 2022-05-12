@@ -162,13 +162,15 @@ namespace SetupBA.MVVM.ViewModel
                     CurrentInstallState = InstallState.Install;
                     DetectState = DetectionState.Absent;
                     InstallEnabled = true;
+                    UnInstallEnabled = false;
                 }
                 else if (e.State == PackageState.Present)
                 {
                     Bootstrapper.Engine.Log(LogLevel.Verbose, "Present.");
                     CurrentInstallState = InstallState.UnInstall;
-                    DetectState = DetectionState.Absent;
+                    DetectState = DetectionState.Present;
                     UnInstallEnabled = true;
+                    InstallEnabled = false;
                 }
 
             }

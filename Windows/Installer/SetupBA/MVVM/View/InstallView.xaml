@@ -17,7 +17,7 @@
 
         <!-- Main View Area -->
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Installing Orbis Suite..."
+            <TextBlock Text="{Binding Path=Title}"
                        FontSize="18"
                        FontWeight="Bold"
                        TextWrapping="Wrap"

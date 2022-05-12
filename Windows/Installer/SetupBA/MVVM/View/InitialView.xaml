@@ -9,6 +9,58 @@
              mc:Ignorable="d" 
              Width="580" Height="380">
 
+    <UserControl.Resources>
+        
+        <!-- Dumb but it works... -->
+        <Style x:Key="InstallStyle" 
+               TargetType="Button" 
+               BasedOn="{StaticResource {x:Type Button}}">
+            
+            <Setter Property="Visibility" Value="Visible" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="simpleControls:SimpleButton">
+                        <simpleControls:SimpleButton Width="{TemplateBinding Width}"
+                                                     Height="{TemplateBinding Height}"
+                                                     Content="{TemplateBinding Content}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=MainVM.InstallEnabled}" Value="false">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="UnInstallStyle" 
+               TargetType="Button" 
+               BasedOn="{StaticResource {x:Type Button}}">
+
+            <Setter Property="Visibility" Value="Visible" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="simpleControls:SimpleButton">
+                        <simpleControls:SimpleButton Width="{TemplateBinding Width}"
+                                                     Height="{TemplateBinding Height}"
+                                                     Content="{TemplateBinding Content}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=MainVM.UnInstallEnabled}" Value="false">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    
+
     <Border Background="{DynamicResource WindowBackground}">
 
         <Grid>
@@ -61,46 +113,22 @@
 
                 <!-- UnInstall -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
-                                            Grid.Column="1" Grid.Row="1" 
-                                            Content="UnInstall" x:Name="UnInstall" 
-                                            Width="75" Height="26" 
-                                            Margin="0 0 8 0" 
-                                            Click="UnInstall_Click">
-
-                    <simpleControls:SimpleButton.Resources>
-                        <Style TargetType="simpleControls:SimpleButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=MainVM.InstallEnabled}" Value="true">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </simpleControls:SimpleButton.Resources>
-
-                </simpleControls:SimpleButton>
+                                             VerticalAlignment="Center"
+                                             Grid.Column="1" Grid.Row="1" 
+                                             Content="UnInstall" x:Name="UnInstall" 
+                                             Width="75" Height="26" 
+                                             Margin="0 0 8 0" 
+                                             Click="UnInstall_Click"
+                                             Style="{StaticResource UnInstallStyle}"/>
 
                 <!-- Next -->
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Grid.Column="1" Grid.Row="1" 
-                                        Content="Next" x:Name="Next" 
-                                        Width="75" Height="26" 
-                                        Margin="0 0 8 0" Click="Next_Click">
-
-                    <simpleControls:SimpleButton.Resources>
-                        <Style TargetType="simpleControls:SimpleButton">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=MainVM.InstallEnabled}" Value="false">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </simpleControls:SimpleButton.Resources>
-
-                </simpleControls:SimpleButton>
-                
-                
+                                             VerticalAlignment="Center"
+                                             Grid.Column="1" Grid.Row="1" 
+                                             Content="Next" x:Name="Next" 
+                                             Width="75" Height="26" 
+                                             Margin="0 0 8 0" Click="Next_Click"
+                                             Style="{StaticResource InstallStyle}"/>
             </StackPanel>
         </Grid>
     </Border>
