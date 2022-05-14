@@ -24,10 +24,11 @@ namespace SetupBA.MVVM.View
             dc.MainVM.CurrentView = dc.MainVM.InitialVM;
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
+        private void Install_Click(object sender, RoutedEventArgs e)
         {
             var dc = DataContext as LicenseViewModel;
-            dc.MainVM.CurrentView = dc.MainVM.LocationVM;
+            dc.MainVM.InstallExecute();
+            dc.MainVM.CurrentView = dc.MainVM.InstallVM;
         }
 
         private void LicenseText_Loaded(object sender, RoutedEventArgs e)

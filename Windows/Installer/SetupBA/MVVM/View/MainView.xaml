@@ -35,12 +35,6 @@
                 <ContentControl Content="{StaticResource LicenseViewKey}" />
             </DataTemplate>
 
-            <!-- Location View -->
-            <view:LocationView x:Key="LocationViewKey"/>
-            <DataTemplate DataType="{x:Type viewModel:LocationViewModel}">
-                <ContentControl Content="{StaticResource LocationViewKey}" />
-            </DataTemplate>
-
             <!-- Install View -->
             <view:InstallView x:Key="InstallViewKey"/>
             <DataTemplate DataType="{x:Type viewModel:InstallViewModel}">

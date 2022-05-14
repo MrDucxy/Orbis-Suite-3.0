@@ -11,7 +11,7 @@
 
     <UserControl.Resources>
         <!-- Dumb but it works... -->
-        <Style x:Key="NextStyle" 
+        <Style x:Key="InstallStyle" 
                    TargetType="Button" 
                    BasedOn="{StaticResource {x:Type Button}}">
 
@@ -65,6 +65,8 @@
                     Margin="30 30 30 0"
                     Height="190"
                     IsReadOnly="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
                     Name="LicenseText"
                     Loaded="LicenseText_Loaded"/>
 
@@ -96,11 +98,11 @@
                 <simpleControls:SimpleButton HorizontalAlignment="Right"
                                             VerticalAlignment="Center"
                                             Grid.Column="1" Grid.Row="1" 
-                                            Content="Next" x:Name="Next" 
+                                            Content="Install" x:Name="Install" 
                                             Width="75" Height="26" 
                                             Margin="0 0 8 0" 
-                                            Style="{StaticResource NextStyle}"
-                                            Click="Next_Click"/>
+                                            Style="{StaticResource InstallStyle}"
+                                            Click="Install_Click"/>
             </StackPanel>
         </Grid>
     </Border>

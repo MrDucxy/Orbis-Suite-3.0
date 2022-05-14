@@ -24,7 +24,6 @@ namespace SetupBA.MVVM.ViewModel
             // View Models.
             InitialVM = new InitialViewModel(this);
             LicenseVM = new LicenseViewModel(this);
-            LocationVM = new LocationViewModel(this);
             InstallVM = new InstallViewModel(this);
             SummaryVM = new SummaryViewModel(this);
 
@@ -43,7 +42,6 @@ namespace SetupBA.MVVM.ViewModel
         // View Models
         public InitialViewModel InitialVM { get; set; }
         public LicenseViewModel LicenseVM { get; set; }
-        public LocationViewModel LocationVM { get; set; }
         public InstallViewModel InstallVM { get; set; }
         public SummaryViewModel SummaryVM { get; set; }
 
