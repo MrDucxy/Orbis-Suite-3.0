@@ -42,7 +42,8 @@
                             Tag="APIPort"
                             Text="9020"
                             Width="50"
-                            Height="18"
+                            Height="20"
+                            VerticalContentAlignment="Center"
                             TextAlignment="Right"
                             MaxLength="5"
                             Loaded="APIPort_Loaded"
@@ -57,7 +58,8 @@
                         <simpleControls:SimpleTextBox 
                             Text="2121"
                             Width="50"
-                            Height="18"
+                            Height="20"
+                            VerticalContentAlignment="Center"
                             TextAlignment="Right"
                             MaxLength="5"
                             Loaded="FTPPort_Loaded"
@@ -72,7 +74,8 @@
                         <simpleControls:SimpleTextBox 
                             Text="3232"
                             Width="50"
-                            Height="18"
+                            Height="20"
+                            VerticalContentAlignment="Center"
                             TextAlignment="Right"
                             MaxLength="5"
                             Loaded="KlogPort_Loaded"
@@ -87,7 +90,8 @@
                         <simpleControls:SimpleTextBox 
                             Text="com3"
                             Width="50"
-                            Height="18"
+                            Height="20"
+                            VerticalContentAlignment="Center"
                             TextAlignment="Right"
                             Loaded="COMPort_Loaded"
                             LostFocus="COMPort_LostFocus"/>

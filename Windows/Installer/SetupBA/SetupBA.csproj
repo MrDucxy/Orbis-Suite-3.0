@@ -142,6 +142,9 @@
     <None Include="app.config" />
     <None Include="BootstrapperCore.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\License.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Duck.gif">

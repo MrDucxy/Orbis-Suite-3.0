@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
+using SetupBA.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace SetupBA.MVVM.ViewModel
 {
-    public class LicenseViewModel
+    public class LicenseViewModel : PropertyNotifyBase
     {
+        private bool _agreedToLicesnse;
+
         public LicenseViewModel(MainViewModel mainViewModel)
         {
             MainVM = mainViewModel;
@@ -17,37 +20,13 @@ namespace SetupBA.MVVM.ViewModel
 
         public MainViewModel MainVM { get; set; }
 
-        private RelayCommand installCommand;
-        public RelayCommand InstallCommand
+        public bool AgreedToLicesnse 
         {
-            get
+            get { return _agreedToLicesnse; }
+            set
             {
-                if (installCommand == null)
-                {
-                    installCommand = new RelayCommand(() =>
-                    {
-                        MainVM.IsThinking = true;
-                        MainVM.Bootstrapper.Engine.Plan(LaunchAction.Install);
-                    }, () => MainVM.InstallEnabled == true);
-                }
-
-                return installCommand;
-            }
-        }
-
-        private RelayCommand uninstallCommand;
-        public RelayCommand UninstallCommand
-        {
-            get
-            {
-                if (uninstallCommand == null)
-                    uninstallCommand = new RelayCommand(() =>
-                    {
-                        MainVM.IsThinking = true;
-                        MainVM.Bootstrapper.Engine.Plan(LaunchAction.Uninstall);
-                    }, () => MainVM.UnInstallEnabled == true);
-
-                return uninstallCommand;
+                _agreedToLicesnse = value;
+                OnPropertyChanged("AgreedToLicesnse");
             }
         }
     }
