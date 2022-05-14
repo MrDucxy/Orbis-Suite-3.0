@@ -19,13 +19,21 @@
 
             <!-- Main View Area -->
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="License"
-                       FontSize="22"
-                       FontWeight="Bold"
-                       TextWrapping="Wrap"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
-                       Margin="20 20 20 0"/>
+                
+                <!-- Title Text -->
+                <Grid>
+                    <Rectangle Height="80"
+                               Fill="#b04b4b"/>
+
+                    <TextBlock Text="License"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Grid>
+                
             </StackPanel>
 
             <!-- Button Area -->

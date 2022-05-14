@@ -180,7 +180,7 @@ namespace SetupBA.MVVM.ViewModel
 
         private void Bootstrapper_ApplyComplete(object sender, ApplyCompleteEventArgs e)
         {
-            Message = "";
+            Message = "Complete.";
 
             // Done...
             IsThinking = false;
