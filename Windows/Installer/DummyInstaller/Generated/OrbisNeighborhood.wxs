@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Directory Id="dirA2E76F2D663AA689F739C77DA05D8169" Name="OrbisNeighborHood" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="OrbisNeighborHood">
+            <Component Id="cmpE41D390B0D0AAB6F9FB4C6A1D705196C" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{17AA9AEA-41C2-45D2-ACB0-1BD28864F59C}">
+                <File Id="filB364A90310AE7157981EE4ADF9169441" KeyPath="yes" Source="!(wix.neighborhoodloc)\EntityFramework.dll" />
+            </Component>
+            <Component Id="cmp0A60EE67F17FF97AEB285CE594BD15DE" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{6ADB9123-30C4-43AE-8B99-51314B5092E6}">
+                <File Id="fil3891505899A749B59E5062AEC6C9A1E0" KeyPath="yes" Source="!(wix.neighborhoodloc)\EntityFramework.SqlServer.dll" />
+            </Component>
+            <Component Id="cmp59937CC63BD801E6071825565D6AF104" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{D7769643-27E0-4463-8E63-82880AC16297}">
+                <File Id="fil832495DF276E6F7A2C6D3A7CCB260A12" KeyPath="yes" Source="!(wix.neighborhoodloc)\Microsoft.Expression.Drawing.dll" />
+            </Component>
+            <Component Id="cmp24C3B7E5226C4861E79F5A3724658221" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{7B9D82A0-CEAB-4382-9BD5-6E9DDED3D8B2}">
+                <File Id="fil5C60F9A4FB262231684CB011E7A144C3" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisLib.dll" />
+            </Component>
+            <Component Id="cmp798F348DCFCFF189F95EEACBA03ABF16" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{68B5D457-40CE-4F8E-B167-8152A181A1C9}">
+                <File Id="fil240A0AA680ECD2719BC02EB9C386ED6E" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisLib.pdb" />
+            </Component>
+            <Component Id="cmp07F346D55CDDD111B4D18B63F0F13C75" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{038ADCA1-94F2-49CF-93FE-590F18C7A521}">
+                <File Id="filE7975B4D436114B3A3CD28112D8D3798" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.deps.json" />
+            </Component>
+            <Component Id="cmpA5896B0AE139FE4D41FBC2ECAAD9926E" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{A7C66D7B-C668-4B10-9EF1-8BE873C2C7E6}">
+                <File Id="fil4E83FB5F4D0C1CB3DEDA644F803A322B" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.dll" />
+            </Component>
+            <Component Id="cmp8772A72E628B4B64AA9764608C7EB439" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{7B116E0D-9E96-4074-ADDB-39D96F314F69}">
+                <File Id="filDF02732B42549E94F28F03E2E7DF6432" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.exe" />
+            </Component>
+            <Component Id="cmpEAE13FF2EB052A8A7AA3CC95D41F4AFD" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{5F8F1A50-74C5-48C1-B2AB-2147C1392F2D}">
+                <File Id="filC2BFB9F97D0CBAFB74D1618EBAEA0BBE" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.pdb" />
+            </Component>
+            <Component Id="cmp088D641A2FC114D814AC2C6E871CF2C9" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{0DF9B82E-FE32-40E6-AF4F-E366F0F3AF37}">
+                <File Id="fil0862F9B50AC6B8926AD439506BECCC9A" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.runtimeconfig.json" />
+            </Component>
+            <Component Id="cmp634A5C2D7B82C34C421AD03632CC85BA" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{E10FB5DA-EBBD-47A5-8DA6-2E689E76B503}">
+                <File Id="filE3A78ACDD41FD1431BF0DDF0C9DFA15A" KeyPath="yes" Source="!(wix.neighborhoodloc)\SimpleUI.dll" />
+            </Component>
+            <Component Id="cmpD83B869CCFDB3E97BC39A273A683F324" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{FCF0E37D-6082-4DA1-B059-A67FF7D283AC}">
+                <File Id="filC8B0ABD11F0FFAAFFACBC8FE72F95C51" KeyPath="yes" Source="!(wix.neighborhoodloc)\SimpleUI.pdb" />
+            </Component>
+            <Component Id="cmp3DC4745B3CBE1FE28F47867CE88F1CDF" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{E8A55044-75E4-42B6-B757-30F98A7694A0}">
+                <Class Id="{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}" Context="InprocServer32" Description="SQLite.StoreAsTextAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.StoreAsTextAttribute" Description="SQLite.StoreAsTextAttribute" />
+                </Class>
+                <Class Id="{27EF08E1-768D-3143-B741-CEE69E101E82}" Context="InprocServer32" Description="SQLite.NotNullAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.NotNullAttribute" Description="SQLite.NotNullAttribute" />
+                </Class>
+                <Class Id="{4A3C5E65-2D68-3955-B25F-4091F9FE9969}" Context="InprocServer32" Description="SQLite.UniqueAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.UniqueAttribute" Description="SQLite.UniqueAttribute" />
+                </Class>
+                <Class Id="{832B28CA-3B4A-3669-81FD-CDB8F026B088}" Context="InprocServer32" Description="SQLite.SQLiteConnection+ColumnInfo" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.SQLiteConnection+ColumnInfo" Description="SQLite.SQLiteConnection+ColumnInfo" />
+                </Class>
+                <Class Id="{993D8EF1-9882-377A-9840-15F2E3DAE017}" Context="InprocServer32" Description="SQLite.IndexedAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.IndexedAttribute" Description="SQLite.IndexedAttribute" />
+                </Class>
+                <Class Id="{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}" Context="InprocServer32" Description="SQLite.AutoIncrementAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.AutoIncrementAttribute" Description="SQLite.AutoIncrementAttribute" />
+                </Class>
+                <Class Id="{C261B0CB-C699-311D-903C-282183D5CEFF}" Context="InprocServer32" Description="SQLite.CreateTablesResult" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.CreateTablesResult" Description="SQLite.CreateTablesResult" />
+                </Class>
+                <Class Id="{C49282EA-5CC3-34AB-9C75-8C2F7724E291}" Context="InprocServer32" Description="SQLite.IgnoreAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.IgnoreAttribute" Description="SQLite.IgnoreAttribute" />
+                </Class>
+                <Class Id="{DFFFA5EC-2D39-3B15-9A04-3621166DD746}" Context="InprocServer32" Description="SQLite.PreserveAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.PreserveAttribute" Description="SQLite.PreserveAttribute" />
+                </Class>
+                <Class Id="{E4C90935-6BE2-333B-9309-95AB4BB83E83}" Context="InprocServer32" Description="SQLite.PrimaryKeyAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.PrimaryKeyAttribute" Description="SQLite.PrimaryKeyAttribute" />
+                </Class>
+                <File Id="fil5AD51DA4CEA7733DDE0620F80F106A57" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLite-net.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.StoreAsTextAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="Class" Value="SQLite.StoreAsTextAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.NotNullAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="Class" Value="SQLite.NotNullAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.UniqueAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="Class" Value="SQLite.UniqueAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.SQLiteConnection+ColumnInfo" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="Class" Value="SQLite.SQLiteConnection+ColumnInfo" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.IndexedAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="Class" Value="SQLite.IndexedAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.AutoIncrementAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="Class" Value="SQLite.AutoIncrementAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.CreateTablesResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="Class" Value="SQLite.CreateTablesResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.IgnoreAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="Class" Value="SQLite.IgnoreAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.PreserveAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="Class" Value="SQLite.PreserveAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.PrimaryKeyAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="Class" Value="SQLite.PrimaryKeyAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+ConfigOption" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="Class" Value="SQLite.SQLiteOpenFlags" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="Class" Value="SQLite.CreateFlags" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+ColType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="Class" Value="SQLite.NotifyTableChangedAction" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+ExtendedResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+Result" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="Class" Value="SQLite.CreateTableResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmp09933D322605132100272D5B82775ADB" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{17DF23DA-A413-454C-88F3-7DC550DF10D2}">
+                <File Id="filB1471490DC26F206DF08A8ECD637A890" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.batteries_v2.dll" />
+            </Component>
+            <Component Id="cmp7868CF75D850993736EB72E01F8E659D" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{5B9E865D-4696-4319-8308-6D43E5615A71}">
+                <File Id="fil7168A0523CE60EC66C4C8E3012CEBD45" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.core.dll" />
+            </Component>
+            <Component Id="cmp041AA4D21C0077717F45A5446AC4B286" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{19332E87-23B2-4702-A51F-000401BF1953}">
+                <File Id="filE6D1CC87ADBB66C67E89159D920A7041" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.nativelibrary.dll" />
+            </Component>
+            <Component Id="cmpBD1177DC742ECF7FE2F4ADDA192E334C" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{73FA2E57-2859-4867-8973-F042D1F35343}">
+                <File Id="fil6773722EB0457BDF4E0CBC911A4FAFDA" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
+            </Component>
+            <Component Id="cmpF9D87FEACA9C1D37EB3FC450DF61FE65" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{51C91C93-D332-4FC1-AD83-F8342F146A56}">
+                <File Id="fil5312B6AAC9F0C75A66AE7FD15089CF55" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmp6ADCDBD373E56131DA5F31E126C431E4" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{6124C9A7-F05C-4B2D-A864-3A933F71874E}">
+                <File Id="fil47BB64DF636613A234A79142FB1136ED" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Data.SQLite.dll" />
+            </Component>
+            <Component Id="cmpC8F275E83B86A401D076F7FE97BD5E04" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{1E903903-C113-4C2B-B38C-B2E06D9ED20F}">
+                <File Id="fil6D3306D12F668CFDCB00697FF8E77A71" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Data.SQLite.EF6.dll" />
+            </Component>
+            <Component Id="cmp54D4BBB5D6D2E1A2A326ACAB569277DE" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{51588476-7BFF-413D-A089-550768EFD293}">
+                <File Id="fil4A1967E4887A3628100FA2A728569387" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Json.dll" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Class" Value="System.Json.JsonType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Assembly" Value="System.Json, Version=2.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="CodeBase" Value="file:///[#fil4A1967E4887A3628100FA2A728569387]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmpC7783FA93AEF01541521B9ABF355216C" Directory="dir69953A9990CF3578803540AE2809871D" Guid="{0E37DA7A-0326-478C-812C-6B36E4DEF91C}">
+                <File Id="fil55F425B214F2A6EEF1AE56969EC89F0C" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\alpine-x64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp0E2F2DD3078A48C4B3E0CD5730D51F7F" Directory="dir11E57DC8224FD5D3396C0250F257084B" Guid="{56731B9F-E3F6-499E-8197-1E7A1F41F8C4}">
+                <File Id="fil791EBA8A456538C243EEF761CD36DFB6" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-arm\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp5C1FBA3B301FE3B4C87B95DD2E689EE0" Directory="dir0D99ADA0534C6F07E221034C0C063C5B" Guid="{5803F67D-4932-44A1-AA8C-576B76C73CEE}">
+                <File Id="fil78A779FFF3701EA85C98E5F17A403958" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-arm64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp97C06275E71C96484BA969A67B571854" Directory="dirA448F43C7B0460A7071341984C144290" Guid="{4181A7B0-C4EA-45B6-8181-A38AFDE7CCA2}">
+                <File Id="filD10677C9723732CFAC9CD004D171B258" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-armel\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpA8A10906782465FE7B7D6071E85528E5" Directory="dir23883BA819A25014FCB162A26E6C5497" Guid="{C4DFA5EE-296D-4288-BA3F-BE37E06F97EE}">
+                <File Id="fil58621A0CCF7CA66692B0DE854AFD9ACB" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-mips64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp6631E0CC97247613CC6680000074B53E" Directory="dirBE6B735EC68A2C3B52BC445F6282B570" Guid="{FDAB5D74-6832-4034-97F2-F9E53BAD3397}">
+                <File Id="fil22B7B38E176FDB1A124BBFAB1A9EB45F" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpACEA5DA59E82C54A7B079923060FD077" Directory="dir2221C3641C5B922F331C205D0D6D19DB" Guid="{ABBC9AFA-FF94-4AFB-8D03-D29D8CA50B0D}">
+                <File Id="fil9461D1ED5EFA4933113DC9035A3D7E7A" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-x64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpEBB73023E17264A9CFEB58CA360BC290" Directory="dir2221C3641C5B922F331C205D0D6D19DB" Guid="{D2601455-1AED-4380-90E4-4950E135EBEF}">
+                <File Id="fil57F237A7A66626514C4E5B92DBA6DE89" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-x64\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp0C535A2905D4261E16DF5A4602BB1DEE" Directory="dir3233985D947656B5BEB23A4A5DB7CEC9" Guid="{F0AB1835-C1EA-48D1-A45A-6433E9ADE784}">
+                <File Id="fil1994759023FEBCAC0AD7A798134E3DCA" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-x86\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp74ACED4F9D9803BD635860D6D8197D26" Directory="dirFDE134B0F1C60C4460596A3CDB9EFACC" Guid="{56F9B2E7-1C1D-4FE4-99D1-30B60A87E523}">
+                <File Id="filA2FB9FD48619528BC732D9CA7DF3DAE7" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\osx-x64\native\libe_sqlite3.dylib" />
+            </Component>
+            <Component Id="cmpBF34BFB6BE101EE8550184EF6AC84962" Directory="dirFDE134B0F1C60C4460596A3CDB9EFACC" Guid="{3E33F0AA-E29A-4638-83AC-AAF2874C6B48}">
+                <File Id="filB3646D02931AB0ECB31A00D7E4F07594" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\osx-x64\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp78EBF1F4F75E5DC1DE79F520DB5890C3" Directory="dir418DED00A95F0CA3A54CE925F90657D4" Guid="{C239DEC5-D913-48B1-A5E3-5539C9D8598B}">
+                <File Id="fil451217179927DA673E03779EE611E027" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmp5D86B5C2FD6CB9828C9A81D0BCE5AA33" Directory="dir355E8005E976E598C52F93CA0D74DE71" Guid="{B3BA816C-3646-4AF4-9F2B-2DFFA9C57533}">
+                <File Id="fil28F085FD7ED7365A84844F4075452BE4" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmpAD9CCE7B0D222F8E5FC2DAC812BB6F5D" Directory="dir30662D51F3423EA316B5EB9B44A4A5FD" Guid="{14C2F96E-72E2-4C48-A1A6-8AED06EF00A9}">
+                <File Id="fil30F4DD27B9DB57BAA4F4428466AF5F37" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-arm\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmpAD7C518209D24433B2060F0BAA107016" Directory="dir4887F89A655BD0E9B50D9BA822EF9596" Guid="{0DF07D4A-2FDC-43AE-B2D8-2D352F7DB10C}">
+                <File Id="fil212623DF5DCCC35D4738C3D9F972067E" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-arm64\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmpB1D0CF7A5A123FD55DC6BC9EFC3CB6FE" Directory="dir4887F89A655BD0E9B50D9BA822EF9596" Guid="{74B8F97C-144B-40F7-9207-A755A3A65FD2}">
+                <File Id="fil9475DD3AFE793605807C8CED17C1207E" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-arm64\native\sni.dll" />
+            </Component>
+            <Component Id="cmp47989F0957133E0A0501863DB576837A" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{DC0C89A1-57D7-4148-A028-B3CE07D5E444}">
+                <File Id="fil7D6473E331660E77C4B7F9DB11FD3D7F" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x64\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmp707BD30B90301FA3598058272D7ED794" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{3AF4B34D-57B9-4747-AD5D-77F6BA53B512}">
+                <File Id="filED366D8555926E4200E9D415C9AA8838" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x64\native\sni.dll" />
+            </Component>
+            <Component Id="cmpA48F59BCAFC41ED4AF4E53484C8988F5" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{8B8FB4DD-C212-4E95-BBA3-1E76E89177D9}">
+                <File Id="fil0BC7AA3E61E4FD31D4CF22CFFC06157B" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x64\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp2AD7E030185A27862B7B27651514C76B" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{5A876997-F21C-402D-8ACB-95FF9B88070B}">
+                <File Id="filA76C9E7EF92DDDBFC0E81B539991617F" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x86\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmp0E5CAF53F4114BF99A133D6B7A3A2232" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{2BE99CED-994B-476D-B1B6-D6E7C973B7DA}">
+                <File Id="fil909F2BA7D317A49253B0793017BBA034" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x86\native\sni.dll" />
+            </Component>
+            <Component Id="cmpC4AED04204F36864180BCE88652910F4" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{497DE95B-81BF-4BF5-8E04-66D4E2F56968}">
+                <File Id="fil6DDE2A303AA6505683E64B883F2F7AA3" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x86\native\SQLite.Interop.dll" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir8CD03DCA4DDBAB381BF1CFD32F9E5D1F">
+            <Directory Id="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir083ED5F85C82F41E534481C46B561B3F" Name="osx-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirC7744F7339322179F69944EB0A54FC83">
+            <Directory Id="dir0D99ADA0534C6F07E221034C0C063C5B" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir0E770278BFA02F44DBCD43E30D0B60FE" Name="linux-armel" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir105FC04FC8D7763F3F39C9FD793ED301" Name="win" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir65906D088B82012673D010133883C721">
+            <Directory Id="dir11E57DC8224FD5D3396C0250F257084B" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir1C3D465C58CF4F1BDF49686654AD77A2" Name="linux-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir1C3D465C58CF4F1BDF49686654AD77A2">
+            <Directory Id="dir2221C3641C5B922F331C205D0D6D19DB" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir8C1C5714DDAE5FE99D2E7134297DE72D">
+            <Directory Id="dir23883BA819A25014FCB162A26E6C5497" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir2DAB7F795CDF53623A6F65DCB08CCCA3" Name="win-arm" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir2DAB7F795CDF53623A6F65DCB08CCCA3">
+            <Directory Id="dir30662D51F3423EA316B5EB9B44A4A5FD" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir646AE13819D9780C2065F7E3EF6C061D">
+            <Directory Id="dir3233985D947656B5BEB23A4A5DB7CEC9" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir6F13FC085DD0EF640CF9906E0D59CBA5">
+            <Directory Id="dir355E8005E976E598C52F93CA0D74DE71" Name="netcoreapp2.1" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir8934E1463AED0BC856805B397C20602A">
+            <Directory Id="dir418DED00A95F0CA3A54CE925F90657D4" Name="netcoreapp2.1" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirF454D2EABD821CA05C00F75519F01781">
+            <Directory Id="dir4887F89A655BD0E9B50D9BA822EF9596" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir646AE13819D9780C2065F7E3EF6C061D" Name="linux-x86" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir65906D088B82012673D010133883C721" Name="linux-arm" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirA2D750A70A6EB21D4D6EA69AB46844B5">
+            <Directory Id="dir69953A9990CF3578803540AE2809871D" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir105FC04FC8D7763F3F39C9FD793ED301">
+            <Directory Id="dir6F13FC085DD0EF640CF9906E0D59CBA5" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirBBB872477D2161E9E3848514FAA562C0">
+            <Directory Id="dir8934E1463AED0BC856805B397C20602A" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirDD6CF1602A0642D8BDBDFA009FD70AA9">
+            <Directory Id="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir8C1C5714DDAE5FE99D2E7134297DE72D" Name="linux-mips64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dir8CD03DCA4DDBAB381BF1CFD32F9E5D1F" Name="win-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dirA2D750A70A6EB21D4D6EA69AB46844B5" Name="alpine-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir0E770278BFA02F44DBCD43E30D0B60FE">
+            <Directory Id="dirA448F43C7B0460A7071341984C144290" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dirBBB872477D2161E9E3848514FAA562C0" Name="unix" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirF0B10AC0E02C578FAA02E2B696280965">
+            <Directory Id="dirBE6B735EC68A2C3B52BC445F6282B570" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dirC7744F7339322179F69944EB0A54FC83" Name="linux-arm64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirA2E76F2D663AA689F739C77DA05D8169">
+            <Directory Id="dirD5CC46E2409BEFFC1261840AE0B42042" Name="runtimes" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dirDD6CF1602A0642D8BDBDFA009FD70AA9" Name="win-x86" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dirF0B10AC0E02C578FAA02E2B696280965" Name="linux-musl-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD5CC46E2409BEFFC1261840AE0B42042">
+            <Directory Id="dirF454D2EABD821CA05C00F75519F01781" Name="win-arm64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir083ED5F85C82F41E534481C46B561B3F">
+            <Directory Id="dirFDE134B0F1C60C4460596A3CDB9EFACC" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+</Wix>

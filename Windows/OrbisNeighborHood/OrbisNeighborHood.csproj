@@ -112,10 +112,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <EmbeddedResource Include="Resources\BuildNumber.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BuildString.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -158,5 +158,9 @@
    <RepositoryUrl>https://github.com/OSM-Made/Orbis-Suite-3.0</RepositoryUrl>
    <AssemblyVersion>3.0.0</AssemblyVersion>
   </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /E $(ProjectDir)$(OutDir) $(SolutionDir)Windows\Executables\$(ProjectName)&#xD;&#xA;" />
+  </Target>
 
 </Project>

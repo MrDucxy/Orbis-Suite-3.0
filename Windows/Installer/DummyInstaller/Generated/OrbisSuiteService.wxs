@@ -1,0 +1,1463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Directory Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Name="OrbisSuiteService" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="OrbisSuiteService">
+            <Component Id="cmpFE92E7EDFDE1472DD02A6063E1F96A73" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{D9809205-A376-42C8-BB7C-68620BF2CF32}">
+                <File Id="filAA7F137EEFF5D0C72345C1F942CF3A2F" KeyPath="yes" Source="!(wix.serviceloc)\EntityFramework.dll" />
+            </Component>
+            <Component Id="cmp735833CF51E83A6F1E6283D584151146" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{3CE1BC04-4FBB-4CF5-AE87-B1340D969F7E}">
+                <File Id="fil07C8C829E7E073C4BE15883107FADD12" KeyPath="yes" Source="!(wix.serviceloc)\EntityFramework.SqlServer.dll" />
+            </Component>
+            <Component Id="cmp9E18FF12507BCDE5DE9EC151EFDACA72" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{890ADBDD-7C0B-45D6-ACA0-BA2581249C04}">
+                <File Id="fil6F2FA073F8E3148D166BF89793271120" KeyPath="yes" Source="!(wix.serviceloc)\Microsoft.Bcl.AsyncInterfaces.dll" />
+            </Component>
+            <Component Id="cmp48EDFCA60607E8A0F6909674505CEB7E" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{76F54FCC-1273-46FF-BBB7-5A8364568C0E}">
+                <File Id="filF0DFB556661F22C80050F41C8675597F" KeyPath="yes" Source="!(wix.serviceloc)\Microsoft.Expression.Drawing.dll" />
+            </Component>
+            <Component Id="cmpEC5317875C7A3019B7182E066861EF6D" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{56530B81-56E0-4990-9F00-56A89706ED89}">
+                <File Id="fil028A6BCDB2A97CB7641097E06E6997B7" KeyPath="yes" Source="!(wix.serviceloc)\Microsoft.Extensions.ObjectPool.dll" />
+            </Component>
+            <Component Id="cmp659A024E60FAEA5C1E364F29782AB531" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{07AF0350-1C78-46DB-A0D5-C2180D910370}">
+                <File Id="fil496E6CBD3B4BA83E7A75EA5DC1671064" KeyPath="yes" Source="!(wix.serviceloc)\OrbisLib.dll" />
+            </Component>
+            <Component Id="cmpC656FBEB4D8DF455DF1ABF7AEFD22398" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{8593E8C3-7A8D-4041-9239-F85A0BF07C81}">
+                <File Id="filAE6C9728DE3DD07DC35ED0425D945CFA" KeyPath="yes" Source="!(wix.serviceloc)\OrbisLib.pdb" />
+            </Component>
+            <Component Id="cmp22168AE9E8008DF9A8712E2D64950D3C" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{3AFE5B2F-894C-49C9-9D9D-B8EAD686CE6D}">
+                <File Id="fil123D80184401D9B744A7F996B6F34C6D" KeyPath="yes" Source="!(wix.serviceloc)\OrbisSuiteService.deps.json" />
+            </Component>
+            <Component Id="cmp31AC236AFE4B0ED4090696D2173CB974" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{7E73C98B-562E-4DCB-82A7-2617FF4EDA42}">
+                <File Id="filBC843A55D070E202D51D13C1D92538D1" KeyPath="yes" Source="!(wix.serviceloc)\OrbisSuiteService.dll" />
+            </Component>
+            <Component Id="cmpEF8A475BA2B2124A585420EC810775A0" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{B9EE7544-9E66-4F35-80F8-E63DAD46B453}">
+                <File Id="fil87BD9105BDF6F6C5639FD962D1C988EA" KeyPath="yes" Source="!(wix.serviceloc)\OrbisSuiteService.pdb" />
+            </Component>
+            <Component Id="cmp50CF03938DE48518145BAA28FCA66B99" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{9F96FE50-AD12-4F96-99DE-02D3A6ABB522}">
+                <File Id="fil4265A03846EE60CBEEE73444996E6B39" KeyPath="yes" Source="!(wix.serviceloc)\OrbisSuiteService.runtimeconfig.json" />
+            </Component>
+            <Component Id="cmp7739953F6F1743C16C4CC61E719BBF0B" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{BAC1B4FB-1F02-43B8-98C1-30CB1F4494B2}">
+                <File Id="fil29C8FB8BEAB352BBB415114F00D1AEED" KeyPath="yes" Source="!(wix.serviceloc)\SimpleUI.dll" />
+            </Component>
+            <Component Id="cmp05B8E634A3A70FE2949E0AE2297AFDB7" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{75F64EEB-F289-4857-881A-6FFC19FB08F6}">
+                <File Id="fil8010F21B01F217AD942ECFA51354497B" KeyPath="yes" Source="!(wix.serviceloc)\SimpleUI.pdb" />
+            </Component>
+            <Component Id="cmp47DE580A09511041D160B207A98F326A" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{24436FDF-0D5E-4918-B3E6-2F2DC61D06E1}">
+                <Class Id="{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}" Context="InprocServer32" Description="SQLite.StoreAsTextAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.StoreAsTextAttribute" Description="SQLite.StoreAsTextAttribute" />
+                </Class>
+                <Class Id="{27EF08E1-768D-3143-B741-CEE69E101E82}" Context="InprocServer32" Description="SQLite.NotNullAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.NotNullAttribute" Description="SQLite.NotNullAttribute" />
+                </Class>
+                <Class Id="{4A3C5E65-2D68-3955-B25F-4091F9FE9969}" Context="InprocServer32" Description="SQLite.UniqueAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.UniqueAttribute" Description="SQLite.UniqueAttribute" />
+                </Class>
+                <Class Id="{832B28CA-3B4A-3669-81FD-CDB8F026B088}" Context="InprocServer32" Description="SQLite.SQLiteConnection+ColumnInfo" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.SQLiteConnection+ColumnInfo" Description="SQLite.SQLiteConnection+ColumnInfo" />
+                </Class>
+                <Class Id="{993D8EF1-9882-377A-9840-15F2E3DAE017}" Context="InprocServer32" Description="SQLite.IndexedAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.IndexedAttribute" Description="SQLite.IndexedAttribute" />
+                </Class>
+                <Class Id="{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}" Context="InprocServer32" Description="SQLite.AutoIncrementAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.AutoIncrementAttribute" Description="SQLite.AutoIncrementAttribute" />
+                </Class>
+                <Class Id="{C261B0CB-C699-311D-903C-282183D5CEFF}" Context="InprocServer32" Description="SQLite.CreateTablesResult" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.CreateTablesResult" Description="SQLite.CreateTablesResult" />
+                </Class>
+                <Class Id="{C49282EA-5CC3-34AB-9C75-8C2F7724E291}" Context="InprocServer32" Description="SQLite.IgnoreAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.IgnoreAttribute" Description="SQLite.IgnoreAttribute" />
+                </Class>
+                <Class Id="{DFFFA5EC-2D39-3B15-9A04-3621166DD746}" Context="InprocServer32" Description="SQLite.PreserveAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.PreserveAttribute" Description="SQLite.PreserveAttribute" />
+                </Class>
+                <Class Id="{E4C90935-6BE2-333B-9309-95AB4BB83E83}" Context="InprocServer32" Description="SQLite.PrimaryKeyAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="SQLite.PrimaryKeyAttribute" Description="SQLite.PrimaryKeyAttribute" />
+                </Class>
+                <File Id="filBB8FDE18B78A04F3713CF7A6214823A0" KeyPath="yes" Source="!(wix.serviceloc)\SQLite-net.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.StoreAsTextAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="Class" Value="SQLite.StoreAsTextAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.NotNullAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="Class" Value="SQLite.NotNullAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{27EF08E1-768D-3143-B741-CEE69E101E82}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.UniqueAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="Class" Value="SQLite.UniqueAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{4A3C5E65-2D68-3955-B25F-4091F9FE9969}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.SQLiteConnection+ColumnInfo" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="Class" Value="SQLite.SQLiteConnection+ColumnInfo" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{832B28CA-3B4A-3669-81FD-CDB8F026B088}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.IndexedAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="Class" Value="SQLite.IndexedAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{993D8EF1-9882-377A-9840-15F2E3DAE017}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.AutoIncrementAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="Class" Value="SQLite.AutoIncrementAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BE24DC34-A00E-3E85-8208-D80CEF9BB73C}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.CreateTablesResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="Class" Value="SQLite.CreateTablesResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C261B0CB-C699-311D-903C-282183D5CEFF}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.IgnoreAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="Class" Value="SQLite.IgnoreAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C49282EA-5CC3-34AB-9C75-8C2F7724E291}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.PreserveAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="Class" Value="SQLite.PreserveAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DFFFA5EC-2D39-3B15-9A04-3621166DD746}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="Class" Value="SQLite.PrimaryKeyAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="Class" Value="SQLite.PrimaryKeyAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E4C90935-6BE2-333B-9309-95AB4BB83E83}\InprocServer32" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+ConfigOption" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{0AFB545A-184F-3ABB-87C0-F468A2F9A29E}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="Class" Value="SQLite.SQLiteOpenFlags" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{35A91222-003B-3BC2-96F9-1B1520A1E26A}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="Class" Value="SQLite.CreateFlags" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{60C19955-CE81-3274-9279-857DBC5E0459}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+ColType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{7453AE65-DE08-3831-A677-7A47E3218338}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="Class" Value="SQLite.NotifyTableChangedAction" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{8257A7CD-EFF3-3D78-A234-7ADCF4C2005D}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+ExtendedResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{B9BCC55D-4C43-36D5-AAAC-19114657628F}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="Class" Value="SQLite.SQLite3+Result" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{C20B5319-F4A0-3DDA-8577-02239581E227}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="Class" Value="SQLite.CreateTableResult" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="Assembly" Value="SQLite-net, Version=1.8.116.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="CodeBase" Value="file:///[#filBB8FDE18B78A04F3713CF7A6214823A0]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmp9B9A0E90F9F783A6597FDE9C217E67B5" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{F5D1019C-8C31-4035-B9D4-B2F1C597F85E}">
+                <File Id="filC9F5737AD6B42EA0B51C2B500C3A929C" KeyPath="yes" Source="!(wix.serviceloc)\SQLitePCLRaw.batteries_v2.dll" />
+            </Component>
+            <Component Id="cmp677B3F215FBE52E7B3E8E59C8D8AF1DB" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{848BA5DB-D35C-4D96-B43C-53A32E3F85E4}">
+                <File Id="fil42E410F8CD28CA17C1E1676A9958A8BD" KeyPath="yes" Source="!(wix.serviceloc)\SQLitePCLRaw.core.dll" />
+            </Component>
+            <Component Id="cmp5EA6926C30EDB957926B5EAC34186DA7" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{ED2CC8B3-90CE-446B-A9F8-218098220CC4}">
+                <File Id="filA4F2CBA1C6107843EA4877F3F701F312" KeyPath="yes" Source="!(wix.serviceloc)\SQLitePCLRaw.nativelibrary.dll" />
+            </Component>
+            <Component Id="cmpAB1157BA493901A2C7D71915177B1BE6" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{918A2B2D-D509-4431-A6A7-BD968733311E}">
+                <File Id="filEA26F87B0AA2098DC5142C037A4DA480" KeyPath="yes" Source="!(wix.serviceloc)\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
+            </Component>
+            <Component Id="cmp4331207E15199D320999F87FCA3E3463" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{2BB86CFC-2B03-4CD7-831E-C17C822A96B5}">
+                <File Id="filB512B227D0B914A2702330DC7F433007" KeyPath="yes" Source="!(wix.serviceloc)\System.ComponentModel.Composition.dll" />
+            </Component>
+            <Component Id="cmpF27B28DDEC1EEF7E8F7A01CFD3318801" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{0899AE68-D44D-40FD-A974-98248F06E1E0}">
+                <File Id="fil5D193DCEB8AC2332501E70FFE106C113" KeyPath="yes" Source="!(wix.serviceloc)\System.ComponentModel.Composition.Registration.dll" />
+            </Component>
+            <Component Id="cmp08C930461580F96D456F3DC7FE6B833C" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{0BEF43EC-C521-46F5-814E-E10A7ACCA2A9}">
+                <File Id="fil7739E5D0568CFB80ABB08CBC2B51B12B" KeyPath="yes" Source="!(wix.serviceloc)\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmpB4D9D41AAA0529F2C91B5872E401EBE8" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{316B015B-1F34-42E4-A237-0088B4F05CBF}">
+                <File Id="fil7D290D83AAC2666615672EDD96AE4DCF" KeyPath="yes" Source="!(wix.serviceloc)\System.Data.OleDb.dll" />
+            </Component>
+            <Component Id="cmp16C6BA072AC8ACDFB46C0696C5081D0C" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{AA0D8A64-C377-4A12-B612-A095C689B9EC}">
+                <File Id="fil137A243CBEF33C86AB4537B01D17D361" KeyPath="yes" Source="!(wix.serviceloc)\System.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmp20B3C79CBEC07CF67192129D8DE9D1ED" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{6D37F1F3-D755-46B5-84EB-A812221B32FA}">
+                <File Id="fil7F4B49058F0F979EAED8CF08E6DD7B3B" KeyPath="yes" Source="!(wix.serviceloc)\System.Data.SQLite.dll" />
+            </Component>
+            <Component Id="cmpDB02BD3A29FE4AF9204CEE7E1C9B3858" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{C6D14FE4-B3B5-4013-A73C-33749A90C64D}">
+                <File Id="fil42F54920C994ECEA7564B397303D6483" KeyPath="yes" Source="!(wix.serviceloc)\System.Data.SQLite.EF6.dll" />
+            </Component>
+            <Component Id="cmpA24F7F92E7C5490AE0E019EF3DC5287D" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{0A9CEC87-F353-48B0-BAA3-114F57C970AD}">
+                <File Id="fil9398EA66157B019A267237214459C09E" KeyPath="yes" Source="!(wix.serviceloc)\System.DirectoryServices.AccountManagement.dll" />
+            </Component>
+            <Component Id="cmp3D23D9F63BE1F651066D14E20A2DC8C9" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{6310D485-C8F8-4072-AEBC-F83D8306186C}">
+                <File Id="filE45D5C1A9609051D2DB29D8A58A6D85F" KeyPath="yes" Source="!(wix.serviceloc)\System.DirectoryServices.Protocols.dll" />
+            </Component>
+            <Component Id="cmpBF146359D356455224BBD6F9F37E8D15" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{2DF68D53-428C-4B55-AC2C-8A1218723970}">
+                <File Id="fil70A592F62330CDF62613C685E194F6A2" KeyPath="yes" Source="!(wix.serviceloc)\System.IO.Ports.dll" />
+            </Component>
+            <Component Id="cmp40D7B344832E597189B85372AF2793E1" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{D3FDD2BC-D5D0-419D-A904-01810CECF9C0}">
+                <File Id="fil57E3866EA310CEBF1CE3A22A94E0ADC1" KeyPath="yes" Source="!(wix.serviceloc)\System.Json.dll" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Class" Value="System.Json.JsonType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Assembly" Value="System.Json, Version=2.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="CodeBase" Value="file:///[#fil57E3866EA310CEBF1CE3A22A94E0ADC1]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmpF203821C71293552AC41FC55D0CDB736" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{B9CF105E-B816-477E-9BCE-E14F72314483}">
+                <File Id="fil0F7044FF08E5680BCBD9EEFC8ABCC1DB" KeyPath="yes" Source="!(wix.serviceloc)\System.Management.dll" />
+            </Component>
+            <Component Id="cmpA854DCF5589AB99288FF91FDF87A156D" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{9EBE6C0E-7354-4B87-B023-27F9678376C3}">
+                <File Id="filB3D19D61BABD7359A46F40D489876864" KeyPath="yes" Source="!(wix.serviceloc)\System.Private.ServiceModel.dll" />
+            </Component>
+            <Component Id="cmp5C15CAA0CA14AC2B2AB95808BBBA0A38" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{208431FE-B9EE-460F-8375-B3D878610831}">
+                <File Id="filCDA1857BF974AF24D31882BC66487E9F" KeyPath="yes" Source="!(wix.serviceloc)\System.Reflection.Context.dll" />
+            </Component>
+            <Component Id="cmpB90CBE04869EF59E36FC071FC19ED7AD" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{72BD98D5-3EF6-422F-ADE8-CD32C755806F}">
+                <File Id="fil160C4028237644B17C73F77E7A1113BB" KeyPath="yes" Source="!(wix.serviceloc)\System.Runtime.Caching.dll" />
+            </Component>
+            <Component Id="cmp5FE799C07DB08A59B224B29996F7499F" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{198D0FC4-3B43-468F-A691-3D03DE879AAB}">
+                <Class Id="{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}" Context="InprocServer32" Description="System.ServiceModel.ComIntegration.DllHostInitializer" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.ServiceModel.ComIntegration.DllHostInitializer" Description="System.ServiceModel.ComIntegration.DllHostInitializer" />
+                </Class>
+                <Class Id="{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}" Context="InprocServer32" Description="System.ServiceModel.ComIntegration.ServiceMoniker" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.ServiceModel.ComIntegration.ServiceMoniker" Description="System.ServiceModel.ComIntegration.ServiceMoniker" />
+                </Class>
+                <File Id="filA18A4940D7626291204499743AE65D11" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32\4.0.0.0" Name="Class" Value="System.ServiceModel.ComIntegration.DllHostInitializer" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32\4.0.0.0" Name="Assembly" Value="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32\4.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32\4.0.0.0" Name="CodeBase" Value="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32" Name="Class" Value="System.ServiceModel.ComIntegration.DllHostInitializer" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32" Name="Assembly" Value="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{59856830-3ECB-4D29-9CFE-DDD0F74B96A2}\InprocServer32" Name="CodeBase" Value="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32\4.0.0.0" Name="Class" Value="System.ServiceModel.ComIntegration.ServiceMoniker" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32\4.0.0.0" Name="Assembly" Value="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32\4.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32\4.0.0.0" Name="CodeBase" Value="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32" Name="Class" Value="System.ServiceModel.ComIntegration.ServiceMoniker" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32" Name="Assembly" Value="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE39D6F3-DAB7-41B3-9F7D-BD1CC4E92399}\InprocServer32" Name="CodeBase" Value="file:///C:/Windows/Microsoft.Net/assembly/GAC_MSIL/System.ServiceModel/v4.0_4.0.0.0__b77a5c561934e089/System.ServiceModel.dll" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmp431CCFF6C1196DC36D9928078EFDA3C9" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{2007976D-F8F0-492E-9BB2-721B0D93C017}">
+                <File Id="fil13CE5AA8E8DD21FD27D391238A1592B5" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.Duplex.dll" />
+            </Component>
+            <Component Id="cmpD09A08905F0D1843E95B11BDCEAABCF3" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{99E3D049-0AD1-40BE-97FB-D073E573DDF3}">
+                <File Id="fil95BFD325D6A6EBD2641465DCC6F12FCA" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.Http.dll" />
+            </Component>
+            <Component Id="cmpF541136C89670ABE4B5A842D7F44F94E" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{C841644F-F757-41A8-AACA-09B11009A20E}">
+                <File Id="filD621F33F9C657E8974D5D2478DFAA0F2" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.NetTcp.dll" />
+            </Component>
+            <Component Id="cmp92F5DD28E233493A88B2797D8A0DE4E5" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{AACCBDA2-0FB4-4428-ABA6-516B977EF205}">
+                <File Id="filC068FB3816E0D9BCF27D640CFEB55FAC" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.Primitives.dll" />
+            </Component>
+            <Component Id="cmpDB5FFCF4239076126B64A015EDB0A41E" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{D45E923A-04C3-4FCE-9791-7D50798AD307}">
+                <File Id="filE210643977E731B4802B8A55946EE9D1" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.Security.dll" />
+            </Component>
+            <Component Id="cmp3AA1B8D8D973889ED917D158806113F1" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{415ED6A8-28A0-4A76-9537-BD986658AA2F}">
+                <File Id="filF54AA2A8268764962132BAFEC3562049" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceModel.Syndication.dll" />
+            </Component>
+            <Component Id="cmp4688FA5F90FB5ADDC3EB8B50307B2E59" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{3EFF4CAE-7CA0-4C62-9C0D-5B6C3DBF9AEC}">
+                <File Id="fil730AE47D7BCD4531C9B67419FC947F1C" KeyPath="yes" Source="!(wix.serviceloc)\System.ServiceProcess.ServiceController.dll" />
+            </Component>
+            <Component Id="cmp8CF41A9EC70D895A5B2FCDDCA5AC339D" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{524CCF1D-246E-4675-97BE-4F0EEF1ADF6A}">
+                <File Id="fil580D5E024D907083E2A886FE2E5BD9CA" KeyPath="yes" Source="!(wix.serviceloc)\System.Speech.dll" />
+            </Component>
+            <Component Id="cmpBE998A8BB169EBA7EB4F6774CB50910E" Directory="dirE35C1B7E07F08A239D7DA3E7C81D0F38" Guid="{3EC183A2-620D-4F26-941A-3D5972A28B53}">
+                <Class Id="{03800550-88D9-367C-8787-395286BA289B}" Context="InprocServer32" Description="System.Web.Services.Description.SoapFaultBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapFaultBinding" Description="System.Web.Services.Description.SoapFaultBinding" />
+                </Class>
+                <Class Id="{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}" Context="InprocServer32" Description="System.Web.Services.Description.HttpUrlEncodedBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.HttpUrlEncodedBinding" Description="System.Web.Services.Description.HttpUrlEncodedBinding" />
+                </Class>
+                <Class Id="{1322D896-9D0A-33F7-B4D0-23551366A849}" Context="InprocServer32" Description="System.Web.Services.Description.MimeTextBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimeTextBinding" Description="System.Web.Services.Description.MimeTextBinding" />
+                </Class>
+                <Class Id="{13F06329-2BBE-301C-A6E4-787333BFBF36}" Context="InprocServer32" Description="System.Web.Services.Description.Soap12OperationBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Soap12OperationBinding" Description="System.Web.Services.Description.Soap12OperationBinding" />
+                </Class>
+                <Class Id="{1873D65A-AC68-361F-9CF5-4E87E1E68292}" Context="InprocServer32" Description="System.Web.Services.Description.MimeTextMatchCollection" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimeTextMatchCollection" Description="System.Web.Services.Description.MimeTextMatchCollection" />
+                </Class>
+                <Class Id="{1E7517DD-3890-3B92-AAE2-DFFC415F5118}" Context="InprocServer32" Description="System.Web.Services.Description.Service" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Service" Description="System.Web.Services.Description.Service" />
+                </Class>
+                <Class Id="{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}" Context="InprocServer32" Description="System.Web.Services.Configuration.XmlFormatExtensionPrefixAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Configuration.XmlFormatExtensionPrefixAttribute" Description="System.Web.Services.Configuration.XmlFormatExtensionPrefixAttribute" />
+                </Class>
+                <Class Id="{29F2E06C-CE58-3372-BDDD-84945FD4B085}" Context="InprocServer32" Description="System.Web.Services.Description.SoapBodyBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapBodyBinding" Description="System.Web.Services.Description.SoapBodyBinding" />
+                </Class>
+                <Class Id="{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}" Context="InprocServer32" Description="System.Web.Services.Description.OperationBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.OperationBinding" Description="System.Web.Services.Description.OperationBinding" />
+                </Class>
+                <Class Id="{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}" Context="InprocServer32" Description="System.Web.Services.Description.HttpAddressBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.HttpAddressBinding" Description="System.Web.Services.Description.HttpAddressBinding" />
+                </Class>
+                <Class Id="{3B141C74-F70C-3C11-8993-68D9AB51B488}" Context="InprocServer32" Description="System.Web.Services.Description.Port" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Port" Description="System.Web.Services.Description.Port" />
+                </Class>
+                <Class Id="{3FAA15DD-5733-3816-9CDF-536ABB281439}" Context="InprocServer32" Description="System.Web.Services.Description.SoapHeaderFaultBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapHeaderFaultBinding" Description="System.Web.Services.Description.SoapHeaderFaultBinding" />
+                </Class>
+                <Class Id="{42CA1525-CFBF-38D1-860C-D885ED0A838F}" Context="InprocServer32" Description="System.Web.Services.Description.Message" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Message" Description="System.Web.Services.Description.Message" />
+                </Class>
+                <Class Id="{43979196-F56E-3EBE-8A12-D52E2C3326E1}" Context="InprocServer32" Description="System.Web.Services.Description.InputBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.InputBinding" Description="System.Web.Services.Description.InputBinding" />
+                </Class>
+                <Class Id="{5D9C255D-7F3B-3559-AC6B-AB174F28F248}" Context="InprocServer32" Description="System.Web.Services.Description.OutputBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.OutputBinding" Description="System.Web.Services.Description.OutputBinding" />
+                </Class>
+                <Class Id="{5E32C100-E043-33DD-88BE-90DE97CCC165}" Context="InprocServer32" Description="System.Web.Services.Description.Soap12Binding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Soap12Binding" Description="System.Web.Services.Description.Soap12Binding" />
+                </Class>
+                <Class Id="{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}" Context="InprocServer32" Description="System.Web.Services.Description.SoapOperationBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapOperationBinding" Description="System.Web.Services.Description.SoapOperationBinding" />
+                </Class>
+                <Class Id="{6009AD6C-C99F-3B87-A430-FE0C78758D00}" Context="InprocServer32" Description="System.Web.Services.Description.Binding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Binding" Description="System.Web.Services.Description.Binding" />
+                </Class>
+                <Class Id="{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}" Context="InprocServer32" Description="System.Web.Services.Description.MimePart" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimePart" Description="System.Web.Services.Description.MimePart" />
+                </Class>
+                <Class Id="{68081837-DD18-3110-A04D-9CEDAF23296B}" Context="InprocServer32" Description="System.Web.Services.Description.MimeMultipartRelatedBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimeMultipartRelatedBinding" Description="System.Web.Services.Description.MimeMultipartRelatedBinding" />
+                </Class>
+                <Class Id="{77843065-31C0-3EB2-A832-4F7EC15C5CF7}" Context="InprocServer32" Description="System.Web.Services.Description.OperationInput" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.OperationInput" Description="System.Web.Services.Description.OperationInput" />
+                </Class>
+                <Class Id="{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}" Context="InprocServer32" Description="System.Web.Services.Description.HttpBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.HttpBinding" Description="System.Web.Services.Description.HttpBinding" />
+                </Class>
+                <Class Id="{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}" Context="InprocServer32" Description="System.Web.Services.Description.SoapHeaderBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapHeaderBinding" Description="System.Web.Services.Description.SoapHeaderBinding" />
+                </Class>
+                <Class Id="{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}" Context="InprocServer32" Description="System.Web.Services.Description.Types" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Types" Description="System.Web.Services.Description.Types" />
+                </Class>
+                <Class Id="{84012FC4-B1D6-3452-9CDF-9717D569E12F}" Context="InprocServer32" Description="System.Web.Services.Description.OperationOutput" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.OperationOutput" Description="System.Web.Services.Description.OperationOutput" />
+                </Class>
+                <Class Id="{89A861D7-048A-3E46-B859-F39188C94906}" Context="InprocServer32" Description="System.Web.Services.Description.MimeTextMatch" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimeTextMatch" Description="System.Web.Services.Description.MimeTextMatch" />
+                </Class>
+                <Class Id="{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}" Context="InprocServer32" Description="System.Web.Services.Description.HttpOperationBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.HttpOperationBinding" Description="System.Web.Services.Description.HttpOperationBinding" />
+                </Class>
+                <Class Id="{A4BC4745-2ED3-3640-A325-CFD72D1E7757}" Context="InprocServer32" Description="System.Web.Services.Description.Soap12BodyBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Soap12BodyBinding" Description="System.Web.Services.Description.Soap12BodyBinding" />
+                </Class>
+                <Class Id="{A9E24D32-786B-3651-A7E5-93D671F715F1}" Context="InprocServer32" Description="System.Web.Services.Description.Soap12AddressBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Soap12AddressBinding" Description="System.Web.Services.Description.Soap12AddressBinding" />
+                </Class>
+                <Class Id="{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}" Context="InprocServer32" Description="System.Web.Services.Description.MimeXmlBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimeXmlBinding" Description="System.Web.Services.Description.MimeXmlBinding" />
+                </Class>
+                <Class Id="{BF38DCE2-208F-3221-B647-AEB48DA40EEF}" Context="InprocServer32" Description="System.Web.Services.Description.FaultBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.FaultBinding" Description="System.Web.Services.Description.FaultBinding" />
+                </Class>
+                <Class Id="{C2029B68-0A31-3252-BBA4-5317EDBF682E}" Context="InprocServer32" Description="System.Web.Services.Configuration.XmlFormatExtensionAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Configuration.XmlFormatExtensionAttribute" Description="System.Web.Services.Configuration.XmlFormatExtensionAttribute" />
+                </Class>
+                <Class Id="{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}" Context="InprocServer32" Description="System.Web.Services.Description.MessagePart" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MessagePart" Description="System.Web.Services.Description.MessagePart" />
+                </Class>
+                <Class Id="{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}" Context="InprocServer32" Description="System.Web.Services.Description.MimeContentBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimeContentBinding" Description="System.Web.Services.Description.MimeContentBinding" />
+                </Class>
+                <Class Id="{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}" Context="InprocServer32" Description="System.Web.Services.Description.OperationFault" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.OperationFault" Description="System.Web.Services.Description.OperationFault" />
+                </Class>
+                <Class Id="{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}" Context="InprocServer32" Description="System.Web.Services.Description.SoapAddressBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapAddressBinding" Description="System.Web.Services.Description.SoapAddressBinding" />
+                </Class>
+                <Class Id="{D55371EE-FF55-3A47-9589-F8C80F78A70A}" Context="InprocServer32" Description="System.Web.Services.Description.PortType" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.PortType" Description="System.Web.Services.Description.PortType" />
+                </Class>
+                <Class Id="{D5FC45BD-B5FD-3685-9C76-8673BCE28033}" Context="InprocServer32" Description="System.Web.Services.Description.SoapBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.SoapBinding" Description="System.Web.Services.Description.SoapBinding" />
+                </Class>
+                <Class Id="{D79EF986-F64D-3606-88DA-076E38828772}" Context="InprocServer32" Description="System.Web.Services.Description.Soap12FaultBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Soap12FaultBinding" Description="System.Web.Services.Description.Soap12FaultBinding" />
+                </Class>
+                <Class Id="{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}" Context="InprocServer32" Description="System.Web.Services.Description.Operation" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Operation" Description="System.Web.Services.Description.Operation" />
+                </Class>
+                <Class Id="{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}" Context="InprocServer32" Description="System.Web.Services.Description.ServiceDescriptionCollection" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.ServiceDescriptionCollection" Description="System.Web.Services.Description.ServiceDescriptionCollection" />
+                </Class>
+                <Class Id="{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}" Context="InprocServer32" Description="System.Web.Services.Description.ServiceDescription" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.ServiceDescription" Description="System.Web.Services.Description.ServiceDescription" />
+                </Class>
+                <Class Id="{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}" Context="InprocServer32" Description="System.Web.Services.Description.HttpUrlReplacementBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.HttpUrlReplacementBinding" Description="System.Web.Services.Description.HttpUrlReplacementBinding" />
+                </Class>
+                <Class Id="{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}" Context="InprocServer32" Description="System.Web.Services.Description.Soap12HeaderBinding" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Soap12HeaderBinding" Description="System.Web.Services.Description.Soap12HeaderBinding" />
+                </Class>
+                <Class Id="{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}" Context="InprocServer32" Description="System.Web.Services.Description.MimePartCollection" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.MimePartCollection" Description="System.Web.Services.Description.MimePartCollection" />
+                </Class>
+                <Class Id="{F8068290-54E6-39F9-93F9-DB35492CEBF3}" Context="InprocServer32" Description="System.Web.Services.Description.Import" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="System.Web.Services.Description.Import" Description="System.Web.Services.Description.Import" />
+                </Class>
+                <File Id="fil0CF3B90DC4F7FA086233D03C02D3F4A0" KeyPath="yes" Source="!(wix.serviceloc)\System.Web.Services.Description.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapFaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapFaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{03800550-88D9-367C-8787-395286BA289B}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.HttpUrlEncodedBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32" Name="Class" Value="System.Web.Services.Description.HttpUrlEncodedBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{0EF438F1-4E9B-3D43-930D-2A09CAE2B949}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimeTextBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimeTextBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1322D896-9D0A-33F7-B4D0-23551366A849}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Soap12OperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Soap12OperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{13F06329-2BBE-301C-A6E4-787333BFBF36}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimeTextMatchCollection" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimeTextMatchCollection" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1873D65A-AC68-361F-9CF5-4E87E1E68292}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Service" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Service" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{1E7517DD-3890-3B92-AAE2-DFFC415F5118}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Configuration.XmlFormatExtensionPrefixAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32" Name="Class" Value="System.Web.Services.Configuration.XmlFormatExtensionPrefixAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{294ED72A-8EB2-393B-AB9B-A6EFFD5B5E3F}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapBodyBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapBodyBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{29F2E06C-CE58-3372-BDDD-84945FD4B085}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.OperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32" Name="Class" Value="System.Web.Services.Description.OperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{2F3F0B3F-AF8B-3E1B-910D-8FDBD0CDA313}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.HttpAddressBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32" Name="Class" Value="System.Web.Services.Description.HttpAddressBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{340F3EB9-AEE6-3ABA-B0A5-4C3FD00DCBEC}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Port" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Port" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3B141C74-F70C-3C11-8993-68D9AB51B488}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapHeaderFaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapHeaderFaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3FAA15DD-5733-3816-9CDF-536ABB281439}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Message" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Message" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{42CA1525-CFBF-38D1-860C-D885ED0A838F}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.InputBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32" Name="Class" Value="System.Web.Services.Description.InputBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{43979196-F56E-3EBE-8A12-D52E2C3326E1}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.OutputBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32" Name="Class" Value="System.Web.Services.Description.OutputBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5D9C255D-7F3B-3559-AC6B-AB174F28F248}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Soap12Binding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Soap12Binding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E32C100-E043-33DD-88BE-90DE97CCC165}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapOperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapOperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{5E5B2C05-2818-36FD-AC8F-33A4FFD8D0C4}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Binding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Binding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{6009AD6C-C99F-3B87-A430-FE0C78758D00}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimePart" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimePart" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{65E8F567-A6F1-31FB-8C98-1C3E3120E2B5}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimeMultipartRelatedBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimeMultipartRelatedBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{68081837-DD18-3110-A04D-9CEDAF23296B}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.OperationInput" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32" Name="Class" Value="System.Web.Services.Description.OperationInput" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77843065-31C0-3EB2-A832-4F7EC15C5CF7}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.HttpBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32" Name="Class" Value="System.Web.Services.Description.HttpBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{77ADC3F2-83B7-316C-9F76-7A66A2F8D89D}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapHeaderBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapHeaderBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{78A89E00-59D3-316C-9F5E-4BFCEC10AD63}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Types" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Types" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{81E4F112-6FFC-32FD-B0A8-E0564F7B3260}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.OperationOutput" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32" Name="Class" Value="System.Web.Services.Description.OperationOutput" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{84012FC4-B1D6-3452-9CDF-9717D569E12F}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimeTextMatch" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimeTextMatch" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{89A861D7-048A-3E46-B859-F39188C94906}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.HttpOperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32" Name="Class" Value="System.Web.Services.Description.HttpOperationBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{8E3921B2-2D2F-32DB-8AE5-D2303DBA73BB}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Soap12BodyBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Soap12BodyBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A4BC4745-2ED3-3640-A325-CFD72D1E7757}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Soap12AddressBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Soap12AddressBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{A9E24D32-786B-3651-A7E5-93D671F715F1}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimeXmlBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimeXmlBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{B0A8D854-82D3-3442-9BFC-D74C0B7E8BD2}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.FaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32" Name="Class" Value="System.Web.Services.Description.FaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{BF38DCE2-208F-3221-B647-AEB48DA40EEF}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Configuration.XmlFormatExtensionAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32" Name="Class" Value="System.Web.Services.Configuration.XmlFormatExtensionAttribute" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C2029B68-0A31-3252-BBA4-5317EDBF682E}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MessagePart" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MessagePart" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C3B40F0F-F95E-3FE3-B504-9FF9C2D6B98F}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimeContentBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimeContentBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{C420F1F4-008E-3BFD-BD8C-753A5D0FF119}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.OperationFault" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32" Name="Class" Value="System.Web.Services.Description.OperationFault" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{CE8810A2-B82E-354F-8A4D-A6EA124D7EE5}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapAddressBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapAddressBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D3D2CA6E-91FA-3183-9B0E-BFD5BFA69C62}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.PortType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32" Name="Class" Value="System.Web.Services.Description.PortType" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D55371EE-FF55-3A47-9589-F8C80F78A70A}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32" Name="Class" Value="System.Web.Services.Description.SoapBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D5FC45BD-B5FD-3685-9C76-8673BCE28033}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Soap12FaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Soap12FaultBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{D79EF986-F64D-3606-88DA-076E38828772}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Operation" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Operation" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{DE7B655F-88ED-3E9A-96B8-7E392D9B3E38}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.ServiceDescriptionCollection" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32" Name="Class" Value="System.Web.Services.Description.ServiceDescriptionCollection" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E2DC23E7-9016-3B76-8FF8-23B00F01DB03}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.ServiceDescription" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32" Name="Class" Value="System.Web.Services.Description.ServiceDescription" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{E63991E7-462A-35DA-8BDF-CE2D275AFAE2}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.HttpUrlReplacementBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32" Name="Class" Value="System.Web.Services.Description.HttpUrlReplacementBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{EDF5A978-2EA0-37F5-B2A9-5D1E73C919FF}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Soap12HeaderBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Soap12HeaderBinding" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F0608CCA-46F9-35C8-A3BA-AC3F54DB79E4}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.MimePartCollection" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32" Name="Class" Value="System.Web.Services.Description.MimePartCollection" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F4C6C78D-5C71-3519-96F8-0799FDE7D1C9}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32\4.9.0.0" Name="Class" Value="System.Web.Services.Description.Import" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32" Name="Class" Value="System.Web.Services.Description.Import" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{F8068290-54E6-39F9-93F9-DB35492CEBF3}\InprocServer32" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{12806C45-20EF-373A-B84A-A203A3EEA396}\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapBindingStyle" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{12806C45-20EF-373A-B84A-A203A3EEA396}\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{12806C45-20EF-373A-B84A-A203A3EEA396}\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{12806C45-20EF-373A-B84A-A203A3EEA396}\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{152D530E-9156-37A1-AE2E-0469A7B2C531}\4.9.0.0" Name="Class" Value="System.Web.Services.Description.SoapBindingUse" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{152D530E-9156-37A1-AE2E-0469A7B2C531}\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{152D530E-9156-37A1-AE2E-0469A7B2C531}\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{152D530E-9156-37A1-AE2E-0469A7B2C531}\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{3C0045B7-7422-3805-B052-E776EA17CA73}\4.9.0.0" Name="Class" Value="System.Web.Services.WsiProfiles" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{3C0045B7-7422-3805-B052-E776EA17CA73}\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{3C0045B7-7422-3805-B052-E776EA17CA73}\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{3C0045B7-7422-3805-B052-E776EA17CA73}\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{D6DE3A6E-E042-3E24-AE2A-2130ABB70D00}\4.9.0.0" Name="Class" Value="System.Web.Services.Description.OperationFlow" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{D6DE3A6E-E042-3E24-AE2A-2130ABB70D00}\4.9.0.0" Name="Assembly" Value="System.Web.Services.Description, Version=4.9.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{D6DE3A6E-E042-3E24-AE2A-2130ABB70D00}\4.9.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="Record\{D6DE3A6E-E042-3E24-AE2A-2130ABB70D00}\4.9.0.0" Name="CodeBase" Value="file:///[#fil0CF3B90DC4F7FA086233D03C02D3F4A0]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmpC46CC9B70C58BAADC5FDF69F6B8CD84B" Directory="dir04D77CBE504B0C71CE5A3A1C62EE89CD" Guid="{225DF5E5-E1B6-4E7B-A4F9-1F5AFCC998A4}">
+                <File Id="fil8CE3BCEA5D3B1192B3BF74E7BF03E11F" KeyPath="yes" Source="!(wix.serviceloc)\cs\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmp5318244EC410B465D45752E78470C661" Directory="dir04D77CBE504B0C71CE5A3A1C62EE89CD" Guid="{41F9B090-5706-4BDF-9234-968CA7CBCFA6}">
+                <File Id="fil9D07951C1DC349E5DD82B37522AD99FB" KeyPath="yes" Source="!(wix.serviceloc)\cs\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp16F118BFA0E9C930E0F11FEE63A21C6D" Directory="dir0548D912D9E5D3AB2B6A0ECBB29F3BDC" Guid="{64B6855C-76B1-4CBD-AB31-661A24F7B9E6}">
+                <File Id="fil9856DCA50B6DA69159C8C81B5FA1B242" KeyPath="yes" Source="!(wix.serviceloc)\de\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmp38D1B06758DC77DE0DED88D8911EA462" Directory="dir0548D912D9E5D3AB2B6A0ECBB29F3BDC" Guid="{C571DEC8-FBB1-44F2-A283-D9F6107A70C8}">
+                <File Id="fil5FD6BB33733EE6378521F6A64922690C" KeyPath="yes" Source="!(wix.serviceloc)\de\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp69C94BBF1A50061AEDFA2CDDB9AC7F67" Directory="dir510A8EF0F06EFE8ACADAA8CDBDE8C2AD" Guid="{E4AD4367-9FDC-49CA-8538-6481ACF09162}">
+                <File Id="filE051B35F1CA2355B3A94294797528814" KeyPath="yes" Source="!(wix.serviceloc)\es\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpF5F5E01871C17FB5E740826E5225FFFA" Directory="dir510A8EF0F06EFE8ACADAA8CDBDE8C2AD" Guid="{DAF43D47-73F8-49AB-81A4-4166CCAD7637}">
+                <File Id="fil793A43BC73BCC8EBA90060F8B3658AE1" KeyPath="yes" Source="!(wix.serviceloc)\es\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp13CA568AFE111BA1DF7D3CDC05DF1CF7" Directory="dir01B82ECBE0B0B6D524AEC4D7C3E64485" Guid="{0D6C0DDF-13D1-4109-B87D-7FC3623F55F2}">
+                <File Id="fil1072520B6C4BD8131DDE0706A7EB1FE5" KeyPath="yes" Source="!(wix.serviceloc)\fr\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpCA3E6474F27BCA216F6099B3F4499CFD" Directory="dir01B82ECBE0B0B6D524AEC4D7C3E64485" Guid="{34199E59-A025-4041-8465-C7296150C186}">
+                <File Id="fil2419DCC4E98A6C5FF02C914D0750B2CE" KeyPath="yes" Source="!(wix.serviceloc)\fr\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp434FFB4C3A1A9A8E147748B26CA6B008" Directory="dir7AC871DC66E382C25DDDB3ECC693CF69" Guid="{4E990C84-734C-4B4A-9E6C-EA0B858F8CBA}">
+                <File Id="filADBDF132DF1A3A4CCEE493B3F5669416" KeyPath="yes" Source="!(wix.serviceloc)\it\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmp749C18D77D46FF5FDC6A4A19DDE42258" Directory="dir7AC871DC66E382C25DDDB3ECC693CF69" Guid="{5875AB83-070F-4E71-AF86-96E2F766BDC2}">
+                <File Id="fil5285DCE169512731CC3DA7BE568448D7" KeyPath="yes" Source="!(wix.serviceloc)\it\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp93CD1980EEE8F15F2DFB79884522570B" Directory="dirFA5379C46037F2F8ED1F2E80AD7ED6B3" Guid="{6C81199D-A0BD-438E-8EBD-759AC1FE8E55}">
+                <File Id="fil620EF33B4447879D32EE01777B39F8A9" KeyPath="yes" Source="!(wix.serviceloc)\ja\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpFDBB5D62CF29AAC04D4C14FD861F2AAD" Directory="dirFA5379C46037F2F8ED1F2E80AD7ED6B3" Guid="{D9AD6DBB-EDE0-4339-A72B-2E6BAF346E4E}">
+                <File Id="filCFD95ED2D715A553C4C170403F7EAA71" KeyPath="yes" Source="!(wix.serviceloc)\ja\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmpAF760B726C5712570ECECB8EA7892DA2" Directory="dir5DAFD5A233B74BAD14B01BC93B44BFA2" Guid="{F2DD44DF-75EA-4AF4-9D60-C61C921EC1E7}">
+                <File Id="fil737CD746922B036B54C84187105C09A0" KeyPath="yes" Source="!(wix.serviceloc)\ko\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmp9A52FE3894B6FB4F5718C22651F5E293" Directory="dir5DAFD5A233B74BAD14B01BC93B44BFA2" Guid="{273900B4-594B-47AA-853E-000C61644406}">
+                <File Id="fil9449C46D099BD9194FAE63A1CFE8B10C" KeyPath="yes" Source="!(wix.serviceloc)\ko\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp250E119EA4C7E921568033A4E1C944E9" Directory="dir7AA139E4B97026581F94143659344883" Guid="{640F3B49-BDBB-4621-ACD0-3CFAB634C47B}">
+                <File Id="filEBD1EC3A5FC27240C557F20946BDB127" KeyPath="yes" Source="!(wix.serviceloc)\pl\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpECF29F9A29A07AF839367EA02CA6B062" Directory="dir7AA139E4B97026581F94143659344883" Guid="{F422A109-BE52-4C38-8E4E-97F55D7DAEEF}">
+                <File Id="filF04FACDE8389FD3849D8EF2E702EC086" KeyPath="yes" Source="!(wix.serviceloc)\pl\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp3DAC9ED0FF4E8D3FC838DE79692C95A4" Directory="dir26797B7422571F0E6FF47E3CF3AC990F" Guid="{B137CBE2-7541-48AA-A3B3-69DD6CE75E53}">
+                <File Id="filF678F275CB28A24EB038C57001E5CEE4" KeyPath="yes" Source="!(wix.serviceloc)\pt-BR\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmp107A24C12579DF731B5A66D52C7B6A89" Directory="dir26797B7422571F0E6FF47E3CF3AC990F" Guid="{85556B01-F3E9-4F03-ADD4-E94EF85F3234}">
+                <File Id="fil061403A6C8E4CC8175E1C3BC9D7D7679" KeyPath="yes" Source="!(wix.serviceloc)\pt-BR\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmpB4584C509A3AA7DCEA49733F7276B84B" Directory="dir8477EC359EDEB593271F098082642F35" Guid="{6CF85231-EC53-496F-9BAB-7142D7C96BCA}">
+                <File Id="filE898A8BADBD52F16999BF54FF91D4545" KeyPath="yes" Source="!(wix.serviceloc)\ru\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpCAF37791230E352B0260ECF287A229C1" Directory="dir8477EC359EDEB593271F098082642F35" Guid="{D3C5C84D-944F-41AA-AD38-6598867DB7FE}">
+                <File Id="fil74882B24D2CC078BCAFDE0A48BE329D5" KeyPath="yes" Source="!(wix.serviceloc)\ru\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp933808BBA481FE56D7485B069CDF28DD" Directory="dir9158A5DD1F84AD7133F429134575AD8C" Guid="{D9AA7F2B-0FC6-4423-BCE6-A04CA22620A3}">
+                <File Id="filB89CE9307FD7077B10CBDE56FFBFEA36" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\alpine-x64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpE42C3D99ACCC0ED8054DC2B54856E404" Directory="dir02837758FC424A9CACB3ED34B4000E13" Guid="{FEF07A8F-66A9-44BE-97AF-105A4B3109F2}">
+                <File Id="fil9D8D706B1C9F0CA9D0EE208EDD18E67A" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\freebsd\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmp40E87C512298ABC411E30301DEB7489A" Directory="dir12031917A410F7CE1412EF8858CD997C" Guid="{8EB71903-5354-4CD1-90F6-8020547EC38A}">
+                <File Id="fil180E14BC3ED6D90ABF3633F831733E56" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\illumos\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmp80B3B40B27F8C92BF14843293C0003C2" Directory="dir6134CB7205272A2D72B22FC9B4D3B6C3" Guid="{BCD60F58-DD01-4171-8159-D5DFA1B01FF8}">
+                <File Id="fil40FD27E1781A51886C9CC32BCD845D4F" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\ios\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmp3D787EA2BAE6D1003B846CE338AA2CF6" Directory="dir0FE91D4003F1F6E6204B91137753B16A" Guid="{C2F94BF3-BED6-4B9A-91E3-7DA0FC61B9EF}">
+                <File Id="fil9319C489BA743081F160038333961786" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmpDE14D76AF7A3A4B06FC26D0678204CD1" Directory="dir0FE91D4003F1F6E6204B91137753B16A" Guid="{9E98752C-2D65-4B64-9DC8-8B8CC403F231}">
+                <File Id="filFF1BE895F0199E7B4360486BA61B8879" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll" />
+            </Component>
+            <Component Id="cmp3FC2BC609BC5F276641EA20DB97B47C1" Directory="dir3AC8EED754208C550F432A1CEC5DB0A5" Guid="{F0BEEC48-9B85-48E9-9B3B-1774DC85FB8B}">
+                <File Id="filDC5DE6C3444A7FCB6C4137FA6355A339" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-arm\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp759E59CD95426A6FF9628A8987797383" Directory="dir3AC8EED754208C550F432A1CEC5DB0A5" Guid="{2062B5C8-FB23-460B-A77A-1944CE88674F}">
+                <File Id="fil7606D7D737642D0EB68209E05CC40840" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so" />
+            </Component>
+            <Component Id="cmp852302368E77064D728D22837AE7A397" Directory="dir03AF398DB7E235AB64C6C9439987076A" Guid="{011FD9AB-3B11-464E-B9E5-E6B18970BE2D}">
+                <File Id="fil7AF1F3F9198FD68C0BB1175F557787BC" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-arm64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp39913C83A29951B9FBF300FC54736678" Directory="dir03AF398DB7E235AB64C6C9439987076A" Guid="{A61DCE9A-937E-4A26-B1EF-11DAB7202BE6}">
+                <File Id="fil410251EBEC607C892FBF242A6C17E94D" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so" />
+            </Component>
+            <Component Id="cmpDCB27208C82FDDC3F21F2F66ED6DD03F" Directory="dirEE7FDB8EF96D5344C3DC26D725B0A962" Guid="{09C3F985-BB21-4302-A018-2180C0DF2B98}">
+                <File Id="fil62E8420A109FDF52D0B677740F27996E" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-armel\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp57ACB0491490DA211042F48D79105AC5" Directory="dir238518F007EBA1801AAC5A6895A75B64" Guid="{0ADE6FE7-D668-4888-A248-0E6F04718281}">
+                <File Id="filAE99B0AA372B0A6D9476F96225C64653" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-mips64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpD7A25AADB94D7E02A0F280FBEB788C81" Directory="dir3A104FE5A9E7D5B1C9D1C18A983905A6" Guid="{3A61CCCB-35AE-4753-953C-7110DE0C132F}">
+                <File Id="filF6421380311ECFB3E4AD459C122F2F88" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpEF8D88F70EB52239A5E4CDEA93308DD4" Directory="dirA4E85EF45BC4EEDD409067E1BEB30CD8" Guid="{9D1AC585-0D21-4420-AE2F-85A0D6E83D98}">
+                <File Id="fil95F2789255D31DC8ED9D463224174977" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-x64\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmpEC8C79BC41775DAED3B3074B33C6B215" Directory="dirA4E85EF45BC4EEDD409067E1BEB30CD8" Guid="{08199F19-7B32-4A24-8869-B9ECF0CC62FA}">
+                <File Id="fil0A730780EFA028550579B7C2346489F9" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so" />
+            </Component>
+            <Component Id="cmpAADC0FB37FBFC1EF69F472BA9F18E9C2" Directory="dirA4E85EF45BC4EEDD409067E1BEB30CD8" Guid="{CAC4FD11-EAD7-4C24-8172-CFC081D0A8D6}">
+                <File Id="fil8FF752F183FE33F94DFE56A866A840D7" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-x64\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp883968FC1BE79FA66E1AF5C161235243" Directory="dirFFAAED108E29B618D419458248A8362E" Guid="{0E886B2B-9B24-4CFE-8FDD-C4070C3199FC}">
+                <File Id="fil8D2675A3B40226823FA71EDC778CDF83" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\linux-x86\native\libe_sqlite3.so" />
+            </Component>
+            <Component Id="cmp7D45092579DC26D27B87A36F1BDCC640" Directory="dirD58A95ABD87E9A3BA13EFBA8FAA94DC5" Guid="{BFBF805A-E824-4CC8-AD02-585559B9D52B}">
+                <File Id="fil988B55AEFED2C417D290CA53A1DA11D9" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\osx\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmpC5D8B3716C2A8EB0ED8BCAEFA7FAB740" Directory="dirD58A95ABD87E9A3BA13EFBA8FAA94DC5" Guid="{524E4A2D-EEC3-4046-8B3E-979D8507E442}">
+                <File Id="fil724F0EC3C10816D81EE23659F907B09F" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll" />
+            </Component>
+            <Component Id="cmp8113C412F620335FD0B3F1BCA860D978" Directory="dir3023526F33E37E1AC4957160D6B54FA5" Guid="{D580974D-E642-45B2-8F62-ED563ABC584D}">
+                <File Id="fil3C0A43B983BF5B7F7BB3D4B6E636654B" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib" />
+            </Component>
+            <Component Id="cmpDF761506D5DC3CBB6A1C510BA4451E0A" Directory="dir3E6A742AF9D94AABA26CDE8122B6D246" Guid="{5357D727-170A-44B9-B91B-7052E4527927}">
+                <File Id="fil781C873F952133BFE6CC671F215FEADE" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\osx-x64\native\libe_sqlite3.dylib" />
+            </Component>
+            <Component Id="cmp11B3B05C814F86D0578C481DB213E557" Directory="dir3E6A742AF9D94AABA26CDE8122B6D246" Guid="{D777D979-425F-414C-AD2D-FD716B40518D}">
+                <File Id="fil129D3DA4BC6654A580164183E604D459" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib" />
+            </Component>
+            <Component Id="cmpD7C09E387F94063E22743077C10E63D3" Directory="dir3E6A742AF9D94AABA26CDE8122B6D246" Guid="{531DB01D-FABF-4B9D-AEE8-A2E3C6B396F0}">
+                <File Id="fil5F55CDB0A47DB5BEAA943EC80CF90CB0" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\osx-x64\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp4010B5EF6661B36459B4266E0FFC74C4" Directory="dir51FC26A5C2415BC58EE1D00C6E7F24A7" Guid="{F05D7F89-6A64-4D8B-9CB1-C9DE30CB8190}">
+                <File Id="fil9D56D95D9B767035B772D5BBAF7CE125" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\solaris\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmp36E7C7FE936D0191F0B7A3C17805597C" Directory="dirA9BFE0AC071CC06077FE3B302067429D" Guid="{16CBFECA-647D-4FAB-A4FB-48C0473CD758}">
+                <File Id="fil2B27D047647C56B3A26AAF6C866B22F4" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\tvos\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmpF3643002F5954E28E93434C3A6EAB25E" Directory="dir18AA29B3CF4C4EB9BAA80710A751F8C3" Guid="{7C536A70-E2D7-44CB-A001-A9B5A04E799A}">
+                <File Id="filA1F67D78102EA423CA297EDA24F601E5" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\unix\lib\net6.0\System.IO.Ports.dll" />
+            </Component>
+            <Component Id="cmpE9F038A53FD6DC07FE2D398DF7E0D095" Directory="dir6C4EB683B1F34E4FA170DB54DCF37BBE" Guid="{51258828-4FC2-4CD5-A2D7-99DF745EB8A3}">
+                <File Id="fil5F30E3EC8F5E54BFDAA786252325F5BC" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmp5FF8ED15CF89CC7A5E47EAE84E0F8B00" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{C18B9618-6011-4802-ABE1-AA66C0EDD02A}">
+                <File Id="filDDBEF2095F465DA118AF3CB6DF3B44E6" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.Data.Odbc.dll" />
+            </Component>
+            <Component Id="cmp8908D364F8FE70FFCA6CEEF6302B6BD8" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{D25C71EF-B743-49D1-8952-0222E4D64692}">
+                <File Id="fil773312244A0A3A88C3CD04F9D71D2132" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.Data.OleDb.dll" />
+            </Component>
+            <Component Id="cmpA2F6492BAFB1DE125C2D5FAEBE203848" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{30BCB969-7B1A-4DD5-914A-B730CF6A7E20}">
+                <File Id="fil9F4D40182D149149CA3B443CF11991FB" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll" />
+            </Component>
+            <Component Id="cmp6D750A1F260A3306BDC81F25E1C890D8" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{3DB3E639-E3B7-4B08-BF3A-19ADB66E0896}">
+                <File Id="filA2560F8386B7C084EC2D22F467E39765" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.DirectoryServices.AccountManagement.dll" />
+            </Component>
+            <Component Id="cmpEA871F68AF3C275E35D6C2F696B045F1" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{DF9E6765-575B-4921-AF3F-93D03F601524}">
+                <File Id="fil987FC84BB3DA0FF0814E506032073D69" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll" />
+            </Component>
+            <Component Id="cmp000B3277CE7C003834F0F7D250B687BE" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{1E125743-0F64-4CD5-8149-E65AF8F584A6}">
+                <File Id="filA5D8B8BEEF76D33E993B620FF4A4F0FE" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.IO.Ports.dll" />
+            </Component>
+            <Component Id="cmp148283F94FF4A97F72AA4F23F0B66982" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{7FE84A22-D590-4434-8DAB-919BBD67821D}">
+                <File Id="fil82E736397ED974FBB14C64D5581317C6" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.Management.dll" />
+            </Component>
+            <Component Id="cmp4B2BF04D1DBD3C676A27941B3132B8E1" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{94ECA240-B431-4E02-BE59-5BDF41969FA2}">
+                <File Id="filD543ADBFC53154AF1CB56D9D8094B83A" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+            </Component>
+            <Component Id="cmp5E8FA34AD33689C3B3957B39DD595C4E" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{60ACA8C4-B4CB-4EC2-A2D9-482011656B18}">
+                <File Id="filBCD13CFDD5E09F7145F29D3F21AD0B00" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.ServiceProcess.ServiceController.dll" />
+            </Component>
+            <Component Id="cmp8A3020ED907A765D56EAE4D677DC83EE" Directory="dirECDF6A5A7101A6B77834AB693A0A9FAA" Guid="{4BF47DCC-071A-4C86-A1D7-FB330E48B24D}">
+                <File Id="fil18D34DE181369D4C0B00BF690C562A65" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\net6.0\System.Speech.dll" />
+            </Component>
+            <Component Id="cmpBB6A2231F5DFD48A64CC430E66BF0178" Directory="dirB4298F357E38B761A5EEE837250EE4CE" Guid="{54E28EEA-ED58-4ECE-8767-29797F155A7A}">
+                <File Id="filFE8A3A7640B535C4D46A37BD31B54D68" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+            </Component>
+            <Component Id="cmpF934A153A67B5588A24B5DD691371689" Directory="dirAA8BF983139410869DF3602DEE1F82B0" Guid="{D9CA9B61-4E7F-4720-885C-9DA5D13D54D2}">
+                <File Id="fil6F9F92F196071452A0AC3B5AE7A88EEE" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-arm\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmp3491208267BDDEE5EEDD26E73A5E3306" Directory="dirBB8DF9D84E7923F99B2E7AE9BD2506F3" Guid="{F2B34F16-7F80-4164-B82E-9CB95C19E10D}">
+                <File Id="fil989807EDBDEE53EFDB613AAE690779EC" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-arm64\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmp7FA42CF3D512D3AB99F010D6DD005967" Directory="dirBB8DF9D84E7923F99B2E7AE9BD2506F3" Guid="{755DA0BE-DD55-47FA-8CD0-40B46A038E8D}">
+                <File Id="filE2CD071D58490F99FF9814A0BC4CF526" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-arm64\native\sni.dll" />
+            </Component>
+            <Component Id="cmpAA17F08356CECA5E64FA8411E4F40D93" Directory="dir3A666AF4D8B49420EF1AF0001797476E" Guid="{37B15826-F492-4FDC-87DB-BE083FF56770}">
+                <File Id="filD7CA1B631184A12D0405542F0EA8B0B3" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-x64\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmpB8AAC3F6EFF7ECB58AF5870C42DD24EA" Directory="dir3A666AF4D8B49420EF1AF0001797476E" Guid="{9B50ECE4-1793-4DBA-9625-ED5B219BE372}">
+                <File Id="fil96EA5768E864D441F561E43C0FD3CD96" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-x64\native\sni.dll" />
+            </Component>
+            <Component Id="cmpA69614B8DA94853A0132897345864796" Directory="dir3A666AF4D8B49420EF1AF0001797476E" Guid="{15F2C12B-598D-42A1-9F7A-99E6A28B2818}">
+                <File Id="fil587BD67A2916552052B5C7FA237596DA" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-x64\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp9D503B4AAD388108654F761E166FD27B" Directory="dir8689840F6A3C7338ECA16F8DAF149B02" Guid="{7359789D-8814-43F5-9EE9-034D3CDA6690}">
+                <File Id="fil388E7FFF34E7EA62CA7FE554E3E8C2B2" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-x86\native\e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmp3F88BD3B44CB97C1E046C37C7512E26C" Directory="dir8689840F6A3C7338ECA16F8DAF149B02" Guid="{7B598E10-CE73-4F24-B93B-3ED685ADD3B3}">
+                <File Id="filF28C743BEE3836D255F4E02810361747" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-x86\native\sni.dll" />
+            </Component>
+            <Component Id="cmp87E2099EB60DC1336B75331235126E05" Directory="dir8689840F6A3C7338ECA16F8DAF149B02" Guid="{CD3AD99E-0485-483D-8D65-DE6D9463648B}">
+                <File Id="fil88FFD243A31B92CDA93547593A10878F" KeyPath="yes" Source="!(wix.serviceloc)\runtimes\win-x86\native\SQLite.Interop.dll" />
+            </Component>
+            <Component Id="cmp68E2EF61B39D66EB1D55120278B33C65" Directory="dir5C2609D6210A4F1988C1C21B304620FD" Guid="{64D1C896-7D28-48F0-844C-2C0EBFD55F4D}">
+                <File Id="filE7815F513394FD835A8EEB1D292A12C1" KeyPath="yes" Source="!(wix.serviceloc)\tr\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpDCDF2BE72D7D9DD69D469C7C01DFCC6D" Directory="dir5C2609D6210A4F1988C1C21B304620FD" Guid="{00A9DAC1-BFF8-4211-8349-50E6B76C06CA}">
+                <File Id="fil55705A6D09F166CBF2A98C8D51515CCB" KeyPath="yes" Source="!(wix.serviceloc)\tr\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmpF6594A11C9D9F89773422266E7E953A9" Directory="dir9E174BFBE0AAF10B5F45D6F9C0D01995" Guid="{8241E184-B96F-4C38-9A3B-FDB9333B3B9D}">
+                <File Id="fil03E339EE8A4BA575CF254494A9F7EA6D" KeyPath="yes" Source="!(wix.serviceloc)\zh-Hans\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmp446C32FE728AFE224B2F7D7C10C7A0D1" Directory="dir9E174BFBE0AAF10B5F45D6F9C0D01995" Guid="{3CB15339-4E5D-4B57-B4F9-2848BF647F28}">
+                <File Id="fil3228F42E1B7CC8691DBB21F58B3A0C68" KeyPath="yes" Source="!(wix.serviceloc)\zh-Hans\System.Web.Services.Description.resources.dll" />
+            </Component>
+            <Component Id="cmp6F176BF47A3C81CACBB075B8389F7486" Directory="dirC37F8A5B034A68EA23E9ECB1B009D316" Guid="{66272600-67F2-46EB-BCF7-9613398F4CC3}">
+                <File Id="fil8A21D2D939ACFD5341DC0408F3E05DEB" KeyPath="yes" Source="!(wix.serviceloc)\zh-Hant\System.Private.ServiceModel.resources.dll" />
+            </Component>
+            <Component Id="cmpA5C1E9735E16F89AD18B1D458D1D6FDB" Directory="dirC37F8A5B034A68EA23E9ECB1B009D316" Guid="{1366BB94-18B7-45EC-B690-A690D4AFA0B9}">
+                <File Id="fil5FF5B8A24AA7A3D2974F40C28E7CE463" KeyPath="yes" Source="!(wix.serviceloc)\zh-Hant\System.Web.Services.Description.resources.dll" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir01B82ECBE0B0B6D524AEC4D7C3E64485" Name="fr" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirBBB61888CDD87B5D60AA1F71495849FA">
+            <Directory Id="dir02837758FC424A9CACB3ED34B4000E13" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir3CBE0D7067827556ED30BF5FF0CD6B78">
+            <Directory Id="dir03AF398DB7E235AB64C6C9439987076A" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir04D77CBE504B0C71CE5A3A1C62EE89CD" Name="cs" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir0548D912D9E5D3AB2B6A0ECBB29F3BDC" Name="de" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirCDBE17128F2EB537693C98293A72B150">
+            <Directory Id="dir0FE91D4003F1F6E6204B91137753B16A" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir76D781AE8B205B609BFE5E0E1F9144F6">
+            <Directory Id="dir12031917A410F7CE1412EF8858CD997C" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirED14D7C7CD3B4F5C56FD98B2AFF69297">
+            <Directory Id="dir18AA29B3CF4C4EB9BAA80710A751F8C3" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir191C02F522189FD7626BFD59BB27D992" Name="win-arm64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir42AF7D47693CEC1B51083513229CE67B">
+            <Directory Id="dir1AE54D526DA6766DBF2099283100EB3B" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir4FBFBCF6D257B85E21F7B5F1CB15C405">
+            <Directory Id="dir238518F007EBA1801AAC5A6895A75B64" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir26797B7422571F0E6FF47E3CF3AC990F" Name="pt-BR" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirCC80B867E4AA7E8C3A057BABEBEAFAE8">
+            <Directory Id="dir3023526F33E37E1AC4957160D6B54FA5" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirF037F7CC8D8B212CB96AA08CC7CA9DA6">
+            <Directory Id="dir3A104FE5A9E7D5B1C9D1C18A983905A6" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirDC87B9D1315DAA45CCFECF67EAE890FE">
+            <Directory Id="dir3A666AF4D8B49420EF1AF0001797476E" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirBD466C220A577BF04E6B5C191ED81F4F">
+            <Directory Id="dir3AC8EED754208C550F432A1CEC5DB0A5" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir3CBE0D7067827556ED30BF5FF0CD6B78" Name="linux-arm64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirEC29DD0EACCB5CD552FDDCCA0E46D7AC">
+            <Directory Id="dir3E6A742AF9D94AABA26CDE8122B6D246" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir42AF7D47693CEC1B51083513229CE67B" Name="solaris" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir4FBFBCF6D257B85E21F7B5F1CB15C405" Name="linux-mips64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir502CACA7CCBA4287DA62113C3F54E49B" Name="illumos" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir510A8EF0F06EFE8ACADAA8CDBDE8C2AD" Name="es" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir1AE54D526DA6766DBF2099283100EB3B">
+            <Directory Id="dir51FC26A5C2415BC58EE1D00C6E7F24A7" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir54A8CDBE48C261737D60E04F63189021" Name="win" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir5C2609D6210A4F1988C1C21B304620FD" Name="tr" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir5DAFD5A233B74BAD14B01BC93B44BFA2" Name="ko" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir5EA535378645ED084DCF5EBE628286A0" Name="linux-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE943ACFE8B4B00F481CA017FD0B8E6AC">
+            <Directory Id="dir6134CB7205272A2D72B22FC9B4D3B6C3" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirED14D7C7CD3B4F5C56FD98B2AFF69297">
+            <Directory Id="dir6C4EB683B1F34E4FA170DB54DCF37BBE" Name="netcoreapp2.1" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir763B6EA4CB4AD626232A29051B1C67DD" Name="unix" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir502CACA7CCBA4287DA62113C3F54E49B">
+            <Directory Id="dir76D781AE8B205B609BFE5E0E1F9144F6" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir7AA139E4B97026581F94143659344883" Name="pl" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir7AC871DC66E382C25DDDB3ECC693CF69" Name="it" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dir7ECF5FC4FFC46E267A5BC6EB19DC7CF1" Name="linux-armel" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir82741E62E1B16FFC6D675B81664B8D59" Name="runtimes" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir8477EC359EDEB593271F098082642F35" Name="ru" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD74F6E943FC61CF121F583E2994ADBA5">
+            <Directory Id="dir8689840F6A3C7338ECA16F8DAF149B02" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirF79D93530F174C74E8CD8FBB9B6ED511">
+            <Directory Id="dir9158A5DD1F84AD7133F429134575AD8C" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dir9E174BFBE0AAF10B5F45D6F9C0D01995" Name="zh-Hans" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirA121E2A9F45DE8131FCF5D148FF4AF13" Name="osx" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir5EA535378645ED084DCF5EBE628286A0">
+            <Directory Id="dirA4E85EF45BC4EEDD409067E1BEB30CD8" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirBC329235FE69487E21BD83649FE178F2">
+            <Directory Id="dirA9BFE0AC071CC06077FE3B302067429D" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE54D595A7032D159B35C8A09E628996C">
+            <Directory Id="dirAA8BF983139410869DF3602DEE1F82B0" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirAD4CAC3C383565B14A82D662901370DE" Name="tvos" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirCD270CB95A3FEF44B82264B128514866">
+            <Directory Id="dirB4298F357E38B761A5EEE837250EE4CE" Name="netcoreapp2.1" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirBB03914DDE5730B24A24064DD2E52F57" Name="linux-x86" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir191C02F522189FD7626BFD59BB27D992">
+            <Directory Id="dirBB8DF9D84E7923F99B2E7AE9BD2506F3" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirF84278E12A3BB693AF49B0A517F4DD80">
+            <Directory Id="dirBBB61888CDD87B5D60AA1F71495849FA" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirAD4CAC3C383565B14A82D662901370DE">
+            <Directory Id="dirBC329235FE69487E21BD83649FE178F2" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirBCF2C601F1214185A9A939D1F8E12A91" Name="linux" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirBD466C220A577BF04E6B5C191ED81F4F" Name="linux-arm" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dirC37F8A5B034A68EA23E9ECB1B009D316" Name="zh-Hant" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirCC80B867E4AA7E8C3A057BABEBEAFAE8" Name="osx-arm64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir54A8CDBE48C261737D60E04F63189021">
+            <Directory Id="dirCD270CB95A3FEF44B82264B128514866" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirBCF2C601F1214185A9A939D1F8E12A91">
+            <Directory Id="dirCDBE17128F2EB537693C98293A72B150" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirA121E2A9F45DE8131FCF5D148FF4AF13">
+            <Directory Id="dirD01460545EC0984E4510A21527ABE029" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirD01460545EC0984E4510A21527ABE029">
+            <Directory Id="dirD58A95ABD87E9A3BA13EFBA8FAA94DC5" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirD74F6E943FC61CF121F583E2994ADBA5" Name="win-x86" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirDC87B9D1315DAA45CCFECF67EAE890FE" Name="win-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirE54D595A7032D159B35C8A09E628996C" Name="win-arm" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirE91A4026D346BF556813FA8D60AB4CFE" Name="ios" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE91A4026D346BF556813FA8D60AB4CFE">
+            <Directory Id="dirE943ACFE8B4B00F481CA017FD0B8E6AC" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirEC29DD0EACCB5CD552FDDCCA0E46D7AC" Name="osx-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirCD270CB95A3FEF44B82264B128514866">
+            <Directory Id="dirECDF6A5A7101A6B77834AB693A0A9FAA" Name="net6.0" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir763B6EA4CB4AD626232A29051B1C67DD">
+            <Directory Id="dirED14D7C7CD3B4F5C56FD98B2AFF69297" Name="lib" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir7ECF5FC4FFC46E267A5BC6EB19DC7CF1">
+            <Directory Id="dirEE7FDB8EF96D5344C3DC26D725B0A962" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirF037F7CC8D8B212CB96AA08CC7CA9DA6" Name="linux-musl-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirF79D93530F174C74E8CD8FBB9B6ED511" Name="alpine-x64" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir82741E62E1B16FFC6D675B81664B8D59">
+            <Directory Id="dirF84278E12A3BB693AF49B0A517F4DD80" Name="freebsd" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirE35C1B7E07F08A239D7DA3E7C81D0F38">
+            <Directory Id="dirFA5379C46037F2F8ED1F2E80AD7ED6B3" Name="ja" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dirBB03914DDE5730B24A24064DD2E52F57">
+            <Directory Id="dirFFAAED108E29B618D419458248A8362E" Name="native" />
+        </DirectoryRef>
+    </Fragment>
+</Wix>

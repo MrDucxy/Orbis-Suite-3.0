@@ -17,14 +17,31 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <WixVariables>
+    </WixVariables>
+    <DefineConstants>
+    </DefineConstants>
+    <LinkerAdditionalOptions>-dneighborhoodloc=..\..\..\..\Executables\OrbisNeighborHood
+-dserviceloc=..\..\..\..\Executables\OrbisSuiteService</LinkerAdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Components.wxs" />
     <Compile Include="Directories.wxs" />
+    <Compile Include="Generated\OrbisNeighborhood.wxs" />
+    <Compile Include="Generated\OrbisSuiteService.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Common.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generated" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
@@ -38,4 +55,8 @@
       <DefineConstants>BuildVersion=3.0.0</DefineConstants>
     </PropertyGroup>
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\..\..\..\Executables\OrbisNeighborHood" -cg OrbisNeighborHood -gg  -var wix.neighborhoodloc -dr INSTALLFOLDER -out ..\..\Generated\OrbisNeighborhood.wxs
+"C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\..\..\..\Executables\OrbisSuiteService" -cg OrbisSuiteService -gg  -var wix.serviceloc -dr INSTALLFOLDER -out ..\..\Generated\OrbisSuiteService.wxs</PreBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -16,7 +16,9 @@ class Service : ServiceBase
     {
         Console.WriteLine("Starting");
         var dp = new Dispatcher();
+#if DEBUG
         while (RunService) { Thread.Sleep(10); }
+#endif
     }
 
     protected override void OnStart(string[] args)

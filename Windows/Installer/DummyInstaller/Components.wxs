@@ -32,38 +32,7 @@
 				<RemoveFolder Id="RemoveProgramFiles" Directory="INSTALLFOLDER" On="uninstall" />
 
 			</Component>
-
 		
-			<!-- Install Windows Service. -->
-			<!-- <Component Id="InstallService" Guid="{0FE299B0-EE20-4E20-AEA7-456438D46958}" Directory="INSTALLFOLDER" >
-				<File Id="MyService.exe"
-					  Name="OrbisSuiteService.exe"
-					  Source="$(var.ProjectDir)\Assets\Program Files x64\OrbisSuiteService.exe"
-					  Vital="yes"
-					  KeyPath="yes"/>
-
-				<ServiceInstall Id="ServiceInstaller"
-								Type="ownProcess"
-								Vital="yes"
-								Name="OrbisSuiteService"
-								DisplayName="Orbis Suite Service"
-								Description="Monitoring/Managing the Orbis Suite Database and Target communication."
-								Start="auto"
-								Account="LocalSystem"
-								ErrorControl="ignore">
-
-					<util:ServiceConfig
-					FirstFailureActionType='restart'
-					SecondFailureActionType='restart'
-					ThirdFailureActionType='restart'
-					RestartServiceDelayInSeconds='30'
-					ResetPeriodInDays='1'/>
-
-				</ServiceInstall>
-				<ServiceControl Id="Service_Start" Name="OrbisSuiteService" Start="install" Wait="no" />
-				<ServiceControl Id="Service_Stop" Name="OrbisSuiteService"  Stop="both" Remove="uninstall" Wait="yes" />
-			</Component> -->
-
 		</ComponentGroup> 
 
 	</Fragment>
