@@ -205,7 +205,7 @@ void Menu::Init()
 		API::Init();
 		Notify("API Restarted!");
 	});
-	Add_Option("id_oribis_api_toggle", &API::Running, Type_Boolean, []() ->void { API::Running ? API::Term() : API::Init(); });
+	Add_Option("id_orbis_api_toggle", &API::Running, Type_Boolean, []() ->void { API::Running ? API::Term() : API::Init(); });
 }
 
 void Menu::Term()
