@@ -16,6 +16,7 @@ private:
 	static void ListenerCallback(void* tdParam, OrbisNetId s);
 
 public:
+	static bool Running;
 	static void Init();
 	static void Term();
 };

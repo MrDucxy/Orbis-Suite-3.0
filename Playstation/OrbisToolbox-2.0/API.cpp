@@ -5,6 +5,7 @@ Proc* API::Proc;
 Debug* API::Debug;
 Target* API::Target;
 SocketListener* API::Listener;
+bool API::Running = false;
 
 void API::ListenerCallback(void* tdParam, OrbisNetId s)
 {
@@ -55,17 +56,25 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s)
 
 void API::Init()
 {
-	klog("API Startup.\n");
-	Proc = new class Proc();
-	Debug = new class Debug();
-	Target = new class Target();
-	Listener = new SocketListener(ListenerCallback, NULL, 6900);
+	if (!Running)
+	{
+		klog("API Startup.\n");
+		Proc = new class Proc();
+		Debug = new class Debug();
+		Target = new class Target();
+		Listener = new SocketListener(ListenerCallback, NULL, 6900);
+		Running = true;
+	}
 }
 
 void API::Term()
 {
-	delete Proc;
-	delete Debug;
-	delete Target;
-	delete Listener;
+	if (Running)
+	{
+		delete Proc;
+		delete Debug;
+		delete Target;
+		delete Listener;
+		Running = false;
+	}
 }
