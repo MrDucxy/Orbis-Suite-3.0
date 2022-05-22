@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
-	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
-	 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 
 	<!-- Fixed upgrade Id -->
 	<?define UpgradeCode = "{45b486b6-1b9b-47ab-9e94-e393827973af}" ?>
-	
-	<?define neighborHoodloc = "..\..\..\..\Executables\OrbisNeighborHood" ?>
 
 	<!-- Define main product -->
 	<Product
@@ -35,6 +32,15 @@
 		<MediaTemplate
 		  EmbedCab="yes"
 		/>
+		
+		<!--Define icons-->
+		<Icon Id="OrbisTaskbarApp.ico" SourceFile="$(var.SolutionDir)Assets\OrbisTaskbarApp\OrbisTaskbarApp.ico"/>
+		<Icon Id="OrbisModuleManager.ico" SourceFile="$(var.SolutionDir)Assets\OrbisModuleManager\OrbisModuleManager.ico"/>
+		<Icon Id="OrbisTargetSettings.ico" SourceFile="$(var.SolutionDir)Assets\OrbisTargetSettings\OrbisTargetSettings.ico"/>
+		<Icon Id="OrbisNeighborhood.ico" SourceFile="$(var.SolutionDir)Assets\Neighborhood\OrbisNeighborhood.ico"/>
+		<Icon Id="OrbisConsoleOutput.ico" SourceFile="$(var.SolutionDir)Assets\OrbisConsoleOutput\OrbisConsoleOutput.ico"/>
+		<Icon Id="OrbisDebugger.ico" SourceFile="$(var.SolutionDir)Assets\Debugger\OrbisDebugger.ico"/>
+		<Icon Id="OrbisPeeknPoke.ico" SourceFile="$(var.SolutionDir)Assets\OrbisPeeknPoke\OrbisPeeknPoke.ico"/>
 
 		<!-- Define components, shortcuts, files etc... for installer -->
 		<Feature Id="ProductFeature" Title="Orbis Suite" Level="1">
@@ -42,6 +48,29 @@
 			<!-- Installs program files and starts windows service. -->
 			<ComponentGroupRef Id="OrbisNeighborHood"/>
 			<ComponentGroupRef Id="OrbisSuiteService"/>
+			
+			<!-- Start Menu files -->
+			<Component Id="StartMenuFiles" Guid="{0FE299B0-EE20-4E20-AEA7-50B585486958}" Directory="INSTALLFOLDER">
+				
+				<!-- Install Shortcuts to the start menu. -->
+				<Shortcut Id="OrbisNeighborhoodShortcut"
+						  Name="Orbis Neighborhood"
+						  Target="[INSTALLFOLDER]\OrbisNeighborhood\OrbisNeighborhood.exe"
+						  Directory="InstallProgramMenuFolder"
+						  WorkingDirectory="INSTALLFOLDER"
+						  Icon="OrbisNeighborhood.ico"
+						  />
+
+				<!-- Our unique key for this component/shortcut -->
+				<RegistryValue Id="RegShortcutKey" Root="HKCU" Key="SOFTWARE\!(loc.ProductNameFolder)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes" />
+				
+				<RemoveFolder Id="RemoveStartMenuFiles" Directory="InstallProgramMenuFolder" On="uninstall" />
+			  </Component>
+			
+			<!-- ProgramData files -->
+			<Component Id="ProgramData" Guid="{DE75F40B-1D98-414A-8574-99EF6FE1A20C}" Directory="InstallProgramDataFolder" >
+				<RemoveFolder Id="RemoveProgramDataFiles" Directory="InstallProgramDataFolder" On="uninstall" />
+			</Component>
 			
 			<!-- Creates Product Dir in program files. -->
 			<Component Id="ProgramFiles" Guid="{0FE299B0-EE20-4E20-AEA7-50B138D46958}" Directory="INSTALLFOLDER">

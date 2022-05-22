@@ -25,7 +25,6 @@
 -dserviceloc=..\..\..\..\Executables\OrbisSuiteService</LinkerAdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Components.wxs" />
     <Compile Include="Directories.wxs" />
     <Compile Include="Generated\OrbisNeighborhood.wxs" />
     <Compile Include="Generated\OrbisSuiteService.wxs" />
