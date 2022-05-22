@@ -196,8 +196,6 @@
 		<button id="id_orbis_api" title="Restart API" second_title="Restarts the Orbis Suite API." />
 
 	</setting_list>
-
-    <button id="id_internal_debug_settings" title="Open Internal Debug Settings" second_title="Use at your own risk. I have included this at request some of these options may mess up your console."/>
     
   </setting_list>
 
