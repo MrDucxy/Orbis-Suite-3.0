@@ -93,7 +93,7 @@ int main()
 				break;
 
 			case ORBIS_MSG_DIALOG_BUTTON_ID_BUTTON2:
-				OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox.sprx");
+				OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox-2.0.sprx");
 				sceKernelSleep(1.5);
 				OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 				break;
