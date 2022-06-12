@@ -4,11 +4,10 @@ set ProjectDir=%1
 set CurrentDate=%~2
 set ConfigurationName=%~3
 
+REM Increments build number.
 set /p BuildNumber=< %ProjectDir%\Resources\BuildNumber.txt
-echo %BuildNumber%
-
 set /a "BuildNumber=%BuildNumber%+1"
-echo %BuildNumber%
+echo %BuildNumber%> %ProjectDir%\Resources\BuildNumber.txt
 
-echo %BuildNumber% > %ProjectDir%\Resources\BuildNumber.txt
+REM Build String.
 echo Version 3.0.%BuildNumber% %ConfigurationName% Build %CurrentDate% > %ProjectDir%\Resources\BuildString.txt
