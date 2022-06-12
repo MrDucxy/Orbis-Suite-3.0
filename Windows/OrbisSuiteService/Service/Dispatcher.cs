@@ -1,5 +1,6 @@
 ﻿using OrbisSuite.Common;
 using OrbisSuite.Common.Dispatcher;
+using OrbisSuite.Common.Database;
 using System.Net.Sockets;
 
 namespace OrbisSuiteService.Service
@@ -17,8 +18,10 @@ namespace OrbisSuiteService.Service
         private CancellationToken _HeartbeatCancellationToken;
 
         private DBWatcher _DBWatcher = new DBWatcher();
+        private Settings _Settings = Settings.CreateInstance();
         //private SerialComHelper _SerialMonitor = new SerialComHelper();
         private TargetWatcher _TargetWatcher;
+        
 
         public Dispatcher()
         {

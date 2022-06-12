@@ -1,7 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
 using SetupBA.Helpers;
-using System;
 
 namespace SetupBA.MVVM.ViewModel
 {
@@ -31,8 +30,8 @@ namespace SetupBA.MVVM.ViewModel
             CurrentView = InitialVM;
 
             Bootstrapper.ExecuteMsiMessage += Bootstrapper_ExecuteMsiMessage;
-            Bootstrapper.ApplyComplete += Bootstrapper_ApplyComplete; ;
-            Bootstrapper.DetectPackageComplete += Bootstrapper_DetectPackageComplete; ;
+            Bootstrapper.ApplyComplete += Bootstrapper_ApplyComplete;
+            Bootstrapper.DetectPackageComplete += Bootstrapper_DetectPackageComplete;
             Bootstrapper.PlanComplete += Bootstrapper_PlanComplete;
             Bootstrapper.Progress += Bootstrapper_Progress;
         }
@@ -172,7 +171,13 @@ namespace SetupBA.MVVM.ViewModel
                     UnInstallEnabled = true;
                     InstallEnabled = false;
                 }
+            }
 
+            // Silent Uninstall for upgrade.
+            if (Bootstrapper.Command.Display == Display.None || Bootstrapper.Command.Display == Display.Embedded)
+            {
+                Bootstrapper.Engine.Log(LogLevel.Verbose, "Silent.");
+                Bootstrapper.Engine.Plan(LaunchAction.Uninstall);
             }
         }
 
@@ -182,6 +187,13 @@ namespace SetupBA.MVVM.ViewModel
 
             // Done...
             IsThinking = false;
+
+            // Shutdown for Silent Uninstall for upgrade.
+            if (Bootstrapper.Command.Display == Display.None || Bootstrapper.Command.Display == Display.Embedded)
+            {
+                Bootstrapper.Engine.Log(LogLevel.Verbose, "Shutdown.");
+                SetupBA.BootstrapperDispatcher.InvokeShutdown();
+            }
         }
 
         private void Bootstrapper_Progress(object sender, ProgressEventArgs e)

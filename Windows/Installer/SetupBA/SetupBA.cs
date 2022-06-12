@@ -1,4 +1,5 @@
-﻿using System.Windows.Threading;
+﻿using System.Threading;
+using System.Windows.Threading;
 using Microsoft.Tools.WindowsInstallerXml.Bootstrapper;
 using SetupBA.MVVM.View;
 using SetupBA.MVVM.ViewModel;
@@ -14,14 +15,15 @@ namespace SetupBA
         protected override void Run()
         {
             BootstrapperDispatcher = Dispatcher.CurrentDispatcher;
-         
-            MainViewModel viewModel = new MainViewModel(this);
-            Engine.Detect();
 
             MainView view = new MainView();
-            view.DataContext = viewModel;
-            view.Closed += (sender, e) => BootstrapperDispatcher.InvokeShutdown();
-            view.Show();
+            view.DataContext = new MainViewModel(this);
+            Engine.Detect();
+            if (Command.Display != Display.None && Command.Display != Display.Embedded)
+            {
+                view.Closed += (sender, e) => BootstrapperDispatcher.InvokeShutdown();
+                view.Show();
+            }
 
             Dispatcher.Run();
 

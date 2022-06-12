@@ -6,7 +6,6 @@ namespace OrbisSuite.Common.Database
     /// Used to get/set the settings of Orbis Suite.
     /// </summary>
     [Table("Settings")]
-    [Preserve(AllMembers = true)]
     public class Settings
     {
         [PrimaryKey, AutoIncrement, NotNull]
