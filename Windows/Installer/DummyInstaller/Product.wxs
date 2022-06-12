@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
 	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-
 	<!-- Define main product -->
 	<Product
 		Id="*"
@@ -21,9 +20,9 @@
 		  Keywords="!(loc.Keywords)"
 		  Comments="!(loc.Comments)"
 		  Languages="!(loc.Language)"/>
-
+		
 		<!-- Downgrade error message -->
-		<MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
+		<MajorUpgrade Schedule="afterInstallInitialize" AllowSameVersionUpgrades="yes" DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
 
 		<!-- Include .cab file into .msi file -->
 		<MediaTemplate
