@@ -46,3 +46,18 @@ Rem Create the prx
 Rem Cleanup
 copy "%outputPrx%" "%outputPath%\Playstation\Build\pkg\Orbis Toolbox\%targetname%.sprx"
 del "%outputPrx%"
+
+REM Generate the script. Will overwrite any existing temp.txt
+echo open 192.168.0.54 1337> temp.txt
+REM echo open 192.168.0.54 2121> temp.txt
+echo anonymous>> temp.txt
+echo anonymous>> temp.txt
+echo cd "/data/Orbis Toolbox/">> temp.txt
+echo send "%outputPath%\Playstation\Build\pkg\Orbis Toolbox\%targetname%.sprx">> temp.txt
+echo quit>> temp.txt
+
+REM Launch FTP and pass it the script
+ftp -s:temp.txt
+
+REM Clean up.
+del temp.txt

@@ -27,6 +27,14 @@ int LncUtil::GetAppStatus(AppStatus* Status)
 //static int SetControllerFocus(int appId);
 //static int SetAppFocus(int appId, Flag flag = Flag_None);
 
+char* LncUtil::GetAppTitleId(int appId)
+{
+	MonoClass* LncUtil_Class = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "Util");
+	auto titleId = Mono::Invoke<MonoString*>(Mono::platform_dll, LncUtil_Class, nullptr, "GetTitleId", appId, Mono::New_String("N/A"));
+
+	return mono_string_to_utf8(titleId);
+}
+
 int LncUtil::GetAppId(const char* titleId)
 {
 	MonoClass* LncUtil_Class = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil");

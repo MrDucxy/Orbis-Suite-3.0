@@ -56,6 +56,7 @@ public:
 	static int SetControllerFocus(int appId);
 	static int SetAppFocus(int appId, Flag flag = Flag_None);
 	
+	static char* GetAppTitleId(int appId);
 	static int GetAppId(const char* titleId);
 	static int LaunchApp(const char* titleId, char* args, int argsSize, LaunchAppParam* param);
 	static int KillApp(int appId, int userId = -1);

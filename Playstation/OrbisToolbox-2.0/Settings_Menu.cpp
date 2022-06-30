@@ -216,6 +216,7 @@ void Settings_Menu::OnRender_Hook(MonoObject* Instance)
 		Do_Once = true;
 	}
 
+	GetBigAppTitleId();
 	Config::UpdateSettings();
 	Game_Overlay::OnRender();
 

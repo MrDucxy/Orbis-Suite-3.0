@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "Utilities.h"
+#include "LncUtil.h"
 
 void klog(const char* fmt, ...)
 {
@@ -130,4 +131,22 @@ void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total)
 
 	if (Total)
 		*Total = _Total;
+}
+
+char CurrentTitleId[20];
+void GetBigAppTitleId()
+{
+	static int Waiter = 0;
+
+	if (Waiter <= 0)
+	{
+		auto bigAppId = sceSystemServiceGetAppIdOfBigApp();
+
+		auto TitleId = LncUtil::GetAppTitleId(bigAppId);
+		strcpy(CurrentTitleId, TitleId);
+
+		Waiter = 500;
+	}
+	else
+		Waiter--;
 }

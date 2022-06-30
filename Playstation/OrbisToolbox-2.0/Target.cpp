@@ -100,7 +100,7 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	ReadFlash(FLASH_FACTORY_FW, &Packet->FactorySoftwareVersion, sizeof(int));
 	Packet->CPUTemp = GetCPUTemp();
 	Packet->SOCTemp = GetSOCTemp();
-	strcpy(Packet->CurrentTitleID, "TODO"); // Kernel
+	strcpy(Packet->CurrentTitleID, CurrentTitleId);
 	GetConsoleName(Packet->ConsoleName, 100);
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);
 	ReadFlash(FLASH_SERIAL, &Packet->Serial, 10);
@@ -113,7 +113,7 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	GetPSID(Packet->PSID);
 	Packet->ConsoleType = GetConsoleType();
 	Packet->Attached = false; // TODO: Add funcionality.
-	// CurrentProc
+	//Packet->CurrentProc
 
 	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
 

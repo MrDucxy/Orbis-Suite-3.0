@@ -92,18 +92,18 @@ Proc::~Proc()
 
 void Proc::SendProcessList(OrbisNetId Sock)
 {
+	// Allocate space for packet to send.
 	auto Packet = (ProcPacket*)malloc(sizeof(ProcPacket));
-	memset(Packet, 0, sizeof(ProcPacket));
 
-	// TODO: Fill packet...
+	// Gets list of running processes.
 	auto procInfo = (ProcInfo*)malloc(sizeof(ProcInfo) * 200);
 	memset(procInfo, 0, sizeof(ProcInfo) * 200);
 	int ProcessCount = KDriver::GetProcessList(200, procInfo);
 
-	klog("ProcCount: %i\n", ProcessCount);
-
+	// Send the number of processes running.
 	sceNetSend(Sock, &ProcessCount, sizeof(int), 0);
 
+	// Populate each process packet and send it.
 	for (auto i = 0; i < ProcessCount; i++)
 	{
 		memset(Packet, 0, sizeof(ProcPacket));
@@ -122,6 +122,7 @@ void Proc::SendProcessList(OrbisNetId Sock)
 		sceNetSend(Sock, Packet, sizeof(ProcPacket), 0);
 	}
 
+	// Cleanup.
 	free(Packet);
 	free(procInfo);
 }
