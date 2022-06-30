@@ -98,13 +98,16 @@ namespace OrbisSuite.Common.Database
             Target.IDPS = BitConverter.ToString(Packet.IDPS).Replace("-", string.Empty);
             Target.PSID = BitConverter.ToString(Packet.PSID).Replace("-", string.Empty);
             Target.ConsoleType = (ConsoleType)Packet.ConsoleType;
-            Target.IsAttached = Packet.Attached > 0;
 
+            // Debugging.
+            Target.IsAttached = Packet.Attached > 0;
             // TODO: Implement this into the API.
             Target.CurrentProcessId = 0;// TODO: Update this to process Id Packet.CurrentProc;
-            Target.HDDUsedSpace = 0;
-            Target.HDDFreeSpace = 0;
-            Target.HDDTotalSpace = 0;
+
+            // Storage.
+            Target.HDDUsedSpace = (long)(Packet.TotalSpace - Packet.FreeSpace);
+            Target.HDDFreeSpace = (long)Packet.FreeSpace;
+            Target.HDDTotalSpace = (long)Packet.TotalSpace;
 
             return Target.Save();
         }

@@ -15,6 +15,7 @@ public:
 	static MonoImage* Accessor_Db;
 	static MonoImage* Vsh_Lx;
 	static MonoImage* SysfileUtilWrapper;
+	static MonoImage* ShellCoreUtilWrapper;
 
 	static int Software_Version;
 	static const char* PUI;

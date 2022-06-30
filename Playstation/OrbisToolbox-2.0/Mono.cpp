@@ -11,6 +11,7 @@ MonoImage* Mono::mscorlib;
 MonoImage* Mono::Accessor_Db;
 MonoImage* Mono::Vsh_Lx;
 MonoImage* Mono::SysfileUtilWrapper;
+MonoImage* Mono::ShellCoreUtilWrapper;
 
 int Mono::Software_Version;
 const char* Mono::PUI;
@@ -49,6 +50,7 @@ bool Mono::Init()
 	Accessor_Db = Get_Image("/%s/common/lib/Sce.Vsh.Accessor.Db.dll", sceKernelGetFsSandboxRandomWord());
 	Vsh_Lx = Get_Image("/%s/common/lib/Sce.Vsh.Lx.dll", sceKernelGetFsSandboxRandomWord());
 	SysfileUtilWrapper = Get_Image("/%s/common/lib/Sce.Vsh.SysfileUtilWrapper.dll", sceKernelGetFsSandboxRandomWord());
+	ShellCoreUtilWrapper = Get_Image("/%s/common/lib/Sce.Vsh.ShellCoreUtilWrapper.dll", sceKernelGetFsSandboxRandomWord());
 
 	OrbisKernelSwVersion Version;
 	sceKernelGetSystemSwVersion(&Version);

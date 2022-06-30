@@ -262,22 +262,22 @@
                                                                 Width="125" Height="125"
                                                                 Thickness="18"
                                                                 FontSize="18"
-                                                                ProgressPercentage="76"/>
+                                                                ProgressPercentage="{Binding ElementName=DashboardElement, Path=StorageUsagePercentage}"/>
                         <!-- Info Fields -->
                         <StackPanel Margin="3 5 0 0" Orientation="Vertical">
                             <simpleControls:SimpleTextField FieldName="Used Space" 
-                                                        FieldText="311.8 GB"
+                                                        FieldText="{Binding ElementName=DashboardElement, Path=HDDUsedSpace}"
                                                         Width="157"
                                                         Height="35"/>
 
                             <simpleControls:SimpleTextField FieldName="Free Space" 
-                                                        FieldText="96.7 GB"
+                                                        FieldText="{Binding ElementName=DashboardElement, Path=HDDFreeSpace}"
                                                         Width="157"
                                                         Height="35"
                                                         Margin="0 5 0 0"/>
 
                             <simpleControls:SimpleTextField FieldName="Total Space" 
-                                                        FieldText="408.5 GB"
+                                                        FieldText="{Binding ElementName=DashboardElement, Path=HDDTotalSpace}"
                                                         Width="157"
                                                         Height="35"
                                                         Margin="0 5 0 0"/>

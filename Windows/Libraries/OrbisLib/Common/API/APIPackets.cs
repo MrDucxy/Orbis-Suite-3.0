@@ -194,8 +194,9 @@ namespace OrbisSuite.Common
         public byte[] PSID;
         public int ConsoleType;
         public int Attached;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string CurrentProc;
+        public int AttachedPid;
+        public ulong FreeSpace;
+        public ulong TotalSpace;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]

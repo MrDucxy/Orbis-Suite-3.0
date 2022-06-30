@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "Utilities.h"
 #include "LncUtil.h"
+#include "ShellCoreUtilWrapper.h"
 
 void klog(const char* fmt, ...)
 {
@@ -149,4 +150,19 @@ void GetBigAppTitleId()
 	}
 	else
 		Waiter--;
+}
+uint64_t HDDFreeSpace, HDDTotalSpace;
+void UpdateStorageStats()
+{
+	static int Waiter = 0;
+
+	if (Waiter <= 0)
+	{
+		ShellCoreUtilWrapper::sceShellCoreUtilGetFreeSizeOfUserPartition(&HDDFreeSpace, &HDDTotalSpace);
+
+		Waiter = 5000;
+	}
+	else
+		Waiter--;
+	
 }

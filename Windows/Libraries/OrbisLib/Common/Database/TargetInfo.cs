@@ -212,19 +212,19 @@ namespace OrbisSuite.Common.Database
         /// The used space on the targets hard disk.
         /// </summary>
         [NotNull]
-        public int HDDUsedSpace { get; set; } = 0;
+        public long HDDUsedSpace { get; set; } = 0;
 
         /// <summary>
         /// The free space on the targets hard disk.
         /// </summary>
         [NotNull]
-        public int HDDFreeSpace { get; set; } = 0;
+        public long HDDFreeSpace { get; set; } = 0;
 
         /// <summary>
         /// The usable size of the targets hard disk.
         /// </summary>
         [NotNull]
-        public int HDDTotalSpace { get; set; } = 0;
+        public long HDDTotalSpace { get; set; } = 0;
 
         /// <summary>
         /// Shows the Title number of the games on the home screen of this target.

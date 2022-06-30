@@ -210,7 +210,9 @@ struct TargetInfoPacket
 	char PSID[16];
 	int ConsoleType;
 	int Attached;
-	char CurrentProc[32];
+	int AttachedPid;
+	uint64_t FreeSpace;
+	uint64_t TotalSpace;
 }; //0x104
 
 struct TargetNotifyPacket

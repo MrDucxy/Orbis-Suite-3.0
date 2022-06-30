@@ -208,6 +208,17 @@ namespace OrbisNeighborHood.MVVM.View
                 ConsoleName = CurrentTarget.ConsoleName;
                 PayloadPort = CurrentTarget.PayloadPort.ToString();
 
+                // Storage Stats.
+                HDDFreeSpace = Utilities.BytesToString(CurrentTarget.HDDFreeSpace);
+                HDDUsedSpace = Utilities.BytesToString(CurrentTarget.HDDUsedSpace);
+                HDDTotalSpace = Utilities.BytesToString(CurrentTarget.HDDTotalSpace);
+
+                StorageUsagePercentage = (int)(((double)CurrentTarget.HDDUsedSpace / (double)CurrentTarget.HDDTotalSpace) * 100.0);
+
+                // System Stats.
+
+                
+
                 if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
                 {
                     TitleName = "Unknown Title";
@@ -263,9 +274,54 @@ namespace OrbisNeighborHood.MVVM.View
 
         #region HDD Info
 
+        public string HDDFreeSpace
+        {
+            get { return (string)GetValue(HDDFreeSpaceProperty); }
+            set { SetValue(HDDFreeSpaceProperty, value); }
+        }
+
+        public static readonly DependencyProperty HDDFreeSpaceProperty =
+            DependencyProperty.Register("HDDFreeSpace", typeof(string), typeof(DashboardView), new PropertyMetadata(string.Empty));
+
+        public string HDDUsedSpace
+        {
+            get { return (string)GetValue(HDDUsedSpaceProperty); }
+            set { SetValue(HDDUsedSpaceProperty, value); }
+        }
+
+        public static readonly DependencyProperty HDDUsedSpaceProperty =
+            DependencyProperty.Register("HDDUsedSpace", typeof(string), typeof(DashboardView), new PropertyMetadata(string.Empty));
+
+        public string HDDTotalSpace
+        {
+            get { return (string)GetValue(HDDTotalSpaceProperty); }
+            set { SetValue(HDDTotalSpaceProperty, value); }
+        }
+
+        public static readonly DependencyProperty HDDTotalSpaceProperty =
+            DependencyProperty.Register("HDDTotalSpace", typeof(string), typeof(DashboardView), new PropertyMetadata(string.Empty));
+
+        public int StorageUsagePercentage
+        {
+            get { return (int)GetValue(StorageUsagePercentageProperty); }
+            set { SetValue(StorageUsagePercentageProperty, value); }
+        }
+
+        public static readonly DependencyProperty StorageUsagePercentageProperty =
+            DependencyProperty.Register("StorageUsagePercentage", typeof(int), typeof(DashboardView), new PropertyMetadata(0));
+
         #endregion
 
         #region System Stats
+
+        public int CPUTemp
+        {
+            get { return (int)GetValue(CPUTempProperty); }
+            set { SetValue(CPUTempProperty, value); }
+        }
+
+        public static readonly DependencyProperty CPUTempProperty =
+            DependencyProperty.Register("CPUTemp", typeof(int), typeof(DashboardView), new PropertyMetadata(0));
 
         #endregion
 

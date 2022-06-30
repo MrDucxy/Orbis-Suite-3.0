@@ -112,8 +112,14 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	GetIDPS(Packet->IDPS);
 	GetPSID(Packet->PSID);
 	Packet->ConsoleType = GetConsoleType();
+
+	// TODO: Debugging Added Later.
 	Packet->Attached = false; // TODO: Add funcionality.
 	//Packet->CurrentProc
+
+	// Storage Stats.
+	Packet->FreeSpace = HDDFreeSpace;
+	Packet->TotalSpace = HDDTotalSpace;
 
 	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
 

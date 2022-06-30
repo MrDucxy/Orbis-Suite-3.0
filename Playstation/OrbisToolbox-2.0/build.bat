@@ -48,8 +48,8 @@ copy "%outputPrx%" "%outputPath%\Playstation\Build\pkg\Orbis Toolbox\%targetname
 del "%outputPrx%"
 
 REM Generate the script. Will overwrite any existing temp.txt
-echo open 192.168.0.54 1337> temp.txt
-REM echo open 192.168.0.54 2121> temp.txt
+REM echo open 192.168.0.54 1337> temp.txt
+echo open 192.168.0.54 2121> temp.txt
 echo anonymous>> temp.txt
 echo anonymous>> temp.txt
 echo cd "/data/Orbis Toolbox/">> temp.txt

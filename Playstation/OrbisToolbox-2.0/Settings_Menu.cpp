@@ -217,6 +217,7 @@ void Settings_Menu::OnRender_Hook(MonoObject* Instance)
 	}
 
 	GetBigAppTitleId();
+	UpdateStorageStats();
 	Config::UpdateSettings();
 	Game_Overlay::OnRender();
 

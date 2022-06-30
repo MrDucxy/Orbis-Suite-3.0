@@ -3,7 +3,7 @@ using System.Text;
 
 namespace OrbisSuite
 {
-    class Utilities
+    public class Utilities
     {
         /// <summary>
         /// Will convert byte array to a string and ensure a null terminator is set.
@@ -49,5 +49,27 @@ namespace OrbisSuite
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern bool SetDllDirectory(string lpPathName);
+
+        public static string BytesToString(long numberOfBytes)
+        {
+            string[] typeStrings = new string[]
+            {
+                "{0} B",
+                "{0:f1} KB",
+                "{0:f1} MB",
+                "{0:f1} GB"
+            };
+
+            double num = numberOfBytes;
+            for (int i = 0; i < 4; i++)
+            {
+                if (num <= 10240.0 || i >= 3)
+                {
+                    return string.Format(typeStrings[i], num);
+                }
+                num /= 1024.0;
+            }
+            return "";
+        }
     }
 }
