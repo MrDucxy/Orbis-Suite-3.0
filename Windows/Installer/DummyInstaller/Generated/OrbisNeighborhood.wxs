@@ -7,43 +7,43 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="OrbisNeighborHood">
-            <Component Id="cmpE41D390B0D0AAB6F9FB4C6A1D705196C" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{BE106674-7206-4161-BE3A-F4BF92DE4BF8}">
+            <Component Id="cmpE41D390B0D0AAB6F9FB4C6A1D705196C" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{5C302D4E-8969-461D-BA37-12A5B52C9CC2}">
                 <File Id="filB364A90310AE7157981EE4ADF9169441" KeyPath="yes" Source="!(wix.neighborhoodloc)\EntityFramework.dll" />
             </Component>
-            <Component Id="cmp0A60EE67F17FF97AEB285CE594BD15DE" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{08B3E219-844C-433D-9CF3-4E5EDBD5B6A8}">
+            <Component Id="cmp0A60EE67F17FF97AEB285CE594BD15DE" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{7D5763C3-BE33-4C06-8A4C-D5CF9D952FF5}">
                 <File Id="fil3891505899A749B59E5062AEC6C9A1E0" KeyPath="yes" Source="!(wix.neighborhoodloc)\EntityFramework.SqlServer.dll" />
             </Component>
-            <Component Id="cmp59937CC63BD801E6071825565D6AF104" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{83341524-CCFB-4631-9E78-B7994C571A6B}">
+            <Component Id="cmp59937CC63BD801E6071825565D6AF104" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{8035A49B-17D6-4D71-A98C-B7FF59A4E6F0}">
                 <File Id="fil832495DF276E6F7A2C6D3A7CCB260A12" KeyPath="yes" Source="!(wix.neighborhoodloc)\Microsoft.Expression.Drawing.dll" />
             </Component>
-            <Component Id="cmp24C3B7E5226C4861E79F5A3724658221" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{D2EFBBC7-AC51-47D4-90E9-63ECED1B0713}">
+            <Component Id="cmp24C3B7E5226C4861E79F5A3724658221" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{33107A3F-932F-402E-8644-08672BE987AE}">
                 <File Id="fil5C60F9A4FB262231684CB011E7A144C3" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisLib.dll" />
             </Component>
-            <Component Id="cmp798F348DCFCFF189F95EEACBA03ABF16" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{C3577335-8205-4118-B27A-E9F645084DE6}">
+            <Component Id="cmp798F348DCFCFF189F95EEACBA03ABF16" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{ACD2C502-A934-4C18-B331-FCC77FA6828E}">
                 <File Id="fil240A0AA680ECD2719BC02EB9C386ED6E" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisLib.pdb" />
             </Component>
-            <Component Id="cmp07F346D55CDDD111B4D18B63F0F13C75" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{956AB45A-6E34-41A1-A42B-96A2B6D87DB8}">
+            <Component Id="cmp07F346D55CDDD111B4D18B63F0F13C75" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{25C66C0B-4BA5-4EFF-A831-014C0E1FA7FD}">
                 <File Id="filE7975B4D436114B3A3CD28112D8D3798" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.deps.json" />
             </Component>
-            <Component Id="cmpA5896B0AE139FE4D41FBC2ECAAD9926E" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{99F15E6B-A5A0-492E-8FFC-663AB4221998}">
+            <Component Id="cmpA5896B0AE139FE4D41FBC2ECAAD9926E" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{0597136F-033C-44AE-A87D-33F02E9252C1}">
                 <File Id="fil4E83FB5F4D0C1CB3DEDA644F803A322B" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.dll" />
             </Component>
-            <Component Id="cmp8772A72E628B4B64AA9764608C7EB439" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{7EFB89C1-2114-4D86-B7B0-73B1DB02598F}">
+            <Component Id="cmp8772A72E628B4B64AA9764608C7EB439" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{113374A8-45E1-4DB3-8F81-5359613CADCF}">
                 <File Id="filDF02732B42549E94F28F03E2E7DF6432" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.exe" />
             </Component>
-            <Component Id="cmpEAE13FF2EB052A8A7AA3CC95D41F4AFD" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{E00CE7F8-599E-4E53-8441-5D271637BB38}">
+            <Component Id="cmpEAE13FF2EB052A8A7AA3CC95D41F4AFD" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{46E594BD-3413-43B8-B8E8-107D870C7A90}">
                 <File Id="filC2BFB9F97D0CBAFB74D1618EBAEA0BBE" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.pdb" />
             </Component>
-            <Component Id="cmp088D641A2FC114D814AC2C6E871CF2C9" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{26383622-DD79-41A1-B5B1-4B3F657EE471}">
+            <Component Id="cmp088D641A2FC114D814AC2C6E871CF2C9" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{58B01BF1-F582-417A-942E-45ABC058B57A}">
                 <File Id="fil0862F9B50AC6B8926AD439506BECCC9A" KeyPath="yes" Source="!(wix.neighborhoodloc)\OrbisNeighborHood.runtimeconfig.json" />
             </Component>
-            <Component Id="cmp634A5C2D7B82C34C421AD03632CC85BA" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{1608C5DC-A067-4364-8CB3-7FA892E4EF57}">
+            <Component Id="cmp634A5C2D7B82C34C421AD03632CC85BA" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{A10A78BE-E2BC-4C50-BED6-DD99184252E3}">
                 <File Id="filE3A78ACDD41FD1431BF0DDF0C9DFA15A" KeyPath="yes" Source="!(wix.neighborhoodloc)\SimpleUI.dll" />
             </Component>
-            <Component Id="cmpD83B869CCFDB3E97BC39A273A683F324" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{E8235E04-3331-4DC6-96CB-E4CB06B850BE}">
+            <Component Id="cmpD83B869CCFDB3E97BC39A273A683F324" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{B7846A2B-12D2-4D46-8307-5E65B1CE348B}">
                 <File Id="filC8B0ABD11F0FFAAFFACBC8FE72F95C51" KeyPath="yes" Source="!(wix.neighborhoodloc)\SimpleUI.pdb" />
             </Component>
-            <Component Id="cmp3DC4745B3CBE1FE28F47867CE88F1CDF" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{3C7AE4A9-623C-45B3-8B39-BE1CB4497C6C}">
+            <Component Id="cmp3DC4745B3CBE1FE28F47867CE88F1CDF" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{E592B950-FD50-4B8F-991F-EE60A23A3C03}">
                 <Class Id="{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}" Context="InprocServer32" Description="SQLite.StoreAsTextAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
                     <ProgId Id="SQLite.StoreAsTextAttribute" Description="SQLite.StoreAsTextAttribute" />
                 </Class>
@@ -198,98 +198,98 @@
                 <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="CodeBase" Value="file:///[#fil5AD51DA4CEA7733DDE0620F80F106A57]" Type="string" Action="write" />
             </Component>
-            <Component Id="cmp09933D322605132100272D5B82775ADB" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{A8ABC53D-E27F-48F6-A861-16A52631230B}">
+            <Component Id="cmp09933D322605132100272D5B82775ADB" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{0ED62DDF-3A5C-4B6C-B830-4F89D3619FC4}">
                 <File Id="filB1471490DC26F206DF08A8ECD637A890" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.batteries_v2.dll" />
             </Component>
-            <Component Id="cmp7868CF75D850993736EB72E01F8E659D" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{0F53A0B6-4590-4FC6-BE4E-733BE3F016BB}">
+            <Component Id="cmp7868CF75D850993736EB72E01F8E659D" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{A793327E-0832-481E-A96F-FC1F0E30250B}">
                 <File Id="fil7168A0523CE60EC66C4C8E3012CEBD45" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.core.dll" />
             </Component>
-            <Component Id="cmp041AA4D21C0077717F45A5446AC4B286" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{BB05A408-35F5-4CED-A7C8-7ED59CBF44A9}">
+            <Component Id="cmp041AA4D21C0077717F45A5446AC4B286" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{F3697455-0D6D-4FE0-94D6-544FB036CFAC}">
                 <File Id="filE6D1CC87ADBB66C67E89159D920A7041" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.nativelibrary.dll" />
             </Component>
-            <Component Id="cmpBD1177DC742ECF7FE2F4ADDA192E334C" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{5A8BE3CB-C9E3-417E-8264-E119ED5538CB}">
+            <Component Id="cmpBD1177DC742ECF7FE2F4ADDA192E334C" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{E593EB28-F3CC-41C2-BD36-82C9D6407EAA}">
                 <File Id="fil6773722EB0457BDF4E0CBC911A4FAFDA" KeyPath="yes" Source="!(wix.neighborhoodloc)\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
             </Component>
-            <Component Id="cmpF9D87FEACA9C1D37EB3FC450DF61FE65" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{BF134D94-47D4-482A-B5EC-95F3BEBE9142}">
+            <Component Id="cmpF9D87FEACA9C1D37EB3FC450DF61FE65" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{56D5EAC7-0D8B-471C-8062-56CC56F3802B}">
                 <File Id="fil5312B6AAC9F0C75A66AE7FD15089CF55" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Data.SqlClient.dll" />
             </Component>
-            <Component Id="cmp6ADCDBD373E56131DA5F31E126C431E4" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{A159C582-5DB9-4324-AE4F-54E7F60386A6}">
+            <Component Id="cmp6ADCDBD373E56131DA5F31E126C431E4" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{4A18027B-56C6-4F25-BC3B-C3828C8A8FBD}">
                 <File Id="fil47BB64DF636613A234A79142FB1136ED" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Data.SQLite.dll" />
             </Component>
-            <Component Id="cmpC8F275E83B86A401D076F7FE97BD5E04" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{55753374-6D2F-43C9-9A26-275E04088D13}">
+            <Component Id="cmpC8F275E83B86A401D076F7FE97BD5E04" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{2270C77E-094F-4A98-9898-330E0C8551BD}">
                 <File Id="fil6D3306D12F668CFDCB00697FF8E77A71" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Data.SQLite.EF6.dll" />
             </Component>
-            <Component Id="cmp54D4BBB5D6D2E1A2A326ACAB569277DE" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{18B44E32-33DC-42FA-BE76-97AB0AA57489}">
+            <Component Id="cmp54D4BBB5D6D2E1A2A326ACAB569277DE" Directory="dirA2E76F2D663AA689F739C77DA05D8169" Guid="{BC260CE5-9F05-407D-B64D-314B4711E367}">
                 <File Id="fil4A1967E4887A3628100FA2A728569387" KeyPath="yes" Source="!(wix.neighborhoodloc)\System.Json.dll" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Class" Value="System.Json.JsonType" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Assembly" Value="System.Json, Version=2.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="CodeBase" Value="file:///[#fil4A1967E4887A3628100FA2A728569387]" Type="string" Action="write" />
             </Component>
-            <Component Id="cmpC7783FA93AEF01541521B9ABF355216C" Directory="dir69953A9990CF3578803540AE2809871D" Guid="{0C8087CC-3B1A-405C-BE20-F2A44AA337D3}">
+            <Component Id="cmpC7783FA93AEF01541521B9ABF355216C" Directory="dir69953A9990CF3578803540AE2809871D" Guid="{D6E4F723-B7B4-48C6-B35A-2E04108844E5}">
                 <File Id="fil55F425B214F2A6EEF1AE56969EC89F0C" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\alpine-x64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp0E2F2DD3078A48C4B3E0CD5730D51F7F" Directory="dir11E57DC8224FD5D3396C0250F257084B" Guid="{3433EA5C-D264-45B7-82F4-A87DF2DB525A}">
+            <Component Id="cmp0E2F2DD3078A48C4B3E0CD5730D51F7F" Directory="dir11E57DC8224FD5D3396C0250F257084B" Guid="{EDC1B81C-56AB-40B0-98CC-1C412E89DE31}">
                 <File Id="fil791EBA8A456538C243EEF761CD36DFB6" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-arm\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp5C1FBA3B301FE3B4C87B95DD2E689EE0" Directory="dir0D99ADA0534C6F07E221034C0C063C5B" Guid="{B0113925-980B-4BCF-9945-6D93D2C69424}">
+            <Component Id="cmp5C1FBA3B301FE3B4C87B95DD2E689EE0" Directory="dir0D99ADA0534C6F07E221034C0C063C5B" Guid="{FD2786D9-C455-4BFF-951B-2AA90BC6B07F}">
                 <File Id="fil78A779FFF3701EA85C98E5F17A403958" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-arm64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp97C06275E71C96484BA969A67B571854" Directory="dirA448F43C7B0460A7071341984C144290" Guid="{6E1FCDAD-2C0C-4E0C-9115-AE301C988EFB}">
+            <Component Id="cmp97C06275E71C96484BA969A67B571854" Directory="dirA448F43C7B0460A7071341984C144290" Guid="{7CE08FD9-9384-4D1A-8EA1-5B8E9E797549}">
                 <File Id="filD10677C9723732CFAC9CD004D171B258" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-armel\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpA8A10906782465FE7B7D6071E85528E5" Directory="dir23883BA819A25014FCB162A26E6C5497" Guid="{088D8E28-72C0-4920-9D3F-12A566743E7C}">
+            <Component Id="cmpA8A10906782465FE7B7D6071E85528E5" Directory="dir23883BA819A25014FCB162A26E6C5497" Guid="{D4BD30CF-B3E1-4E40-970E-2A0154A374B0}">
                 <File Id="fil58621A0CCF7CA66692B0DE854AFD9ACB" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-mips64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp6631E0CC97247613CC6680000074B53E" Directory="dirBE6B735EC68A2C3B52BC445F6282B570" Guid="{11DE0AC1-4A7C-40FA-8CF2-666316DABB42}">
+            <Component Id="cmp6631E0CC97247613CC6680000074B53E" Directory="dirBE6B735EC68A2C3B52BC445F6282B570" Guid="{AA2A3464-001D-49EE-9970-61F4D2F83470}">
                 <File Id="fil22B7B38E176FDB1A124BBFAB1A9EB45F" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpACEA5DA59E82C54A7B079923060FD077" Directory="dir2221C3641C5B922F331C205D0D6D19DB" Guid="{C2FF9689-6B68-4303-AC62-73E37410872C}">
+            <Component Id="cmpACEA5DA59E82C54A7B079923060FD077" Directory="dir2221C3641C5B922F331C205D0D6D19DB" Guid="{06CA1BA7-320E-4673-9FDC-34093AEE1599}">
                 <File Id="fil9461D1ED5EFA4933113DC9035A3D7E7A" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-x64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpEBB73023E17264A9CFEB58CA360BC290" Directory="dir2221C3641C5B922F331C205D0D6D19DB" Guid="{C12C92C8-F546-4839-BC18-37FAEA95D612}">
+            <Component Id="cmpEBB73023E17264A9CFEB58CA360BC290" Directory="dir2221C3641C5B922F331C205D0D6D19DB" Guid="{8143ACC4-E9BB-4A99-8E32-43A76935F46F}">
                 <File Id="fil57F237A7A66626514C4E5B92DBA6DE89" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-x64\native\SQLite.Interop.dll" />
             </Component>
-            <Component Id="cmp0C535A2905D4261E16DF5A4602BB1DEE" Directory="dir3233985D947656B5BEB23A4A5DB7CEC9" Guid="{A2B6B728-FC90-41D9-AB9E-2B9A1694DD59}">
+            <Component Id="cmp0C535A2905D4261E16DF5A4602BB1DEE" Directory="dir3233985D947656B5BEB23A4A5DB7CEC9" Guid="{396D74D1-B92D-468B-89C0-9049036CBA64}">
                 <File Id="fil1994759023FEBCAC0AD7A798134E3DCA" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\linux-x86\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp74ACED4F9D9803BD635860D6D8197D26" Directory="dirFDE134B0F1C60C4460596A3CDB9EFACC" Guid="{B18DD29D-1630-4B4A-B976-254054D149E6}">
+            <Component Id="cmp74ACED4F9D9803BD635860D6D8197D26" Directory="dirFDE134B0F1C60C4460596A3CDB9EFACC" Guid="{28DB0B27-8A03-4FFB-8D51-F53422327633}">
                 <File Id="filA2FB9FD48619528BC732D9CA7DF3DAE7" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\osx-x64\native\libe_sqlite3.dylib" />
             </Component>
-            <Component Id="cmpBF34BFB6BE101EE8550184EF6AC84962" Directory="dirFDE134B0F1C60C4460596A3CDB9EFACC" Guid="{55298D02-3CE3-464E-861C-D289C6B8AE85}">
+            <Component Id="cmpBF34BFB6BE101EE8550184EF6AC84962" Directory="dirFDE134B0F1C60C4460596A3CDB9EFACC" Guid="{1259ED66-09D2-4346-82FE-3EBB4A9B8EDC}">
                 <File Id="filB3646D02931AB0ECB31A00D7E4F07594" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\osx-x64\native\SQLite.Interop.dll" />
             </Component>
-            <Component Id="cmp78EBF1F4F75E5DC1DE79F520DB5890C3" Directory="dir418DED00A95F0CA3A54CE925F90657D4" Guid="{7EEAD602-576C-4CC8-B8BE-455D8F4ADA26}">
+            <Component Id="cmp78EBF1F4F75E5DC1DE79F520DB5890C3" Directory="dir418DED00A95F0CA3A54CE925F90657D4" Guid="{F9008DCE-2E24-4BA1-B6F6-A32F85517C19}">
                 <File Id="fil451217179927DA673E03779EE611E027" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
             </Component>
-            <Component Id="cmp5D86B5C2FD6CB9828C9A81D0BCE5AA33" Directory="dir355E8005E976E598C52F93CA0D74DE71" Guid="{543471DF-A232-4575-B4B9-88FEA7AA7614}">
+            <Component Id="cmp5D86B5C2FD6CB9828C9A81D0BCE5AA33" Directory="dir355E8005E976E598C52F93CA0D74DE71" Guid="{E594D5CC-CEFB-4DA0-BC4E-C212ABB4C4C4}">
                 <File Id="fil28F085FD7ED7365A84844F4075452BE4" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
             </Component>
-            <Component Id="cmpAD9CCE7B0D222F8E5FC2DAC812BB6F5D" Directory="dir30662D51F3423EA316B5EB9B44A4A5FD" Guid="{E952989B-F632-43DA-A384-E285E5D2A33C}">
+            <Component Id="cmpAD9CCE7B0D222F8E5FC2DAC812BB6F5D" Directory="dir30662D51F3423EA316B5EB9B44A4A5FD" Guid="{48E6B072-357F-4781-BF6C-D00001D22B4B}">
                 <File Id="fil30F4DD27B9DB57BAA4F4428466AF5F37" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-arm\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmpAD7C518209D24433B2060F0BAA107016" Directory="dir4887F89A655BD0E9B50D9BA822EF9596" Guid="{F7AF0093-F90D-44B4-85B1-4339393C4734}">
+            <Component Id="cmpAD7C518209D24433B2060F0BAA107016" Directory="dir4887F89A655BD0E9B50D9BA822EF9596" Guid="{84C23B00-7BAA-4CF6-9F81-3B4E6172248E}">
                 <File Id="fil212623DF5DCCC35D4738C3D9F972067E" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-arm64\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmpB1D0CF7A5A123FD55DC6BC9EFC3CB6FE" Directory="dir4887F89A655BD0E9B50D9BA822EF9596" Guid="{9B9F45B6-8EB1-4DC1-BF3C-2A6C239C19CE}">
+            <Component Id="cmpB1D0CF7A5A123FD55DC6BC9EFC3CB6FE" Directory="dir4887F89A655BD0E9B50D9BA822EF9596" Guid="{E59395DE-7203-474C-BD46-3FDC7111E353}">
                 <File Id="fil9475DD3AFE793605807C8CED17C1207E" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-arm64\native\sni.dll" />
             </Component>
-            <Component Id="cmp47989F0957133E0A0501863DB576837A" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{EF15D2AC-22CB-4618-B89B-7696D5C4ACDB}">
+            <Component Id="cmp47989F0957133E0A0501863DB576837A" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{CB0D152B-714D-41A2-8DFB-EA899F24A813}">
                 <File Id="fil7D6473E331660E77C4B7F9DB11FD3D7F" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x64\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmp707BD30B90301FA3598058272D7ED794" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{B052120C-B4C2-4E1F-AD10-486AC980AD40}">
+            <Component Id="cmp707BD30B90301FA3598058272D7ED794" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{3ABC9FBE-D479-4D98-A18E-5D048E10E9AE}">
                 <File Id="filED366D8555926E4200E9D415C9AA8838" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x64\native\sni.dll" />
             </Component>
-            <Component Id="cmpA48F59BCAFC41ED4AF4E53484C8988F5" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{2949B5EC-6ECB-4A97-A53F-7D79A473A7BE}">
+            <Component Id="cmpA48F59BCAFC41ED4AF4E53484C8988F5" Directory="dir0786CFCF46C0114FA9F1BE6FD2E3A3D1" Guid="{E20935B4-AE8A-48EE-A67D-B93E5BD3B283}">
                 <File Id="fil0BC7AA3E61E4FD31D4CF22CFFC06157B" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x64\native\SQLite.Interop.dll" />
             </Component>
-            <Component Id="cmp2AD7E030185A27862B7B27651514C76B" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{32E1AE5E-CEE6-4DB8-B93E-CE6F4971DEC4}">
+            <Component Id="cmp2AD7E030185A27862B7B27651514C76B" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{1F06CB91-1885-4401-B4D0-78002942B8C7}">
                 <File Id="filA76C9E7EF92DDDBFC0E81B539991617F" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x86\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmp0E5CAF53F4114BF99A133D6B7A3A2232" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{64D975D0-106F-4A7A-A342-10E87809ECDD}">
+            <Component Id="cmp0E5CAF53F4114BF99A133D6B7A3A2232" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{68AC70E1-DB3B-4D43-8584-0B664AD86E7A}">
                 <File Id="fil909F2BA7D317A49253B0793017BBA034" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x86\native\sni.dll" />
             </Component>
-            <Component Id="cmpC4AED04204F36864180BCE88652910F4" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{92294BFE-365B-4F2B-999A-2D01D420EB1F}">
+            <Component Id="cmpC4AED04204F36864180BCE88652910F4" Directory="dir8A167AF5629F3F0E13AE6AF0BBC79A23" Guid="{F04CE91D-E6F9-4E79-A520-7E1D47F44478}">
                 <File Id="fil6DDE2A303AA6505683E64B883F2F7AA3" KeyPath="yes" Source="!(wix.neighborhoodloc)\runtimes\win-x86\native\SQLite.Interop.dll" />
             </Component>
         </ComponentGroup>

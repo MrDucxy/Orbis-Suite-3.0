@@ -22,8 +22,4 @@ void Notify_Custom(const char* IconURI, const char* MessageFMT, ...);
 
 void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total);
 
-extern char CurrentTitleId[20];
-void GetBigAppTitleId();
-
-extern uint64_t HDDFreeSpace, HDDTotalSpace;
-void UpdateStorageStats();
+char* GetBigAppTitleId();

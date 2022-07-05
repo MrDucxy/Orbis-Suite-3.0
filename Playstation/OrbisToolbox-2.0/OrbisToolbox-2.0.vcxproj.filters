@@ -70,6 +70,24 @@
     <Filter Include="Source Files\API\CmdGroups">
       <UniqueIdentifier>{689ef1b6-f9c8-4d7b-9a4a-73e5d45aea97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utilities\Mono">
+      <UniqueIdentifier>{4e4c3e09-ba94-450a-ae0e-3dc2999f2400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities\Memory Utils">
+      <UniqueIdentifier>{ef0d79cb-072f-4236-8be4-65ccdf7997d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities\PS Utils">
+      <UniqueIdentifier>{7c68245e-d1ab-4cd2-83d2-2475526359ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\Mono">
+      <UniqueIdentifier>{141f7e8b-4186-467b-a3f8-cc861bbb95a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\Memory Utils">
+      <UniqueIdentifier>{2ac5b28d-59f4-4b2c-a25b-6205c4299e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities\PS Utils">
+      <UniqueIdentifier>{e8c475b5-b0cd-48ac-be98-90debcdaac1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="build.bat" />
@@ -82,36 +100,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Detour.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="GamePad.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="hde64.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="KDriver.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="LncUtil.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Mono.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Patcher.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="SysfileUtilWrapper.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="System_Monitor.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="table64.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
@@ -177,20 +165,53 @@
     <ClInclude Include="Debug.h">
       <Filter>Header Files\API\CmdGroups</Filter>
     </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Registry.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Flash.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="SocketListener.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="ShellCoreUtilWrapper.h">
+    <ClInclude Include="RemoteCaller.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour.h">
+      <Filter>Header Files\Utilities\Memory Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="hde64.h">
+      <Filter>Header Files\Utilities\Memory Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Patcher.h">
+      <Filter>Header Files\Utilities\Memory Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePad.h">
+      <Filter>Header Files\Utilities\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="LncUtil.h">
+      <Filter>Header Files\Utilities\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="Mono.h">
+      <Filter>Header Files\Utilities\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="ShellCoreUtilWrapper.h">
+      <Filter>Header Files\Utilities\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="SysfileUtilWrapper.h">
+      <Filter>Header Files\Utilities\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="table64.h">
+      <Filter>Header Files\Utilities\Memory Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Flash.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="KDriver.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Registry.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="System_Monitor.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,33 +219,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Config.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Detour.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="GamePad.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="hde64.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="KDriver.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="LncUtil.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Mono.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Patcher.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="SysfileUtilWrapper.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="System_Monitor.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Utilities.cpp">
@@ -287,20 +281,50 @@
     <ClCompile Include="Watchpoint.cpp">
       <Filter>Source Files\API\CmdGroups</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Registry.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Flash.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="SocketListener.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="ShellCoreUtilWrapper.cpp">
+    <ClCompile Include="RemoteCaller.cpp">
       <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Mono.cpp">
+      <Filter>Source Files\Utilities\Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="LncUtil.cpp">
+      <Filter>Source Files\Utilities\Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePad.cpp">
+      <Filter>Source Files\Utilities\Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="SysfileUtilWrapper.cpp">
+      <Filter>Source Files\Utilities\Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="ShellCoreUtilWrapper.cpp">
+      <Filter>Source Files\Utilities\Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="Detour.cpp">
+      <Filter>Source Files\Utilities\Memory Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="hde64.cpp">
+      <Filter>Source Files\Utilities\Memory Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Patcher.cpp">
+      <Filter>Source Files\Utilities\Memory Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Flash.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="KDriver.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="System_Monitor.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

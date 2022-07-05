@@ -3,6 +3,9 @@
 #include "System_Monitor.h"
 #include "GamePad.h"
 #include "API.h"
+#include "RemoteCaller.h"
+
+RemoteCaller* CallInMonoThread = NULL;
 
 extern "C"
 {
@@ -25,6 +28,7 @@ extern "C"
 
 		// API
 		API::Init();
+		CallInMonoThread = new RemoteCaller();
 
 		Notify(ORBIS_TOOLBOX_NOTIFY);
 
@@ -42,6 +46,7 @@ extern "C"
 
 		// API
 		API::Term();
+		delete CallInMonoThread;
 
 		sceKernelSleep(4);
 

@@ -6,6 +6,7 @@
 #include "Flash.h"
 #include "Config.h"
 #include "Debug_Features.h"
+#include "ShellCoreUtilWrapper.h"
 
 void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -100,7 +101,7 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	ReadFlash(FLASH_FACTORY_FW, &Packet->FactorySoftwareVersion, sizeof(int));
 	Packet->CPUTemp = GetCPUTemp();
 	Packet->SOCTemp = GetSOCTemp();
-	strcpy(Packet->CurrentTitleID, CurrentTitleId);
+	strcpy(Packet->CurrentTitleID, CallInMonoThread->RemoteCall<char*>(GetBigAppTitleId));
 	GetConsoleName(Packet->ConsoleName, 100);
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);
 	ReadFlash(FLASH_SERIAL, &Packet->Serial, 10);
@@ -118,6 +119,9 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	//Packet->CurrentProc
 
 	// Storage Stats.
+	uint64_t HDDFreeSpace, HDDTotalSpace;
+	CallInMonoThread->RemoteCall<int>(ShellCoreUtilWrapper::sceShellCoreUtilGetFreeSizeOfUserPartition, &HDDFreeSpace, &HDDTotalSpace);
+	klog("FreeSpace: %i\nUsedSpace: %i", HDDFreeSpace, HDDTotalSpace);
 	Packet->FreeSpace = HDDFreeSpace;
 	Packet->TotalSpace = HDDTotalSpace;
 

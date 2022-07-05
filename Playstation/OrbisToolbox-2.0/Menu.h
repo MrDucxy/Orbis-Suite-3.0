@@ -28,11 +28,6 @@ private:
 
 };
 
-struct CompareFirst {
-	template <typename T, typename U>
-	bool operator()(T const& t, U const& u) const { return !strcmp(t.first, u.first); }
-};
-
 class Menu
 {
 public:

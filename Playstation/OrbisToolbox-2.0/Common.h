@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stack>
+#include <functional>
 #include <errno.h>
 #include <map>
 #include <vector>
@@ -36,3 +38,6 @@
 #define ORBIS_TOOLBOX_DEBUG
 
 #define ORBIS_TOOLBOX_NOTIFY ("Orbis Toolbox: " stringify(ORBIS_TOOLBOX_MAJOR) "." stringify(ORBIS_TOOLBOX_MINOR) " Loaded!")
+
+#include "RemoteCaller.h"
+extern RemoteCaller* CallInMonoThread;

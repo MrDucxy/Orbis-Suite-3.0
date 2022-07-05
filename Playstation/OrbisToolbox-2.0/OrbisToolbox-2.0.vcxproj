@@ -101,6 +101,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="Patcher.h" />
     <ClInclude Include="Proc.h" />
     <ClInclude Include="Registry.h" />
+    <ClInclude Include="RemoteCaller.h" />
     <ClInclude Include="Settings_Menu.h" />
     <ClInclude Include="ShellCoreUtilWrapper.h" />
     <ClInclude Include="SocketListener.h" />
@@ -142,6 +143,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="Patcher.cpp" />
     <ClCompile Include="Proc.cpp" />
     <ClCompile Include="Registry.cpp" />
+    <ClCompile Include="RemoteCaller.cpp" />
     <ClCompile Include="Settings_Menu.cpp" />
     <ClCompile Include="ShellCoreUtilWrapper.cpp" />
     <ClCompile Include="SocketListener.cpp" />

@@ -134,35 +134,9 @@ void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total)
 		*Total = _Total;
 }
 
-char CurrentTitleId[20];
-void GetBigAppTitleId()
+char* GetBigAppTitleId()
 {
-	static int Waiter = 0;
+	auto bigAppId = sceSystemServiceGetAppIdOfBigApp();
 
-	if (Waiter <= 0)
-	{
-		auto bigAppId = sceSystemServiceGetAppIdOfBigApp();
-
-		auto TitleId = LncUtil::GetAppTitleId(bigAppId);
-		strcpy(CurrentTitleId, TitleId);
-
-		Waiter = 500;
-	}
-	else
-		Waiter--;
-}
-uint64_t HDDFreeSpace, HDDTotalSpace;
-void UpdateStorageStats()
-{
-	static int Waiter = 0;
-
-	if (Waiter <= 0)
-	{
-		ShellCoreUtilWrapper::sceShellCoreUtilGetFreeSizeOfUserPartition(&HDDFreeSpace, &HDDTotalSpace);
-
-		Waiter = 5000;
-	}
-	else
-		Waiter--;
-	
+	return LncUtil::GetAppTitleId(bigAppId);
 }

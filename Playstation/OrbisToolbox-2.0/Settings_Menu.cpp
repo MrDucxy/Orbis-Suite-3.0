@@ -1,5 +1,6 @@
 ﻿#include "Common.h"
 #include "Settings_Menu.h"
+#include "RemoteCaller.h"
 
 #include "UI.h"
 #include "Debug_Features.h"
@@ -216,8 +217,7 @@ void Settings_Menu::OnRender_Hook(MonoObject* Instance)
 		Do_Once = true;
 	}
 
-	GetBigAppTitleId();
-	UpdateStorageStats();
+	CallInMonoThread->DoRemoteCalls();
 	Config::UpdateSettings();
 	Game_Overlay::OnRender();
 
