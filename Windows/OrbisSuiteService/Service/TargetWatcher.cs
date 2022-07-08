@@ -31,6 +31,15 @@ namespace OrbisSuiteService.Service
 
                     if (Target.IsAPIAvailable)
                         SavedTargets.UpdateTargetInfo(Target.Name);
+                    else
+                    {
+                        Target.CPUTemp = 0;
+                        Target.SOCTemp = 0;
+                        Target.ThreadCount = 0;
+                        Target.AverageCPUUsage = 0;
+                        Target.CurrentTitleID = "-";
+                        Target.Save();
+                    }
 
                     // Forward Target Availability.
                     if (oldAvailable != Target.IsAvailable)

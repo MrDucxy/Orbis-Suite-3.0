@@ -192,7 +192,8 @@
 
 	<!-- Orbis Suite Debug -->
 	<setting_list id="orbis_debug" title="Orbis Suite Debug">
-
+		
+		<button id="id_orbis_test" title="Test" second_title="Runs the current test." />
 		<button id="id_orbis_api" title="Restart API" second_title="Restarts the Orbis Suite API." />
 		<toggle_switch id="id_orbis_api_toggle" title="Toggle API" second_title="Toggle the API state." />
 

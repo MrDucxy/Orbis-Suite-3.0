@@ -11,6 +11,8 @@
 #include "KDriver.h"
 #include "API.h"
 
+#include "NetWrapper.h"
+
 std::map<char*, MenuOption*>* Menu::Options;
 bool Menu::Auto_Load_Settings;
 
@@ -206,6 +208,12 @@ void Menu::Init()
 		Notify("API Restarted!");
 	});
 	Add_Option("id_orbis_api_toggle", &API::Running, Type_Boolean, []() ->void { API::Running ? API::Term() : API::Init(); });
+	Add_Option("id_orbis_test", []() -> void
+	{
+		klog("WIFI MAC: %s\nLAN MAC: %s\n",
+			NetWrapper::GetMacAddressInfo(SCE_NET_IF_NAME_PHYSICAL),
+			NetWrapper::GetMacAddressInfo(SCE_NET_IF_NAME_WLAN0));
+	});
 }
 
 void Menu::Term()

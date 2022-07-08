@@ -7,6 +7,8 @@
 #include "Config.h"
 #include "Debug_Features.h"
 #include "ShellCoreUtilWrapper.h"
+#include "NetWrapper.h"
+#include "System_Monitor.h"
 
 void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -101,13 +103,13 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	ReadFlash(FLASH_FACTORY_FW, &Packet->FactorySoftwareVersion, sizeof(int));
 	Packet->CPUTemp = GetCPUTemp();
 	Packet->SOCTemp = GetSOCTemp();
-	strcpy(Packet->CurrentTitleID, CallInMonoThread->RemoteCall<char*>(GetBigAppTitleId));
+	strcpy(Packet->CurrentTitleID, CallInMonoThread->RemoteCall<char*>(GetBigAppTitleId)); // TODO: NOP Debug print.
 	GetConsoleName(Packet->ConsoleName, 100);
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);
 	ReadFlash(FLASH_SERIAL, &Packet->Serial, 10);
 	ReadFlash(FLASH_MODEL, &Packet->Model, 14);
-	ReadFlash(FLASH_LAN_MAC, &Packet->MACAdressLAN, 6);
-	//MACAdressWIFI
+	strcpy(Packet->MACAdressLAN, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_PHYSICAL));
+	strcpy(Packet->MACAdressWIFI, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_WLAN0));
 	ReadFlash(FLASH_UART_FLAG, &Packet->UART, 1);
 	ReadFlash(FLASH_IDU_MODE, &Packet->IDUMode, 1);
 	GetIDPS(Packet->IDPS);
@@ -121,9 +123,15 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	// Storage Stats.
 	uint64_t HDDFreeSpace, HDDTotalSpace;
 	CallInMonoThread->RemoteCall<int>(ShellCoreUtilWrapper::sceShellCoreUtilGetFreeSizeOfUserPartition, &HDDFreeSpace, &HDDTotalSpace);
-	klog("FreeSpace: %i\nUsedSpace: %i", HDDFreeSpace, HDDTotalSpace);
 	Packet->FreeSpace = HDDFreeSpace;
 	Packet->TotalSpace = HDDTotalSpace;
+
+	// Perf Stats.
+	Packet->CPUTemp = System_Monitor::CPU_Temp;
+	Packet->SOCTemp = System_Monitor::SOC_Temp;
+	Packet->ThreadCount = System_Monitor::Thread_Count;
+	Packet->AverageCPUUsage = System_Monitor::Average_Usage;
+
 
 	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
 

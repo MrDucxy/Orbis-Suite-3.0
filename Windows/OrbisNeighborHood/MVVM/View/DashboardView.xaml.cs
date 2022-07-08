@@ -216,8 +216,10 @@ namespace OrbisNeighborHood.MVVM.View
                 StorageUsagePercentage = (int)(((double)CurrentTarget.HDDUsedSpace / (double)CurrentTarget.HDDTotalSpace) * 100.0);
 
                 // System Stats.
-
-                
+                CPUTemp = $"{CurrentTarget.CPUTemp} °C";
+                SOCTemp = $"{CurrentTarget.SOCTemp} °C";
+                ThreadCount = CurrentTarget.ThreadCount;
+                AverageCPUUsage = CurrentTarget.AverageCPUUsage;
 
                 if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
                 {
@@ -314,14 +316,41 @@ namespace OrbisNeighborHood.MVVM.View
 
         #region System Stats
 
-        public int CPUTemp
+        public string CPUTemp
         {
-            get { return (int)GetValue(CPUTempProperty); }
+            get { return (string)GetValue(CPUTempProperty); }
             set { SetValue(CPUTempProperty, value); }
         }
 
         public static readonly DependencyProperty CPUTempProperty =
-            DependencyProperty.Register("CPUTemp", typeof(int), typeof(DashboardView), new PropertyMetadata(0));
+            DependencyProperty.Register("CPUTemp", typeof(string), typeof(DashboardView), new PropertyMetadata("- °C"));
+
+        public string SOCTemp
+        {
+            get { return (string)GetValue(SOCTempProperty); }
+            set { SetValue(SOCTempProperty, value); }
+        }
+
+        public static readonly DependencyProperty SOCTempProperty =
+            DependencyProperty.Register("SOCTemp", typeof(string), typeof(DashboardView), new PropertyMetadata("- °C"));
+
+        public int ThreadCount
+        {
+            get { return (int)GetValue(ThreadCountProperty); }
+            set { SetValue(ThreadCountProperty, value); }
+        }
+
+        public static readonly DependencyProperty ThreadCountProperty =
+            DependencyProperty.Register("ThreadCount", typeof(int), typeof(DashboardView), new PropertyMetadata(0));
+
+        public float AverageCPUUsage
+        {
+            get { return (float)GetValue(AverageCPUUsageProperty); }
+            set { SetValue(AverageCPUUsageProperty, value); }
+        }
+
+        public static readonly DependencyProperty AverageCPUUsageProperty =
+            DependencyProperty.Register("AverageCPUUsage", typeof(float), typeof(DashboardView), new PropertyMetadata(0.0f));
 
         #endregion
 

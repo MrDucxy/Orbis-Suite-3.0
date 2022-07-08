@@ -97,6 +97,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="LncUtil.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mono.h" />
+    <ClInclude Include="NetWrapper.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="Patcher.h" />
     <ClInclude Include="Proc.h" />
@@ -138,6 +139,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="LncUtil.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mono.cpp" />
+    <ClCompile Include="NetWrapper.cpp" />
     <ClCompile Include="OrbisToolbox.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Patcher.cpp" />

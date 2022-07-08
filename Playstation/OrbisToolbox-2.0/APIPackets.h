@@ -195,15 +195,13 @@ struct TargetInfoPacket
 	int SDKVersion;
 	int SoftwareVersion;
 	int FactorySoftwareVersion;
-	int CPUTemp;
-	int SOCTemp;
 	char CurrentTitleID[10];
 	char ConsoleName[100];
 	char MotherboardSerial[14];
 	char Serial[10];
 	char Model[14];
-	unsigned char MACAdressLAN[6];
-	unsigned char MACAdressWIFI[6];
+	char MACAdressLAN[18];
+	char MACAdressWIFI[18];
 	int UART;
 	int IDUMode;
 	char IDPS[16];
@@ -211,9 +209,16 @@ struct TargetInfoPacket
 	int ConsoleType;
 	int Attached;
 	int AttachedPid;
+
 	uint64_t FreeSpace;
 	uint64_t TotalSpace;
-}; //0x104
+
+	int CPUTemp;
+	int SOCTemp;
+	int ThreadCount;
+	float AverageCPUUsage;
+
+};
 
 struct TargetNotifyPacket
 {

@@ -213,6 +213,9 @@
     <ClInclude Include="System_Monitor.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
+    <ClInclude Include="NetWrapper.h">
+      <Filter>Header Files\Utilities\Mono</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OrbisToolbox.cpp">
@@ -325,6 +328,9 @@
     </ClCompile>
     <ClCompile Include="System_Monitor.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="NetWrapper.cpp">
+      <Filter>Source Files\Utilities\Mono</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

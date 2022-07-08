@@ -227,6 +227,26 @@ namespace OrbisSuite.Common.Database
         public long HDDTotalSpace { get; set; } = 0;
 
         /// <summary>
+        /// The current temperature of the CPU.
+        /// </summary>
+        public int CPUTemp { get; set; } = 0;
+
+        /// <summary>
+        /// The current tempurature of the SOC.
+        /// </summary>
+        public int SOCTemp { get; set; } = 0;
+
+        /// <summary>
+        /// The current thread count.
+        /// </summary>
+        public int ThreadCount { get; set; } = 0;
+
+        /// <summary>
+        /// The current average cpu usage.
+        /// </summary>
+        public float AverageCPUUsage { get; set; } = 0.0f;
+
+        /// <summary>
         /// Shows the Title number of the games on the home screen of this target.
         /// </summary>
         [NotNull]

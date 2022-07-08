@@ -170,8 +170,6 @@ namespace OrbisSuite.Common
         public int SDKVersion;
         public int SoftwareVersion;
         public int FactorySoftwareVersion;
-        public int CPUTemp;
-        public int SOCTemp;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
         public string CurrentTitleID;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
@@ -182,10 +180,10 @@ namespace OrbisSuite.Common
         public string Serial;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
         public string Model;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
-        public byte[] MACAddressLAN;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
-        public byte[] MACAddressWIFI;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 18)]
+        public string MACAddressLAN;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 18)]
+        public string MACAddressWIFI;
         public int UART;
         public int IDUMode;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
@@ -195,8 +193,14 @@ namespace OrbisSuite.Common
         public int ConsoleType;
         public int Attached;
         public int AttachedPid;
+
         public ulong FreeSpace;
         public ulong TotalSpace;
+
+        public int CPUTemp;
+        public int SOCTemp;
+        public int ThreadCount;
+        public float AverageCPUUsage;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]

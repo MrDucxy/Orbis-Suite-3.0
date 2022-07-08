@@ -91,8 +91,8 @@ namespace OrbisSuite.Common.Database
             Target.MotherboardSerial = Packet.MotherboardSerial;
             Target.Serial = Packet.Serial;
             Target.Model = Packet.Model;
-            Target.MACAddressLAN = BitConverter.ToString(Packet.MACAddressLAN).Replace("-", ":");
-            Target.MACAddressWIFI = "-"; // TODO: Find this on the console. BitConverter.ToString(Packet.MACAddressWIFI).Replace("-", ":");
+            Target.MACAddressLAN = Packet.MACAddressLAN.ToUpper();
+            Target.MACAddressWIFI = Packet.MACAddressWIFI.ToUpper();
             Target.UART = Packet.UART > 0;
             Target.IDUMode = Packet.IDUMode > 0;
             Target.IDPS = BitConverter.ToString(Packet.IDPS).Replace("-", string.Empty);
@@ -108,6 +108,11 @@ namespace OrbisSuite.Common.Database
             Target.HDDUsedSpace = (long)(Packet.TotalSpace - Packet.FreeSpace);
             Target.HDDFreeSpace = (long)Packet.FreeSpace;
             Target.HDDTotalSpace = (long)Packet.TotalSpace;
+
+            Target.CPUTemp = Packet.CPUTemp;
+            Target.SOCTemp = Packet.SOCTemp;
+            Target.ThreadCount = Packet.ThreadCount;
+            Target.AverageCPUUsage = Packet.AverageCPUUsage;
 
             return Target.Save();
         }
