@@ -194,6 +194,11 @@
 	<setting_list id="orbis_debug" title="Orbis Suite Debug">
 		
 		<button id="id_orbis_test" title="Test" second_title="Runs the current test." />
+		<button id="id_orbis_load" title="Load Local Process" second_title="Loads the local process test elf." />
+		<button id="id_orbis_unload" title="Unload Local Process" second_title="Un-Loads the local process test elf." />
+		<button id="id_orbis_listproc" title="List Processes" second_title="Lists all running processes to the console window." />
+		<button id="id_orbis_listlocalproc" title="List Local Processes" second_title="Lists all running local processes to the console window." />
+		
 		<button id="id_orbis_api" title="Restart API" second_title="Restarts the Orbis Suite API." />
 		<toggle_switch id="id_orbis_api_toggle" title="Toggle API" second_title="Toggle the API state." />
 

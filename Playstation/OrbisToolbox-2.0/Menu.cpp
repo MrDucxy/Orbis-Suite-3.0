@@ -13,8 +13,11 @@
 
 #include "NetWrapper.h"
 
+#include <orbis/SystemService.h>
+
 std::map<char*, MenuOption*>* Menu::Options;
 bool Menu::Auto_Load_Settings;
+int procId = 0;
 
 void Menu::Init()
 {
@@ -214,6 +217,52 @@ void Menu::Init()
 			NetWrapper::GetMacAddressInfo(SCE_NET_IF_NAME_PHYSICAL),
 			NetWrapper::GetMacAddressInfo(SCE_NET_IF_NAME_WLAN0));
 	});
+	Add_Option("id_orbis_load", []() -> void
+	{
+		int appId = LncUtil::GetAppId("NPXS20000");
+
+		const char* args[] = {
+		   "--CUSTOM_ARGS",
+		   NULL,
+		};
+
+		procId = sceSystemServiceAddLocalProcess(appId, "/data/Orbis Toolbox/TestLocalProcess.elf", 0, (const char**)&args);
+
+		Notify("Local Process Test: Loaded!\nProcessId: %llX", procId);
+	});
+	Add_Option("id_orbis_unload", []() -> void
+	{
+		int appId = LncUtil::GetAppId("NPXS20000");
+
+		auto result = LncUtil::ForceKillLocalProcess(appId, procId);
+
+		Notify("Local Process Test: Un-Loaded!\nResult: %llx", result);
+	});
+	Add_Option("id_orbis_listproc", []() -> void
+	{
+		ProcInfo Infos[200];
+		auto count = KDriver::GetProcessList(200, (ProcInfo*)&Infos);
+
+		for (int i = 0; i < count; i++)
+		{
+			klog("%i %s %s\n", Infos[i].PID, Infos[i].ProcName, Infos[i].TitleID);
+		}
+	});
+	Add_Option("id_orbis_listlocalproc", []() -> void 
+		{
+			LocalProcessStatus List[16];
+			unsigned int actualCount = 0;
+			auto result = sceSystemServiceGetLocalProcessStatusList(List, 16, &actualCount);
+
+			klog("result: %llx\nactualCount: %i\n", result, actualCount);
+
+			for (int i = 0; i < actualCount; i++)
+			{
+				klog("appLocalPid: %llX\nTitleId: %s", List[i].appLocalPid, LncUtil::GetAppTitleId(List[i].appLocalPid));
+			}
+
+			
+		});
 }
 
 void Menu::Term()

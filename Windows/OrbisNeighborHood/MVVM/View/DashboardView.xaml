@@ -337,7 +337,7 @@
                                                         Margin="0 0 10 0"/>
 
                                 <simpleControls:SimpleTextField FieldName="Top Core" 
-                                                        FieldText="-"
+                                                        FieldText="{Binding ElementName=DashboardElement, Path=TopCore}"
                                                         Width="73.5"
                                                         Height="35"/>
                             </StackPanel>
@@ -345,13 +345,13 @@
                             <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
 
                                 <simpleControls:SimpleTextField FieldName="Ram Usage" 
-                                                        FieldText="- MB"
+                                                        FieldText="{Binding ElementName=DashboardElement, Path=RamUsage}"
                                                         Width="73.5"
                                                         Height="35"
                                                         Margin="0 0 10 0"/>
 
                                 <simpleControls:SimpleTextField FieldName="V-Ram Usage" 
-                                                        FieldText="- MB"
+                                                        FieldText="{Binding ElementName=DashboardElement, Path=VRamUsage}"
                                                         Width="73.5"
                                                         Height="35"/>
                             </StackPanel>

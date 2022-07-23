@@ -247,6 +247,21 @@ namespace OrbisSuite.Common.Database
         public float AverageCPUUsage { get; set; } = 0.0f;
 
         /// <summary>
+        /// The current core that is the most busy.
+        /// </summary>
+        public int BusyCore { get; set; } = 0;
+
+        /// <summary>
+        /// The current system ram usage.
+        /// </summary>
+        public int RamUsage { get; set; } = 0;
+
+        /// <summary>
+        /// The current video ram usage.
+        /// </summary>
+        public int VRamUsage { get; set; } = 0;
+
+        /// <summary>
         /// Shows the Title number of the games on the home screen of this target.
         /// </summary>
         [NotNull]

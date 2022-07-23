@@ -13,6 +13,7 @@ public:
 	};
 
 	static int Thread_Count;
+	static int Busy_Core;
 	static float Usage[8];
 	static float Average_Usage;
 	static int CPU_Temp;

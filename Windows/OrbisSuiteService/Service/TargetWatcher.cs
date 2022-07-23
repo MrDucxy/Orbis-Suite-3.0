@@ -37,6 +37,9 @@ namespace OrbisSuiteService.Service
                         Target.SOCTemp = 0;
                         Target.ThreadCount = 0;
                         Target.AverageCPUUsage = 0;
+                        Target.BusyCore = 0;
+                        Target.RamUsage = 0;
+                        Target.VRamUsage = 0;
                         Target.CurrentTitleID = "-";
                         Target.Save();
                     }

@@ -83,7 +83,50 @@ int LncUtil::KillApp(int appId, int userId)
 }
 
 //static int ForceKillApp(int appId, int userId = -1);
-//static int KillLocalProcess(int appId, int appLocalPid);
+
+int LncUtil::GetLocalProcessStatusList(LocalProcessStatus List[], unsigned int numEntries, unsigned int* outEntries)
+{
+	MonoClass* LncUtil_Class = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil");
+	MonoClass* LocalProcessStatusClass = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil/LocalProcessStatus");
+
+	auto Array = Mono::New_Array(LocalProcessStatusClass, numEntries);
+	auto result = Mono::Invoke<int>(Mono::platform_dll, LncUtil_Class, nullptr, "GetLocalProcessStatusList", Array, numEntries, outEntries);
+
+	for (int i = 0; i < *outEntries; i++)
+	{
+		List[i] = mono_array_get(Array, LocalProcessStatus, i);
+	}
+
+	return result;
+}
+
+int LncUtil::GetAppStatusListForShellUIReboot(AppStatusForShellUIReboot outStatusList[], unsigned int numEntries, unsigned int* outEntries)
+{
+	MonoClass* LncUtil_Class = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil");
+	MonoClass* AppStatusForShellUIRebootClass = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil/AppStatusForShellUIReboot");
+
+	auto Array = Mono::New_Array(AppStatusForShellUIRebootClass, numEntries);
+	auto result = Mono::Invoke<int>(Mono::platform_dll, LncUtil_Class, nullptr, "GetAppStatusListForShellUIReboot", Array, numEntries, outEntries);
+
+	for (int i = 0; i < *outEntries; i++)
+	{
+		outStatusList[i] = mono_array_get(Array, AppStatusForShellUIReboot, i);
+	}
+
+	return result;
+}
+
+int LncUtil::KillLocalProcess(int appId, int appLocalPid)
+{
+	MonoClass* LncUtil_Class = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil");
+	return Mono::Invoke<int>(Mono::platform_dll, LncUtil_Class, nullptr, "KillLocalProcess", appId, appLocalPid);
+}
+
+int LncUtil::ForceKillLocalProcess(int appId, int appLocalPid)
+{
+	MonoClass* LncUtil_Class = Mono::Get_Class(Mono::platform_dll, "Sce.Vsh.ShellUI.Lnc", "LncUtil");
+	return Mono::Invoke<int>(Mono::platform_dll, LncUtil_Class, nullptr, "ForceKillLocalProcess", appId, appLocalPid);
+}
 
 void LncUtil::SystemShutdown(Boot flag)
 {

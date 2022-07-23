@@ -131,7 +131,9 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	Packet->SOCTemp = System_Monitor::SOC_Temp;
 	Packet->ThreadCount = System_Monitor::Thread_Count;
 	Packet->AverageCPUUsage = System_Monitor::Average_Usage;
-
+	Packet->BusyCore = System_Monitor::Busy_Core;
+	memcpy(&Packet->Ram, &System_Monitor::RAM, sizeof(MemoryInfo));
+	memcpy(&Packet->VRam, &System_Monitor::VRAM, sizeof(MemoryInfo));
 
 	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
 
@@ -167,3 +169,5 @@ void Target::SetSettings(OrbisNetId Sock)
 
 	Config::SetSettingsNow = true;
 }
+
+//TODO: Get Target Settings.

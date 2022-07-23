@@ -67,7 +67,6 @@ int main()
 		}
 
 		klog("[Orbis Suite] Launching Toolbox!!\n");
-		// Init Orbis Toolbox
 		Handle = OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 		if (Handle > 0)
 			klog("Orbis Toolbox loaded! %d\n", Handle);
@@ -82,9 +81,8 @@ int main()
 			switch (MsgDialog::DialogResult.buttonId)
 			{
 			case ORBIS_MSG_DIALOG_BUTTON_ID_BUTTON1:
-				OrbisDriver::UnLoadSPRX("SceShellUI", "OrbisToolbox-2.0.sprx");
-
-				sceKernelSleep(3.0);
+				if (OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox-2.0.sprx") >= 0)
+					sceKernelSleep(2.0);
 
 				if (!UnloadKernel())
 				{
@@ -93,8 +91,9 @@ int main()
 				break;
 
 			case ORBIS_MSG_DIALOG_BUTTON_ID_BUTTON2:
-				OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox-2.0.sprx");
-				sceKernelSleep(1.5);
+				if (OrbisDriver::UnLoadSPRX("SceShellUI", "Orbis Toolbox-2.0.sprx") >= 0)
+					sceKernelSleep(1.5);
+
 				OrbisDriver::LoadSPRX("SceShellUI", "/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 				break;
 

@@ -109,10 +109,14 @@ namespace OrbisSuite.Common.Database
             Target.HDDFreeSpace = (long)Packet.FreeSpace;
             Target.HDDTotalSpace = (long)Packet.TotalSpace;
 
+            // Perf Stats.
             Target.CPUTemp = Packet.CPUTemp;
             Target.SOCTemp = Packet.SOCTemp;
             Target.ThreadCount = Packet.ThreadCount;
             Target.AverageCPUUsage = Packet.AverageCPUUsage;
+            Target.BusyCore = Packet.BusyCore;
+            Target.RamUsage = Packet.Ram.Used;
+            Target.VRamUsage = Packet.VRam.Used;
 
             return Target.Save();
         }

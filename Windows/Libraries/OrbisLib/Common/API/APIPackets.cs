@@ -8,31 +8,22 @@ namespace OrbisSuite.Common
 
         /* ####### Proc functions ####### */
         PROC_START,
-        API_PROC_GET_LIST,
-        API_PROC_ATTACH,
-        API_PROC_DETACH,
-        API_PROC_GET_CURRENT,
-        API_PROC_READ,
-        API_PROC_WRITE,
-        API_PROC_KILL,
-        API_PROC_LOAD_ELF,
-        API_PROC_CALL,
 
-        /* Remote Library functions */
-        API_PROC_LOAD_SPRX,
-        API_PROC_UNLOAD_SPRX,
-        API_PROC_UNLOAD_SPRX_NAME,
-        API_PROC_RELOAD_SPRX_NAME,
-        API_PROC_RELOAD_SPRX_HANDLE,
-        API_PROC_DUMP_MODULE,
-        API_PROC_MODULE_LIST,
+        API_PROC_GET_LIST,
+        API_PROC_LOAD_ELF,
+        API_PROC_CALL, /* RPC Call. */
+
         PROC_END,
         /* ############################## */
 
         /* ##### Debugger functions ##### */
         DBG_START,
-        API_DBG_START, /* Debugger attach to target */
-        API_DBG_STOP, /* Debugger detach from target */
+        API_DBG_ATTACH, /* Debugger attach to target */
+        API_DBG_DETACH, /* Debugger detach from target */
+        API_DBG_GET_CURRENT,
+        API_DBG_READ,
+        API_DBG_WRITE,
+        API_DBG_KILL,
         API_DBG_BREAK,
         API_DBG_RESUME,
         API_DBG_SIGNAL,
@@ -46,6 +37,12 @@ namespace OrbisSuite.Common
         API_DBG_SET_FREG,
         API_DBG_GET_DBGREG,
         API_DBG_SET_DBGREG,
+
+        /* Remote Library functions */
+        API_DBG_LOAD_SPRX,
+        API_DBG_UNLOAD_SPRX,
+        API_DBG_RELOAD_SPRX,
+        API_DBG_MODULE_LIST,
 
         /* Thread Management */
         API_DBG_THREAD_LIST,
@@ -164,6 +161,15 @@ namespace OrbisSuite.Common
         Blue_Blinking,
     };
 
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi), Serializable]
+    public struct MemoryInfo
+    {
+        public int Used;
+        public int Free;
+        public int Total;
+        public float Percentage;
+    };
+
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi, Size = 260), Serializable]
     public struct TargetInfoPacket
     {
@@ -201,6 +207,9 @@ namespace OrbisSuite.Common
         public int SOCTemp;
         public int ThreadCount;
         public float AverageCPUUsage;
+        public int BusyCore;
+        public MemoryInfo Ram;
+        public MemoryInfo VRam;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]

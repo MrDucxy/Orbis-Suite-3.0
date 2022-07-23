@@ -254,7 +254,6 @@ int Proc::ProcessSPRX(caddr_t data)
 
 	auto Input = (KDriver_ProcSPRX*)data;
 
-	klog("DoSwitch");
 	switch (Input->CallType)
 	{
 	case 0:

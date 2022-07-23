@@ -18,63 +18,11 @@ void Proc::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 		break;
 
-	case API_PROC_ATTACH:
-
-		break;
-
-	case API_PROC_DETACH:
-
-		break;
-
-	case API_PROC_GET_CURRENT:
-
-		break;
-
-	case API_PROC_READ:
-
-		break;
-
-	case API_PROC_WRITE:
-
-		break;
-
-	case API_PROC_KILL:
-
-		break;
-
 	case API_PROC_LOAD_ELF:
 
 		break;
 
 	case API_PROC_CALL:
-
-		break;
-
-	case API_PROC_LOAD_SPRX:
-
-		break;
-
-	case API_PROC_UNLOAD_SPRX:
-
-		break;
-
-	case API_PROC_UNLOAD_SPRX_NAME:
-
-		break;
-
-	case API_PROC_RELOAD_SPRX_NAME:
-
-		break;
-
-	case API_PROC_RELOAD_SPRX_HANDLE:
-
-		break;
-
-	case API_PROC_DUMP_MODULE:
-
-		break;
-
-	case API_PROC_MODULE_LIST:
 
 		break;
 	}

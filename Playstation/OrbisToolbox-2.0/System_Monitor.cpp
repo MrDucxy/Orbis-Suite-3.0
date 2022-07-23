@@ -3,6 +3,7 @@
 #include "Game_Overlay.h"
 
 int System_Monitor::Thread_Count = 0;
+int System_Monitor::Busy_Core = 0;
 float System_Monitor::Usage[8] = { 0 };
 float System_Monitor::Average_Usage;
 int System_Monitor::CPU_Temp;
@@ -18,6 +19,8 @@ void System_Monitor::calc_usage(unsigned int idle_tid[8], thread_usages* cur, th
 {
 	if (cur->Thread_Count <= 0 || prev->Thread_Count <= 0) //Make sure our banks have threads
 		return;
+
+	float CurrentMax = 0.0f;
 
 	//Calculate the Current time difference from the last bank to the current bank.
 	float Current_Time_Total = ((prev->current_time.tv_sec + (prev->current_time.tv_nsec / 1000000000.0f)) - (cur->current_time.tv_sec + (cur->current_time.tv_nsec / 1000000000.0f)));
@@ -67,6 +70,12 @@ void System_Monitor::calc_usage(unsigned int idle_tid[8], thread_usages* cur, th
 
 		//Get inverse of idle percentage and express in percent.
 		usage_out[i] = (1.0f - Idle_Usage) * 100.0f;
+
+		if (usage_out[i] > CurrentMax)
+		{
+			CurrentMax = usage_out[i];
+			Busy_Core = i;
+		}
 	}
 }
 

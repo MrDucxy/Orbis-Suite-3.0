@@ -220,6 +220,9 @@ namespace OrbisNeighborHood.MVVM.View
                 SOCTemp = $"{CurrentTarget.SOCTemp} °C";
                 ThreadCount = CurrentTarget.ThreadCount;
                 AverageCPUUsage = CurrentTarget.AverageCPUUsage;
+                TopCore = $"Core {CurrentTarget.BusyCore}";
+                RamUsage = $"{CurrentTarget.RamUsage} MB";
+                VRamUsage = $"{CurrentTarget.VRamUsage} MB";
 
                 if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
                 {
@@ -351,6 +354,33 @@ namespace OrbisNeighborHood.MVVM.View
 
         public static readonly DependencyProperty AverageCPUUsageProperty =
             DependencyProperty.Register("AverageCPUUsage", typeof(float), typeof(DashboardView), new PropertyMetadata(0.0f));
+
+        public string TopCore
+        {
+            get { return (string)GetValue(TopCoreProperty); }
+            set { SetValue(TopCoreProperty, value); }
+        }
+
+        public static readonly DependencyProperty TopCoreProperty =
+            DependencyProperty.Register("TopCore", typeof(string), typeof(DashboardView), new PropertyMetadata("-"));
+
+        public string RamUsage
+        {
+            get { return (string)GetValue(RamUsageProperty); }
+            set { SetValue(RamUsageProperty, value); }
+        }
+
+        public static readonly DependencyProperty RamUsageProperty =
+            DependencyProperty.Register("RamUsage", typeof(string), typeof(DashboardView), new PropertyMetadata("-"));
+
+        public string VRamUsage
+        {
+            get { return (string)GetValue(VRamUsageProperty); }
+            set { SetValue(VRamUsageProperty, value); }
+        }
+
+        public static readonly DependencyProperty VRamUsageProperty =
+            DependencyProperty.Register("VRamUsage", typeof(string), typeof(DashboardView), new PropertyMetadata("-"));
 
         #endregion
 

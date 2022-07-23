@@ -49,6 +49,28 @@ public:
 		char appType;
 	};
 
+	struct LocalProcessStatus
+	{
+		int appLocalPid;
+		char reserved[32];
+	};
+
+	struct AppStatusForShellUIReboot
+	{
+		int appId;
+		int appType;
+		int appAttr;
+		int launchRequestAppId;
+		int userId;
+		int isActiveCdlg;
+		char path[1024];
+		int isCoredumped;
+		int isPrxModuleLoadFailed;
+		int appLocalPid;
+		int crashReportMode;
+		char category[4];
+	};
+
 	static int GetAppStatus(AppStatus* Status);
 	static int SuspendApp(int appId, Flag flag = Flag_None);
 	static int ResumeApp(int appId, Flag flag = Flag_None);
@@ -62,6 +84,9 @@ public:
 	static int KillApp(int appId, int userId = -1);
 	static int ForceKillApp(int appId, int userId = -1);
 	static int KillLocalProcess(int appId, int appLocalPid);
+	static int ForceKillLocalProcess(int appId, int appLocalPid);
+	static int GetLocalProcessStatusList(LocalProcessStatus List[], unsigned int numEntries, unsigned int* outEntries);
+	static int GetAppStatusListForShellUIReboot(AppStatusForShellUIReboot outStatusList[], unsigned int numEntries, unsigned int* outEntries);
 
 	static void SystemShutdown(Boot flag);
 	static void SystemReboot();
