@@ -1,0 +1,184 @@
+﻿<simpleControls:SimpleWindow x:Class="OrbisLibraryManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrbisLibraryManager"
+        xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
+        xmlns:controls="clr-namespace:OrbisLibraryManager.Controls"
+        mc:Ignorable="d"
+        Title="LibraryManager" Height="640" Width="960"
+        MinHeight="640" MinWidth="960"
+        MaxHeight="640" MaxWidth="960"
+        ResizeMode="CanMinimize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu BG -->
+        <Rectangle Grid.Column="0" Grid.Row="0"
+                   Fill="{DynamicResource WindowBar}"/>
+
+        <!-- Separation bar -->
+        <Rectangle Grid.Column="0" Grid.Row="0"
+                   Height="0.5" VerticalAlignment="Top"
+                   Fill="{DynamicResource WindowBackground}"/>
+
+        <!-- Current Target -->
+        <controls:CurrentTargetDisplay VerticalAlignment="Center"
+                                       HorizontalAlignment="Stretch"/>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+            <!-- SPRX Loader -->
+            <StackPanel HorizontalAlignment="Right"
+                    Margin="6">
+
+                <simpleControls:SimpleTextField FieldName="SPRX Path"
+                                                FieldText="/data/something.sprx"
+                                                VerticalContentAlignment="Center"
+                                                Width="180"/>
+
+                <Grid Margin="0 6 0 0">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <simpleControls:SimpleButton Grid.Column="0"
+                                                 Content="Load"
+                                                 Width="56"
+                                                 Height="25"/>
+
+                    <simpleControls:SimpleButton Grid.Column="2"
+                                                 Content="Unload"
+                                                 Width="56"
+                                                 Height="25"/>
+                    
+                    <simpleControls:SimpleButton Grid.Column="4"
+                                                 Content="Reload"
+                                                 Width="56"
+                                                 Height="25"/>
+                </Grid>
+                
+
+            </StackPanel>
+
+            <!-- Current Debugging Process -->
+            <StackPanel HorizontalAlignment="Right"
+                    Margin="0 6 6 6">
+
+                <simpleControls:SimpleTextField FieldName="Currently Debugging"
+                                                FieldText="SceShellUI.ELF (75)"
+                                                VerticalContentAlignment="Center"
+                                                Width="180"/>
+
+                <Grid Margin="0 6 0 0">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <controls:ImageButton x:Name="AttachProcess"
+                                          Grid.Column="0"
+                                          Width="25"
+                                          Height="25"
+                                          ToolTip="Attach to new process"
+                                          ImageSource="/OrbisLibraryManager;component/Images/Attached.png"
+                                          ImageMargin="1"/>
+
+                    <controls:ImageButton x:Name="DetachProcess"
+                                          Grid.Column="2"
+                                          Width="25"
+                                          Height="25"
+                                          ToolTip="Detach the current attached process"
+                                          ImageSource="/OrbisLibraryManager;component/Images/Detached.png"
+                                          ImageMargin="2"/>
+
+                    <controls:ImageButton x:Name="Send"
+                                          Grid.Column="4"
+                                          Width="25"
+                                          Height="25"
+                                          ToolTip="Browse for something to load from local machine"
+                                          ImageSource="/OrbisLibraryManager;component/Images/Send.png"
+                                          ImageMargin="5"/>
+
+                    <controls:ImageButton x:Name="KillProcess"
+                                          Grid.Column="6"
+                                          Width="25"
+                                          Height="25"
+                                          ToolTip="Kills the currently attached process"
+                                          ImageSource="/OrbisLibraryManager;component/Images/KillProcess.png"
+                                          ImageMargin="1"/>
+
+                    <controls:ImageButton x:Name="RestartTarget"
+                                          Grid.Column="8"
+                                          Width="25"
+                                          Height="25"
+                                          ToolTip="Restart the Target"
+                                          ImageSource="/OrbisLibraryManager;component/Images/Restart.png"
+                                          ImageMargin="0"/>
+
+                    <controls:ImageButton x:Name="ShutdownTarget"
+                                          Grid.Column="10"
+                                          Width="25"
+                                          Height="25"
+                                          ToolTip="Shutdown the Target"
+                                          ImageSource="/OrbisLibraryManager;component/Images/Shutdown.png"
+                                          ImageMargin="0"/>
+
+                </Grid>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- Library List -->
+        <ListView Grid.Row="1"
+                  Height="507"
+                  Width="934"
+                  MaxWidth="934"
+                  VerticalAlignment="Top"
+                  Background="{DynamicResource WindowBackground}"
+                  BorderBrush="Transparent"
+                  BorderThickness="0"
+                  Name="LibraryList"
+                  AlternationCount="2">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Handle" Width="60" DisplayMemberBinding="{Binding [0]}"/>
+                    <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding [1]}"/>
+                    <GridViewColumn Header="Segments" Width="Auto" DisplayMemberBinding="{Binding [2]}"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+
+    </Grid>
+    
+</simpleControls:SimpleWindow>

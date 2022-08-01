@@ -70,6 +70,10 @@
         <!-- Current Target -->
         <controls:CurrentTargetDisplay VerticalAlignment="Stretch"
                                        HorizontalAlignment="Stretch"/>
+        <!-- Separation bar -->
+        <Rectangle Grid.Column="0" Grid.Row="0"
+                   Height="0.5" VerticalAlignment="Top"
+                   Fill="{DynamicResource WindowBackground}"/>
 
         <!-- Menu Controls -->
         <StackPanel Grid.Column="0" Grid.Row="2"

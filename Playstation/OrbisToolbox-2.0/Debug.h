@@ -8,5 +8,7 @@ public:
 	void HandleAPI(OrbisNetId Sock, APIPacket* Packet);
 
 private:
+	bool IsDebugging;
+	int CurrentPID;
 
 };

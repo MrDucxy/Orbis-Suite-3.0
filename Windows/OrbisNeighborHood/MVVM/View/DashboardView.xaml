@@ -399,8 +399,8 @@
                 <!-- Library Manager -->
                 <controls:AppLauncherButton 
                     Grid.Column="3"
-                    IsEnabled="False"
-                    ToolTip="Currently under development."
+                    IsEnabled="true"
+                    ToolTip="Launch the Orbis Library Manager to load SPRX, ELF's and more!"
                     Text="Library Manager"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisModuleManager.ico"/>
 
