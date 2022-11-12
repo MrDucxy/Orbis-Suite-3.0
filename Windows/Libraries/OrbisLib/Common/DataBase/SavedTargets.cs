@@ -83,42 +83,42 @@ namespace OrbisSuite.Common.Database
             if (Packet.ConsoleName == null || Packet.ConsoleName == string.Empty)
                 return false;
 
-            Target.SDKVersion = $"{((Packet.SDKVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SDKVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.SDKVersion & 0xFFF).ToString("X3")}";
-            Target.SoftwareVersion = $"{((Packet.SoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SoftwareVersion >> 16) & 0xFF).ToString("X2")}";
-            Target.FactorySoftwareVersion = $"{((Packet.FactorySoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.FactorySoftwareVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.FactorySoftwareVersion & 0xFFF).ToString("X3")}";
-            Target.CurrentTitleID = Packet.CurrentTitleID;
-            Target.ConsoleName = Packet.ConsoleName;
-            Target.MotherboardSerial = Packet.MotherboardSerial;
-            Target.Serial = Packet.Serial;
-            Target.Model = Packet.Model;
-            Target.MACAddressLAN = Packet.MACAddressLAN.ToUpper();
-            Target.MACAddressWIFI = Packet.MACAddressWIFI.ToUpper();
-            Target.UART = Packet.UART > 0;
-            Target.IDUMode = Packet.IDUMode > 0;
-            Target.IDPS = BitConverter.ToString(Packet.IDPS).Replace("-", string.Empty);
-            Target.PSID = BitConverter.ToString(Packet.PSID).Replace("-", string.Empty);
-            Target.ConsoleType = (ConsoleType)Packet.ConsoleType;
+            Target.Details.SDKVersion = $"{((Packet.SDKVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SDKVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.SDKVersion & 0xFFF).ToString("X3")}";
+            Target.Details.SoftwareVersion = $"{((Packet.SoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.SoftwareVersion >> 16) & 0xFF).ToString("X2")}";
+            Target.Details.FactorySoftwareVersion = $"{((Packet.FactorySoftwareVersion >> 24) & 0xFF).ToString("X1")}.{((Packet.FactorySoftwareVersion >> 12) & 0xFFF).ToString("X3")}.{(Packet.FactorySoftwareVersion & 0xFFF).ToString("X3")}";
+            Target.Details.CurrentTitleID = Packet.CurrentTitleID;
+            Target.Details.ConsoleName = Packet.ConsoleName;
+            Target.Details.MotherboardSerial = Packet.MotherboardSerial;
+            Target.Details.Serial = Packet.Serial;
+            Target.Details.Model = Packet.Model;
+            Target.Details.MACAddressLAN = Packet.MACAddressLAN.ToUpper();
+            Target.Details.MACAddressWIFI = Packet.MACAddressWIFI.ToUpper();
+            Target.Details.UART = Packet.UART > 0;
+            Target.Details.IDUMode = Packet.IDUMode > 0;
+            Target.Details.IDPS = BitConverter.ToString(Packet.IDPS).Replace("-", string.Empty);
+            Target.Details.PSID = BitConverter.ToString(Packet.PSID).Replace("-", string.Empty);
+            Target.Details.ConsoleType = (ConsoleType)Packet.ConsoleType;
 
             // Debugging.
-            Target.IsAttached = Packet.Attached > 0;
+            Target.Details.IsAttached = Packet.Attached > 0;
             // TODO: Implement this into the API.
-            Target.CurrentProcessId = 0;// TODO: Update this to process Id Packet.CurrentProc;
+            Target.Details.CurrentProcessId = 0;// TODO: Update this to process Id Packet.CurrentProc;
 
             // Storage.
-            Target.HDDUsedSpace = (long)(Packet.TotalSpace - Packet.FreeSpace);
-            Target.HDDFreeSpace = (long)Packet.FreeSpace;
-            Target.HDDTotalSpace = (long)Packet.TotalSpace;
+            Target.Details.HDDUsedSpace = (long)(Packet.TotalSpace - Packet.FreeSpace);
+            Target.Details.HDDFreeSpace = (long)Packet.FreeSpace;
+            Target.Details.HDDTotalSpace = (long)Packet.TotalSpace;
 
             // Perf Stats.
-            Target.CPUTemp = Packet.CPUTemp;
-            Target.SOCTemp = Packet.SOCTemp;
-            Target.ThreadCount = Packet.ThreadCount;
-            Target.AverageCPUUsage = Packet.AverageCPUUsage;
-            Target.BusyCore = Packet.BusyCore;
-            Target.RamUsage = Packet.Ram.Used;
-            Target.VRamUsage = Packet.VRam.Used;
+            Target.Details.CPUTemp = Packet.CPUTemp;
+            Target.Details.SOCTemp = Packet.SOCTemp;
+            Target.Details.ThreadCount = Packet.ThreadCount;
+            Target.Details.AverageCPUUsage = Packet.AverageCPUUsage;
+            Target.Details.BusyCore = Packet.BusyCore;
+            Target.Details.RamUsage = Packet.Ram.Used;
+            Target.Details.VRamUsage = Packet.VRam.Used;
 
-            return Target.Save();
+            return Target.Details.Save();
         }
     }
 }

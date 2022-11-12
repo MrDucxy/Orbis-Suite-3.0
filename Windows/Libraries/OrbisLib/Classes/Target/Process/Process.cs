@@ -36,9 +36,9 @@ namespace OrbisSuite
 
     public class Process
     {
-        public Memory Memory;
         private OrbisLib PS4;
         private Target Target;
+        public Memory Memory;
 
         public Process(OrbisLib PS4, Target Target)
         {
@@ -52,7 +52,7 @@ namespace OrbisSuite
         {
             get
             {
-                if (!Target.Info.IsAPIAvailable)
+                if (!Target.Info.Details.IsAPIAvailable)
                 {
                     yield break;
                 }

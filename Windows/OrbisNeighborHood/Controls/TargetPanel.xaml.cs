@@ -40,20 +40,20 @@ namespace OrbisNeighborHood.Controls
             _thisTargetInfo = _thisTarget.Info;
 
             this.TargetName = _thisTarget.Info.Name;
-            TargetStatus = _thisTarget.Info.Status;
-            ConsoleModel = _thisTarget.Info.ModelType;
+            TargetStatus = _thisTarget.Info.Details.Status;
+            ConsoleModel = _thisTarget.Info.Details.ModelType;
             IsDefault = _thisTarget.Info.IsDefault;
-            FirmwareVersion = _thisTarget.Info.SoftwareVersion;
-            SDKVersion = _thisTarget.Info.SDKVersion;
+            FirmwareVersion = _thisTarget.Info.Details.SoftwareVersion;
+            SDKVersion = _thisTarget.Info.Details.SDKVersion;
             IPAddress = _thisTarget.Info.IPAddress;
-            ConsoleName = _thisTarget.Info.ConsoleName;
+            ConsoleName = _thisTarget.Info.Details.ConsoleName;
             PayloadPort = _thisTarget.Info.PayloadPort.ToString();
 
-            LocateTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
-            SendPayload.IsEnabled = _thisTarget.Info.IsAvailable;
-            RestartTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
-            ShutdownTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
-            SuspendTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            LocateTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
+            SendPayload.IsEnabled = _thisTarget.Info.Details.IsAvailable;
+            RestartTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
+            ShutdownTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
+            SuspendTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
         }
 
         #region Properties
@@ -223,6 +223,7 @@ namespace OrbisNeighborHood.Controls
                 var editTargetViewModel = MainViewModel.Instance.EditTargetVM;
                 editTargetViewModel.TargetChanged += EditTargetVM_TargetChanged;
                 editTargetViewModel.CurrentTarget = _thisTargetInfo.Clone();
+                editTargetViewModel.CallingVM = MainViewModel.Instance.TargetVM;
                 MainViewModel.Instance.CurrentView = editTargetViewModel;
             }
         }

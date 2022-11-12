@@ -103,50 +103,50 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         private void ShowTitleIdLabels_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.ShowTitleId;
+            Switch.IsToggled = _newTarget.Details.ShowTitleId;
 
         }
 
         private void ShowTitleIdLabels_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.ShowTitleId = Switch.IsToggled;
+            _newTarget.Details.ShowTitleId = Switch.IsToggled;
         }
 
         private void ShowDevkitPanel_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.ShowDevkitPanel;
+            Switch.IsToggled = _newTarget.Details.ShowDevkitPanel;
         }
 
         private void ShowDevkitPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.ShowDevkitPanel = Switch.IsToggled;
+            _newTarget.Details.ShowDevkitPanel = Switch.IsToggled;
         }
 
         private void ShowToolboxShortcut_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.ShowToolboxShortcut;
+            Switch.IsToggled = _newTarget.Details.ShowToolboxShortcut;
         }
 
         private void ShowToolboxShortcut_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.ShowToolboxShortcut = Switch.IsToggled;
+            _newTarget.Details.ShowToolboxShortcut = Switch.IsToggled;
         }
 
         private void ShowAppHome_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.ShowAppHome;
+            Switch.IsToggled = _newTarget.Details.ShowAppHome;
         }
 
         private void ShowAppHome_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.ShowAppHome = Switch.IsToggled;
+            _newTarget.Details.ShowAppHome = Switch.IsToggled;
         }
 
         #endregion

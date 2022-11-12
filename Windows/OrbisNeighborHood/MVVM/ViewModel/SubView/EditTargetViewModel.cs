@@ -31,6 +31,8 @@ namespace OrbisNeighborHood.MVVM.ViewModel.SubView
 
         public TargetInfo? CurrentTarget { get; set; }
 
+        public object CallingVM { get; set; }
+
         #endregion
     }
 }

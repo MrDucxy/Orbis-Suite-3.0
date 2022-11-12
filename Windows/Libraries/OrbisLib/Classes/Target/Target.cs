@@ -42,7 +42,7 @@ namespace OrbisSuite
 
         public APIResults Shutdown()
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -53,7 +53,7 @@ namespace OrbisSuite
 
         public APIResults Reboot()
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -64,7 +64,7 @@ namespace OrbisSuite
 
         public APIResults Suspend()
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -75,7 +75,7 @@ namespace OrbisSuite
 
         public APIResults Notify(string Message)
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -95,7 +95,7 @@ namespace OrbisSuite
 
         public APIResults Notify(string IconURI, string Message)
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -115,7 +115,7 @@ namespace OrbisSuite
 
         public APIResults Buzzer(BuzzerType Type)
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -135,7 +135,7 @@ namespace OrbisSuite
 
         public APIResults SetLED(ConsoleLEDColours Colour)
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;
@@ -170,7 +170,7 @@ namespace OrbisSuite
 
         public APIResults SetSettings(bool ShowDebugTitleIdLabel, bool ShowDevkitPanel, bool ShowDebugSettings, bool ShowAppHome)
         {
-            if (!Info.IsAPIAvailable)
+            if (!Info.Details.IsAPIAvailable)
             {
                 Console.WriteLine($"Attempted to call '{System.Reflection.MethodBase.GetCurrentMethod().Name}' but API not Available on target '{Info.Name}'.");
                 return APIResults.API_ERROR_NOT_CONNECTED;

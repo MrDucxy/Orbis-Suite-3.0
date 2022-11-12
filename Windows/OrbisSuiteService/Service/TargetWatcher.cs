@@ -22,42 +22,42 @@ namespace OrbisSuiteService.Service
             {
                 Parallel.ForEach(SavedTargets.Targets, Target =>
                 {
-                    var oldAvailable = Target.IsAvailable;
-                    var OldAPIAvailable = Target.IsAPIAvailable;
+                    var oldAvailable = Target.Details.IsAvailable;
+                    var OldAPIAvailable = Target.Details.IsAPIAvailable;
 
-                    Target.IsAvailable = Helpers.PingHost(Target.IPAddress);
-                    Target.IsAPIAvailable = Helpers.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
-                    Target.SaveStatus();
+                    Target.Details.IsAvailable = Helpers.PingHost(Target.IPAddress);
+                    Target.Details.IsAPIAvailable = Helpers.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
+                    Target.Details.Save();
 
-                    if (Target.IsAPIAvailable)
+                    if (Target.Details.IsAPIAvailable)
                         SavedTargets.UpdateTargetInfo(Target.Name);
                     else
                     {
-                        Target.CPUTemp = 0;
-                        Target.SOCTemp = 0;
-                        Target.ThreadCount = 0;
-                        Target.AverageCPUUsage = 0;
-                        Target.BusyCore = 0;
-                        Target.RamUsage = 0;
-                        Target.VRamUsage = 0;
-                        Target.CurrentTitleID = "-";
-                        Target.Save();
+                        Target.Details.CPUTemp = 0;
+                        Target.Details.SOCTemp = 0;
+                        Target.Details.ThreadCount = 0;
+                        Target.Details.AverageCPUUsage = 0;
+                        Target.Details.BusyCore = 0;
+                        Target.Details.RamUsage = 0;
+                        Target.Details.VRamUsage = 0;
+                        Target.Details.CurrentTitleID = "-";
+                        Target.Details.Save();
                     }
 
                     // Forward Target Availability.
-                    if (oldAvailable != Target.IsAvailable)
+                    if (oldAvailable != Target.Details.IsAvailable)
                     {
                         var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAvailability, Target.IPAddress);
-                        Packet.TargetAvailability.Available = Target.IsAvailable;
+                        Packet.TargetAvailability.Available = Target.Details.IsAvailable;
                         Packet.TargetAvailability.Name = Target.Name;
                         _dispatcher.ForwardPacketAll(Packet);
                     }
 
                     // Forward API Availability.
-                    if (OldAPIAvailable != Target.IsAPIAvailable)
+                    if (OldAPIAvailable != Target.Details.IsAPIAvailable)
                     {
                         var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAPIAvailability, Target.IPAddress);
-                        Packet.TargetAPIAvailability.Available = Target.IsAvailable;
+                        Packet.TargetAPIAvailability.Available = Target.Details.IsAvailable;
                         Packet.TargetAPIAvailability.Name = Target.Name;
                         _dispatcher.ForwardPacketAll(Packet);
                     }

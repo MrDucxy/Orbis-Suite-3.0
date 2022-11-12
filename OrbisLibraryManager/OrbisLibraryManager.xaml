@@ -177,6 +177,12 @@
                 </GridView>
             </ListView.View>
 
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Refresh" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+
         </ListView>
 
     </Grid>

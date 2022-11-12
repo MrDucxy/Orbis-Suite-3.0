@@ -49,7 +49,7 @@ namespace OrbisNeighborHood.Controls
 
             if (CurrentTarget != null)
             {
-                switch (CurrentTarget.Status)
+                switch (CurrentTarget.Details.Status)
                 {
                     case TargetStatusType.Offline:
                         CurrentTargetState.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
@@ -74,7 +74,7 @@ namespace OrbisNeighborHood.Controls
 
                 CurrentTargetName.Text = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
 
-                if (CurrentTarget.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
+                if (CurrentTarget.Details.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Details.CurrentTitleID, @"CUSA\d{5}"))
                 {
                     CurrentTargetTitleName.Text = "Unknown Title";
                     CurrentTargetTitleId.Text = "-";
@@ -82,7 +82,7 @@ namespace OrbisNeighborHood.Controls
                 }
                 else
                 {
-                    var Title = new TMDB(CurrentTarget.CurrentTitleID);
+                    var Title = new TMDB(CurrentTarget.Details.CurrentTitleID);
                     Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
                     CurrentTargetTitleName.Text = Title.Names.First();
                     CurrentTargetTitleId.Text = Title.NPTitleID;
@@ -96,9 +96,9 @@ namespace OrbisNeighborHood.Controls
         {
             var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
 
-            if (CurrentTarget != null && CurrentTarget.CurrentTitleID != null && Regex.IsMatch(CurrentTarget.CurrentTitleID, @"CUSA\d{5}"))
+            if (CurrentTarget != null && CurrentTarget.Details.CurrentTitleID != null && Regex.IsMatch(CurrentTarget.Details.CurrentTitleID, @"CUSA\d{5}"))
             {
-                var Title = new TMDB(CurrentTarget.CurrentTitleID);
+                var Title = new TMDB(CurrentTarget.Details.CurrentTitleID);
                 var url = $"https://store.playstation.com/product/{Title.ContentID}/";
 
                 System.Diagnostics.Process.Start(new ProcessStartInfo
