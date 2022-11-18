@@ -6,25 +6,10 @@
 
 #pragma region Modules
 
-bool(*Jailbreak)();
 void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
 
 bool LoadModules()
 {
-	//Loading the Firmware Agnostic Jailbreak credits to https://github.com/sleirsgoevy
-	int ModuleHandle_libjbc = sceKernelLoadStartModule("/app0/sce_module/libjbc.sprx", 0, nullptr, 0, nullptr, nullptr);
-	if (ModuleHandle_libjbc == 0) {
-		klog("Failed to load libjbc Library.\n");
-		return false;
-	}
-
-	sceKernelDlsym(ModuleHandle_libjbc, "Jailbreak", (void**)&Jailbreak);
-	if (Jailbreak == nullptr) {
-		klog("Failed to load Jailbreak Import.\n");
-		return false;
-	}
-
-
 	//Load the sysmodule library and import for sceSysmoduleLoadModuleInternal for some reason wouldnt auto import.
 	char Buffer[0x200];
 	sprintf(Buffer, "/%s/common/lib/libSceSysmodule.sprx", sceKernelGetFsSandboxRandomWord());
@@ -40,8 +25,6 @@ bool LoadModules()
 		return false;
 	}
 
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_COMMON_DIALOG);
-	sceCommonDialogInitialize();
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_USER_SERVICE);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYS_CORE);
@@ -52,17 +35,6 @@ bool LoadModules()
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_BGFT);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_APPINSTUTIL);
 	_sceSysmoduleLoadModuleInternal(0xA4);
-
-	/*char libSceMsgDialog[0x200];
-	sprintf(libSceMsgDialog, "/%s/common/lib/libSceMsgDialog.sprx", sceKernelGetFsSandboxRandomWord());
-	int libSceMsgDialogHandle = sceKernelLoadStartModule(libSceMsgDialog, 0, nullptr, 0, nullptr, nullptr);
-	if (libSceMsgDialogHandle == 0) {
-		klog("Failed to load libSceMsgDialog Library.\n");
-		return false;
-	}*/
-
-	if (sceMsgDialogInitialize() != 0)
-		return false;
 
 	return true;
 }
@@ -102,16 +74,6 @@ void klog(const char* fmt, ...)
 	va_end(args);
 
 	sceKernelDebugOutText(0, Buffer);
-}
-
-int GetUpdateVersion()
-{
-	int upd_version = 0;
-	size_t upd_versionlen = 4;
-
-	sysctlbyname("machdep.upd_version", (char*)&upd_version, &upd_versionlen, nullptr, 0);
-
-	return upd_version;
 }
 
 void InstallDaemon(const char* Daemon)

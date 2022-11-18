@@ -45,29 +45,33 @@ namespace OrbisSuite.Common.Database
         [NotNull]
         public int PayloadPort { get; set; } = 9020;
 
+        private TargetDetails _details;
         public TargetDetails Details
         {
             get
             {
-                var db = new SQLiteConnection(Config.DataBasePath);
-
-                // Create the table if it doesn't exist already.
-                db.CreateTable<TargetDetails>();
-
-                var result = db.Find<TargetDetails>(x => x.TargetId == Id);
-                if (result == null)
+                if( _details == null )
                 {
-                    var tempTargetDetails = new TargetDetails();
-                    tempTargetDetails.TargetId = Id;
-                    db.Insert(tempTargetDetails);
-                    db.Close();
-                    return tempTargetDetails;
+                    var db = new SQLiteConnection(Config.DataBasePath);
+
+                    // Create the table if it doesn't exist already.
+                    db.CreateTable<TargetDetails>();
+
+                    _details = db.Find<TargetDetails>(x => x.TargetId == Id);
+                    if (_details == null)
+                    {
+                        _details = new TargetDetails();
+                        _details.TargetId = Id;
+                        db.Insert(_details);
+                        db.Close();
+                    }
+                    else
+                    {
+                        db.Close();
+                    }
                 }
-                else
-                {
-                    db.Close();
-                    return result;
-                }
+
+                return _details;
             }
         }
 

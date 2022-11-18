@@ -109,21 +109,13 @@ call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeReBuildCommandLi
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="kELF.cpp" />
-    <ClCompile Include="KernelLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="build.bat" />
-    <ClCompile Include="MsgDialog.cpp" />
-    <ClCompile Include="OrbisDriver.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="kELF.h" />
-    <ClInclude Include="KernelLoader.h" />
-    <ClInclude Include="MsgDialog.h" />
-    <ClInclude Include="OrbisDriver.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

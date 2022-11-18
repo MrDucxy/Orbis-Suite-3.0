@@ -15,10 +15,6 @@
   </volume>
   <files img_no="0">
     <file targ_path="eboot.bin" orig_path="eboot.bin" />
-    <file targ_path="Kernel/Kernel.505.ELF" orig_path="Kernel\Kernel.505.ELF" />
-    <file targ_path="Kernel/Kernel.672.ELF" orig_path="Kernel\Kernel.672.ELF" />
-    <file targ_path="Kernel/Kernel.702.ELF" orig_path="Kernel\Kernel.702.ELF" />
-    <file targ_path="Kernel/Kernel.755.ELF" orig_path="Kernel\Kernel.755.ELF" />
     <file targ_path="Orbis Toolbox/Icons/icon_daemon.png" orig_path="Orbis Toolbox\Icons\icon_daemon.png" />
     <file targ_path="Orbis Toolbox/Icons/icon_payload.png" orig_path="Orbis Toolbox\Icons\icon_payload.png" />
     <file targ_path="Orbis Toolbox/Icons/icon_pkg.png" orig_path="Orbis Toolbox\Icons\icon_pkg.png" />
@@ -36,11 +32,9 @@
     <file targ_path="sce_sys/param.sfo" orig_path="sce_sys\param.sfo" />
     <file targ_path="sce_sys/pic0.png" orig_path="sce_sys\pic0.png" />
     <file targ_path="sce_sys/pic1.png" orig_path="sce_sys\pic1.png" />
-    <file targ_path="Kernel/Kernel.900.ELF" orig_path="Kernel\Kernel.900.ELF" />
     <file targ_path="Orbis Toolbox/OrbisToolbox-2.0.sprx" orig_path="Orbis Toolbox\OrbisToolbox-2.0.sprx" />
   </files>
   <rootdir>
-    <dir targ_name="Kernel" />
     <dir targ_name="Orbis Toolbox">
       <dir targ_name="Icons" />
     </dir>
