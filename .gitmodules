@@ -2,3 +2,7 @@
 	path = External/SimpleUI
 	url = https://github.com/OSM-Made/SimpleUI
 	shallow = true
+[submodule "External/GoldHEN_Plugins_SDK"]
+	path = External/GoldHEN_Plugins_SDK
+	url = https://github.com/GoldHEN/GoldHEN_Plugins_SDK
+	shallow = true
