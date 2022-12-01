@@ -99,11 +99,6 @@ void InstallDaemon(const char* Daemon)
 	sprintf(IconPath, "%s%s/sce_sys/icon0.png", DAEMONPATH, Daemon);
 	CopyFile(IconFromPath, IconPath);
 
-	char LibjbcFromPath[0x100], LibjbcPath[0x100];
-	sprintf(LibjbcFromPath, "%s%s/sce_module/libjbc.sprx", DAEMONGETPATH, Daemon);
-	sprintf(LibjbcPath, "%s%s/sce_module/libjbc.sprx", DAEMONPATH, Daemon);
-	CopyFile(LibjbcFromPath, LibjbcPath);
-
 	klog("[%s] Installation Success!\n", Daemon);
 }
 

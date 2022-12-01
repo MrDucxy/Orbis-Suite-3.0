@@ -27,20 +27,5 @@ Rem Create the eboot
 %OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin"
 
 Rem Cleanup
-copy "eboot.bin" %outputPath%\Playstation\Build\pkg\eboot.bin
+copy "eboot.bin" %outputPath%\Playstation\Build\pkg\Daemons\ORBS30000\eboot.bin
 del "eboot.bin"
-
-REM Generate the script. Will overwrite any existing temp.txt
-REM echo open 192.168.0.55 1337> temp.txt
-REM echo open 192.168.0.55 2121> temp.txt
-REM echo anonymous>> temp.txt
-REM echo anonymous>> temp.txt
-REM echo cd "/data/app/">> temp.txt
-REM echo send "%outputPath%\Playstation\Build\pkg\eboot.bin">> temp.txt
-REM echo quit>> temp.txt
-REM 
-REM REM Launch FTP and pass it the script
-REM ftp -s:temp.txt
-REM 
-REM REM Clean up.
-REM del temp.txt

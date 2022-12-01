@@ -54,6 +54,7 @@ del /s /q /f $(IntDir)\*.elf
 del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)</OutDir>
     <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <ExternalIncludePath>External\GoldHEN_Plugins_SDK\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>

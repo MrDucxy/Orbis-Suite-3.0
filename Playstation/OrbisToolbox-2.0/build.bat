@@ -13,7 +13,7 @@ set outputOelf=%intdir%%targetname%.oelf
 set outputPrx=%intdir%%targetname%.prx
 set outputStub=%intdir%%targetname%_stub.so
 
-Rem Compile object files for all the source files   -DORBIS_TOOLBOX_DEBUG
+Rem Compile object files for all the source files
 for %%f in (*.cpp) do (
     clang++ -cc1 -triple x86_64-scei-ps4-elf -I"%OO_PS4_TOOLCHAIN%\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -emit-obj -o %intdir%\%%~nf.o %%~nf.cpp
 )
@@ -28,7 +28,7 @@ set obj_files=
 for %%f in (%intdir%\\*.o) do set obj_files=!obj_files! .\%%f
 
 Rem Link the input ELF
-ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\lib" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crtlib.o" %obj_files%
+ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\lib" %libraries% --verbose "..\\..\\External\\GoldHEN_Plugins_SDK\\build\\crtprx.o" %obj_files%
 
 Rem Create stub shared libraries
 for %%f in (*.cpp) do (
@@ -49,15 +49,15 @@ del "%outputPrx%"
 
 REM Generate the script. Will overwrite any existing temp.txt
 REM echo open 192.168.0.54 1337> temp.txt
-echo open 192.168.0.54 2121> temp.txt
-echo anonymous>> temp.txt
-echo anonymous>> temp.txt
-echo cd "/data/Orbis Toolbox/">> temp.txt
-echo send "%outputPath%\Playstation\Build\pkg\Orbis Toolbox\%targetname%.sprx">> temp.txt
-echo quit>> temp.txt
+REM echo open 192.168.0.54 2121> temp.txt
+REM echo anonymous>> temp.txt
+REM echo anonymous>> temp.txt
+REM echo cd "/data/Orbis Toolbox/">> temp.txt
+REM echo send "%outputPath%\Playstation\Build\pkg\Orbis Toolbox\%targetname%.sprx">> temp.txt
+REM echo quit>> temp.txt
 
 REM Launch FTP and pass it the script
-ftp -s:temp.txt
+REM ftp -s:temp.txt
 
 REM Clean up.
-del temp.txt
+REM del temp.txt

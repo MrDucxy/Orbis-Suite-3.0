@@ -33,6 +33,11 @@
     <file targ_path="sce_sys/pic0.png" orig_path="sce_sys\pic0.png" />
     <file targ_path="sce_sys/pic1.png" orig_path="sce_sys\pic1.png" />
     <file targ_path="Orbis Toolbox/OrbisToolbox-2.0.sprx" orig_path="Orbis Toolbox\OrbisToolbox-2.0.sprx" />
+    <file targ_path="Daemons/ORBS30000/sce_module/libc.prx" orig_path="Daemons\ORBS30000\sce_module\libc.prx" />
+    <file targ_path="Daemons/ORBS30000/sce_module/libSceFios2.prx" orig_path="Daemons\ORBS30000\sce_module\libSceFios2.prx" />
+    <file targ_path="Daemons/ORBS30000/sce_sys/icon0.png" orig_path="Daemons\ORBS30000\sce_sys\icon0.png" />
+    <file targ_path="Daemons/ORBS30000/sce_sys/param" orig_path="Daemons\ORBS30000\sce_sys\param" />
+    <file targ_path="Daemons/ORBS30000/eboot.bin" orig_path="Daemons\ORBS30000\eboot.bin" />
   </files>
   <rootdir>
     <dir targ_name="Orbis Toolbox">
@@ -40,6 +45,11 @@
     </dir>
     <dir targ_name="sce_module" />
     <dir targ_name="sce_sys" />
-    <dir targ_name="Daemons" />
+    <dir targ_name="Daemons">
+      <dir targ_name="ORBS30000">
+        <dir targ_name="sce_module" />
+        <dir targ_name="sce_sys" />
+      </dir>
+    </dir>
   </rootdir>
 </psproject>
