@@ -13,7 +13,7 @@ set outputOelf=%intdir%%targetname%.oelf
 
 Rem Compile object files for all the source files
 for %%f in (*.cpp) do (
-    clang++ -cc1 -triple x86_64-scei-ps4-elf -I"%OO_PS4_TOOLCHAIN%\\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -I"..\\..\\External\\GoldHEN_Plugins_SDK\\include" -DORBISLIB_DEBUG -emit-obj -o %intdir%\%%~nf.o %%~nf.cpp
+    clang++ -cc1 -triple x86_64-scei-ps4-elf -I"%OO_PS4_TOOLCHAIN%\\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -I"..\\..\\External\\GoldHEN_Plugins_SDK\\include" -I"..\\..\\External\\ps4-libjbc" -DORBISLIB_DEBUG -emit-obj -o %intdir%\%%~nf.o %%~nf.cpp
 )
 
 Rem Get a list of object files for linking
@@ -21,7 +21,7 @@ set obj_files=
 for %%f in (%1\\*.o) do set obj_files=!obj_files! .\%%f
 
 Rem Link the input ELF
-ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\\lib" "-L..\\..\\External\\GoldHEN_Plugins_SDK" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crt1.o" %obj_files%
+ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\\lib" "-L..\\..\\External\\GoldHEN_Plugins_SDK" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crt1.o" %obj_files% "..\\..\\External\\ps4-libjbc\\jbc.o"
 
 Rem Create the eboot
 %OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin"

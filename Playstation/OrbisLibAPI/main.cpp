@@ -1,4 +1,5 @@
 #include "Common.h"
+#include "GoldHEN.h"
 
 int main()
 {

@@ -50,7 +50,8 @@ call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeReBuildCommandLi
 del /s /q /f $(IntDir)\*.elf
 del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)</OutDir>
-    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;External\ps4-libjbc;External\GoldHEN_Plugins_SDK\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <IncludePath>E:\Greg\Repos\Orbis-Suite-3.0\External\ps4-libjbc;E:\Greg\Repos\Orbis-Suite-3.0\External\GoldHEN_Plugins_SDK\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>eboot.bin</NMakeOutput>

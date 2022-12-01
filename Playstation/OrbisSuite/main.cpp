@@ -1,5 +1,5 @@
 #include "Common.h"
-#include "../../External/GoldHEN_Plugins_SDK/include/GoldHEN.h"
+#include "GoldHEN.h"
 
 int main()
 {
