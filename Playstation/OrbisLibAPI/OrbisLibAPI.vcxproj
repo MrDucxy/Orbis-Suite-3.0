@@ -41,7 +41,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakeOutput>eboot.bin</NMakeOutput>
     <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>call "$(SolutionDir)\Misc\Increment.bat" "Version.h" "ORBISLIB_BUILDVERSION" 
+call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>del /s /q /f $(IntDir)\*.o
 del /s /q /f $(IntDir)\*.elf
 del /s /q /f $(IntDir)\*.oelf
@@ -50,8 +51,8 @@ call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeReBuildCommandLi
 del /s /q /f $(IntDir)\*.elf
 del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)</OutDir>
-    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;External\ps4-libjbc;External\GoldHEN_Plugins_SDK\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-    <IncludePath>E:\Greg\Repos\Orbis-Suite-3.0\External\ps4-libjbc;E:\Greg\Repos\Orbis-Suite-3.0\External\GoldHEN_Plugins_SDK\include;$(IncludePath)</IncludePath>
+    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;External\GoldHEN_Plugins_SDK\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <IncludePath>E:\Greg\Repos\Orbis-Suite-3.0\External\GoldHEN_Plugins_SDK\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>eboot.bin</NMakeOutput>
@@ -60,11 +61,17 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="API.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="build.bat" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="API.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="libjbc.h" />
+    <ClInclude Include="Version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

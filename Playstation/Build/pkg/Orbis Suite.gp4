@@ -26,7 +26,6 @@
     <file targ_path="Orbis Toolbox/Icons/icon_system_settings.png" orig_path="Orbis Toolbox\Icons\icon_system_settings.png" />
     <file targ_path="Orbis Toolbox/Icons/icon_toolbox.png" orig_path="Orbis Toolbox\Icons\icon_toolbox.png" />
     <file targ_path="sce_module/libc.prx" orig_path="sce_module\libc.prx" />
-    <file targ_path="sce_module/libjbc.sprx" orig_path="sce_module\libjbc.sprx" />
     <file targ_path="sce_module/libSceFios2.prx" orig_path="sce_module\libSceFios2.prx" />
     <file targ_path="sce_sys/icon0.png" orig_path="sce_sys\icon0.png" />
     <file targ_path="sce_sys/param.sfo" orig_path="sce_sys\param.sfo" />

@@ -13,16 +13,58 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{2695a710-ecaf-42db-80bb-c904ec4dfb8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{cd9f6b19-2a38-4a4d-8cc1-7948f815c9a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\API">
+      <UniqueIdentifier>{8d6cafa7-911e-4630-b707-ed3328f9cca7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\API\CmdGroups">
+      <UniqueIdentifier>{4d06413a-9701-4c1e-88fd-bdebb1fd3b0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\API\Misc">
+      <UniqueIdentifier>{d01ca52e-8ae0-4cb4-a5c5-ac1110475dbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\API">
+      <UniqueIdentifier>{07d2425c-151e-4401-826a-b28de1c0997f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\API\CmdGroups">
+      <UniqueIdentifier>{d9c5fefc-7b9c-40a0-b18b-14104c93c432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\API\Misc">
+      <UniqueIdentifier>{b1c92aaf-bc5d-40c6-9066-2e094daec1eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="build.bat" />
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="API.cpp">
+      <Filter>Source Files\API</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="build.bat" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="libjbc.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="API.h">
+      <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
