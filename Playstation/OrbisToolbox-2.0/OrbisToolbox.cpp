@@ -2,35 +2,59 @@
 #include "Settings_Menu.h"
 #include "System_Monitor.h"
 #include "GamePad.h"
-#include "API.h"
 #include "RemoteCaller.h"
 
 RemoteCaller* CallInMonoThread = NULL;
+
+Detour* SearchJob_RunDetour;
+void* SearchJob_RunHook(MonoObject* instance)
+{
+	auto IsCancelled = Mono::Get_Property<bool>(Mono::UI_dll, "Sce.PlayStation.HighLevel.UI2", "Job", instance, "IsCancelled");
+
+	if (!IsCancelled)
+	{
+		auto SearchJob = Mono::Get_Class(Mono::App_exe, "Sce.Vsh.ShellUI.Settings.PkgInstaller", "SearchJob");
+		Mono::Invoke<void>(Mono::App_exe, SearchJob, instance, "SearchDir", Mono::New_String("/user/data/pkg"), Mono::New_String("/user/data/pkg"));
+	}
+
+	return SearchJob_RunDetour->Stub<void*>(instance);
+}
+
+void* InitThread(void* args)
+{
+	klog("!! Hello World !!\n");
+
+	Mono::Init();
+
+	if (GamePad::IsDown(GamePad::Buttons::Left | GamePad::Buttons::Triangle))
+	{
+		Notify("Orbis Toolbox: Aborting Launch!!");
+		return 0;
+	}
+
+	// Toolbox
+	System_Monitor::Init();
+	Settings_Menu::Init();
+	//Title_Menu::Init();	
+
+	// API
+	CallInMonoThread = new RemoteCaller();
+
+	Notify(ORBIS_TOOLBOX_NOTIFY);
+
+	SearchJob_RunDetour = new Detour();
+	SearchJob_RunDetour->DetourMethod(Mono::App_exe, "Sce.Vsh.ShellUI.Settings.PkgInstaller", "SearchJob", "Run", 0, (void*)SearchJob_RunHook);
+
+	scePthreadExit(NULL);
+	return 0;
+}
 
 extern "C"
 {
 	int __cdecl module_start(size_t argc, const void* args)
 	{
-		klog("!! Hello World !!\n");
-
-		Mono::Init();
-
-		if (GamePad::IsDown(GamePad::Buttons::Left | GamePad::Buttons::Triangle))
-		{
-			Notify("Orbis Toolbox: Aborting Launch!!");
-			return 0;
-		}
-
-		// Toolbox
-		System_Monitor::Init();
-		Settings_Menu::Init();
-		//Title_Menu::Init();	
-
-		// API
-		API::Init();
-		CallInMonoThread = new RemoteCaller();
-
-		Notify(ORBIS_TOOLBOX_NOTIFY);
+		OrbisPthread* hThread;
+		scePthreadCreate(&hThread, nullptr, InitThread, nullptr, "Init");
 
 		return 0;
 	}
@@ -45,16 +69,12 @@ extern "C"
 		//Title_Menu::Term();
 
 		// API
-		API::Term();
 		delete CallInMonoThread;
+
+		delete SearchJob_RunDetour;
 
 		sceKernelSleep(4);
 
 		return 0;
-	}
-
-	void _start()
-	{
-
 	}
 }

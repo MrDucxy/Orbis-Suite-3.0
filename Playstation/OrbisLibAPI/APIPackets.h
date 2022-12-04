@@ -1,6 +1,9 @@
 #pragma once
+#include "Common.h"
 
-#define PACKET_VERSION 1
+#define PACKET_VERSION 2
+
+#pragma region Commands
 
 enum APICommands
 {
@@ -18,6 +21,7 @@ enum APICommands
 
 	/* ##### Debugger functions ##### */
 	DBG_START,
+
 	API_DBG_ATTACH, /* Debugger attach to target */
 	API_DBG_DETACH, /* Debugger detach from target */
 	API_DBG_GET_CURRENT,
@@ -63,19 +67,23 @@ enum APICommands
 	API_DBG_WATCHPOINT_REMOVE,
 	API_DBG_WATCHPOINT_GETINFO,
 	API_DBG_WATCHPOINT_LIST,
+
 	DBG_END,
 	/* ############################## */
 
 	/* ###### Kernel functions ###### */
 	KERN_START,
+
 	API_KERN_BASE,
 	API_KERN_READ,
 	API_KERN_WRITE,
+
 	KERN_END,
 	/* ############################## */
 
 	/* ###### Target functions ###### */
 	TARGET_START,
+
 	API_TARGET_INFO,
 	API_TARGET_RESTMODE,
 	API_TARGET_SHUTDOWN,
@@ -85,10 +93,14 @@ enum APICommands
 	API_TARGET_SET_LED,
 	API_TARGET_DUMP_PROC,
 	API_TARGET_SET_SETTINGS,
-	//API_TARGET_LOAD_VSH_MODULE
+
 	TARGET_END,
 	/* ############################## */
 };
+
+#pragma endregion
+
+#pragma region Generic
 
 enum APIResults
 {
@@ -113,39 +125,36 @@ struct APIPacket
 	char ProcName[32];
 };
 
+#pragma endregion
+
 #pragma region Process
 
 struct ProcPacket
 {
-	int32_t ProcessID; //0x00
-	int32_t Attached; //0x04
-	char ProcName[32]; //0x08
-	char TitleID[10]; //0x28
-	uint64_t TextSegmentBase;
-	uint64_t TextSegmentLen;
-	uint64_t DataSegmentBase;
-	uint64_t DataSegmentLen;
+	int32_t ProcessId;
+	char Name[32];
+	char TitleId[10];
 };
 
-struct ModuleListPacket
+#pragma endregion
+
+#pragma region Debug
+
+struct LibraryPacket
 {
-	char Name[36]; //0x00
-	char Handle[256]; //0x24
-	int mHandle; //0x124
-	uint64_t TextSegmentBase; //0x128
-	uint64_t TextSegmentLen; //0x130
-	uint64_t DataSegmentBase; //0x138
-	uint64_t DataSegmentLen; //0x140
+	int64_t Handle;
+	char Path[256];
+	int32_t SegmentCount;
+	SceDbgModuleSegmentInfo Segments[4];
 };
 
-
-struct ProcRWPacket
+struct DbgRWPacket
 {
 	uint64_t Address;
 	uint64_t Length;
 };
 
-struct ProcSPRXPacket
+struct DbgSPRXPacket
 {
 	char Name[256];
 	char Path[256];
@@ -162,13 +171,6 @@ struct ProcBreakpointPacket
 
 #pragma endregion
 
-#pragma region Debug
-
-
-
-#pragma endregion
-
-
 #pragma region Kernel
 
 
@@ -176,16 +178,6 @@ struct ProcBreakpointPacket
 #pragma endregion
 
 #pragma region Target
-
-enum ConsoleTypes
-{
-	UNK,
-	DIAG, //0x80
-	DEVKIT, //0x81
-	TESTKIT, //0x82
-	RETAIL, //0x83 -> 0x8F
-	KRATOS, //0xA0 IMPOSSIBLE??
-};
 
 struct MemoryInfo
 {

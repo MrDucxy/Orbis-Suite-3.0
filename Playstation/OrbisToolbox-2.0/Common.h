@@ -25,7 +25,6 @@
 
 #include "Version.h"
 #include "Utilities.h"
-#include "APIPackets.h"
 #include "Mono.h"
 #include "Detour.h"
 #include "Patcher.h"

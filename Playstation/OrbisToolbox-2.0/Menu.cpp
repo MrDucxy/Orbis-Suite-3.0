@@ -8,8 +8,6 @@
 #include "Config.h"
 #include "LncUtil.h"
 #include "Daemons.h"
-#include "KDriver.h"
-#include "API.h"
 
 #include "NetWrapper.h"
 
@@ -206,11 +204,7 @@ void Menu::Init()
 	// Orbis Suite Debug
 	Add_Option("id_orbis_api", []() -> void 
 	{ 
-		API::Term();
-		API::Init();
-		Notify("API Restarted!");
 	});
-	Add_Option("id_orbis_api_toggle", &API::Running, Type_Boolean, []() ->void { API::Running ? API::Term() : API::Init(); });
 	Add_Option("id_orbis_test", []() -> void
 	{
 		klog("WIFI MAC: %s\nLAN MAC: %s\n",
@@ -240,13 +234,7 @@ void Menu::Init()
 	});
 	Add_Option("id_orbis_listproc", []() -> void
 	{
-		ProcInfo Infos[200];
-		auto count = KDriver::GetProcessList(200, (ProcInfo*)&Infos);
-
-		for (int i = 0; i < count; i++)
-		{
-			klog("%i %s %s\n", Infos[i].PID, Infos[i].ProcName, Infos[i].TitleID);
-		}
+		
 	});
 	Add_Option("id_orbis_listlocalproc", []() -> void 
 		{

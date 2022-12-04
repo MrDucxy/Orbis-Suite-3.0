@@ -16,12 +16,6 @@
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{a1e7d8c0-9965-4dae-9e21-fec87fa057a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\API">
-      <UniqueIdentifier>{531e5d39-42b8-4cf7-93d0-9fc3bd9fe82d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\API">
-      <UniqueIdentifier>{a61efd8d-78d4-4ce2-bf65-9db8d0c6c6f6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Toolbox">
       <UniqueIdentifier>{128fb9c5-726e-4ead-9a69-eacccaf065c9}</UniqueIdentifier>
     </Filter>
@@ -57,18 +51,6 @@
     </Filter>
     <Filter Include="Source Files\Toolbox\UI\Elements">
       <UniqueIdentifier>{71a68f5f-0868-4608-b063-7a5913039770}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\API\Misc">
-      <UniqueIdentifier>{2034a675-8702-4fd0-921d-b001def607c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\API\Misc">
-      <UniqueIdentifier>{1bf13e33-42d9-45c2-8bb2-c58f9ea326f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\API\CmdGroups">
-      <UniqueIdentifier>{86b8ee3f-43bf-4077-972b-674021d009d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\API\CmdGroups">
-      <UniqueIdentifier>{689ef1b6-f9c8-4d7b-9a4a-73e5d45aea97}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Utilities\Mono">
       <UniqueIdentifier>{4e4c3e09-ba94-450a-ae0e-3dc2999f2400}</UniqueIdentifier>
@@ -141,30 +123,6 @@
     <ClInclude Include="UI.h">
       <Filter>Header Files\Toolbox\UI</Filter>
     </ClInclude>
-    <ClInclude Include="API.h">
-      <Filter>Header Files\API</Filter>
-    </ClInclude>
-    <ClInclude Include="APIHelper.h">
-      <Filter>Header Files\API\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="APIPackets.h">
-      <Filter>Header Files\API\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Target.h">
-      <Filter>Header Files\API\CmdGroups</Filter>
-    </ClInclude>
-    <ClInclude Include="Proc.h">
-      <Filter>Header Files\API\CmdGroups</Filter>
-    </ClInclude>
-    <ClInclude Include="Watchpoint.h">
-      <Filter>Header Files\API\CmdGroups</Filter>
-    </ClInclude>
-    <ClInclude Include="Breakpoint.h">
-      <Filter>Header Files\API\CmdGroups</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
-      <Filter>Header Files\API\CmdGroups</Filter>
-    </ClInclude>
     <ClInclude Include="SocketListener.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -193,9 +151,6 @@
       <Filter>Header Files\Utilities\Mono</Filter>
     </ClInclude>
     <ClInclude Include="Flash.h">
-      <Filter>Header Files\Utilities\PS Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="KDriver.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
     <ClInclude Include="Registry.h">
@@ -263,27 +218,6 @@
     <ClCompile Include="Widget.cpp">
       <Filter>Source Files\Toolbox\UI\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="API.cpp">
-      <Filter>Source Files\API</Filter>
-    </ClCompile>
-    <ClCompile Include="APIHelper.cpp">
-      <Filter>Source Files\API\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="Breakpoint.cpp">
-      <Filter>Source Files\API\CmdGroups</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug.cpp">
-      <Filter>Source Files\API\CmdGroups</Filter>
-    </ClCompile>
-    <ClCompile Include="Proc.cpp">
-      <Filter>Source Files\API\CmdGroups</Filter>
-    </ClCompile>
-    <ClCompile Include="Target.cpp">
-      <Filter>Source Files\API\CmdGroups</Filter>
-    </ClCompile>
-    <ClCompile Include="Watchpoint.cpp">
-      <Filter>Source Files\API\CmdGroups</Filter>
-    </ClCompile>
     <ClCompile Include="SocketListener.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
@@ -312,9 +246,6 @@
       <Filter>Source Files\Utilities\Memory Utils</Filter>
     </ClCompile>
     <ClCompile Include="Flash.cpp">
-      <Filter>Source Files\Utilities\PS Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="KDriver.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
     <ClCompile Include="Registry.cpp">

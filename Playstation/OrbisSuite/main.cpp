@@ -32,10 +32,11 @@ int main()
 	mount_large_fs("/dev/da0x4.crypt", "/system", "exfatfs", "511", MNT_UPDATE);
 
 	// Install all the things! :D
-	InstallDaemon("ORBS30000"); // Orbis Lib
+	//InstallDaemon("ORBS30000"); // Orbis Lib
 	InstallOrbisToolbox();
 
 	//TODO: Pull module list of SceShellUI to see if we should unload the toolbox.
+
 
 	// Use GoldHEN SDK to load PRX to SceShellUI.
 	auto Handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
@@ -47,7 +48,7 @@ int main()
 		klog("error: %d\n", Handle);
 		Notify("Failed to load Orbis Toolbox!");
 	}
-
+	
 	sceSystemServiceLoadExec("exit", 0);
 
 	return 0;

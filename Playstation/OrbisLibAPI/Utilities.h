@@ -12,7 +12,6 @@ struct SceDbgModuleInfo {
     SceDbgModuleSegmentInfo segmentInfo[4];
     uint32_t numSegments;
     uint8_t fingerprint[20];
-
 };
 
 //Modules.
@@ -21,6 +20,7 @@ bool LoadModules();
 
 //Misc
 void Notify(const char* MessageFMT, ...);
+void Notify_Custom(const char* IconURI, const char* MessageFMT, ...);
 void klog(const char* fmt, ...);
 int sys_dynlib_get_info(int moduleHandle, SceDbgModuleInfo* destModuleInfo);
 int sys_dynlib_get_list(int* destModuleHandles, int max, int* count);

@@ -55,6 +55,6 @@
         /// <summary>
         /// The version of the packets used to communicate with the Target Console.
         /// </summary>
-        public static readonly int PacketVersion = 1;
+        public static readonly int PacketVersion = 2;
     }
 }

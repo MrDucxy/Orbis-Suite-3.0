@@ -78,22 +78,16 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <None Include="Embed.s" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="API.h" />
-    <ClInclude Include="APIHelper.h" />
-    <ClInclude Include="APIPackets.h" />
-    <ClInclude Include="Breakpoint.h" />
     <ClInclude Include="Build_Overlay.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Daemons.h" />
-    <ClInclude Include="Debug.h" />
     <ClInclude Include="Debug_Features.h" />
     <ClInclude Include="Detour.h" />
     <ClInclude Include="Flash.h" />
     <ClInclude Include="GamePad.h" />
     <ClInclude Include="Game_Overlay.h" />
     <ClInclude Include="hde64.h" />
-    <ClInclude Include="KDriver.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="LncUtil.h" />
     <ClInclude Include="Menu.h" />
@@ -101,7 +95,6 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="NetWrapper.h" />
     <ClInclude Include="Panel.h" />
     <ClInclude Include="Patcher.h" />
-    <ClInclude Include="Proc.h" />
     <ClInclude Include="Registry.h" />
     <ClInclude Include="RemoteCaller.h" />
     <ClInclude Include="Settings_Menu.h" />
@@ -111,23 +104,17 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="System.h" />
     <ClInclude Include="System_Monitor.h" />
     <ClInclude Include="table64.h" />
-    <ClInclude Include="Target.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UI_Utilities.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Version.h" />
-    <ClInclude Include="Watchpoint.h" />
     <ClInclude Include="Widget.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="API.cpp" />
-    <ClCompile Include="APIHelper.cpp" />
-    <ClCompile Include="Breakpoint.cpp" />
     <ClCompile Include="Build_Overlay.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Custom_Content.cpp" />
     <ClCompile Include="Daemons.cpp" />
-    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DebugTitleIdLabel.cpp" />
     <ClCompile Include="Detour.cpp" />
     <ClCompile Include="DevkitPanel.cpp" />
@@ -135,7 +122,6 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="GamePad.cpp" />
     <ClCompile Include="Game_Overlay.cpp" />
     <ClCompile Include="hde64.cpp" />
-    <ClCompile Include="KDriver.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="LncUtil.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -144,7 +130,6 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="OrbisToolbox.cpp" />
     <ClCompile Include="Panel.cpp" />
     <ClCompile Include="Patcher.cpp" />
-    <ClCompile Include="Proc.cpp" />
     <ClCompile Include="Registry.cpp" />
     <ClCompile Include="RemoteCaller.cpp" />
     <ClCompile Include="Settings_Menu.cpp" />
@@ -153,10 +138,8 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="SysfileUtilWrapper.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="System_Monitor.cpp" />
-    <ClCompile Include="Target.cpp" />
     <ClCompile Include="UI_Utilities.cpp" />
     <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="Watchpoint.cpp" />
     <ClCompile Include="Widget.cpp" />
   </ItemGroup>
   <ItemGroup>

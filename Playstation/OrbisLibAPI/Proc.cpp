@@ -1,7 +1,6 @@
 #include "Common.h"
 #include "Proc.h"
 #include "APIHelper.h"
-#include "KDriver.h"
 
 void Proc::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -40,8 +39,9 @@ Proc::~Proc()
 
 void Proc::SendProcessList(OrbisNetId Sock)
 {
+	// TODO: Update
 	// Allocate space for packet to send.
-	auto Packet = (ProcPacket*)malloc(sizeof(ProcPacket));
+	/*auto Packet = (ProcPacket*)malloc(sizeof(ProcPacket));
 
 	// Gets list of running processes.
 	auto procInfo = (ProcInfo*)malloc(sizeof(ProcInfo) * 200);
@@ -72,5 +72,5 @@ void Proc::SendProcessList(OrbisNetId Sock)
 
 	// Cleanup.
 	free(Packet);
-	free(procInfo);
+	free(procInfo);*/
 }

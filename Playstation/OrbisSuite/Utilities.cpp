@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "Utilities.h"
+#include "libjbc.h"
 #include <orbis/Net.h>
 #include <sys/uio.h>
 #include <orbis/MsgDialog.h>

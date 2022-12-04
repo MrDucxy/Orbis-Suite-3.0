@@ -1,14 +1,7 @@
 #include "Common.h"
 #include "Target.h"
 #include "APIHelper.h"
-#include "Registry.h"
-#include "System.h"
-#include "Flash.h"
-#include "Config.h"
-#include "Debug_Features.h"
-#include "ShellCoreUtilWrapper.h"
-#include "NetWrapper.h"
-#include "System_Monitor.h"
+#include <orbis/SysCore.h>
 
 void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -27,7 +20,7 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 	case APICommands::API_TARGET_RESTMODE:
 
-		ChangeSystemState(System_State::Suspend);
+		ChangeSystemState(SystemState::Suspend);
 
 		SendStatus(Sock, APIResults::API_OK);
 
@@ -35,7 +28,7 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 	case APICommands::API_TARGET_SHUTDOWN:
 
-		ChangeSystemState(System_State::Shutdown);
+		ChangeSystemState(SystemState::Shutdown);
 
 		SendStatus(Sock, APIResults::API_OK);
 
@@ -43,7 +36,7 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 	case APICommands::API_TARGET_REBOOT:
 
-		ChangeSystemState(System_State::Reboot);
+		ChangeSystemState(SystemState::Reboot);
 
 		SendStatus(Sock, APIResults::API_OK);
 
@@ -103,13 +96,17 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	ReadFlash(FLASH_FACTORY_FW, &Packet->FactorySoftwareVersion, sizeof(int));
 	Packet->CPUTemp = GetCPUTemp();
 	Packet->SOCTemp = GetSOCTemp();
-	strcpy(Packet->CurrentTitleID, CallInMonoThread->RemoteCall<char*>(GetBigAppTitleId)); // TODO: NOP Debug print.
+
+	OrbisAppInfo bigAppInfo;
+	sceApplicationGetAppInfoByAppId(sceSystemServiceGetAppIdOfBigApp(), &bigAppInfo);
+	strcpy(Packet->CurrentTitleID, bigAppInfo.TitleId);
+
 	GetConsoleName(Packet->ConsoleName, 100);
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);
 	ReadFlash(FLASH_SERIAL, &Packet->Serial, 10);
 	ReadFlash(FLASH_MODEL, &Packet->Model, 14);
-	strcpy(Packet->MACAdressLAN, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_PHYSICAL));
-	strcpy(Packet->MACAdressWIFI, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_WLAN0));
+	// strcpy(Packet->MACAdressLAN, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_PHYSICAL));
+	// strcpy(Packet->MACAdressWIFI, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_WLAN0));
 	ReadFlash(FLASH_UART_FLAG, &Packet->UART, 1);
 	ReadFlash(FLASH_IDU_MODE, &Packet->IDUMode, 1);
 	GetIDPS(Packet->IDPS);
@@ -121,19 +118,19 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	//Packet->CurrentProc
 
 	// Storage Stats.
-	uint64_t HDDFreeSpace, HDDTotalSpace;
+	/*uint64_t HDDFreeSpace, HDDTotalSpace;
 	CallInMonoThread->RemoteCall<int>(ShellCoreUtilWrapper::sceShellCoreUtilGetFreeSizeOfUserPartition, &HDDFreeSpace, &HDDTotalSpace);
 	Packet->FreeSpace = HDDFreeSpace;
-	Packet->TotalSpace = HDDTotalSpace;
+	Packet->TotalSpace = HDDTotalSpace;*/
 
 	// Perf Stats.
-	Packet->CPUTemp = System_Monitor::CPU_Temp;
+	/*Packet->CPUTemp = System_Monitor::CPU_Temp;
 	Packet->SOCTemp = System_Monitor::SOC_Temp;
 	Packet->ThreadCount = System_Monitor::Thread_Count;
 	Packet->AverageCPUUsage = System_Monitor::Average_Usage;
 	Packet->BusyCore = System_Monitor::Busy_Core;
 	memcpy(&Packet->Ram, &System_Monitor::RAM, sizeof(MemoryInfo));
-	memcpy(&Packet->VRam, &System_Monitor::VRAM, sizeof(MemoryInfo));
+	memcpy(&Packet->VRam, &System_Monitor::VRAM, sizeof(MemoryInfo));*/
 
 	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
 
@@ -156,7 +153,8 @@ void Target::DoNotify(OrbisNetId Sock)
 
 void Target::SetSettings(OrbisNetId Sock)
 {
-	auto Packet = new TargetSettingsPacket();
+	//TODO: IPC here...
+	/*auto Packet = new TargetSettingsPacket();
 
 	sceNetRecv(Sock, Packet, sizeof(TargetSettingsPacket), 0);
 
@@ -167,7 +165,7 @@ void Target::SetSettings(OrbisNetId Sock)
 
 	SendStatus(Sock, APIResults::API_OK);
 
-	Config::SetSettingsNow = true;
+	Config::SetSettingsNow = true;*/
 }
 
 //TODO: Get Target Settings.

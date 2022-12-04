@@ -18,6 +18,7 @@ namespace OrbisSuite.Common
 
         /* ##### Debugger functions ##### */
         DBG_START,
+
         API_DBG_ATTACH, /* Debugger attach to target */
         API_DBG_DETACH, /* Debugger detach from target */
         API_DBG_GET_CURRENT,
@@ -63,19 +64,23 @@ namespace OrbisSuite.Common
         API_DBG_WATCHPOINT_REMOVE,
         API_DBG_WATCHPOINT_GETINFO,
         API_DBG_WATCHPOINT_LIST,
+
         DBG_END,
         /* ############################## */
 
         /* ###### Kernel functions ###### */
         KERN_START,
+
         API_KERN_BASE,
         API_KERN_READ,
         API_KERN_WRITE,
+
         KERN_END,
         /* ############################## */
 
         /* ###### Target functions ###### */
         TARGET_START,
+
         API_TARGET_INFO,
         API_TARGET_RESTMODE,
         API_TARGET_SHUTDOWN,
@@ -85,7 +90,7 @@ namespace OrbisSuite.Common
         API_TARGET_SET_LED,
         API_TARGET_DUMP_PROC,
         API_TARGET_SET_SETTINGS,
-        //API_TARGET_LOAD_VSH_MODULE
+
         TARGET_END,
         /* ############################## */
     }
@@ -119,29 +124,28 @@ namespace OrbisSuite.Common
     public struct ProcPacket
     {
         public int ProcessID;
-        public int Attached;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-        public string ProcName;
+        public string Name;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
         public string TitleID;
-        public UInt64 TextSegmentBase;
-        public UInt64 TextSegmentLen;
-        public UInt64 DataSegmentBase;
-        public UInt64 DataSegmentLen;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ModuleListPacket
+    public struct SegmentInfo
     {
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 36)]
-        public string Name;
+        public UInt64 baseAddr;
+        public uint size;
+        public int prot;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct LibraryPacket
+    {
+        public Int64 Handle;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string Path;
-        public int Handle;
-        public UInt64 TextSegmentBase;
-        public UInt64 TextSegmentLen;
-        public UInt64 DataSegmentBase;
-        public UInt64 DataSegmentLen;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
+        public SegmentInfo[] Segments;
     }
 
     public enum ConsoleTypes

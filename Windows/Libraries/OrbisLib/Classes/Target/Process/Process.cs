@@ -16,16 +16,11 @@ namespace OrbisSuite
         public UInt64 DataSegmentBase;
         public UInt64 DataSegmentLen;
 
-        public ProcessInfo(Int32 PID, bool Attached, string Name, string TitleID, UInt64 TextSegmentBase, UInt64 TextSegmentLen, UInt64 DataSegmentBase, UInt64 DataSegmentLen)
+        public ProcessInfo(Int32 PID, string Name, string TitleID)
         {
             this.PID = PID;
-            this.Attached = Attached;
             this.Name = Name;
             this.TitleID = TitleID;
-            this.TextSegmentBase = TextSegmentBase;
-            this.TextSegmentLen = TextSegmentLen;
-            this.DataSegmentBase = DataSegmentBase;
-            this.DataSegmentLen = DataSegmentLen;
         }
 
         public ProcessInfo()
@@ -73,7 +68,7 @@ namespace OrbisSuite
                     Sock.Receive(RawPacket);
 
                     Helpers.BytestoStruct(RawPacket, ref Packet);
-                    yield return new ProcessInfo(Packet.ProcessID, Packet.Attached == 1 ? true : false, Packet.ProcName, Packet.TitleID, Packet.TextSegmentBase, Packet.TextSegmentLen, Packet.DataSegmentBase, Packet.DataSegmentLen);
+                    yield return new ProcessInfo(Packet.ProcessID, Packet.Name, Packet.TitleID);
                 }
 
                 API.CompleteCall(Sock);

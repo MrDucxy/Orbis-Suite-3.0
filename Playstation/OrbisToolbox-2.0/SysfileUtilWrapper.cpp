@@ -1,24 +1,6 @@
 #include "Common.h"
 #include "SysfileUtilWrapper.h"
 
-void Print_Bytes(char* Bytes, size_t len)
-{
-	int Counter = 0;
-	for (size_t n = 0; n < len; n++)
-	{
-		printf("%02X ", Bytes[n]);
-
-		if (Counter >= 20)	
-		{
-			printf("\n");
-			Counter = 0;
-		}
-
-		Counter++;
-	}
-	printf("\n");
-}
-
 char* SysfileUtilWrapper::GetString(const char* FilePath, const char* Key, unsigned int Size)
 {
 	int fd = sceKernelOpen(FilePath, 0, 0511);
