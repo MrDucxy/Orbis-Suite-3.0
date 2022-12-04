@@ -126,6 +126,15 @@ void InstallOrbisToolbox()
 	klog("[Orbis Toolbox] Installation Success!\n");
 }
 
+void InstallOrbisSuite()
+{
+	klog("[Orbis Suite] Making Directories...\n");
+	MakeDir("/data/Orbis Suite");
+
+	klog("[Orbis Toolbox] Writing Files...\n");
+	CopyFile("/mnt/sandbox/ORBS00000_000/app0/Orbis Suite/OrbisLibGeneralHelper.sprx", "/data/Orbis Suite/OrbisLibGeneralHelper.sprx");
+}
+
 #pragma endregion
 
 #pragma region File IO

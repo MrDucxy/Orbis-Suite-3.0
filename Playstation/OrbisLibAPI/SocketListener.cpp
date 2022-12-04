@@ -67,7 +67,7 @@ void* SocketListener::DoWork()
 		timeout.tv_sec = 2;
 		timeout.tv_usec = 0;
 
-		// Wait fo rincoming connections.
+		// Wait for incoming connections.
 		auto rv = select((int)this->Socket + 1, &set, NULL, NULL, &timeout);
 		if (rv == -1)
 			goto Cleanup;

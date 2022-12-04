@@ -12,6 +12,7 @@ void Notify(const char* MessageFMT, ...);
 void klog(const char* fmt, ...);
 void InstallDaemon(const char* Daemon);
 void InstallOrbisToolbox();
+void InstallOrbisSuite();
 
 //File IO.
 static void build_iovec(iovec** iov, int* iovlen, const char* name, const void* val, size_t len);

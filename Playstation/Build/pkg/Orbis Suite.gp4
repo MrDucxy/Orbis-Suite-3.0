@@ -37,6 +37,7 @@
     <file targ_path="Daemons/ORBS30000/sce_sys/icon0.png" orig_path="Daemons\ORBS30000\sce_sys\icon0.png" />
     <file targ_path="Daemons/ORBS30000/sce_sys/param" orig_path="Daemons\ORBS30000\sce_sys\param" />
     <file targ_path="Daemons/ORBS30000/eboot.bin" orig_path="Daemons\ORBS30000\eboot.bin" />
+    <file targ_path="Orbis Suite/OrbisLibGeneralHelper.sprx" orig_path="Orbis Suite\OrbisLibGeneralHelper.sprx" />
   </files>
   <rootdir>
     <dir targ_name="Orbis Toolbox">
@@ -50,5 +51,6 @@
         <dir targ_name="sce_sys" />
       </dir>
     </dir>
+    <dir targ_name="Orbis Suite" />
   </rootdir>
 </psproject>

@@ -1,7 +1,7 @@
 #include "Common.h"
 #include "Version.h"
 #include "API.h"
-
+#include "GoldHEN.h"
 #include <orbis/SystemService.h>
 #include <orbis/SysCore.h>
 

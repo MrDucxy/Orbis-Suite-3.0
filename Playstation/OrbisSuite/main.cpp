@@ -34,6 +34,7 @@ int main()
 	// Install all the things! :D
 	//InstallDaemon("ORBS30000"); // Orbis Lib
 	InstallOrbisToolbox();
+	InstallOrbisSuite();
 
 	//TODO: Pull module list of SceShellUI to see if we should unload the toolbox.
 
