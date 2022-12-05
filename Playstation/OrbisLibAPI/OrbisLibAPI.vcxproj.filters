@@ -85,6 +85,9 @@
     <ClCompile Include="Flash.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
+    <ClCompile Include="GeneralIPC.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -123,9 +126,6 @@
     <ClInclude Include="Debug.h">
       <Filter>Header Files\API\CmdGroups</Filter>
     </ClInclude>
-    <ClInclude Include="libjbc.h">
-      <Filter>Header Files\Utilities\PS Utils</Filter>
-    </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
@@ -134,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="Flash.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneralIPC.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

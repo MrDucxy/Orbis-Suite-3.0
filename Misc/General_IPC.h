@@ -1,7 +1,7 @@
 #pragma once
 
-// Genreall IPC ADDRS should follow the GeneralIPC#CUSA00000 pattern.
-#define GENERAL_IPC_ADDR "GeneralIPC#%s"
+// Genreall IPC ADDRS should follow the GeneralIPC#<ProcessName> pattern.
+#define GENERAL_IPC_ADDR "/system_tmp/GeneralIPC#%s"
 
 enum GeneralIPCCommands
 {
@@ -11,6 +11,12 @@ enum GeneralIPCCommands
 	GIPC_JAIL,
 	GIPC_RW,
 	GIPC_PROT,
+};
+
+enum GeneralIPCResult
+{
+	GIPC_FAIL,
+	GIPC_OK,
 };
 
 struct ExtProccesInfoPacket

@@ -26,7 +26,7 @@
 #include "SocketListener.h"
 #include "Utilities.h"
 #include "GoldHEN.h"
-#include "libjbc.h"
+#include "../../Misc/libjbc.h"
 #include "System.h"
 #include "Flash.h"
 

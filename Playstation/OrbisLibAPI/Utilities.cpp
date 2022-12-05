@@ -110,3 +110,17 @@ int sys_dynlib_get_list(int* destModuleHandles, int max, int* count)
 }
 
 #pragma endregion
+
+#pragma region Networking
+
+bool SockSendInt(OrbisNetId Sock, int val)
+{
+	return !(sceNetSend(Sock, &val, sizeof(int), 0) < 0);
+}
+
+bool SockRecvInt(OrbisNetId Sock, int* val)
+{
+	return !(sceNetRecv(Sock, val, sizeof(int), 0) < 0);
+}
+
+#pragma endregion

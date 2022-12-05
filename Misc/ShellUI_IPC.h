@@ -1,6 +1,7 @@
 #pragma once 
 
-#define SHELL_IPC_ADDR "ShellIPC"
+#define SHELL_IPC_ADDR "/system_tmp/ShellIPC"
+#define GENERAL_IPC_PORT 2023
 
 enum ShellIPCCommands
 {

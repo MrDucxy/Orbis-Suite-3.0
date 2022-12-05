@@ -11,9 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Playstation", "Playstation"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{DBCE3AAD-373D-4EB6-8964-2A4BE1E9F575}"
 	ProjectSection(SolutionItems) = preProject
-		General_IPC.h = General_IPC.h
+		Misc\General_IPC.h = Misc\General_IPC.h
 		Misc\Increment.bat = Misc\Increment.bat
-		ShellUI_IPC.h = ShellUI_IPC.h
+		Misc\libjbc.h = Misc\libjbc.h
+		Misc\ShellUI_IPC.h = Misc\ShellUI_IPC.h
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrbisNeighborHood", "Windows\OrbisNeighborHood\OrbisNeighborHood.csproj", "{81B068F7-776C-429F-BB7B-5563F75F1A39}"

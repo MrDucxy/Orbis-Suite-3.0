@@ -5,6 +5,8 @@
 #include <orbis/SystemService.h>
 #include <orbis/SysCore.h>
 
+#include "GeneralIPC.h"
+
 #define CTL_KERN 1
 #define KERN_PROC 14
 #define KERN_PROC_PID 1
@@ -59,10 +61,39 @@ int main()
 
 	API::Init();
 
-	while (true)
+//#define KILLTHEMALL
+#ifdef KILLTHEMALL
+	char Buffer[0x200];
+	sprintf(Buffer, "/%s/common/lib/libSceSystemService.sprx", sceKernelGetFsSandboxRandomWord());
+	int ModuleHandle = sceKernelLoadStartModule(Buffer, 0, nullptr, 0, nullptr, nullptr);
+	if (ModuleHandle == 0) {
+		klog("Failed to load libSceSystemService Library.\n");
+		return false;
+	}
+
+	SceDbgModuleInfo minfos;
+	sys_dynlib_get_info(ModuleHandle, &minfos);
+
+	void(*sceLncUtilInitialize)() = (void(*)())((uint64_t)minfos.segmentInfo[0].baseAddr + 0x4BF0);
+	int(*sceLncUtilGetAppId)(char* titleId) = (int(*)(char*))((uint64_t)minfos.segmentInfo[0].baseAddr + 0x4E10);
+
+	sceLncUtilInitialize();
+	sceSystemServiceKillApp(sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
+#else
+	int hndl = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Suite/OrbisLibGeneralHelper.sprx");
+
+	sceKernelSleep(2);
+
+	ExtProccesInfoPacket info;
+	GeneralIPC::GetExtProcessInfo("SceShellUI", &info);
+
+	klog("path = %s\n", info.Path);
+#endif
+
+	/*while (true)
 	{
 		sceKernelSleep(1);
-	}
+	}*/
 
 	klog("Time to go :(\n");
 

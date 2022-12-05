@@ -1,15 +1,115 @@
 #include "Common.h"
 
+LocalSocketListener* LocalListener = nullptr;
+jailbreak_backup JailBackup;
+
+void SendExtProcessInfo(OrbisNetId Sock)
+{
+	ExtProccesInfoPacket packet;
+
+	// Get info using GoldHEN syscall.
+	proc_info info;
+	sys_sdk_proc_info(&info);
+
+	// Populate our packet.
+	strncpy(packet.Path, info.path, sizeof(packet.Path));
+	strncpy(packet.TitleId, info.titleid, sizeof(packet.TitleId));
+	strncpy(packet.ContentId, info.contentid, sizeof(packet.ContentId));
+	strncpy(packet.Version, info.version, sizeof(packet.Version));
+
+	// Ship it.
+	sceNetSend(Sock, (void*)&packet, sizeof(ExtProccesInfoPacket), 0);
+}
+
+void SendLibraryList(OrbisNetId Sock)
+{
+	int MaxOutput = 0;
+	if (!SockRecvInt(Sock, &MaxOutput))
+	{
+		klog("Failed to recv int.\n");
+		return;
+	}
+
+	// Get the libraries.
+	LibraryInfo* LibraryList = (LibraryInfo*)malloc(MaxOutput * sizeof(LibraryInfo));
+	int RealLibCount = jbc_get_proc_libraries(LibraryList, MaxOutput);
+
+	// Make sure not to overflow the sender.
+	if (RealLibCount > MaxOutput)
+	{
+		klog("Warning: SendLibraryList MaxOutput too small.");
+		RealLibCount = MaxOutput;
+	}
+
+	// Send the Count
+	SockSendInt(Sock, RealLibCount);
+
+	// Ship it.
+	sceNetSend(Sock, (void*)LibraryList, RealLibCount * sizeof(LibraryInfo), 0);
+}
+
+void ListenerClientThread(void* tdParam, OrbisNetId Sock)
+{
+	int Command = RecieveInt(Sock);
+	if (Command != -1)
+	{
+		switch (Command)
+		{
+		default:
+			klog("Invalid Command enum %i\n", Command);
+			break;
+
+		case GIPC_INFO:
+			SendExtProcessInfo(Sock);
+			break;
+
+		case GIPC_LIB_LIST:
+			SendLibraryList(Sock);
+			break;
+
+		case GIPC_JAILBREAK:
+			sys_sdk_jailbreak(&JailBackup);
+			SockSendInt(Sock, GIPC_OK);
+			break;
+
+		case GIPC_JAIL:
+			sys_sdk_unjailbreak(&JailBackup);
+			SockSendInt(Sock, GIPC_OK);
+			break;
+
+		case  GIPC_RW:
+
+			break;
+
+		case GIPC_PROT:
+
+			break;
+		}
+	}
+}
+
 extern "C"
 {
 	int __cdecl module_start(size_t argc, const void* args)
 	{
+		klog("Hello from Helper!\n");
+
+		proc_info info;
+		sys_sdk_proc_info(&info);
+
+		klog("Helping with %s\n", info.name);
+
+		char serverAddress[0x200];
+		snprintf(serverAddress, sizeof(serverAddress), GENERAL_IPC_ADDR, info.name);
+
+		LocalListener = new LocalSocketListener(ListenerClientThread, nullptr, serverAddress);
 
 		return 0;
 	}
 
 	int __cdecl module_stop(size_t argc, const void* args)
 	{
+		delete LocalListener;
 
 		return 0;
 	}
