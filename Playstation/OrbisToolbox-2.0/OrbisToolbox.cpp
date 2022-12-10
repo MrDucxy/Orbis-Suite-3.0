@@ -6,20 +6,6 @@
 
 RemoteCaller* CallInMonoThread = NULL;
 
-Detour* SearchJob_RunDetour;
-void* SearchJob_RunHook(MonoObject* instance)
-{
-	auto IsCancelled = Mono::Get_Property<bool>(Mono::UI_dll, "Sce.PlayStation.HighLevel.UI2", "Job", instance, "IsCancelled");
-
-	if (!IsCancelled)
-	{
-		auto SearchJob = Mono::Get_Class(Mono::App_exe, "Sce.Vsh.ShellUI.Settings.PkgInstaller", "SearchJob");
-		Mono::Invoke<void>(Mono::App_exe, SearchJob, instance, "SearchDir", Mono::New_String("/user/data/pkg"), Mono::New_String("/user/data/pkg"));
-	}
-
-	return SearchJob_RunDetour->Stub<void*>(instance);
-}
-
 void* InitThread(void* args)
 {
 	klog("!! Hello World !!\n");
@@ -41,10 +27,7 @@ void* InitThread(void* args)
 	CallInMonoThread = new RemoteCaller();
 
 	Notify(ORBIS_TOOLBOX_NOTIFY);
-
-	SearchJob_RunDetour = new Detour();
-	SearchJob_RunDetour->DetourMethod(Mono::App_exe, "Sce.Vsh.ShellUI.Settings.PkgInstaller", "SearchJob", "Run", 0, (void*)SearchJob_RunHook);
-
+	
 	scePthreadExit(NULL);
 	return 0;
 }
@@ -66,12 +49,10 @@ extern "C"
 		// Toolbox
 		Settings_Menu::Term();
 		System_Monitor::Term();
-		//Title_Menu::Term();
+		//Title_Menu::Term(); 0x83D1E4A78
 
 		// API
 		delete CallInMonoThread;
-
-		delete SearchJob_RunDetour;
 
 		sceKernelSleep(4);
 

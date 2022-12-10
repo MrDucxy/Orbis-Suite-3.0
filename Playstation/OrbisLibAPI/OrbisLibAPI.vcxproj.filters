@@ -79,9 +79,6 @@
     <ClCompile Include="System.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Registry.cpp">
-      <Filter>Source Files\Utilities\PS Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Flash.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
@@ -127,9 +124,6 @@
       <Filter>Header Files\API\CmdGroups</Filter>
     </ClInclude>
     <ClInclude Include="System.h">
-      <Filter>Header Files\Utilities\PS Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Registry.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
     <ClInclude Include="Flash.h">

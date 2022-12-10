@@ -70,7 +70,6 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="build.bat" />
     <ClCompile Include="Proc.cpp" />
-    <ClCompile Include="Registry.cpp" />
     <ClCompile Include="SocketListener.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Target.cpp" />
@@ -87,7 +86,6 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="Flash.h" />
     <ClInclude Include="GeneralIPC.h" />
     <ClInclude Include="Proc.h" />
-    <ClInclude Include="Registry.h" />
     <ClInclude Include="SocketListener.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Target.h" />

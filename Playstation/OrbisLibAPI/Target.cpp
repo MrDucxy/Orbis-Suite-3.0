@@ -97,16 +97,22 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	Packet->CPUTemp = GetCPUTemp();
 	Packet->SOCTemp = GetSOCTemp();
 
-	OrbisAppInfo bigAppInfo;
-	sceApplicationGetAppInfoByAppId(sceSystemServiceGetAppIdOfBigApp(), &bigAppInfo);
-	strcpy(Packet->CurrentTitleID, bigAppInfo.TitleId);
+	auto bigAppAppId = sceSystemServiceGetAppIdOfBigApp();
+	if (bigAppAppId > 0)
+	{
+		OrbisAppInfo bigAppInfo;
+		sceApplicationGetAppInfoByAppId(bigAppAppId, &bigAppInfo);
+		strcpy(Packet->CurrentTitleID, bigAppInfo.TitleId);
+	}
+	else
+		strcpy(Packet->CurrentTitleID, "N/A");
 
 	GetConsoleName(Packet->ConsoleName, 100);
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);
 	ReadFlash(FLASH_SERIAL, &Packet->Serial, 10);
 	ReadFlash(FLASH_MODEL, &Packet->Model, 14);
-	// strcpy(Packet->MACAdressLAN, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_PHYSICAL));
-	// strcpy(Packet->MACAdressWIFI, CallInMonoThread->RemoteCall<char*>(NetWrapper::GetMacAddressInfo, SCE_NET_IF_NAME_WLAN0));
+	getMacAddress(SceNetIfName::SCE_NET_IF_NAME_ETH0, Packet->MACAdressLAN, 18);
+	getMacAddress(SceNetIfName::SCE_NET_IF_NAME_WLAN0, Packet->MACAdressWIFI, 18);
 	ReadFlash(FLASH_UART_FLAG, &Packet->UART, 1);
 	ReadFlash(FLASH_IDU_MODE, &Packet->IDUMode, 1);
 	GetIDPS(Packet->IDPS);
@@ -117,13 +123,25 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	Packet->Attached = false; // TODO: Add funcionality.
 	//Packet->CurrentProc
 
-	// Storage Stats.
-	/*uint64_t HDDFreeSpace, HDDTotalSpace;
-	CallInMonoThread->RemoteCall<int>(ShellCoreUtilWrapper::sceShellCoreUtilGetFreeSizeOfUserPartition, &HDDFreeSpace, &HDDTotalSpace);
-	Packet->FreeSpace = HDDFreeSpace;
-	Packet->TotalSpace = HDDTotalSpace;*/
+	char Buffer[0x200];
+	sprintf(Buffer, "/%s/common/lib/libSceSystemService.sprx", sceKernelGetFsSandboxRandomWord());
+	int ModuleHandle = sceKernelLoadStartModule(Buffer, 0, nullptr, 0, nullptr, nullptr);
+	if (ModuleHandle == 0) {
+		klog("Failed to load libSceSystemService Library.\n");
+		return;
+	}
 
-	// Perf Stats.
+	SceDbgModuleInfo infos;
+	sys_dynlib_get_info(ModuleHandle, &infos);
+	int(*sceShellCoreUtilGetFreeSizeOfUserPartition)(uint64_t * free, uint64_t * total) = (int(*)(uint64_t * free, uint64_t * total))((uint64_t)infos.segmentInfo[0].baseAddr + 0x105A0);
+
+	// Storage Stats.
+	uint64_t HDDFreeSpace, HDDTotalSpace;
+	auto res = sceShellCoreUtilGetFreeSizeOfUserPartition(&HDDFreeSpace, &HDDTotalSpace);
+	Packet->FreeSpace = HDDFreeSpace;
+	Packet->TotalSpace = HDDTotalSpace;
+
+	// Perf Stats. TODO: Move from toolbox
 	/*Packet->CPUTemp = System_Monitor::CPU_Temp;
 	Packet->SOCTemp = System_Monitor::SOC_Temp;
 	Packet->ThreadCount = System_Monitor::Thread_Count;

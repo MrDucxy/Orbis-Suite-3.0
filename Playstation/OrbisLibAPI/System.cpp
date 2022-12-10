@@ -1,6 +1,5 @@
 #include "Common.h"
 #include "System.h"
-#include "Registry.h"
 
 int ChangeSystemState(SystemState State)
 {
@@ -95,7 +94,7 @@ int GetUpdateVersion()
 
 bool GetConsoleName(char* Out, size_t len)
 {
-	return sceRegMgrGetStr(Registry_Find_By_Name("/SYSTEM/nickname"), Out, len) == 0;
+	return sceSystemServiceParamGetString(ORBIS_SYSTEM_SERVICE_PARAM_ID_SYSTEM_NAME, Out, len) == 0;
 }
 
 int GetIDPS(char* Out)

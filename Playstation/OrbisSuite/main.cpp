@@ -36,11 +36,10 @@ int main()
 	InstallOrbisToolbox();
 	InstallOrbisSuite();
 
-	//TODO: Pull module list of SceShellUI to see if we should unload the toolbox.
-
+	//TODO: use IPC to see if prx is already loaded.
 
 	// Use GoldHEN SDK to load PRX to SceShellUI.
-	auto Handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
+	/*auto Handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 
 	if (Handle > 0)
 		klog("Orbis Toolbox loaded! %d\n", Handle);
@@ -48,7 +47,7 @@ int main()
 	{
 		klog("error: %d\n", Handle);
 		Notify("Failed to load Orbis Toolbox!");
-	}
+	}*/
 	
 	sceSystemServiceLoadExec("exit", 0);
 

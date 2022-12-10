@@ -35,6 +35,7 @@ bool LoadModules()
 
 	return true;
 }
+
 #pragma endregion
 
 #pragma region Misc
@@ -107,6 +108,77 @@ int sys_dynlib_get_info(int moduleHandle, SceDbgModuleInfo* destModuleInfo)
 int sys_dynlib_get_list(int* destModuleHandles, int max, int* count)
 {
 	return syscall(592, destModuleHandles, max, count);
+}
+
+bool Jailbreak()
+{
+	jbc_cred cred;
+	if (jbc_get_cred(&cred) != 0)
+	{
+		klog("jbc failed to get cred.\n");
+		return false;
+	}
+
+	if (jbc_jailbreak_cred(&cred) != 0)
+	{
+		klog("jbc failed to jailbreak cred.\n");
+		return false;
+	}
+
+	if (jbc_set_cred(&cred) != 0)
+	{
+		klog("jbc failed to set cred.\n");
+		return false;
+	}
+
+	return true;
+}
+
+bool CopySflash()
+{
+	int sflashFd = sceKernelOpen("/dev/sflash0", ORBIS_KERNEL_O_RDONLY, 0);
+	int backupFd = sceKernelOpen("/data/Orbis Suite/sflash0", ORBIS_KERNEL_O_CREAT | ORBIS_KERNEL_O_WRONLY | ORBIS_KERNEL_O_APPEND, 0777);
+	if (sflashFd && backupFd)
+	{
+		auto buffer = (unsigned char*)malloc(4 * 1024 * 1024);
+		if (buffer == nullptr)
+		{
+			klog("failled to allocate memory for sflash read.\n");
+			return false;
+		}
+
+		size_t bytesRead = 0;
+		while ((bytesRead = sceKernelRead(sflashFd, buffer, 4 * 1024 * 1024)) > 0)
+		{
+			sceKernelWrite(backupFd, buffer, bytesRead);
+		}
+
+		free(buffer);
+		sceKernelClose(sflashFd);
+		sceKernelClose(backupFd);
+		return true;
+	}
+
+	return false;
+}
+
+int getMacAddress(SceNetIfName ifName_Num, char* strOut, size_t len)
+{
+	if (len < 18)
+	{
+		klog("getMacAddress(): Output len must be >= 18.\n");
+		return -1;
+	}
+
+	OrbisNetIfEntry ifEntry;
+	auto res = sceNetGetIfList(ifName_Num, &ifEntry, 1);
+	if (res < 0)
+	{
+		klog("getMacAddress(): failed to get IfList for %i\n", ifName_Num);
+		return res;
+	}
+
+	return sceNetEtherNtostr(ifEntry.MacAddress, strOut, len);
 }
 
 #pragma endregion
