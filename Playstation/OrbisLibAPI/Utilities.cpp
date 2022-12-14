@@ -30,7 +30,6 @@ bool LoadModules()
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NET);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_HTTP);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_BGFT);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_APPINSTUTIL);
 	_sceSysmoduleLoadModuleInternal(0xA4);
 
 	return true;
@@ -162,7 +161,7 @@ bool CopySflash()
 	return false;
 }
 
-int getMacAddress(SceNetIfName ifName_Num, char* strOut, size_t len)
+int getMacAddress(OrbisNetIfName ifName_Num, char* strOut, size_t len)
 {
 	if (len < 18)
 	{

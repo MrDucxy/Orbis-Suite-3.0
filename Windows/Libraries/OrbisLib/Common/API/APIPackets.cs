@@ -174,7 +174,7 @@ namespace OrbisSuite.Common
         public float Percentage;
     };
 
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi, Size = 260), Serializable]
+    [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi), Serializable]
     public struct TargetInfoPacket
     {
         public int SDKVersion;
@@ -203,6 +203,7 @@ namespace OrbisSuite.Common
         public int ConsoleType;
         public int Attached;
         public int AttachedPid;
+        public int ForegroundAccountId;
 
         public ulong FreeSpace;
         public ulong TotalSpace;

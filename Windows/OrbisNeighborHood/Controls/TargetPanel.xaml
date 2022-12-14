@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              Width="305" Height="210"
              d:DesignHeight="210" d:DesignWidth="305">
+    
     <Border VerticalAlignment="Stretch"
             CornerRadius="10"
             Background="{DynamicResource WindowBar}">

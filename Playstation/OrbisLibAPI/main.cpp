@@ -4,11 +4,7 @@
 #include "GoldHEN.h"
 #include <orbis/SystemService.h>
 #include <orbis/SysCore.h>
-#include <net/if.h>
-#include <sys/ioctl.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
+#include <orbis/libkernel.h>
 #include <orbis/Net.h>
 
 #include "GeneralIPC.h"
@@ -41,12 +37,34 @@ int main()
 		return 0;
 	}
 
-	// TODO: Bug? This doesnt seem to work for some reason.
-	// Check GoldHEN SDK Version make sure we can run!
-	auto sdkVersion = sys_sdk_version();
-	if (sdkVersion < GOLDHEN_SDK_VERSION)
+	// Start up networking interface
+	if (sceNetInit() != 0)
 	{
-		Notify("Invalid GoldHEN SDK Version %d Orbis Toolbox supports %d+", sdkVersion, GOLDHEN_SDK_VERSION);
+		Notify("Failed to init Networking...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
+	// Start up user service.
+	if (sceUserServiceInitialize(nullptr) != 0)
+	{
+		Notify("Failed to init User Service...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
+	// Init temporary wrapper for lncutils.
+	if (LncUtil::Init() != 0)
+	{
+		Notify("Failed to init LncUtil...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
+	// Init temporary wrapper for shellcoreutils.
+	if (ShellCoreUtil::Init() != 0)
+	{
+		Notify("Failed to init ShellCoreUtil...");
 		sceSystemServiceLoadExec("exit", 0);
 		return 0;
 	}
@@ -59,6 +77,16 @@ int main()
 		return 0;
 	}
 
+	// TODO: Bug? This doesnt seem to work for some reason.
+	// Check GoldHEN SDK Version make sure we can run!
+	auto sdkVersion = sys_sdk_version();
+	if (sdkVersion < GOLDHEN_SDK_VERSION)
+	{
+		Notify("Invalid GoldHEN SDK Version %d Orbis Toolbox supports %d+", sdkVersion, GOLDHEN_SDK_VERSION);
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
 	// Copy back up of sflash so we can read it and not break things :)
 	CopySflash();
 
@@ -67,24 +95,9 @@ int main()
 
 	klog("\n%s\n\n", ORBISLIB_BUILDSTRING);
 
-// #define KILLTHEMALL
-#ifdef KILLTHEMALL
-	char Buffer[0x200];
-	sprintf(Buffer, "/%s/common/lib/libSceSystemService.sprx", sceKernelGetFsSandboxRandomWord());
-	int ModuleHandle = sceKernelLoadStartModule(Buffer, 0, nullptr, 0, nullptr, nullptr);
-	if (ModuleHandle == 0) {
-		klog("Failed to load libSceSystemService Library.\n");
-		return false;
-	}
-
-	SceDbgModuleInfo minfos;
-	sys_dynlib_get_info(ModuleHandle, &minfos);
-
-	void(*sceLncUtilInitialize)() = (void(*)())((uint64_t)minfos.segmentInfo[0].baseAddr + 0x4BF0);
-	int(*sceLncUtilGetAppId)(char* titleId) = (int(*)(char*))((uint64_t)minfos.segmentInfo[0].baseAddr + 0x4E10);
-
-	sceLncUtilInitialize();
-	sceSystemServiceKillApp(sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
+// #define KILLSHELLUI
+#ifdef KILLSHELLUI
+	sceSystemServiceKillApp(LncUtil::sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
 #else
 	/*int hndl = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Suite/OrbisLibGeneralHelper.sprx");
 
@@ -96,10 +109,12 @@ int main()
 		klog("path = %s\n", info.Path);
 	}*/
 
-	sceNetInit();
+	// Init a thread to monitor the system usage stats.
+	SystemMonitor::Init();
 
+	// start up the API.
 	API::Init();
-	
+
 #endif
 
 	while (true)

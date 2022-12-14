@@ -206,6 +206,7 @@ struct TargetInfoPacket
 	int ConsoleType;
 	int Attached;
 	int AttachedPid;
+	int ForegroundAccountId;
 
 	uint64_t FreeSpace;
 	uint64_t TotalSpace;

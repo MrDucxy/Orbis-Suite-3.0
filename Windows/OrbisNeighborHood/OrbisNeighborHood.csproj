@@ -9,12 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\AppList.png" />
     <None Remove="Images\Consoles\Fat.png" />
     <None Remove="Images\Consoles\Pro.png" />
     <None Remove="Images\Consoles\Slim.png" />
     <None Remove="Images\Default.ico" />
     <None Remove="Images\DefaultAppIcon.png" />
     <None Remove="Images\DefaultTitleIcon.png" />
+    <None Remove="Images\Delete.png" />
     <None Remove="Images\Home.png" />
     <None Remove="Images\Icons\OrbisConsoleOutput.ico" />
     <None Remove="Images\Icons\OrbisDebugger.ico" />
@@ -26,13 +28,19 @@
     <None Remove="Images\Locate.png" />
     <None Remove="Images\NotDefault.ico" />
     <None Remove="Images\Plus.png" />
+    <None Remove="Images\ReplaceIcon.png" />
     <None Remove="Images\Restart.png" />
     <None Remove="Images\RestMode.png" />
     <None Remove="Images\ReturnArrow.png" />
     <None Remove="Images\Send.png" />
     <None Remove="Images\Settings.png" />
     <None Remove="Images\Shutdown.png" />
+    <None Remove="Images\SpinningDualRing.gif" />
+    <None Remove="Images\Start.png" />
+    <None Remove="Images\Stop.png" />
     <None Remove="Images\Targets.png" />
+    <None Remove="Images\UnAvailable.png" />
+    <None Remove="Images\Visibility.png" />
     <None Remove="Resources\BuildNumber.txt" />
     <None Remove="Resources\BuildString.txt" />
   </ItemGroup>
@@ -42,6 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\AppList.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Consoles\Fat.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -58,6 +69,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\DefaultTitleIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Icons\OrbisConsoleOutput.ico">
@@ -90,6 +104,9 @@
     <Resource Include="Images\Plus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\ReplaceIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Restart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -108,7 +125,22 @@
     <Resource Include="Images\Home.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\SpinningDualRing.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Targets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\UnAvailable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Visibility.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <EmbeddedResource Include="Resources\BuildNumber.txt">
@@ -117,6 +149,10 @@
     <EmbeddedResource Include="Resources\BuildString.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -20,6 +20,7 @@
     <Window.Resources>
         <view:DashboardView x:Key="DashboardViewKey"/>
         <view:TargetView x:Key="TargetViewKey"/>
+        <view:AppListView x:Key="AppListViewKey"/>
         <view:SettingsView x:Key="SettingsViewKey"/>
 
         <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
@@ -28,6 +29,10 @@
 
         <DataTemplate DataType="{x:Type viewModel:TargetViewModel}">
             <ContentControl Content="{StaticResource TargetViewKey}" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AppListViewModel}">
+            <ContentControl Content="{StaticResource AppListViewKey}" />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
@@ -89,6 +94,11 @@
                                  Text="Targets"
                                  Height="50"
                                  Command="{Binding TargetViewCommand}"/>
+
+            <controls:MenuButton ImagePath="/OrbisNeighborHood;component/Images/AppList.png"
+                                 Text="Applications"
+                                 Height="50"
+                                 Command="{Binding AppListViewCommand}"/>
 
             <controls:MenuButton ImagePath="/OrbisNeighborHood;component/Images/Settings.png"
                                  Text="Settings"

@@ -26,7 +26,7 @@ int sys_dynlib_get_info(int moduleHandle, SceDbgModuleInfo* destModuleInfo);
 int sys_dynlib_get_list(int* destModuleHandles, int max, int* count);
 bool Jailbreak();
 bool CopySflash();
-int getMacAddress(SceNetIfName ifName_Num, char* strOut, size_t strlen);
+int getMacAddress(OrbisNetIfName ifName_Num, char* strOut, size_t strlen);
 
 // Networking
 bool SockSendInt(OrbisNetId Sock, int val);

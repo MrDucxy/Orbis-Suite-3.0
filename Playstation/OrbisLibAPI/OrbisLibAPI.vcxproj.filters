@@ -85,6 +85,15 @@
     <ClCompile Include="GeneralIPC.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="LncUtil.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ShellCoreUtil.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemMonitor.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -131,6 +140,15 @@
     </ClInclude>
     <ClInclude Include="GeneralIPC.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="LncUtil.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ShellCoreUtil.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemMonitor.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

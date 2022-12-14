@@ -24,14 +24,14 @@ Rem Link the input ELF
 ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\\lib" "-L..\\..\\External\\GoldHEN_Plugins_SDK" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crt1.o" %obj_files% "..\\..\\External\\ps4-libjbc\\jbc.o"
 
 Rem Create the eboot
-%OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin"
+%OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin" --paid 0x3800000000010003
 
 Rem Cleanup
 copy "eboot.bin" %outputPath%\Playstation\Build\pkg\Daemons\ORBS30000\eboot.bin
 del "eboot.bin"
 
 REM Generate the script. Will overwrite any existing temp.txt
-echo open 1.1.0.73 2121> temp.txt
+echo open 1.1.0.13 2121> temp.txt
 echo anonymous>> temp.txt
 echo anonymous>> temp.txt
 echo cd "/system/vsh/app/ORBS30000/">> temp.txt

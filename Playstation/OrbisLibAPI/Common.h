@@ -31,3 +31,6 @@
 #include "Flash.h"
 
 #include "APIPackets.h"
+#include "LncUtil.h"
+#include "ShellCoreUtil.h"
+#include "SystemMonitor.h"

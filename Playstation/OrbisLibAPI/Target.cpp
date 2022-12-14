@@ -111,8 +111,8 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);
 	ReadFlash(FLASH_SERIAL, &Packet->Serial, 10);
 	ReadFlash(FLASH_MODEL, &Packet->Model, 14);
-	getMacAddress(SceNetIfName::SCE_NET_IF_NAME_ETH0, Packet->MACAdressLAN, 18);
-	getMacAddress(SceNetIfName::SCE_NET_IF_NAME_WLAN0, Packet->MACAdressWIFI, 18);
+	getMacAddress(SCE_NET_IF_NAME_ETH0, Packet->MACAdressLAN, 18);
+	getMacAddress(SCE_NET_IF_NAME_WLAN0, Packet->MACAdressWIFI, 18);
 	ReadFlash(FLASH_UART_FLAG, &Packet->UART, 1);
 	ReadFlash(FLASH_IDU_MODE, &Packet->IDUMode, 1);
 	GetIDPS(Packet->IDPS);
@@ -123,32 +123,15 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	Packet->Attached = false; // TODO: Add funcionality.
 	//Packet->CurrentProc
 
-	char Buffer[0x200];
-	sprintf(Buffer, "/%s/common/lib/libSceSystemService.sprx", sceKernelGetFsSandboxRandomWord());
-	int ModuleHandle = sceKernelLoadStartModule(Buffer, 0, nullptr, 0, nullptr, nullptr);
-	if (ModuleHandle == 0) {
-		klog("Failed to load libSceSystemService Library.\n");
-		return;
-	}
-
-	SceDbgModuleInfo infos;
-	sys_dynlib_get_info(ModuleHandle, &infos);
-	int(*sceShellCoreUtilGetFreeSizeOfUserPartition)(uint64_t * free, uint64_t * total) = (int(*)(uint64_t * free, uint64_t * total))((uint64_t)infos.segmentInfo[0].baseAddr + 0x105A0);
-
-	// Storage Stats.
-	uint64_t HDDFreeSpace, HDDTotalSpace;
-	auto res = sceShellCoreUtilGetFreeSizeOfUserPartition(&HDDFreeSpace, &HDDTotalSpace);
-	Packet->FreeSpace = HDDFreeSpace;
-	Packet->TotalSpace = HDDTotalSpace;
+	sceUserServiceGetForegroundUser(&Packet->ForegroundAccountId);
+	auto res = ShellCoreUtil::sceShellCoreUtilGetFreeSizeOfUserPartition(&Packet->FreeSpace, &Packet->TotalSpace);
 
 	// Perf Stats. TODO: Move from toolbox
-	/*Packet->CPUTemp = System_Monitor::CPU_Temp;
-	Packet->SOCTemp = System_Monitor::SOC_Temp;
-	Packet->ThreadCount = System_Monitor::Thread_Count;
-	Packet->AverageCPUUsage = System_Monitor::Average_Usage;
-	Packet->BusyCore = System_Monitor::Busy_Core;
-	memcpy(&Packet->Ram, &System_Monitor::RAM, sizeof(MemoryInfo));
-	memcpy(&Packet->VRam, &System_Monitor::VRAM, sizeof(MemoryInfo));*/
+	/*Packet->ThreadCount = SystemMonitor::Thread_Count;
+	Packet->AverageCPUUsage = SystemMonitor::Average_Usage;
+	Packet->BusyCore = SystemMonitor::Busy_Core;
+	memcpy(&Packet->Ram, &SystemMonitor::RAM, sizeof(MemoryInfo));
+	memcpy(&Packet->VRam, &SystemMonitor::VRAM, sizeof(MemoryInfo));*/
 
 	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
 

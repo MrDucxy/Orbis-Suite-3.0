@@ -14,12 +14,16 @@ namespace OrbisNeighborHood.MVVM.ViewModel
 
         public RelayCommand TargetViewCommand { get; set; }
 
+        public RelayCommand AppListViewCommand { get; set; }
+
         public RelayCommand SettingsViewCommand { get; set; }
 
         // View Models
         public DashboardViewModel DashboardHomeVM { get; set; }
 
         public TargetViewModel TargetVM { get; set; }
+
+        public AppListViewModel AppListVM { get; set; }
 
         public SettingsViewModel SettingsVM { get; set; }
 
@@ -55,6 +59,7 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             // MainViews
             DashboardHomeVM = new DashboardViewModel();
             TargetVM = new TargetViewModel();
+            AppListVM = new AppListViewModel();
             SettingsVM = new SettingsViewModel();
 
             // Sub Views
@@ -73,6 +78,11 @@ namespace OrbisNeighborHood.MVVM.ViewModel
             TargetViewCommand = new RelayCommand(o =>
             {
                 CurrentView = TargetVM;
+            });
+
+            AppListViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = AppListVM;
             });
 
             SettingsViewCommand = new RelayCommand(o =>
