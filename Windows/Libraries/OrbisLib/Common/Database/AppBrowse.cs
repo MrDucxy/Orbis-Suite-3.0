@@ -44,7 +44,7 @@ namespace OrbisSuite.Common.Database
 
         public string uiCategory { get; set; } = "";
 
-        public static bool RenameAppBrowseDB(string dbPath, int UserId)
+        public static bool AppBrowseRemoveUserId(string dbPath, int UserId)
         {
             var db = new SQLiteConnection(dbPath);
 
@@ -82,6 +82,19 @@ namespace OrbisSuite.Common.Database
                 return false;
             }
             
+        }
+
+        public static bool AppBrowseAddUserId(string dbPath, int UserId)
+        {
+            var db = new SQLiteConnection(dbPath);
+
+            // The name of the table with the user id appended to the end.
+            var tableName = $"tbl_appbrowse_{UserId.ToString().PadLeft(10, '0')}";
+
+            // Rename it so we can use it.
+            var result = db.Execute($"ALTER TABLE `tbl_appbrowse` RENAME TO `{tableName}`") > 0;
+            db.Close();
+            return result;
         }
 
         public static List<AppBrowse> GetAppBrowseList(string dbPath)

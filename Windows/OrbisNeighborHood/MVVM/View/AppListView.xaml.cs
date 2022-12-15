@@ -23,7 +23,7 @@ namespace OrbisNeighborHood.MVVM.View
             OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
 
             RefreshTargetInfo();
-            RefreshAppList();
+            Task.Run(() => RefreshAppList());
         }
 
         #region Properties
@@ -91,19 +91,19 @@ namespace OrbisNeighborHood.MVVM.View
 
             // Cache param.sfo & icon0.png for all apps.
 
-            AppList.Items.Add(panel);
+            Dispatcher.Invoke(() => AppList.Items.Add(panel));
         }
 
         public void RefreshAppList()
         {
-            AppList.Items.Clear();
+            Dispatcher.Invoke(() => AppList.Items.Clear());
 
             // Make sure we have a target we can pull the db from.
             if (OrbisLib.Instance.TargetManagement.TargetList == null)
                 return;
 
             // Make sure the Target is online so we can pull the db.
-            var currentTarget = OrbisLib.Instance.TargetManagement.DefaultTarget;
+            var currentTarget = OrbisLib.Instance.SelectedTarget.Info;
             if (currentTarget == null || !currentTarget.Details.IsAvailable)
             {
                 return;
@@ -129,17 +129,16 @@ namespace OrbisNeighborHood.MVVM.View
             // TODO: Get the tbl_version and check update_index or sync_server number this will tell us if new apps are installed.
 
             // Rename the table we need in the app.db.
-            AppBrowse.RenameAppBrowseDB(Path.Combine(directoryPath, "app.db"), currentTarget.Details.ForegroundAccountId);
+            AppBrowse.AppBrowseRemoveUserId(Path.Combine(directoryPath, "app.db"), currentTarget.Details.ForegroundAccountId);
 
             // Get all apps from the app.db
             var appList = AppBrowse.GetAppBrowseList(Path.Combine(directoryPath, "app.db"));
 
             foreach(var app in appList)
             {
-                var panel = new AppPanel(app);
                 Parallel.Invoke(() =>
                 {
-                    AddApp(directoryPath, app, panel);
+                     AddApp(directoryPath, app, Dispatcher.Invoke(() => new AppPanel(app)));
                 });
             }
         }

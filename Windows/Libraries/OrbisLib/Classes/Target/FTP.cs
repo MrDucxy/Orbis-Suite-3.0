@@ -1,4 +1,5 @@
-﻿using OrbisSuite.Common;
+﻿using Limilabs.FTP.Client;
+using OrbisSuite.Common;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -14,120 +15,47 @@ namespace OrbisSuite
             this.Target = Target;
         }
 
-        public bool SendFile(string LocalFilePath, string RemoteFilePath)
+        public void DownloadFile(string LocalFilePath, string RemoteFilePath)
         {
-            try
+            using (Ftp ftp = new Ftp())
             {
-                //Set our host to connect to and remote file path. Connect using the anonymous anonymous creds.
-                FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create($"ftp://{ Target.Info.IPAddress }:{Config.FTPPort}/{RemoteFilePath}");
-                ftp.Credentials = new NetworkCredential("anonymous", "anonymous");
+                ftp.Connect($"ftp://{Target.Info.IPAddress}:{Config.FTPPort}");
+                ftp.Login("anonymous", "anonymous");
 
-                ftp.UseBinary = true;
-                ftp.UsePassive = true;
-                ftp.KeepAlive = false;
+                ftp.Download(RemoteFilePath, LocalFilePath);
 
-                //Were using the FTP request upload.
-                ftp.Method = WebRequestMethods.Ftp.UploadFile;
-
-                //Get the response from the remote host.
-                Stream ftpStream = ftp.GetRequestStream();
-
-                //local file stream to read the file to the upload.
-                FileStream localFileStream = new FileStream(LocalFilePath, FileMode.Open);
-
-                int BufferSize = 2048;
-                byte[] byteBuffer = new byte[BufferSize];
-                int bytesSent = localFileStream.Read(byteBuffer, 0, BufferSize);
-
-                //try sending the file. 2048 bytes at a time.
-                try
-                {
-                    while (bytesSent != 0)
-                    {
-                        ftpStream.Write(byteBuffer, 0, bytesSent);
-                        bytesSent = localFileStream.Read(byteBuffer, 0, BufferSize);
-                    }
-                }
-                catch (Exception ex) { Console.WriteLine(ex.ToString()); return false; }
-
-                //clean up.
-                localFileStream.Close();
-                ftpStream.Close();
-                ftp = null;
-
-                return true;
+                ftp.Close();
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); return false; }
         }
 
-        public static Regex FtpListDirectoryDetailsRegex = new Regex(@".*(?<month>(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\s*(?<day>[0-9]*)\s*(?<yearTime>([0-9]|:)*)\s*(?<fileName>.*)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        public List<FtpFileInfo> GetDir(string Dir)
+        public void SendFile(string LocalFilePath, string RemoteFilePath)
         {
-            try
+            using (Ftp ftp = new Ftp())
             {
-                string Directory = Dir;
-                FtpWebRequest ftp = (FtpWebRequest)FtpWebRequest.Create($"ftp://{ Target.Info.IPAddress }:{Config.FTPPort}/{Directory}");
+                ftp.Connect($"ftp://{Target.Info.IPAddress}:{Config.FTPPort}");
+                ftp.Login("anonymous", "anonymous");
 
-                ftp.Credentials = new NetworkCredential("anonymous", "anonymous");
+                ftp.Upload(RemoteFilePath, LocalFilePath);
 
-                ftp.UseBinary = true;
-                ftp.UsePassive = true;
-                ftp.KeepAlive = false;
-
-                ftp.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
-
-                FtpWebResponse ftpResponse = (FtpWebResponse)ftp.GetResponse();
-
-                Stream ftpStream = ftpResponse.GetResponseStream();
-
-                StreamReader ftpReader = new StreamReader(ftpStream);
-
-                string RawData = ftpReader.ReadToEnd();
-
-                ftpReader.Dispose();
-                ftpStream.Dispose();
-                ftpResponse.Dispose();
-
-                string[] RawArray = RawData.Split("\n".ToCharArray());
-                List<FtpFileInfo> List = new List<FtpFileInfo>();
-
-                foreach (string Member in RawArray)
-                {
-                    Match match = FtpListDirectoryDetailsRegex.Match(Member);
-                    string FileName = match.Groups["fileName"].Value;
-
-                    if (Member.Length == 0 || (FileName.StartsWith(".") && FileName.Length == 2))
-                        continue;
-
-                    List.Add(new FtpFileInfo(
-                        Member.StartsWith("d"),
-                        match.Groups["month"].Value + match.Groups["day"].Value + match.Groups["yearTime"].Value,
-                        match.Groups["fileName"].Value.Replace("\r", "")
-                        ));
-                }
-
-                return List;
+                ftp.Close();
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return new List<FtpFileInfo>();
         }
-    }
 
-    public class FtpFileInfo
-    {
-        public bool Directory;
-        //Permissions?
-        public string FileCreationDate;
-        public string FileName;
-
-        public FtpFileInfo(bool Directory, string FileCreationDate, string FileName)
+        public List<FtpItem> GetDir(string Dir)
         {
-            this.Directory = Directory;
-            this.FileCreationDate = FileCreationDate;
-            this.FileName = FileName;
+            var ftpItems = new List<FtpItem>();
+            using (Ftp ftp = new Ftp())
+            {
+                ftp.Connect($"ftp://{Target.Info.IPAddress}:{Config.FTPPort}");
+                ftp.Login("anonymous", "anonymous");
+
+                ftp.ChangeFolder(Dir);
+                ftpItems = ftp.GetList();
+
+                ftp.Close();
+            }
+
+            return ftpItems;
         }
     }
 }
