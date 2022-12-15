@@ -34,7 +34,7 @@ namespace OrbisNeighborHood.Controls
         }
 
         public static readonly DependencyProperty ImageSourceProperty =
-            DependencyProperty.Register("ImageSource", typeof(string), typeof(ImageButton), new PropertyMetadata(string.Empty, ImageSource_Changed));
+            DependencyProperty.Register("ImageSource", typeof(string), typeof(ImageButton), new PropertyMetadata("/OrbisNeighborHood;component/Images/UnAvailable.png", ImageSource_Changed));
 
         private static void ImageSource_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

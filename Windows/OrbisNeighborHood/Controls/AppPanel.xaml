@@ -69,6 +69,7 @@
 
                         <!-- TitleId -->
                         <simpleControls:SimpleTextField 
+                            Name="TitleIdElement"
                             FieldName="TitleId" 
                             FieldText="CUSA00000"
                             Width="100"
@@ -89,6 +90,7 @@
 
                         <!-- Game Type -->
                         <simpleControls:SimpleTextField 
+                            Name="TypeElement"
                             FieldName="Type" 
                             FieldText="Game (gd)"
                             Width="80"
@@ -106,6 +108,7 @@
 
                     <!-- Install Date -->
                     <simpleControls:SimpleTextField 
+                        Name="InstallDateElement"
                         FieldName="Install Date" 
                         FieldText="Dec 11, 2022 8:40 am"
                         Width="165"
@@ -139,7 +142,7 @@
                                    Width="35"
                                    Height="35"
                                    ToolTip="Start {Application Name}."
-                                   ImageSource="/OrbisNeighborHood;component/Images/Start.png"
+                                   ImageSource="/OrbisNeighborHood;component/Images/Locate.png"
                                    ImageMargin="4"
                                    Click="StartStop_Click"
                                    Grid.Column="0"/>

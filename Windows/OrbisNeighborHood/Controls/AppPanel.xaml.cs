@@ -1,4 +1,5 @@
-﻿using SimpleUI.Controls;
+﻿using OrbisSuite.Common.Database;
+using SimpleUI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,23 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class AppPanel : UserControl
     {
-        public AppPanel(string Name, string TitleId)
+        private AppBrowse _App;
+
+        public AppPanel(AppBrowse App)
         {
             InitializeComponent();
+
+            _App = App;
+
+            ApplicationNameElement.Text = _App.titleName;
+            TitleIdElement.FieldText = _App.titleId;
+            TypeElement.FieldText = $"{_App.uiCategory} ({_App.category})";
+
+            if(DateTime.TryParse(_App.installDate, out var dateTime))
+            {
+                InstallDateElement.FieldText = dateTime.ToString("ddd dd MMM yyy hh:mm tt");
+            }
+            
         }
 
         private void AppPanelElement_MouseDown(object sender, MouseButtonEventArgs e)

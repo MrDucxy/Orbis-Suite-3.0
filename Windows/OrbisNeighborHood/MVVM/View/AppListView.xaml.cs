@@ -1,23 +1,12 @@
 ﻿using OrbisNeighborHood.Controls;
 using OrbisSuite;
+using OrbisSuite.Common.Database;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Reflection.Emit;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static OrbisSuite.TargetStateChangedEvent;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace OrbisNeighborHood.MVVM.View
 {
@@ -77,18 +66,81 @@ namespace OrbisNeighborHood.MVVM.View
 
         #endregion
 
+        public void AddApp(string DirectoryPath, AppBrowse App, AppPanel panel)
+        {
+            // Make sure the titleId format is correct. Helps weed out bad entries and folders.
+            if (!Regex.IsMatch(App.titleId, @"[a-zA-Z]{4}\d{5}"))
+                return;
+
+            // Weed out some more bad entries created by default.
+            if (App.titleName.Length <= 2)
+                return;
+
+            // Make sure only add ones with a category.
+            if (App.uiCategory.Length <= 0 || App.category.Length <= 0)
+                return;
+
+            // Directory to cache stuff for app.
+            string currentAppPath = Path.Combine(DirectoryPath, App.titleId);
+
+            // Create Directory for current app.
+            if (!Directory.Exists(currentAppPath))
+            {
+                Directory.CreateDirectory(currentAppPath);
+            }
+
+            // Cache param.sfo & icon0.png for all apps.
+
+            AppList.Items.Add(panel);
+        }
 
         public void RefreshAppList()
         {
             AppList.Items.Clear();
 
+            // Make sure we have a target we can pull the db from.
             if (OrbisLib.Instance.TargetManagement.TargetList == null)
                 return;
 
-            for(int i = 0; i < 9; i++)
+            // Make sure the Target is online so we can pull the db.
+            var currentTarget = OrbisLib.Instance.TargetManagement.DefaultTarget;
+            if (currentTarget == null || !currentTarget.Details.IsAvailable)
             {
-                var appPanel = new AppPanel("", "");
-                AppList.Items.Add(appPanel);
+                return;
+            }
+
+            // Make sure we have the appCache folder.
+            string appCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Orbis Suite\AppCache\");
+            if (!Directory.Exists(appCachePath))
+            {
+                Directory.CreateDirectory(appCachePath);
+            }
+
+            // Path where we will store this data.
+            string directoryPath = Path.Combine(appCachePath, currentTarget.Details.ForegroundAccountId.ToString("X"));
+
+            // Create Directory for data base.
+            if(!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            // Download data base.
+            // TODO: Get the tbl_version and check update_index or sync_server number this will tell us if new apps are installed.
+
+            // Rename the table we need in the app.db.
+            AppBrowse.RenameAppBrowseDB(Path.Combine(directoryPath, "app.db"), currentTarget.Details.ForegroundAccountId);
+
+            // Get all apps from the app.db
+            var appList = AppBrowse.GetAppBrowseList(Path.Combine(directoryPath, "app.db"));
+
+            foreach(var app in appList)
+            {
+                var panel = new AppPanel(app);
+                Parallel.Invoke(() =>
+                {
+                    AddApp(directoryPath, app, panel);
+                });
             }
         }
     }
