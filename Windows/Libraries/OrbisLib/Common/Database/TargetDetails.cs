@@ -184,6 +184,13 @@ namespace OrbisSuite.Common.Database
         [NotNull]
         public int CurrentProcessId { get; set; } = 0;
 
+
+        /// <summary>
+        /// The current foreground account identifier.
+        /// </summary>
+        [NotNull]
+        public int ForegroundAccountId { get; set; } = 0;
+
         /// <summary>
         /// The used space on the targets hard disk.
         /// </summary>

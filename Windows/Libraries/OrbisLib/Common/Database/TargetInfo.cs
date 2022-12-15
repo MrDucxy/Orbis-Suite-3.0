@@ -155,7 +155,14 @@ namespace OrbisSuite.Common.Database
         public bool Remove()
         {
             var db = new SQLiteConnection(Config.DataBasePath);
-            var result = db.Delete(this);
+            var result = db.Delete(Details);
+            if (result <= 0)
+            {
+                Console.WriteLine("Failed to delete child db TargetDetails Details.");
+                return false;
+            }
+
+            result = db.Delete(this);
             db.Close();
             return (result > 0);
         }
