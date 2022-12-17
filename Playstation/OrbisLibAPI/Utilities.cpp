@@ -207,21 +207,25 @@ int GetProcessList(std::vector<kinfo_proc>& ProcessList)
 {
 	size_t length;
 
-	static int name[] = { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
+	static int name[] = { CTL_KERN, KERN_PROC, KERN_PROC_PROC, 0 };
 
+	// Get the size of buffer needed.
 	if (sysctl(name, 3, nullptr, &length, nullptr, NULL) < 0)
 		return -1;
 
+	// Resize our vector to accommodate.
 	ProcessList.resize(length / sizeof(kinfo_proc));
 
+	// Retrive the processes.
 	if (sysctl(name, 3, ProcessList.data(), &length, nullptr, NULL) < 0)
 		return -1;
 
 	// Remove duplicates.
 	ProcessList.erase(std::unique(ProcessList.begin(), ProcessList.end(), [](kinfo_proc const& a, kinfo_proc const& b)
-		{
-			return a.pid == b.pid;
-		}), ProcessList.end());
+	{
+		sceKernelGetProcessName(a.pid, (char*)a.name);
+		return a.pid == b.pid;
+	}), ProcessList.end());
 
 	return 0;
 }

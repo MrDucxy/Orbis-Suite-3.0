@@ -23,62 +23,28 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
 {
-	if (TitleId != nullptr && strlen(TitleId) != 9)
-	{
-		SockSendInt(Sock, -1);
-		return;
-	}
-
-	size_t length;
-	int count;
-	kinfo_proc* info;
 	int appId = 0;
 
-	static int name[] = { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
+	// Get the list of running processes.
+	std::vector<kinfo_proc> processList;
+	GetProcessList(processList);
 
-	if (sysctl(name, 3, nullptr, &length, nullptr, NULL) < 0)
+	for (const auto& i : processList)
 	{
-		klog("first sysctl failed.\n");
-
-		SockSendInt(Sock, -1);
-		return;
-	}
-
-	if (!(info = (kinfo_proc*)malloc(length)))
-	{
-		klog("malloc failed.\n");
-
-		SockSendInt(Sock, -2);
-		return;
-	}
-		
-	if (sysctl(name, 3, info, &length, nullptr, NULL) < 0)
-	{
-		klog("second sysctl failed.\n");
-
-		free(info);
-
-		SockSendInt(Sock, -3);
-		return;
-	}
-
-	count = length / sizeof(kinfo_proc);
-
-	for (int i = 0; i < count; i++)
-	{
+		// Get the app info using the pid.
 		OrbisAppInfo appInfo;
-		sceKernelGetAppInfo(info[i].pid, &appInfo);
+		sceKernelGetAppInfo(i.pid, &appInfo);
 
+		// Using the titleId match our desired app and return the appId from the appinfo.
 		if (!strcmp(appInfo.TitleId, TitleId))
 		{
-			klog("Found appinfo for %s %i\n", TitleId, appInfo.AppId);
 			appId = appInfo.AppId;
+
 			break;
 		}
 	}
 
-	free(info);
-
+	// If we have no appId that means the process is not running. 
 	if (appId <= 0)
 	{
 		SockSendInt(Sock, STATE_NOT_RUNNING);

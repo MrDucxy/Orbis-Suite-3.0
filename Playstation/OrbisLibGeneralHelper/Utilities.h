@@ -14,12 +14,12 @@ template<class T> T* RecievePacket(OrbisNetId Sock)
 
 	if (sceNetRecv(Sock, Packet, sizeof(T), 0) < 0)
 	{
-		SendStatus(Sock, GIPC_FAIL);
+		SockSendInt(Sock, GIPC_FAIL);
 		free(Packet);
 		return nullptr;
 	}
 
-	SendStatus(Sock, GIPC_OK);
+	SockSendInt(Sock, GIPC_OK);
 
 	return Packet;
 }

@@ -152,6 +152,7 @@ namespace OrbisSuite.Common
 
     public enum AppState
     {
+        STATE_ERROR = -1,
         STATE_NOT_RUNNING,
         STATE_RUNNING,
         STATE_SUSPENDED,

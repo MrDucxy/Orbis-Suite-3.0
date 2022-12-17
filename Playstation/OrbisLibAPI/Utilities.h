@@ -36,6 +36,7 @@ struct kinfo_proc {
 #define CTL_KERN 1
 #define KERN_PROC 14
 #define KERN_PROC_ALL 0
+#define KERN_PROC_PROC 8
 
 void hexdump(void* ptr, int buflen);
 int GetProcessList(std::vector<kinfo_proc>& ProcessList);

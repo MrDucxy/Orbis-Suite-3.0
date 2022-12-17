@@ -94,6 +94,7 @@ void* LocalSocketListener::DoWork()
 				// Create Thread to handle connection.
 				OrbisPthread* Thread;
 				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
+				scePthreadDetach(*Thread);
 
 				// Reset ClientSocket.
 				ClientSocket = -1;

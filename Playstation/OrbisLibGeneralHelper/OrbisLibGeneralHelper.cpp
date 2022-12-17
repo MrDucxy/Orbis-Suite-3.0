@@ -46,6 +46,9 @@ void SendLibraryList(OrbisNetId Sock)
 
 	// Ship it.
 	sceNetSend(Sock, (void*)LibraryList, RealLibCount * sizeof(LibraryInfo), 0);
+
+	// Clean up!
+	free(LibraryList);
 }
 
 void ListenerClientThread(void* tdParam, OrbisNetId Sock)
@@ -60,29 +63,29 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 			break;
 
 		case GIPC_INFO:
-			SendExtProcessInfo(Sock);
+			SendExtProcessInfo(Sock); // Obsolite with app.db
 			break;
 
 		case GIPC_LIB_LIST:
-			SendLibraryList(Sock);
+			SendLibraryList(Sock); // Really Only needed for the path.
 			break;
 
 		case GIPC_JAILBREAK:
-			sys_sdk_jailbreak(&JailBackup);
+			sys_sdk_jailbreak(&JailBackup); // Could just use libjbc
 			SockSendInt(Sock, GIPC_OK);
 			break;
 
 		case GIPC_JAIL:
-			sys_sdk_unjailbreak(&JailBackup);
+			sys_sdk_unjailbreak(&JailBackup); // Could just use libjbc
 			SockSendInt(Sock, GIPC_OK);
 			break;
 
 		case  GIPC_RW:
-
+			// Might not really need this.
 			break;
 
 		case GIPC_PROT:
-
+			// Might not really need this either? Depends on if we can set the protection from the debug proc.
 			break;
 		}
 	}
@@ -94,13 +97,13 @@ extern "C"
 	{
 		klog("Hello from Helper!\n");
 
-		proc_info info;
-		sys_sdk_proc_info(&info);
+		char ProcName[0x20];
+		sceKernelGetProcessName(getpid(), ProcName);
 
-		klog("Helping with %s\n", info.name);
+		klog("Helping with %s\n", ProcName);
 
 		char serverAddress[0x200];
-		snprintf(serverAddress, sizeof(serverAddress), GENERAL_IPC_ADDR, info.name);
+		snprintf(serverAddress, sizeof(serverAddress), GENERAL_IPC_ADDR, ProcName);
 
 		LocalListener = new LocalSocketListener(ListenerClientThread, nullptr, serverAddress);
 

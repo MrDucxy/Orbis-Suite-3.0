@@ -87,16 +87,6 @@ int main()
 	// start up the API. NOTE: this is blocking.
 	//API::Init();
 
-	std::vector<kinfo_proc> processList;
-	int res = GetProcessList(processList);
-	klog("Process Count: %i\n", processList.size());
-
-	klog("====== Process List ======\n");
-	for (const auto& i : processList) 
-	{
-		klog("[%i] %s\n", i.pid, i.name);
-	}
-
 	sceSystemServiceLoadExec("exit", 0);
 
     return 0;

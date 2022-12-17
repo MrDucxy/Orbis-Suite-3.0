@@ -105,7 +105,6 @@ void* SocketListener::DoWork()
 				OrbisPthread* Thread;
 				int res = scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
 				scePthreadDetach(*Thread);
-				klog("Client Thread Result = %llX\n", res);
 
 				// Reset ClientSocket.
 				ClientSocket = -1;

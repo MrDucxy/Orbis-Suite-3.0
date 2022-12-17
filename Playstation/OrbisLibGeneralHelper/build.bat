@@ -1,7 +1,7 @@
 SETLOCAL EnableDelayedExpansion
 
 Rem Libraries to link in
-set libraries=-lSceLibcInternal -lSceLibcInternalExt -lkernel -lSceNet -lGoldHEN_Hook
+set libraries=-lSceLibcInternal -lSceLibcInternalExt -lkernel -lSceNet -lGoldHEN_Hook -lc++ -lc
 
 Rem Read the script arguments into local vars
 set intdir=%1
@@ -28,7 +28,7 @@ set obj_files=
 for %%f in (%intdir%\\*.o) do set obj_files=!obj_files! .\%%f
 
 Rem Link the input ELF
-ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\lib" "-L..\\..\\External\\GoldHEN_Plugins_SDK" %libraries% --verbose "..\\..\\External\\GoldHEN_Plugins_SDK\\build\\crtprx.o" %obj_files%
+ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\lib" "-L..\\..\\External\\GoldHEN_Plugins_SDK" %libraries% --verbose "..\\..\\External\\GoldHEN_Plugins_SDK\\build\\crtprx.o" %obj_files% "..\\..\\External\\ps4-libjbc\\jbc.o"
 
 Rem Create stub shared libraries
 for %%f in (*.cpp) do (
@@ -48,7 +48,7 @@ copy "%outputPrx%" "%outputPath%\Playstation\Build\pkg\Orbis Suite\%targetname%.
 del "%outputPrx%"
 
 REM Generate the script. Will overwrite any existing temp.txt
-echo open 1.1.0.73 2121> temp.txt
+echo open 1.1.0.13 2121> temp.txt
 echo anonymous>> temp.txt
 echo anonymous>> temp.txt
 echo cd "/data/Orbis Suite/">> temp.txt

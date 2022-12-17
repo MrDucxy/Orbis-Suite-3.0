@@ -34,10 +34,10 @@ int RecieveInt(OrbisNetId Sock)
 	int Int = 0;
 	if (sceNetRecv(Sock, &Int, sizeof(int), 0) < 0)
 	{
-		SendStatus(Sock, GIPC_FAIL);
+		SockSendInt(Sock, GIPC_FAIL);
 		return 0;
 	}
 
-	SendStatus(Sock, GIPC_OK);
+	SockSendInt(Sock, GIPC_OK);
 	return Int;
 }
