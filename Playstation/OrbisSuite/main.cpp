@@ -28,7 +28,7 @@ int main()
 	//MakeDirs
 	MakeDir("/data/Orbis Suite");
 
-	// Set RW on the system directory. Seems to sus up some shit needs investigating...
+	// Set RW on the system directory.
 	mount_large_fs("/dev/da0x4.crypt", "/system", "exfatfs", "511", MNT_UPDATE);
 
 	// Install all the things! :D

@@ -1,7 +1,7 @@
 #pragma once
 #include <sys/uio.h>
 
-#define	MNT_UPDATE	0x0000000000010000ULL
+#define	MNT_UPDATE	0x00010000
 
 //Modules.
 extern void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason

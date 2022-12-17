@@ -183,8 +183,6 @@ int mount_large_fs(const char* device, const char* mountpoint, const char* fstyp
 	struct iovec* iov = NULL;
 	int iovlen = 0;
 
-	unmount(mountpoint, 0);
-
 	build_iovec(&iov, &iovlen, "fstype", fstype, -1);
 	build_iovec(&iov, &iovlen, "fspath", mountpoint, -1);
 	build_iovec(&iov, &iovlen, "from", device, -1);
