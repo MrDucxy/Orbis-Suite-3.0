@@ -2,6 +2,7 @@
 #include "API.h"
 
 Proc* API::Proc;
+Apps* API::Apps;
 Debug* API::Debug;
 Target* API::Target;
 SocketListener* API::Listener;
@@ -34,6 +35,10 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s)
 			Proc->HandleAPI(s, Packet);
 			break;
 
+		case APICommands::APP_START ... APICommands::APP_END:
+			Apps->HandleAPI(s, Packet);
+			break;
+
 		case APICommands::DBG_START ... APICommands::DBG_END:
 			Debug->HandleAPI(s, Packet);
 			break;
@@ -60,10 +65,16 @@ void API::Init()
 	{
 		klog("API Startup.\n");
 		Proc = new class Proc();
+		Apps = new class Apps();
 		Debug = new class Debug();
 		Target = new class Target();
 		Listener = new SocketListener(ListenerCallback, NULL, 6900);
 		Running = true;
+	}
+
+	while (Running)
+	{
+		sceKernelSleep(1);
 	}
 }
 
@@ -72,6 +83,7 @@ void API::Term()
 	if (Running)
 	{
 		delete Proc;
+		delete Apps;
 		delete Debug;
 		delete Target;
 		delete Listener;

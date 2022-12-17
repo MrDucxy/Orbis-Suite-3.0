@@ -98,17 +98,6 @@ void klog(const char* fmt, ...)
 	sceKernelDebugOutText(0, Buffer);
 }
 
-int sys_dynlib_get_info(int moduleHandle, SceDbgModuleInfo* destModuleInfo)
-{
-	destModuleInfo->size = sizeof(*destModuleInfo);
-	return syscall(593, moduleHandle, destModuleInfo);
-}
-
-int sys_dynlib_get_list(int* destModuleHandles, int max, int* count)
-{
-	return syscall(592, destModuleHandles, max, count);
-}
-
 bool Jailbreak()
 {
 	jbc_cred cred;
@@ -195,3 +184,44 @@ bool SockRecvInt(OrbisNetId Sock, int* val)
 }
 
 #pragma endregion
+
+void hexdump(void* ptr, int buflen) {
+	unsigned char* buf = (unsigned char*)ptr;
+	int i, j;
+	for (i = 0; i < buflen; i += 16) {
+		klog("%06x: ", i);
+		for (j = 0; j < 16; j++)
+			if (i + j < buflen)
+				klog("%02x ", buf[i + j]);
+			else
+				klog("   ");
+		klog(" ");
+		for (j = 0; j < 16; j++)
+			if (i + j < buflen)
+				klog("%c", isprint(buf[i + j]) ? buf[i + j] : '.');
+		klog("\n");
+	}
+}
+
+int GetProcessList(std::vector<kinfo_proc>& ProcessList)
+{
+	size_t length;
+
+	static int name[] = { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
+
+	if (sysctl(name, 3, nullptr, &length, nullptr, NULL) < 0)
+		return -1;
+
+	ProcessList.resize(length / sizeof(kinfo_proc));
+
+	if (sysctl(name, 3, ProcessList.data(), &length, nullptr, NULL) < 0)
+		return -1;
+
+	// Remove duplicates.
+	ProcessList.erase(std::unique(ProcessList.begin(), ProcessList.end(), [](kinfo_proc const& a, kinfo_proc const& b)
+		{
+			return a.pid == b.pid;
+		}), ProcessList.end());
+
+	return 0;
+}

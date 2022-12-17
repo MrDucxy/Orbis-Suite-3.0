@@ -19,6 +19,7 @@ void* SocketListener::ClientThread(void* tdParam)
 	free(Params);
 
 	// Kill our thread and exit.
+	scePthreadDetach(scePthreadSelf());
 	scePthreadExit(NULL);
 	return nullptr;
 }
@@ -70,7 +71,9 @@ void* SocketListener::DoWork()
 		// Wait for incoming connections.
 		auto rv = select((int)this->Socket + 1, &set, NULL, NULL, &timeout);
 		if (rv == -1)
+		{
 			goto Cleanup;
+		}
 		else if (rv == 0)
 		{
 			if (!this->ServerRunning)
@@ -88,10 +91,11 @@ void* SocketListener::DoWork()
 
 			if (ClientSocket != -1)
 			{
-				//klog("New Connection from %i.%i.%i.%i!\n", ClientAddr.sin_addr.s_addr & 0xFF, (ClientAddr.sin_addr.s_addr >> 8) & 0xFF, (ClientAddr.sin_addr.s_addr >> 16) & 0xFF, (ClientAddr.sin_addr.s_addr >> 24) & 0xFF);
+				// klog("New Connection from %i.%i.%i.%i!\n", ClientAddr.sin_addr.s_addr & 0xFF, (ClientAddr.sin_addr.s_addr >> 8) & 0xFF, (ClientAddr.sin_addr.s_addr >> 16) & 0xFF, (ClientAddr.sin_addr.s_addr >> 24) & 0xFF);
 
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
+
 				// Set up thread params.
 				ClientThreadParams* Params = new ClientThreadParams();
 				Params->socketListener = this;
@@ -99,7 +103,9 @@ void* SocketListener::DoWork()
 
 				// Create Thread to handle connection.
 				OrbisPthread* Thread;
-				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
+				int res = scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
+				scePthreadDetach(*Thread);
+				klog("Client Thread Result = %llX\n", res);
 
 				// Reset ClientSocket.
 				ClientSocket = -1;

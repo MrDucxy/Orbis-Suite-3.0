@@ -94,6 +94,9 @@
     <ClCompile Include="SystemMonitor.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Apps.cpp">
+      <Filter>Source Files\API\CmdGroups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="SystemMonitor.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Apps.h">
+      <Filter>Header Files\API\CmdGroups</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

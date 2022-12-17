@@ -7,16 +7,27 @@
 
 enum APICommands
 {
-	APITest = 1,
-
 	/* ####### Proc functions ####### */
-	PROC_START,
+	PROC_START = 1,
 
 	API_PROC_GET_LIST,
 	API_PROC_LOAD_ELF,
 	API_PROC_CALL, /* RPC Call. */
 
 	PROC_END,
+	/* ############################## */
+
+	/* ####### Apps functions ####### */
+	APP_START,
+
+	API_APPS_STATUS,
+	API_APPS_START,
+	API_APPS_STOP,
+	API_APPS_SUSPEND,
+	API_APPS_RESUME,
+	API_APPS_DELETE,
+
+	APP_END,
 	/* ############################## */
 
 	/* ##### Debugger functions ##### */
@@ -93,6 +104,8 @@ enum APICommands
 	API_TARGET_SET_LED,
 	API_TARGET_DUMP_PROC,
 	API_TARGET_SET_SETTINGS,
+	API_TARGET_GET_APPDB,
+	API_TARGET_GETFILE,
 
 	TARGET_END,
 	/* ############################## */
@@ -138,6 +151,17 @@ struct ProcPacket
 
 #pragma endregion
 
+#pragma region Apps
+
+enum AppState
+{
+	STATE_NOT_RUNNING,
+	STATE_RUNNING,
+	STATE_SUSPENDED,
+};
+
+#pragma endregion
+
 #pragma region Debug
 
 struct LibraryPacket
@@ -145,7 +169,7 @@ struct LibraryPacket
 	int64_t Handle;
 	char Path[256];
 	int32_t SegmentCount;
-	SceDbgModuleSegmentInfo Segments[4];
+	OrbisKernelModuleInfo Segments[4];
 };
 
 struct DbgRWPacket

@@ -6,26 +6,9 @@
 #include <orbis/SysCore.h>
 #include <orbis/libkernel.h>
 #include <orbis/Net.h>
+#include <orbis/AppInstUtil.h>
 
 #include "GeneralIPC.h"
-
-void hexdump(void* ptr, int buflen) {
-	unsigned char* buf = (unsigned char*)ptr;
-	int i, j;
-	for (i = 0; i < buflen; i += 16) {
-		klog("%06x: ", i);
-		for (j = 0; j < 16; j++)
-			if (i + j < buflen)
-				klog("%02x ", buf[i + j]);
-			else
-				klog("   ");
-		klog(" ");
-		for (j = 0; j < 16; j++)
-			if (i + j < buflen)
-				klog("%c", isprint(buf[i + j]) ? buf[i + j] : '.');
-		klog("\n");
-	}
-}
 
 int main()
 {
@@ -95,31 +78,23 @@ int main()
 
 	klog("\n%s\n\n", ORBISLIB_BUILDSTRING);
 
-// #define KILLSHELLUI
-#ifdef KILLSHELLUI
-	sceSystemServiceKillApp(LncUtil::sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
-#else
-	/*int hndl = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Suite/OrbisLibGeneralHelper.sprx");
-
-	sceKernelSleep(2);
-
-	ExtProccesInfoPacket info;
-	if (GeneralIPC::GetExtProcessInfo("SceShellUI", &info))
-	{
-		klog("path = %s\n", info.Path);
-	}*/
-
 	// Init a thread to monitor the system usage stats.
-	SystemMonitor::Init();
+	// SystemMonitor::Init();
 
-	// start up the API.
-	API::Init();
+	// Init SysCoreUtils.
+	sceApplicationInitialize();
 
-#endif
+	// start up the API. NOTE: this is blocking.
+	//API::Init();
 
-	while (true)
+	std::vector<kinfo_proc> processList;
+	int res = GetProcessList(processList);
+	klog("Process Count: %i\n", processList.size());
+
+	klog("====== Process List ======\n");
+	for (const auto& i : processList) 
 	{
-		sceKernelSleep(1);
+		klog("[%i] %s\n", i.pid, i.name);
 	}
 
 	sceSystemServiceLoadExec("exit", 0);

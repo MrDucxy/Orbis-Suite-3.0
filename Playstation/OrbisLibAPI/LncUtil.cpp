@@ -3,6 +3,7 @@
 
 uint64_t LncUtil::LibraryBaseAddress = 0;
 int(*LncUtil::_sceLncUtilGetAppId)(const char*);
+int(*LncUtil::_GetAppStatusListForShellUIReboot)(AppStatusForShellUIReboot* outStatusList, unsigned int numEntries, unsigned int* outEntries);
 
 int LncUtil::Init()
 {
@@ -43,6 +44,7 @@ int LncUtil::Init()
 
 	// Set up Functions.
 	_sceLncUtilGetAppId = (decltype(_sceLncUtilGetAppId))(LibraryBaseAddress + 0x4E10);
+	_GetAppStatusListForShellUIReboot = (decltype(_GetAppStatusListForShellUIReboot))(LibraryBaseAddress + 0x4FA0);
 
 	return 0;
 }
@@ -59,3 +61,26 @@ int LncUtil::sceLncUtilGetAppId(const char* TitleId)
 		return -1;
 	}
 }
+
+int LncUtil::GetAppStatusListForShellUIReboot(AppStatusForShellUIReboot* outStatusList, unsigned int numEntries, unsigned int* outEntries)
+{
+	if ((uint64_t)_GetAppStatusListForShellUIReboot > 0x4FA0)
+	{
+		return _GetAppStatusListForShellUIReboot(outStatusList, numEntries, outEntries);
+	}
+	else
+	{
+		klog("failed to resolve sceLncUtilGetAppId\n");
+		return -1;
+	}
+}
+
+/*int SuspensceLncUtilSuspendAppdApp(int AppId, int Flag)
+{
+
+}
+
+int sceLncUtilResumeApp(int AppId, int Flag)
+{
+
+}*/

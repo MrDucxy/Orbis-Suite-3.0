@@ -63,6 +63,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   <ItemGroup>
     <ClCompile Include="API.cpp" />
     <ClCompile Include="APIHelper.cpp" />
+    <ClCompile Include="Apps.cpp" />
     <ClCompile Include="Breakpoint.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Flash.cpp" />
@@ -83,6 +84,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="API.h" />
     <ClInclude Include="APIHelper.h" />
     <ClInclude Include="APIPackets.h" />
+    <ClInclude Include="Apps.h" />
     <ClInclude Include="Breakpoint.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Debug.h" />

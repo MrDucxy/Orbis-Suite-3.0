@@ -15,6 +15,7 @@ namespace OrbisSuite
         public Payload Payload;
         public Process Process;
         public FTP FTP;
+        public Application Application;
 
         public Target(OrbisLib PS4)
         {
@@ -26,6 +27,7 @@ namespace OrbisSuite
             Payload = new Payload(this);
             Process = new Process(PS4, this);
             FTP = new FTP(this);
+            Application = new Application(this);
         }
 
         public Target(OrbisLib PS4, TargetInfo TargetInfo)
@@ -38,6 +40,7 @@ namespace OrbisSuite
             Payload = new Payload(this);
             Process = new Process(PS4, this);
             FTP = new FTP(this);
+            Application = new Application(this);
         }
 
         public APIResults Shutdown()

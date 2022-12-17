@@ -1,7 +1,7 @@
 ﻿using SQLite;
 using System.Data;
 
-namespace OrbisSuite.Common.Database
+namespace OrbisSuite.Common.Database.App
 {
     public class Master
     {
@@ -52,7 +52,7 @@ namespace OrbisSuite.Common.Database
             var dbList = db.Query<Master>("SELECT name FROM sqlite_master WHERE type = 'table'");
 
             // Make sure we got some tables back.
-            if(dbList.Count <= 0)
+            if (dbList.Count <= 0)
             {
                 return false;
             }
@@ -64,7 +64,7 @@ namespace OrbisSuite.Common.Database
             var appBrowseTable = dbList.Find(e => e.name.Equals(tableName))?.name;
 
             // Make sure we found a table matching our pattern.
-            if(appBrowseTable != null)
+            if (appBrowseTable != null)
             {
                 // Make sure we haven't already renamed this table.
                 if (appBrowseTable.Equals("tbl_appbrowse"))
@@ -81,7 +81,7 @@ namespace OrbisSuite.Common.Database
             {
                 return false;
             }
-            
+
         }
 
         public static bool AppBrowseAddUserId(string dbPath, int UserId)

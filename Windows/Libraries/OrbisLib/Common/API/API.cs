@@ -14,16 +14,7 @@ namespace OrbisSuite.Common
         {
             Sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            try
-            {
-                return Sock.EasyConnect(IPAddr, Port, 2000);
-            }
-            catch
-            {
-
-            }
-
-            return false;
+            return Sock.EasyConnect(IPAddr, Port, 2000);
         }
 
         /// <summary>
@@ -84,7 +75,7 @@ namespace OrbisSuite.Common
                 else
                     return APIResults.API_ERROR_COULDNT_CONNECT;
             }
-            catch
+            catch (Exception ex)
             {
 
             }

@@ -4,6 +4,7 @@
 #include <functional>
 #include <errno.h>
 #include <map>
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <stdarg.h>

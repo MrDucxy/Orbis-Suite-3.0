@@ -162,9 +162,6 @@
     <ClInclude Include="System_Monitor.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
-    <ClInclude Include="NetWrapper.h">
-      <Filter>Header Files\Utilities\Mono</Filter>
-    </ClInclude>
     <ClInclude Include="table64.h">
       <Filter>Header Files\Utilities\Memory Utils</Filter>
     </ClInclude>
@@ -256,9 +253,6 @@
     </ClCompile>
     <ClCompile Include="System_Monitor.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="NetWrapper.cpp">
-      <Filter>Source Files\Utilities\Mono</Filter>
     </ClCompile>
     <ClCompile Include="hde64.cpp">
       <Filter>Source Files\Utilities\Memory Utils</Filter>

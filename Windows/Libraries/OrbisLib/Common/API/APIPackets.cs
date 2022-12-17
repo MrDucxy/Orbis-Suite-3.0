@@ -4,16 +4,27 @@ namespace OrbisSuite.Common
 {
     public enum APICommands : int
     {
-        APITest = 1,
-
         /* ####### Proc functions ####### */
-        PROC_START,
+        PROC_START = 1,
 
         API_PROC_GET_LIST,
         API_PROC_LOAD_ELF,
         API_PROC_CALL, /* RPC Call. */
 
         PROC_END,
+        /* ############################## */
+
+        /* ####### Apps functions ####### */
+        APP_START,
+
+        API_APP_STATUS,
+        API_APP_START,
+        API_APP_STOP,
+        API_APP_SUSPEND,
+        API_APP_RESUME,
+        API_APP_DELETE,
+
+        APP_END,
         /* ############################## */
 
         /* ##### Debugger functions ##### */
@@ -90,6 +101,8 @@ namespace OrbisSuite.Common
         API_TARGET_SET_LED,
         API_TARGET_DUMP_PROC,
         API_TARGET_SET_SETTINGS,
+        API_TARGET_GET_APPDB,
+        API_TARGET_GETFILE,
 
         TARGET_END,
         /* ############################## */
@@ -120,6 +133,9 @@ namespace OrbisSuite.Common
         public string ProcName;
     }
 
+
+    #region Process
+
     [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi)]
     public struct ProcPacket
     {
@@ -130,13 +146,20 @@ namespace OrbisSuite.Common
         public string TitleID;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct SegmentInfo
+    #endregion
+
+    #region Apps
+
+    public enum AppState
     {
-        public UInt64 baseAddr;
-        public uint size;
-        public int prot;
-    }
+        STATE_NOT_RUNNING,
+        STATE_RUNNING,
+        STATE_SUSPENDED,
+    };
+
+    #endregion
+
+    #region Debug
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
     public struct LibraryPacket
@@ -147,6 +170,50 @@ namespace OrbisSuite.Common
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
         public SegmentInfo[] Segments;
     }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct ProcRWPacket
+    {
+        public UInt64 Address;
+        public UInt64 Length;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct ProcSPRXPacket
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string Name;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string Path;
+        public int ModuleHandle;
+        public int Flags;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct ProcBreakpointPacket
+    {
+        public int Index;
+        public UInt64 Address;
+        public int Enable;
+    }
+
+    #endregion
+
+    #region Kernel
+
+    #endregion
+
+    #region Target
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct SegmentInfo
+    {
+        public UInt64 baseAddr;
+        public uint size;
+        public int prot;
+    }
+
+
 
     public enum ConsoleTypes
     {
@@ -218,32 +285,6 @@ namespace OrbisSuite.Common
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ProcRWPacket
-    {
-        public UInt64 Address;
-        public UInt64 Length;
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ProcSPRXPacket
-    {
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
-        public string Name;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
-        public string Path;
-        public int ModuleHandle;
-        public int Flags;
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ProcBreakpointPacket
-    {
-        public int Index;
-        public UInt64 Address;
-        public int Enable;
-    }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
     public struct TargetNotifyPacket
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
@@ -280,4 +321,6 @@ namespace OrbisSuite.Common
         public int ShowCPUTemp;
         public int ShowSOCTemp;
     };
+
+    #endregion
 }

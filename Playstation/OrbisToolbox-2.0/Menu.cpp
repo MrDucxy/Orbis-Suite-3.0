@@ -9,8 +9,6 @@
 #include "LncUtil.h"
 #include "Daemons.h"
 
-#include "NetWrapper.h"
-
 #include <orbis/SystemService.h>
 
 std::map<char*, MenuOption*>* Menu::Options;
@@ -207,9 +205,7 @@ void Menu::Init()
 	});
 	Add_Option("id_orbis_test", []() -> void
 	{
-		klog("WIFI MAC: %s\nLAN MAC: %s\n",
-			NetWrapper::GetMacAddressInfo(SCE_NET_IF_NAME_PHYSICAL),
-			NetWrapper::GetMacAddressInfo(SCE_NET_IF_NAME_WLAN0));
+		
 	});
 	Add_Option("id_orbis_load", []() -> void
 	{

@@ -22,6 +22,7 @@
 #include <orbis/SystemService.h>
 #include <orbis/UserService.h>
 #include <orbis/Sysmodule.h>
+#include <orbis/Net.h>
 
 #include "Version.h"
 #include "Utilities.h"

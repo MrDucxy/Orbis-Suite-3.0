@@ -78,6 +78,7 @@
 
                         <!-- Version -->
                         <simpleControls:SimpleTextField 
+                            Name="VersionElement"
                             FieldName="Version" 
                             FieldText="1.00"
                             Width="60"
@@ -99,6 +100,7 @@
 
                         <!-- Size -->
                         <simpleControls:SimpleTextField 
+                            Name="SizeElement"
                             FieldName="Size" 
                             FieldText="125.4 GB"
                             Width="80"
