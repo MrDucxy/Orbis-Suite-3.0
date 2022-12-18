@@ -3,7 +3,7 @@
 
 uint64_t LncUtil::LibraryBaseAddress = 0;
 int(*LncUtil::_sceLncUtilGetAppId)(const char*);
-int(*LncUtil::_GetAppStatusListForShellUIReboot)(AppStatusForShellUIReboot* outStatusList, unsigned int numEntries, unsigned int* outEntries);
+int(*LncUtil::_sceLncUtilLaunchApp)(const char* titleId, char* args, LaunchAppParam* appParam);
 
 int LncUtil::Init()
 {
@@ -44,7 +44,7 @@ int LncUtil::Init()
 
 	// Set up Functions.
 	_sceLncUtilGetAppId = (decltype(_sceLncUtilGetAppId))(LibraryBaseAddress + 0x4E10);
-	_GetAppStatusListForShellUIReboot = (decltype(_GetAppStatusListForShellUIReboot))(LibraryBaseAddress + 0x4FA0);
+	_sceLncUtilLaunchApp = (decltype(_sceLncUtilLaunchApp))(LibraryBaseAddress + 0x4C10);
 
 	return 0;
 }
@@ -62,11 +62,11 @@ int LncUtil::sceLncUtilGetAppId(const char* TitleId)
 	}
 }
 
-int LncUtil::GetAppStatusListForShellUIReboot(AppStatusForShellUIReboot* outStatusList, unsigned int numEntries, unsigned int* outEntries)
+int LncUtil::sceLncUtilLaunchApp(const char* titleId, char* args, LaunchAppParam* appParam)
 {
-	if ((uint64_t)_GetAppStatusListForShellUIReboot > 0x4FA0)
+	if ((uint64_t)_sceLncUtilLaunchApp > 0x4C10)
 	{
-		return _GetAppStatusListForShellUIReboot(outStatusList, numEntries, outEntries);
+		return _sceLncUtilLaunchApp(titleId, args, appParam);
 	}
 	else
 	{

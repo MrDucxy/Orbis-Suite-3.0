@@ -9,3 +9,6 @@
 [submodule "External/ps4-libjbc"]
 	path = External/ps4-libjbc
 	url = https://github.com/OSM-Made/ps4-libjbc
+[submodule "External/LibSQLite-ps4"]
+	path = External/LibSQLite-ps4
+	url = https://github.com/bucanero/libSQLite-ps4

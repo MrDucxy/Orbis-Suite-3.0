@@ -12,4 +12,6 @@ public:
 
 private:
 	void SendAppStatus(OrbisNetId Sock, const char* TitleId);
+	void StartApp(OrbisNetId Sock, const char* TitleId);
+	void KillApp(OrbisNetId Sock, const char* TitleId);
 };

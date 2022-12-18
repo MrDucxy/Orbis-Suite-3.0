@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "Apps.h"
 #include <orbis/SysCore.h>
+#include <orbis/SystemService.h>
 
 void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -16,6 +17,18 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	case API_APPS_STATUS:
 
 		SendAppStatus(Sock, titleId);
+
+		break;
+
+	case API_APPS_START:
+
+		StartApp(Sock, titleId);
+
+		break;
+
+	case API_APPS_STOP:
+
+		KillApp(Sock, titleId);
 
 		break;
 	}
@@ -61,6 +74,64 @@ void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
 		{
 			SockSendInt(Sock, STATE_RUNNING);
 		}
+	}
+}
+
+void Apps::StartApp(OrbisNetId Sock, const char* TitleId)
+{
+	LaunchAppParam appParam;
+	appParam.size = sizeof(LaunchAppParam);
+
+	if (auto res = sceUserServiceGetForegroundUser(&appParam.userId) != 0)
+	{
+		klog("sceUserServiceGetForegroundUser(): Failed with error %llX\n", res);
+
+		SockSendInt(Sock, 0);
+		return;
+	}
+
+	auto res = LncUtil::sceLncUtilLaunchApp(TitleId, nullptr, &appParam);
+	if (res <= 0)
+	{
+		klog("sceLncUtilLaunchApp() : Failed with error % llX\n", res);
+
+		SockSendInt(Sock, 0);
+		return;
+	}
+
+	SockSendInt(Sock, res);
+}
+
+void Apps::KillApp(OrbisNetId Sock, const char* TitleId)
+{
+	int appId = 0;
+
+	// Get the list of running processes.
+	std::vector<kinfo_proc> processList;
+	GetProcessList(processList);
+
+	for (const auto& i : processList)
+	{
+		// Get the app info using the pid.
+		OrbisAppInfo appInfo;
+		sceKernelGetAppInfo(i.pid, &appInfo);
+
+		// Using the titleId match our desired app and return the appId from the appinfo.
+		if (!strcmp(appInfo.TitleId, TitleId))
+		{
+			appId = appInfo.AppId;
+
+			break;
+		}
+	}
+
+	if (appId > 0 && sceSystemServiceKillApp(appId, -1, 0, 0) == 0)
+	{
+		SockSendInt(Sock, 1);
+	}
+	else
+	{
+		SockSendInt(Sock, 0);
 	}
 }
 

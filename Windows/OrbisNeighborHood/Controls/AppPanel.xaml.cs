@@ -122,7 +122,18 @@ namespace OrbisNeighborHood.Controls
 
         private void StartStop_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine($"{App.titleId} AppStatus: {AppState}");
+            Task.Run(() => 
+            {
+                var currentTarget = OrbisLib.Instance.SelectedTarget;
+                if (AppState == AppState.STATE_RUNNING || AppState == AppState.STATE_SUSPENDED)
+                {
+                    currentTarget.Application.Stop(App.titleId);
+                }
+                else
+                {
+                    currentTarget.Application.Start(App.titleId);
+                }
+            });
         }
 
         private void Visibility_Click(object sender, RoutedEventArgs e)

@@ -14,7 +14,7 @@ namespace OrbisSuite.Common
         {
             Sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            return Sock.EasyConnect(IPAddr, Port, 2000);
+            return Sock.EasyConnect(IPAddr, Port, 4000);
         }
 
         /// <summary>

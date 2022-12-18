@@ -85,7 +85,7 @@ int main()
 	sceApplicationInitialize();
 
 	// start up the API. NOTE: this is blocking.
-	//API::Init();
+	API::Init();
 
 	sceSystemServiceLoadExec("exit", 0);
 

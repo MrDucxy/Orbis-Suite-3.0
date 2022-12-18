@@ -20,20 +20,24 @@ struct AppStatus
 	char AppType;
 };
 
-struct AppStatusForShellUIReboot
+enum Flag
 {
-	int appId;
-	char appType;
-	char appAttr;
-	int launchRequestAppId;
-	int userId;
-	int isActiveCdlg;
-	char path[1024];
-	int isCoredumped;
-	int isPrxModuleLoadFailed;
-	int appLocalPid;
-	char crashReportMode;
-	char category[4];
+	Flag_None = 0,
+	SkipLaunchCheck = 1,
+	SkipResumeCheck = 1,
+	SkipSystemUpdateCheck = 2,
+	RebootPatchInstall = 4,
+	VRMode = 8,
+	NonVRMode = 16
+};
+
+struct LaunchAppParam
+{
+	unsigned int size;      //0x00
+	int userId;             //0x04
+	int appAttr;            //0x08
+	int enableCrashReport;  //0x0C
+	uint64_t checkFlag;     //0x10
 };
 
 class LncUtil
@@ -41,10 +45,10 @@ class LncUtil
 public:
 	static int Init();
 	static int sceLncUtilGetAppId(const char* TitleId);
-	static int GetAppStatusListForShellUIReboot(AppStatusForShellUIReboot* outStatusList, unsigned int numEntries, unsigned int* outEntries);
+	static int sceLncUtilLaunchApp(const char* titleId, char* args, LaunchAppParam* appParam);
 
 private:
 	static uint64_t LibraryBaseAddress;
 	static int(*_sceLncUtilGetAppId)(const char* titleId);
-	static int(*_GetAppStatusListForShellUIReboot)(AppStatusForShellUIReboot* outStatusList, unsigned int numEntries, unsigned int* outEntries);
+	static int(*_sceLncUtilLaunchApp)(const char* titleId, char* args, LaunchAppParam* appParam);
 };
