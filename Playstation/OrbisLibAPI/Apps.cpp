@@ -2,20 +2,38 @@
 #include "Apps.h"
 #include <orbis/SysCore.h>
 #include <orbis/SystemService.h>
+#include "AppDatabase.h"
 
 void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
-	// Get the titleId of the App
-	char titleId[9];
-	sceNetRecv(Sock, titleId, sizeof(titleId), 0);
+	char titleId[10];
+	memset(titleId, 0, sizeof(titleId));
+
+	// For commands that need it get the titleId of the App
+	if (Packet->Command > API_APPS_GET_LIST)
+	{
+		sceNetRecv(Sock, titleId, sizeof(titleId), 0);
+	}
 
 	switch (Packet->Command)
 	{
 	default:
 		break;
 
-	case API_APPS_STATUS:
+	case API_APPS_GET_LIST:
 
+		GetAppsList(Sock);
+
+		break;
+
+	case API_APPS_GET_INFO_STR:
+
+		GetAppInfoString(Sock, titleId);
+
+		break;
+
+	case API_APPS_STATUS:
+		
 		SendAppStatus(Sock, titleId);
 
 		break;
@@ -32,6 +50,45 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 		break;
 	}
+}
+
+void Apps::GetAppsList(OrbisNetId Sock)
+{
+	std::vector<AppDatabase::AppInfo> AppList;
+	if (!AppDatabase::GetApps(AppList))
+	{
+		SockSendInt(Sock, 0);
+		return;
+	}
+
+	// Send the number of apps.
+	SockSendInt(Sock, AppList.size());
+
+	// Send all of the apps.
+	for (const auto& App : AppList)
+	{
+		sceNetSend(Sock, &App, sizeof(AppDatabase::AppInfo), 0);
+	}
+}
+
+void Apps::GetAppInfoString(OrbisNetId Sock, const char* TitleId)
+{
+	// Get the key we are interested in.
+	char KeyValue[50];
+	sceNetRecv(Sock, KeyValue, sizeof(KeyValue), 0);
+
+	klog("TitleId: %s\n", TitleId);
+	klog("Key: %s\n", KeyValue);
+
+	// Look up the key for that titleId in the app.db.
+	char OutStr[200];
+	memset(OutStr, 0, sizeof(OutStr));
+	AppDatabase::GetAppInfoString(TitleId, OutStr, sizeof(OutStr), KeyValue);
+
+	klog("OutStr: %s\n", OutStr);
+
+	// Send back the result.
+	sceNetSend(Sock, OutStr, sizeof(OutStr), 0);
 }
 
 void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)

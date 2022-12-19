@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace OrbisSuite.Common
 {
@@ -17,12 +18,14 @@ namespace OrbisSuite.Common
         /* ####### Apps functions ####### */
         APP_START,
 
-        API_APP_STATUS,
-        API_APP_START,
-        API_APP_STOP,
-        API_APP_SUSPEND,
-        API_APP_RESUME,
-        API_APP_DELETE,
+        API_APPS_GET_LIST,
+        API_APPS_GET_INFO_STR,
+        API_APPS_STATUS,
+        API_APPS_START,
+        API_APPS_STOP,
+        API_APPS_SUSPEND,
+        API_APPS_RESUME,
+        API_APPS_DELETE,
 
         APP_END,
         /* ############################## */
@@ -101,7 +104,6 @@ namespace OrbisSuite.Common
         API_TARGET_SET_LED,
         API_TARGET_DUMP_PROC,
         API_TARGET_SET_SETTINGS,
-        API_TARGET_GET_APPDB,
         API_TARGET_GETFILE,
 
         TARGET_END,
@@ -156,6 +158,32 @@ namespace OrbisSuite.Common
         STATE_NOT_RUNNING,
         STATE_RUNNING,
         STATE_SUSPENDED,
+    };
+
+    [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi), Serializable]
+    public struct AppInfoPacket
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string TitleId;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
+        public string ContentId;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 200)]
+        public byte[] TitleName;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
+        public string MetaDataPath;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
+        public string LastAccessTime;
+        public int Visible;
+        public int SortPriority;
+        public int DispLocation;
+        public char CanRemove;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string Category;
+        public int ContentSize;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
+        public string InstallDate;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string UICategory;
     };
 
     #endregion

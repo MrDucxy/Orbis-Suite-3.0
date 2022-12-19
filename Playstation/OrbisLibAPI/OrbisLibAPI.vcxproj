@@ -51,8 +51,8 @@ call build.bat $(IntDir) "$(TargetName)" "$(SolutionDir)"</NMakeReBuildCommandLi
 del /s /q /f $(IntDir)\*.elf
 del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <OutDir>$(SolutionDir)</OutDir>
-    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;External\GoldHEN_Plugins_SDK\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
-    <IncludePath>E:\Greg\Repos\Orbis-Suite-3.0\External\GoldHEN_Plugins_SDK\include;$(IncludePath)</IncludePath>
+    <NMakeIncludeSearchPath>$(OO_PS4_TOOLCHAIN)\include;External\GoldHEN_Plugins_SDK\include;External\LibSQLite-ps4\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <IncludePath>E:\Greg\Repos\Orbis-Suite-3.0\External\LibSQLite-ps4\include;E:\Greg\Repos\Orbis-Suite-3.0\External\GoldHEN_Plugins_SDK\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>eboot.bin</NMakeOutput>
@@ -63,6 +63,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
   <ItemGroup>
     <ClCompile Include="API.cpp" />
     <ClCompile Include="APIHelper.cpp" />
+    <ClCompile Include="AppDatabase.cpp" />
     <ClCompile Include="Apps.cpp" />
     <ClCompile Include="Breakpoint.cpp" />
     <ClCompile Include="Debug.cpp" />
@@ -81,9 +82,11 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="Watchpoint.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\External\LibSQLite-ps4\include\sqlite3.h" />
     <ClInclude Include="API.h" />
     <ClInclude Include="APIHelper.h" />
     <ClInclude Include="APIPackets.h" />
+    <ClInclude Include="AppDatabase.h" />
     <ClInclude Include="Apps.h" />
     <ClInclude Include="Breakpoint.h" />
     <ClInclude Include="Common.h" />

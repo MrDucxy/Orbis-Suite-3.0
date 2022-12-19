@@ -2,11 +2,8 @@
 #include "Version.h"
 #include "API.h"
 #include "GoldHEN.h"
-#include <orbis/SystemService.h>
 #include <orbis/SysCore.h>
-#include <orbis/libkernel.h>
-#include <orbis/Net.h>
-#include <orbis/AppInstUtil.h>
+#include "AppDatabase.h"
 
 #include "GeneralIPC.h"
 

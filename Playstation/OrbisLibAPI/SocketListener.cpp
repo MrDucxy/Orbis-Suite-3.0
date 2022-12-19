@@ -34,8 +34,8 @@ void* SocketListener::DoWork()
 	// Make new TCP Socket
 	this->Socket = sceNetSocket("Listener Socket", ORBIS_NET_AF_INET, ORBIS_NET_SOCK_STREAM, ORBIS_NET_IPPROTO_TCP);
 
-	// Set Sending and reciving time out to 1000 ms
-	int sock_timeout = 10000;
+	// Set Sending and reciving time out to 2s
+	int sock_timeout = 2000000;
 	sceNetSetsockopt(this->Socket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_SNDTIMEO, &sock_timeout, sizeof(sock_timeout));
 	sceNetSetsockopt(this->Socket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_RCVTIMEO, &sock_timeout, sizeof(sock_timeout));
 
@@ -95,6 +95,10 @@ void* SocketListener::DoWork()
 
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
+
+				int sock_timeout = 2000000;
+				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_SNDTIMEO, &sock_timeout, sizeof(sock_timeout));
+				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_RCVTIMEO, &sock_timeout, sizeof(sock_timeout));
 
 				// Set up thread params.
 				ClientThreadParams* Params = new ClientThreadParams();

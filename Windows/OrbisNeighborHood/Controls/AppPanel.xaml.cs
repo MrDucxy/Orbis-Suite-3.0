@@ -1,24 +1,12 @@
 ﻿using OrbisSuite;
 using OrbisSuite.Common;
-using OrbisSuite.Common.Database.App;
-using SimpleUI.Controls;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -27,11 +15,11 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class AppPanel : UserControl
     {
-        public AppBrowse App;
+        public AppInfo App;
 
         private AppState AppState = AppState.STATE_NOT_RUNNING;
 
-        public AppPanel(AppBrowse App, string AppVersion)
+        public AppPanel(AppInfo App, string AppVersion)
         {
             InitializeComponent();
 
@@ -44,17 +32,17 @@ namespace OrbisNeighborHood.Controls
             Task.Run(() => UpdateApp());
         }
 
-        public void Update(AppBrowse App, string AppVersion)
+        public void Update(AppInfo App, string AppVersion)
         {
             // Set the Info about this application.
-            ApplicationNameElement.Text = App.titleName;
-            TitleIdElement.FieldText = App.titleId;
+            ApplicationNameElement.Text = App.TitleName;
+            TitleIdElement.FieldText = App.TitleId;
             VersionElement.FieldText = AppVersion.TrimStart('0');
-            TypeElement.FieldText = $"{App.uiCategory} ({App.category})";
-            SizeElement.FieldText = App.contentSize <= 0 ? "N/A" : Utilities.BytesToString(App.contentSize);
+            TypeElement.FieldText = $"{App.UICategory} ({App.Category})";
+            SizeElement.FieldText = App.ContentSize <= 0 ? "N/A" : Utilities.BytesToString(App.ContentSize);
 
             // Get the path to our icon and make sure it exists.
-            string iconPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)}\Orbis Suite\AppCache\{OrbisLib.Instance.SelectedTarget.Info.Details.ForegroundAccountId.ToString("X")}\{App.titleId}\icon0.png";
+            string iconPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)}\Orbis Suite\AppCache\{App.TitleId}\icon0.png";
             if(!string.IsNullOrEmpty(iconPath) && File.Exists(iconPath) && new FileInfo(iconPath).Length > 0)
             {
                 // Load and cache image in memory.
@@ -68,17 +56,14 @@ namespace OrbisNeighborHood.Controls
                 IconImage.Source = image;
             }
 
-            if (DateTime.TryParse(App.installDate, out var dateTime))
-            {
-                InstallDateElement.FieldText = dateTime.ToString("ddd dd MMM yyy hh:mm tt");
-            }
+            InstallDateElement.FieldText = App.InstallDate.ToString("ddd dd MMM yyy hh:mm tt");
 
             // Set the tool tips.
-            StartStop.ToolTip = $"Start {App.titleName}.";
-            Visibility.ToolTip = $"Hide {App.titleName} from Home Menu.";
-            ChangeIcon.ToolTip = $"Change the icon of {App.titleName}.";
+            StartStop.ToolTip = $"Start {App.TitleName}.";
+            Visibility.ToolTip = $"Hide {App.TitleName} from Home Menu.";
+            ChangeIcon.ToolTip = $"Change the icon of {App.TitleName}.";
             // 3 more TBD here.
-            Delete.ToolTip = $"Delete {App.titleName}.";
+            Delete.ToolTip = $"Delete {App.TitleName}.";
         }
 
         private void UpdateApp()
@@ -88,30 +73,30 @@ namespace OrbisNeighborHood.Controls
                 var currentTarget = OrbisLib.Instance.SelectedTarget;
 
                 // Get Current App status.
-                var newAppState = currentTarget.Application.GetAppState(App.titleId);
+                var newAppState = currentTarget.Application.GetAppState(App.TitleId);
                 if (newAppState >= 0)
                     AppState = newAppState;
 
                 // App status.
                 if (AppState == AppState.STATE_RUNNING || AppState == AppState.STATE_SUSPENDED)
                 {
-                    Dispatcher.Invoke(() => StartStop.ToolTip = $"Stop {App.titleName}.");
+                    Dispatcher.Invoke(() => StartStop.ToolTip = $"Stop {App.TitleName}.");
                     Dispatcher.Invoke(() => StartStop.ImageSource = "/OrbisNeighborHood;component/Images/Stop.png");
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => StartStop.ToolTip = $"Start {App.titleName}.");
+                    Dispatcher.Invoke(() => StartStop.ToolTip = $"Start {App.TitleName}.");
                     Dispatcher.Invoke(() => StartStop.ImageSource = "/OrbisNeighborHood;component/Images/Start.png");
                 }
 
                 // App Visibility.
-                if (App.visible == 0 || App.visible == 2)
+                if (App.Visible == 0 || App.Visible == 2)
                 {
-                    Dispatcher.Invoke(() => Visibility.ToolTip = $"Show {App.titleName} from Home Menu.");
+                    Dispatcher.Invoke(() => Visibility.ToolTip = $"Show {App.TitleName} from Home Menu.");
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => Visibility.ToolTip = $"Hide {App.titleName} from Home Menu.");
+                    Dispatcher.Invoke(() => Visibility.ToolTip = $"Hide {App.TitleName} from Home Menu.");
                 }
 
                 Thread.Sleep(1000);
@@ -127,11 +112,11 @@ namespace OrbisNeighborHood.Controls
                 var currentTarget = OrbisLib.Instance.SelectedTarget;
                 if (AppState == AppState.STATE_RUNNING || AppState == AppState.STATE_SUSPENDED)
                 {
-                    currentTarget.Application.Stop(App.titleId);
+                    currentTarget.Application.Stop(App.TitleId);
                 }
                 else
                 {
-                    currentTarget.Application.Start(App.titleId);
+                    currentTarget.Application.Start(App.TitleId);
                 }
             });
         }

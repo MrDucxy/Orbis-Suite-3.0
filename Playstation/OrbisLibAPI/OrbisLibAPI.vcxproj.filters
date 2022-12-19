@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Utilities\PS Utils">
       <UniqueIdentifier>{5094835e-2ace-4366-93ee-a65317ee8a62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SQLite">
+      <UniqueIdentifier>{9184ee1e-6be1-4208-9c34-f2cca837b49f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="build.bat" />
@@ -96,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="Apps.cpp">
       <Filter>Source Files\API\CmdGroups</Filter>
+    </ClCompile>
+    <ClCompile Include="AppDatabase.cpp">
+      <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +161,12 @@
     </ClInclude>
     <ClInclude Include="Apps.h">
       <Filter>Header Files\API\CmdGroups</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\External\LibSQLite-ps4\include\sqlite3.h">
+      <Filter>Header Files\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="AppDatabase.h">
+      <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
