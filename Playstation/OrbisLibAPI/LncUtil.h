@@ -46,9 +46,13 @@ public:
 	static int Init();
 	static int sceLncUtilGetAppId(const char* TitleId);
 	static int sceLncUtilLaunchApp(const char* titleId, char* args, LaunchAppParam* appParam);
+	static int sceLncUtilSuspendApp(int AppId, int Flag);
+	static int sceLncUtilResumeApp(int AppId, int Flag);
 
 private:
 	static uint64_t LibraryBaseAddress;
 	static int(*_sceLncUtilGetAppId)(const char* titleId);
 	static int(*_sceLncUtilLaunchApp)(const char* titleId, char* args, LaunchAppParam* appParam);
+	static int(*_sceLncUtilSuspendApp)(int AppId, int Flag);
+	static int(*_sceLncUtilResumeApp)(int AppId, int Flag);
 };

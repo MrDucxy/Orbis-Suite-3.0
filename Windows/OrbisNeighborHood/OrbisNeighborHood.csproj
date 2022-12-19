@@ -25,6 +25,7 @@
     <None Remove="Images\Icons\OrbisPeeknPoke.ico" />
     <None Remove="Images\Icons\OrbisTargetSettings.ico" />
     <None Remove="Images\Icons\OrbisTaskbarApp.ico" />
+    <None Remove="Images\Info.png" />
     <None Remove="Images\Locate.png" />
     <None Remove="Images\NotDefault.ico" />
     <None Remove="Images\Plus.png" />
@@ -38,6 +39,8 @@
     <None Remove="Images\SpinningDualRing.gif" />
     <None Remove="Images\Start.png" />
     <None Remove="Images\Stop.png" />
+    <None Remove="Images\Store.png" />
+    <None Remove="Images\Suspend.png" />
     <None Remove="Images\Targets.png" />
     <None Remove="Images\UnAvailable.png" />
     <None Remove="Images\Visibility.png" />
@@ -47,6 +50,12 @@
 
   <ItemGroup>
     <Content Include="OrbisNeighborhood.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Store.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -95,6 +104,9 @@
     <Resource Include="Images\Icons\OrbisTaskbarApp.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\Info.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Locate.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -132,6 +144,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Stop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Suspend.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Targets.png">

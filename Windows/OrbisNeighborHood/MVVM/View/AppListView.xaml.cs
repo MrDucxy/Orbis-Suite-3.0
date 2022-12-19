@@ -37,6 +37,8 @@ namespace OrbisNeighborHood.MVVM.View
             "NPXS20112",
             "NPXS20133",
             "NPXS20132",
+            "CUSA02012", // Media Player
+            "NPXS20979", // Playstation Store
 
             // Destiny? lol
             "CUSA00219",
@@ -191,13 +193,10 @@ namespace OrbisNeighborHood.MVVM.View
 
             var appList = currentTarget.Application.GetAppList();
 
-            foreach (var app in appList)
+            Parallel.ForEach(appList, app =>
             {
-                Parallel.Invoke(() =>
-                {
-                    AddApp(appCachePath, app);
-                });
-            }
+                AddApp(appCachePath, app);
+            });
         }
 
         private async Task CheckAppDatabase()
@@ -224,24 +223,26 @@ namespace OrbisNeighborHood.MVVM.View
                     var appList = currentTarget.Application.GetAppList();
 
                     // Check for deletions.
-                    foreach (var app in AppList.Items.Cast<AppPanel>().ToList())
+                    Parallel.ForEach(AppList.Items.Cast<AppPanel>().ToList(), app =>
                     {
                         if (appList.Find(x => x.TitleId == app.App.TitleId) == null)
                         {
                             Dispatcher.Invoke(() => AppList.Items.Remove(app));
                         }
-                    }
+                    });
 
                     // Check for new apps / updates.
-                    foreach (var app in appList)
+                    Parallel.ForEach(appList, app => 
                     {
-                        Parallel.Invoke(() =>
+                        var currentAppList = AppList.Items.Cast<AppPanel>().ToList();
+
+                        if (currentAppList.Find(x => x.App.TitleId == app.TitleId) == null)
                         {
                             AddApp(appCachePath, app);
-                        });
-                    }
+                        }
+                    });
 
-                    await Task.Delay(1000);
+                    await Task.Delay(2000);
                 }
                 catch (Exception ex)
                 {

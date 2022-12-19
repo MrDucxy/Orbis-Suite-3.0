@@ -188,7 +188,69 @@ namespace OrbisSuite
                 return false;
             }
 
-            APIResults apiResult = API.CallLong(Target.Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_APPS_STOP }, out Socket Sock);
+            var apiResult = API.CallLong(Target.Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_APPS_STOP }, out Socket Sock);
+
+            if (apiResult != APIResults.API_OK)
+                return false;
+
+            // Send the titleId of the app.
+            var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
+            Sock.Send(bytes);
+
+            // Get the state from API.
+            var result = Sock.RecvInt32();
+
+            // close socket.
+            Sock.Close();
+
+            return (result == 1);
+        }
+
+        public bool Suspend(string TitleId)
+        {
+            if (!Regex.IsMatch(TitleId, @"[a-zA-Z]{4}\d{5}"))
+            {
+                Console.WriteLine($"Invaild titleId format {TitleId}");
+                return false;
+            }
+
+            if (!Target.Info.Details.IsAPIAvailable)
+            {
+                return false;
+            }
+
+            var apiResult = API.CallLong(Target.Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_APPS_SUSPEND }, out Socket Sock);
+
+            if (apiResult != APIResults.API_OK)
+                return false;
+
+            // Send the titleId of the app.
+            var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
+            Sock.Send(bytes);
+
+            // Get the state from API.
+            var result = Sock.RecvInt32();
+
+            // close socket.
+            Sock.Close();
+
+            return (result == 1);
+        }
+
+        public bool Resume(string TitleId)
+        {
+            if (!Regex.IsMatch(TitleId, @"[a-zA-Z]{4}\d{5}"))
+            {
+                Console.WriteLine($"Invaild titleId format {TitleId}");
+                return false;
+            }
+
+            if (!Target.Info.Details.IsAPIAvailable)
+            {
+                return false;
+            }
+
+            var apiResult = API.CallLong(Target.Info.IPAddress, Settings.CreateInstance().APIPort, new APIPacket() { PacketVersion = Config.PacketVersion, Command = APICommands.API_APPS_RESUME }, out Socket Sock);
 
             if (apiResult != APIResults.API_OK)
                 return false;

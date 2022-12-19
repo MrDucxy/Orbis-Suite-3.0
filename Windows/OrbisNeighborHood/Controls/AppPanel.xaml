@@ -149,6 +149,17 @@
                                    Click="StartStop_Click"
                                    Grid.Column="0"/>
 
+                <!-- Suspend / Resume -->
+                <local:ImageButton x:Name="SuspendResume"
+                                   Width="35"
+                                   Height="35"
+                                   ToolTip="Suspend {Application Name}."
+                                   ImageSource="/OrbisNeighborHood;component/Images/UnAvailable.png"
+                                   ImageMargin="4"
+                                   Click="SuspendResume_Click"
+                                   IsEnabled="False"
+                                   Grid.Column="2"/>
+
                 <!-- Visibility -->
                 <local:ImageButton x:Name="Visibility"
                                    Width="35"
@@ -157,7 +168,7 @@
                                    ImageSource="/OrbisNeighborHood;component/Images/Visibility.png"
                                    ImageMargin="4"
                                    Click="Visibility_Click"
-                                   Grid.Column="2"/>
+                                   Grid.Column="4"/>
 
                 <!-- Change Icon -->
                 <local:ImageButton x:Name="ChangeIcon"
@@ -167,39 +178,26 @@
                                    ImageSource="/OrbisNeighborHood;component/Images/ReplaceIcon.png"
                                    ImageMargin="4"
                                    Click="ChangeIcon_Click"
-                                   Grid.Column="4"/>
-
-                <!-- Unknown -->
-                <local:ImageButton x:Name="Unknown"
-                                   Width="35"
-                                   Height="35"
-                                   ToolTip="TBD"
-                                   ImageSource="/OrbisNeighborHood;component/Images/UnAvailable.png"
-                                   ImageMargin="4"
-                                   Click="Unknown_Click"
-                                   IsEnabled="False"
                                    Grid.Column="6"/>
 
-                <!-- Unknown2 -->
-                <local:ImageButton x:Name="Unknown2"
+                <!-- OpenStore -->
+                <local:ImageButton x:Name="OpenStore"
                                    Width="35"
                                    Height="35"
-                                   ToolTip="TBD"
-                                   ImageSource="/OrbisNeighborHood;component/Images/UnAvailable.png"
+                                   ToolTip="Open in Playstation store."
+                                   ImageSource="/OrbisNeighborHood;component/Images/Store.png"
                                    ImageMargin="4"
-                                   Click="Unknown2_Click"
-                                   IsEnabled="False"
+                                   Click="OpenStore_Click"
                                    Grid.Column="8"/>
 
-                <!-- Unknown3 -->
-                <local:ImageButton x:Name="Unknown3"
+                <!-- More Info -->
+                <local:ImageButton x:Name="MoreInfo"
                                    Width="35"
                                    Height="35"
-                                   ToolTip="TBD"
-                                   ImageSource="/OrbisNeighborHood;component/Images/UnAvailable.png"
+                                   ToolTip="See more info about {Application Name}."
+                                   ImageSource="/OrbisNeighborHood;component/Images/Info.png"
                                    ImageMargin="4"
-                                   Click="Unknown3_Click"
-                                   IsEnabled="False"
+                                   Click="MoreInfo_Click"
                                    Grid.Column="10"/>
 
                 <!-- Delete -->

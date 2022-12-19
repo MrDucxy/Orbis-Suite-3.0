@@ -4,6 +4,8 @@
 uint64_t LncUtil::LibraryBaseAddress = 0;
 int(*LncUtil::_sceLncUtilGetAppId)(const char*);
 int(*LncUtil::_sceLncUtilLaunchApp)(const char* titleId, char* args, LaunchAppParam* appParam);
+int(*LncUtil::_sceLncUtilSuspendApp)(int AppId, int Flag);
+int(*LncUtil::_sceLncUtilResumeApp)(int AppId, int Flag);
 
 int LncUtil::Init()
 {
@@ -45,6 +47,8 @@ int LncUtil::Init()
 	// Set up Functions.
 	_sceLncUtilGetAppId = (decltype(_sceLncUtilGetAppId))(LibraryBaseAddress + 0x4E10);
 	_sceLncUtilLaunchApp = (decltype(_sceLncUtilLaunchApp))(LibraryBaseAddress + 0x4C10);
+	_sceLncUtilSuspendApp = (decltype(_sceLncUtilSuspendApp))(LibraryBaseAddress + 0x4F20);
+	_sceLncUtilResumeApp = (decltype(_sceLncUtilResumeApp))(LibraryBaseAddress + 0x4F40);
 
 	return 0;
 }
@@ -70,17 +74,33 @@ int LncUtil::sceLncUtilLaunchApp(const char* titleId, char* args, LaunchAppParam
 	}
 	else
 	{
-		klog("failed to resolve sceLncUtilGetAppId\n");
+		klog("failed to resolve sceLncUtilLaunchApp\n");
 		return -1;
 	}
 }
 
-/*int SuspensceLncUtilSuspendAppdApp(int AppId, int Flag)
+int LncUtil::sceLncUtilSuspendApp(int AppId, int Flag)
 {
-
+	if ((uint64_t)_sceLncUtilSuspendApp > 0x4F20)
+	{
+		return _sceLncUtilSuspendApp(AppId, Flag);
+	}
+	else
+	{
+		klog("failed to resolve sceLncUtilSuspendApp\n");
+		return -1;
+	}
 }
 
-int sceLncUtilResumeApp(int AppId, int Flag)
+int LncUtil::sceLncUtilResumeApp(int AppId, int Flag)
 {
-
-}*/
+	if ((uint64_t)_sceLncUtilResumeApp > 0x4F40)
+	{
+		return _sceLncUtilResumeApp(AppId, Flag);
+	}
+	else
+	{
+		klog("failed to resolve sceLncUtilResumeApp\n");
+		return -1;
+	}
+}

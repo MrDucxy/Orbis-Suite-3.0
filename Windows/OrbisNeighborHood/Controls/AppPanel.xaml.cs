@@ -62,7 +62,9 @@ namespace OrbisNeighborHood.Controls
             StartStop.ToolTip = $"Start {App.TitleName}.";
             Visibility.ToolTip = $"Hide {App.TitleName} from Home Menu.";
             ChangeIcon.ToolTip = $"Change the icon of {App.TitleName}.";
-            // 3 more TBD here.
+            SuspendResume.ToolTip = $"Not available while {App.TitleName} is not running.";
+            // TODO: One TBD.
+            MoreInfo.ToolTip = $"See more info about {App.TitleName}.";
             Delete.ToolTip = $"Delete {App.TitleName}.";
         }
 
@@ -80,13 +82,35 @@ namespace OrbisNeighborHood.Controls
                 // App status.
                 if (AppState == AppState.STATE_RUNNING || AppState == AppState.STATE_SUSPENDED)
                 {
-                    Dispatcher.Invoke(() => StartStop.ToolTip = $"Stop {App.TitleName}.");
-                    Dispatcher.Invoke(() => StartStop.ImageSource = "/OrbisNeighborHood;component/Images/Stop.png");
+                    Dispatcher.Invoke(() => 
+                    {
+                        StartStop.ToolTip = $"Stop {App.TitleName}.";
+                        StartStop.ImageSource = "/OrbisNeighborHood;component/Images/Stop.png";
+
+                        SuspendResume.IsEnabled = true;
+                        if (AppState == AppState.STATE_SUSPENDED)
+                        {
+                            SuspendResume.ToolTip = $"Resume {App.TitleName}.";
+                            SuspendResume.ImageSource = "/OrbisNeighborHood;component/Images/Start.png";
+                        }
+                        else
+                        {
+                            SuspendResume.ToolTip = $"Suspend {App.TitleName}.";
+                            SuspendResume.ImageSource = "/OrbisNeighborHood;component/Images/Suspend.png";
+                        }
+                    });
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => StartStop.ToolTip = $"Start {App.TitleName}.");
-                    Dispatcher.Invoke(() => StartStop.ImageSource = "/OrbisNeighborHood;component/Images/Start.png");
+                    Dispatcher.Invoke(() =>
+                    {
+                        StartStop.ToolTip = $"Start {App.TitleName}.";
+                        StartStop.ImageSource = "/OrbisNeighborHood;component/Images/Start.png";
+
+                        SuspendResume.ToolTip = $"Not available while {App.TitleName} is not running.";
+                        SuspendResume.ImageSource = "/OrbisNeighborHood;component/Images/UnAvailable.png";
+                        SuspendResume.IsEnabled = false;
+                    });
                 }
 
                 // App Visibility.
@@ -121,6 +145,22 @@ namespace OrbisNeighborHood.Controls
             });
         }
 
+        private void SuspendResume_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Run(() =>
+            {
+                var currentTarget = OrbisLib.Instance.SelectedTarget;
+                if (AppState == AppState.STATE_SUSPENDED)
+                {
+                    currentTarget.Application.Resume(App.TitleId);
+                }
+                else
+                {
+                    currentTarget.Application.Suspend(App.TitleId);
+                }
+            });
+        }
+
         private void Visibility_Click(object sender, RoutedEventArgs e)
         {
 
@@ -131,17 +171,12 @@ namespace OrbisNeighborHood.Controls
 
         }
 
-        private void Unknown_Click(object sender, RoutedEventArgs e)
+        private void OpenStore_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Unknown2_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Unknown3_Click(object sender, RoutedEventArgs e)
+        private void MoreInfo_Click(object sender, RoutedEventArgs e)
         {
 
         }

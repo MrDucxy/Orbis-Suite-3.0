@@ -49,6 +49,18 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 		KillApp(Sock, titleId);
 
 		break;
+
+	case API_APPS_SUSPEND:
+
+		SuspendApp(Sock, titleId);
+
+		break;
+
+	case API_APPS_RESUME:
+
+		ResumeApp(Sock, titleId);
+
+		break;
 	}
 }
 
@@ -77,21 +89,17 @@ void Apps::GetAppInfoString(OrbisNetId Sock, const char* TitleId)
 	char KeyValue[50];
 	sceNetRecv(Sock, KeyValue, sizeof(KeyValue), 0);
 
-	klog("TitleId: %s\n", TitleId);
-	klog("Key: %s\n", KeyValue);
-
 	// Look up the key for that titleId in the app.db.
 	char OutStr[200];
 	memset(OutStr, 0, sizeof(OutStr));
 	AppDatabase::GetAppInfoString(TitleId, OutStr, sizeof(OutStr), KeyValue);
 
-	klog("OutStr: %s\n", OutStr);
-
 	// Send back the result.
 	sceNetSend(Sock, OutStr, sizeof(OutStr), 0);
 }
 
-void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
+// TODO: Currently cant get the appId of child processes like the Web Browser since it is a child of the ShellUI.
+int Apps::GetAppId(const char* TitleId)
 {
 	int appId = 0;
 
@@ -113,6 +121,13 @@ void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
 			break;
 		}
 	}
+
+	return appId;
+}
+
+void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
+{
+	auto appId = GetAppId(TitleId);
 
 	// If we have no appId that means the process is not running. 
 	if (appId <= 0)
@@ -161,28 +176,37 @@ void Apps::StartApp(OrbisNetId Sock, const char* TitleId)
 
 void Apps::KillApp(OrbisNetId Sock, const char* TitleId)
 {
-	int appId = 0;
-
-	// Get the list of running processes.
-	std::vector<kinfo_proc> processList;
-	GetProcessList(processList);
-
-	for (const auto& i : processList)
-	{
-		// Get the app info using the pid.
-		OrbisAppInfo appInfo;
-		sceKernelGetAppInfo(i.pid, &appInfo);
-
-		// Using the titleId match our desired app and return the appId from the appinfo.
-		if (!strcmp(appInfo.TitleId, TitleId))
-		{
-			appId = appInfo.AppId;
-
-			break;
-		}
-	}
+	auto appId = GetAppId(TitleId);
 
 	if (appId > 0 && sceSystemServiceKillApp(appId, -1, 0, 0) == 0)
+	{
+		SockSendInt(Sock, 1);
+	}
+	else
+	{
+		SockSendInt(Sock, 0);
+	}
+}
+
+void Apps::SuspendApp(OrbisNetId Sock, const char* TitleId)
+{
+	auto appId = GetAppId(TitleId);
+
+	if (appId > 0 && LncUtil::sceLncUtilSuspendApp(appId, 0) == 0)
+	{
+		SockSendInt(Sock, 1);
+	}
+	else
+	{
+		SockSendInt(Sock, 0);
+	}
+}
+
+void Apps::ResumeApp(OrbisNetId Sock, const char* TitleId)
+{
+	auto appId = GetAppId(TitleId);
+
+	if (appId > 0 && LncUtil::sceLncUtilResumeApp(appId, 0) == 0)
 	{
 		SockSendInt(Sock, 1);
 	}
