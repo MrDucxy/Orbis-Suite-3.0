@@ -136,7 +136,6 @@ struct APIPacket
 {
 	int PacketVersion;
 	int Command;
-	char ProcName[32];
 };
 
 #pragma endregion
