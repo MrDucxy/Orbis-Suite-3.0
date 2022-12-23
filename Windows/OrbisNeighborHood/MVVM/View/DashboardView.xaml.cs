@@ -1,23 +1,14 @@
-﻿using OrbisNeighborHood.MVVM.ViewModel;
-using OrbisSuite;
-using OrbisSuite.Common.Database;
+﻿using OrbisLib2.Common.Database.Types;
+using OrbisLib2.General;
+using OrbisLib2.Targets;
+using OrbisNeighborHood.MVVM.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OrbisNeighborHood.MVVM.View
 {
@@ -32,8 +23,8 @@ namespace OrbisNeighborHood.MVVM.View
         {
             InitializeComponent();
 
-            OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
-            OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.DBTouched += Events_DBTouched;
+            Events.TargetStateChanged += Events_TargetStateChanged;
 
             RefreshTargetInfo();
         }
@@ -196,39 +187,39 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void RefreshTargetInfo()
         {
-            var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
+            var CurrentTarget = TargetManager.SelectedTarget;
 
             if (CurrentTarget != null)
             {
                 TitleString = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
                 TargetName = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
-                TargetStatus = CurrentTarget.Details.Status;
-                FirmwareVersion = CurrentTarget.Details.SoftwareVersion;
-                SDKVersion = CurrentTarget.Details.SDKVersion;
+                TargetStatus = CurrentTarget.Info.Status;
+                FirmwareVersion = CurrentTarget.Info.SoftwareVersion;
+                SDKVersion = CurrentTarget.Info.SDKVersion;
                 IPAddress = CurrentTarget.IPAddress;
-                ConsoleName = CurrentTarget.Details.ConsoleName;
+                ConsoleName = CurrentTarget.Info.ConsoleName;
                 PayloadPort = CurrentTarget.PayloadPort.ToString();
 
                 // Storage Stats.
-                HDDFreeSpace = Utilities.BytesToString(CurrentTarget.Details.HDDFreeSpace);
-                HDDUsedSpace = Utilities.BytesToString(CurrentTarget.Details.HDDUsedSpace);
-                HDDTotalSpace = Utilities.BytesToString(CurrentTarget.Details.HDDTotalSpace);
+                HDDFreeSpace = Utilities.BytesToString(CurrentTarget.Info.HDDFreeSpace);
+                HDDUsedSpace = Utilities.BytesToString(CurrentTarget.Info.HDDUsedSpace);
+                HDDTotalSpace = Utilities.BytesToString(CurrentTarget.Info.HDDTotalSpace);
 
-                if (CurrentTarget.Details.HDDTotalSpace != 0)
-                    StorageUsagePercentage = (int)(((double)CurrentTarget.Details.HDDUsedSpace / (double)CurrentTarget.Details.HDDTotalSpace) * 100.0);
+                if (CurrentTarget.Info.HDDTotalSpace != 0)
+                    StorageUsagePercentage = (int)(((double)CurrentTarget.Info.HDDUsedSpace / (double)CurrentTarget.Info.HDDTotalSpace) * 100.0);
                 else
                     StorageUsagePercentage = 0;
 
                 // System Stats.
-                CPUTemp = $"{CurrentTarget.Details.CPUTemp} °C";
-                SOCTemp = $"{CurrentTarget.Details.SOCTemp} °C";
-                ThreadCount = CurrentTarget.Details.ThreadCount;
-                AverageCPUUsage = CurrentTarget.Details.AverageCPUUsage;
-                TopCore = $"Core {CurrentTarget.Details.BusyCore}";
-                RamUsage = $"{CurrentTarget.Details.RamUsage} MB";
-                VRamUsage = $"{CurrentTarget.Details.VRamUsage} MB";
+                CPUTemp = $"{CurrentTarget.Info.CPUTemp} °C";
+                SOCTemp = $"{CurrentTarget.Info.SOCTemp} °C";
+                ThreadCount = CurrentTarget.Info.ThreadCount;
+                AverageCPUUsage = CurrentTarget.Info.AverageCPUUsage;
+                TopCore = $"Core {CurrentTarget.Info.BusyCore}";
+                RamUsage = $"{CurrentTarget.Info.RamUsage} MB";
+                VRamUsage = $"{CurrentTarget.Info.VRamUsage} MB";
 
-                if (CurrentTarget.Details.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Details.CurrentTitleID, @"CUSA\d{5}"))
+                if (CurrentTarget.Info.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Info.CurrentTitleID, @"CUSA\d{5}"))
                 {
                     TitleName = "Unknown Title";
                     TitleId = "-";
@@ -237,7 +228,7 @@ namespace OrbisNeighborHood.MVVM.View
                 }
                 else
                 {
-                    var Title = new TMDB(CurrentTarget.Details.CurrentTitleID);
+                    var Title = new TMDB(CurrentTarget.Info.CurrentTitleID);
                     Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
                     TitleName = Title.Names.First();
                     TitleId = Title.NPTitleID;
@@ -254,12 +245,12 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
+            var CurrentTarget = TargetManager.SelectedTarget;
 
             if (MainViewModel.Instance != null)
             {
                 var editTargetViewModel = MainViewModel.Instance.EditTargetVM;
-                editTargetViewModel.CurrentTarget = CurrentTarget.Clone();
+                editTargetViewModel.CurrentTarget = CurrentTarget.SavedTarget.Clone();
                 editTargetViewModel.CallingVM = MainViewModel.Instance.DashboardHomeVM;
                 MainViewModel.Instance.CurrentView = editTargetViewModel;
             }

@@ -1,6 +1,7 @@
-﻿using OrbisSuite.Common;
-using OrbisSuite.Common.Database;
-using OrbisSuite.Common.Dispatcher;
+﻿using OrbisLib2.Common.Database;
+using OrbisLib2.Common.Dispatcher;
+using OrbisLib2.Common.Helpers;
+using OrbisLib2.Targets;
 
 namespace OrbisSuiteService.Service
 {
@@ -15,57 +16,61 @@ namespace OrbisSuiteService.Service
             _dispatcher = dispatcher;
             _TargetWatcherTask = Task.Run(() => DoTargetWatcher());
         }
-
         private async Task DoTargetWatcher()
         {
             while (true)
             {
-                Parallel.ForEach(SavedTargets.Targets, Target =>
+                if(TargetManager.Targets.Count <= 0)
                 {
-                    var oldAvailable = Target.Details.IsAvailable;
-                    var OldAPIAvailable = Target.Details.IsAPIAvailable;
+                    await Task.Delay(1000, _TargetWatcherCancellationToken);
+                }
 
-                    if(Helpers.PingHost(Target.IPAddress))
+                Parallel.ForEach(SavedTarget.GetTargetList(), Target =>
+                {
+                    var oldAvailable = Target.Info.IsAvailable;
+                    var OldAPIAvailable = Target.Info.IsAPIAvailable;
+
+                    if(Helper.PingHost(Target.IPAddress))
                     {
-                        var detail = Target.Details;
+                        var detail = Target.Info;
                         detail.IsAvailable = true;
                     }
 
-                    Target.Details.IsAvailable = Helpers.PingHost(Target.IPAddress);
-                    Target.Details.IsAPIAvailable = Helpers.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
-                    Target.Details.Save();
+                    Target.Info.IsAvailable = Helper.PingHost(Target.IPAddress);
+                    Target.Info.IsAPIAvailable = Helper.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
+                    Target.Info.Save();
 
-                    if (Target.Details.IsAPIAvailable)
-                        SavedTargets.UpdateTargetInfo(Target.Name);
+                    if (Target.Info.IsAPIAvailable)
+                        TargetManager.UpdateTargetInfo(Target);
                     else
                     {
-                        Target.Details.CPUTemp = 0;
-                        Target.Details.SOCTemp = 0;
-                        Target.Details.ThreadCount = 0;
-                        Target.Details.AverageCPUUsage = 0;
-                        Target.Details.BusyCore = 0;
-                        Target.Details.RamUsage = 0;
-                        Target.Details.VRamUsage = 0;
-                        Target.Details.CurrentTitleID = "-";
-                        Target.Details.Save();
+                        Target.Info.CPUTemp = 0;
+                        Target.Info.SOCTemp = 0;
+                        Target.Info.ThreadCount = 0;
+                        Target.Info.AverageCPUUsage = 0;
+                        Target.Info.BusyCore = 0;
+                        Target.Info.RamUsage = 0;
+                        Target.Info.VRamUsage = 0;
+                        Target.Info.CurrentTitleID = "-";
+                        Target.Info.Save();
                     }
 
                     // Forward Target Availability.
-                    if (oldAvailable != Target.Details.IsAvailable)
+                    if (oldAvailable != Target.Info.IsAvailable)
                     {
                         var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAvailability, Target.IPAddress);
-                        Packet.TargetAvailability.Available = Target.Details.IsAvailable;
+                        Packet.TargetAvailability.Available = Target.Info.IsAvailable;
                         Packet.TargetAvailability.Name = Target.Name;
-                        _dispatcher.ForwardPacketAll(Packet);
+                        _dispatcher.PublishEvent(Packet);
                     }
 
                     // Forward API Availability.
-                    if (OldAPIAvailable != Target.Details.IsAPIAvailable)
+                    if (OldAPIAvailable != Target.Info.IsAPIAvailable)
                     {
                         var Packet = new ForwardPacket(ForwardPacket.PacketType.TargetAPIAvailability, Target.IPAddress);
-                        Packet.TargetAPIAvailability.Available = Target.Details.IsAvailable;
+                        Packet.TargetAPIAvailability.Available = Target.Info.IsAvailable;
                         Packet.TargetAPIAvailability.Name = Target.Name;
-                        _dispatcher.ForwardPacketAll(Packet);
+                        _dispatcher.PublishEvent(Packet);
                     }
                 });
 

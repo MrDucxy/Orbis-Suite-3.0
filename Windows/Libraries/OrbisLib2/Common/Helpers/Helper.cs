@@ -99,7 +99,7 @@ namespace OrbisLib2.Common.Helpers
         /// <returns></returns>
         public static bool EasyConnect(this Socket s, string IPAddress, int Port, int TimeOut)
         {
-            s.ReceiveTimeout = s.SendTimeout = TimeOut;
+            s.ReceiveTimeout = s.SendTimeout = TimeOut * 1000;
             var result = s.BeginConnect(IPAddress, Port, null, null);
 
             result.AsyncWaitHandle.WaitOne(3000, true);

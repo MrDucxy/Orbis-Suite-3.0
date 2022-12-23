@@ -1,5 +1,6 @@
-﻿using OrbisSuite;
-using OrbisSuite.Common;
+﻿using OrbisLib2.Common.API;
+using OrbisLib2.General;
+using OrbisLib2.Targets;
 using System;
 using System.IO;
 using System.Threading;
@@ -72,7 +73,7 @@ namespace OrbisNeighborHood.Controls
         {
             while (true)
             {
-                var currentTarget = OrbisLib.Instance.SelectedTarget;
+                var currentTarget = TargetManager.SelectedTarget;
 
                 // Get Current App status.
                 var newAppState = currentTarget.Application.GetAppState(App.TitleId);
@@ -133,7 +134,7 @@ namespace OrbisNeighborHood.Controls
         {
             Task.Run(() => 
             {
-                var currentTarget = OrbisLib.Instance.SelectedTarget;
+                var currentTarget = TargetManager.SelectedTarget;
                 if (AppState == AppState.STATE_RUNNING || AppState == AppState.STATE_SUSPENDED)
                 {
                     currentTarget.Application.Stop(App.TitleId);
@@ -149,7 +150,7 @@ namespace OrbisNeighborHood.Controls
         {
             Task.Run(() =>
             {
-                var currentTarget = OrbisLib.Instance.SelectedTarget;
+                var currentTarget = TargetManager.SelectedTarget;
                 if (AppState == AppState.STATE_SUSPENDED)
                 {
                     currentTarget.Application.Resume(App.TitleId);

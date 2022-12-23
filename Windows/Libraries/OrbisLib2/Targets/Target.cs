@@ -12,7 +12,20 @@ namespace OrbisLib2.Targets
 {
     public class Target
     {
-        private SavedTarget _SavedTarget;
+        private int _SavedTargetId = 0;
+
+        public SavedTarget SavedTarget 
+        {
+            get
+            {
+                var savedTarget = SavedTarget.FindTarget(x => x.Id == _SavedTargetId);
+
+                if (savedTarget == null)
+                    savedTarget = new SavedTarget();
+
+                return savedTarget;
+            }
+        }
 
         /// <summary>
         /// Weather or not this is our default target to be selected on start up.
@@ -21,12 +34,7 @@ namespace OrbisLib2.Targets
         {
             get
             {
-                return _SavedTarget.IsDefault;
-            }
-            set
-            {
-                _SavedTarget.IsDefault = value;
-                _SavedTarget.Save();
+                return SavedTarget.IsDefault;
             }
         }
 
@@ -37,12 +45,7 @@ namespace OrbisLib2.Targets
         {
             get
             {
-                return _SavedTarget.Name;
-            }
-            set
-            {
-                _SavedTarget.Name = value;
-                _SavedTarget.Save();
+                return SavedTarget.Name;
             }
         }
 
@@ -53,12 +56,7 @@ namespace OrbisLib2.Targets
         {
             get
             {
-                return _SavedTarget.IPAddress;
-            }
-            set
-            {
-                _SavedTarget.IPAddress = value;
-                _SavedTarget.Save();
+                return SavedTarget.IPAddress;
             }
         }
 
@@ -69,20 +67,16 @@ namespace OrbisLib2.Targets
         {
             get
             {
-                return _SavedTarget.PayloadPort;
-            }
-            set
-            {
-                _SavedTarget.PayloadPort = value;
-                _SavedTarget.Save();
+                return SavedTarget.PayloadPort;
             }
         }
+
 
         public TargetInfo Info
         {
             get
             {
-                return _SavedTarget.Info;
+                return SavedTarget.Info;
             }
         }
 
@@ -95,7 +89,7 @@ namespace OrbisLib2.Targets
 
         public Target(SavedTarget SavedTarget)
         {
-            _SavedTarget = SavedTarget;
+            _SavedTargetId = SavedTarget.Id;
 
             Events = new TargetEvents(this);
             // Debug = new Debug(this);
@@ -105,25 +99,31 @@ namespace OrbisLib2.Targets
             Application = new Application(this);
         }
 
+        public Target Clone()
+        {
+            return new Target(SavedTarget.Clone());
+        }
+
         public bool Shutdown()
         {
-            return API.SendCommand(this, 3000, APICommands.API_TARGET_SHUTDOWN) == APIResults.API_OK;
+            return API.SendCommand(this, 5, APICommands.API_TARGET_SHUTDOWN) == APIResults.API_OK;
         }
 
         public bool Reboot()
         {
-            return API.SendCommand(this, 3000, APICommands.API_TARGET_REBOOT) == APIResults.API_OK;
+            return API.SendCommand(this, 5, APICommands.API_TARGET_REBOOT) == APIResults.API_OK;
         }
 
         public bool Suspend()
         {
-            return API.SendCommand(this, 3000, APICommands.API_TARGET_RESTMODE) == APIResults.API_OK;
+            return API.SendCommand(this, 5, APICommands.API_TARGET_RESTMODE) == APIResults.API_OK;
         }
 
         public bool Notify(string Message)
         {
-            var result = API.SendCommand(this, 3000, APICommands.API_TARGET_NOTIFY, (Socket Sock, APIResults Result) =>
+            var result = API.SendCommand(this, 5, APICommands.API_TARGET_NOTIFY, (Socket Sock, APIResults Result) =>
             {
+                Console.WriteLine($"Message: {Message}");
                 Result = API.SendNextPacket(Sock, new TargetNotifyPacket() { Message = Message });
             });
 
@@ -132,7 +132,7 @@ namespace OrbisLib2.Targets
 
         public bool Notify(string IconURI, string Message)
         {
-            var result = API.SendCommand(this, 3000, APICommands.API_TARGET_NOTIFY, (Socket Sock, APIResults Result) =>
+            var result = API.SendCommand(this, 5, APICommands.API_TARGET_NOTIFY, (Socket Sock, APIResults Result) =>
             {
                 Result = API.SendNextPacket(Sock, new TargetNotifyPacket() { IconURI = IconURI, Message = Message });
             });
@@ -142,7 +142,7 @@ namespace OrbisLib2.Targets
 
         public bool Buzzer(BuzzerType Type)
         {
-            var result = API.SendCommand(this, 3000, APICommands.API_TARGET_BUZZER, (Socket Sock, APIResults Result) =>
+            var result = API.SendCommand(this, 5, APICommands.API_TARGET_BUZZER, (Socket Sock, APIResults Result) =>
             {
                 Result = API.SendInt32(Sock, (int)Type);
             });
@@ -152,7 +152,7 @@ namespace OrbisLib2.Targets
 
         public bool SetLED(ConsoleLEDColours Colour)
         {
-            var result = API.SendCommand(this, 3000, APICommands.API_TARGET_SET_LED, (Socket Sock, APIResults Result) =>
+            var result = API.SendCommand(this, 5, APICommands.API_TARGET_SET_LED, (Socket Sock, APIResults Result) =>
             {
                 Result = API.SendInt32(Sock, (int)Colour);
             });
@@ -162,7 +162,7 @@ namespace OrbisLib2.Targets
 
         public bool SetSettings(bool ShowDebugTitleIdLabel, bool ShowDevkitPanel, bool ShowDebugSettings, bool ShowAppHome)
         {
-            var result = API.SendCommand(this, 3000, APICommands.API_TARGET_SET_SETTINGS, (Socket Sock, APIResults Result) =>
+            var result = API.SendCommand(this, 5, APICommands.API_TARGET_SET_SETTINGS, (Socket Sock, APIResults Result) =>
             {
                 Result = API.SendNextPacket(Sock, new TargetSettingsPacket()
                 {

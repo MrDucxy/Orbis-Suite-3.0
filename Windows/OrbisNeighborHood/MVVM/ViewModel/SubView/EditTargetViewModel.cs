@@ -1,10 +1,6 @@
-﻿using OrbisNeighborHood.MVVM.View.SubView;
-using OrbisSuite.Common.Database;
+﻿using OrbisLib2.Common.Database;
+using OrbisLib2.Targets;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace OrbisNeighborHood.MVVM.ViewModel.SubView
@@ -29,7 +25,7 @@ namespace OrbisNeighborHood.MVVM.ViewModel.SubView
 
         #region Dependency Properties
 
-        public TargetInfo? CurrentTarget { get; set; }
+        public SavedTarget CurrentTarget { get; set; }
 
         public object CallingVM { get; set; }
 

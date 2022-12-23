@@ -22,23 +22,17 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 		ChangeSystemState(SystemState::Suspend);
 
-		SendStatus(Sock, APIResults::API_OK);
-
 		break;
 
 	case APICommands::API_TARGET_SHUTDOWN:
 
 		ChangeSystemState(SystemState::Shutdown);
 
-		SendStatus(Sock, APIResults::API_OK);
-
 		break;
 
 	case APICommands::API_TARGET_REBOOT:
 
-		ChangeSystemState(SystemState::Reboot);
-
-		SendStatus(Sock, APIResults::API_OK);
+		ChangeSystemState(SystemState::Reboot);;
 
 		break;
 
@@ -52,15 +46,11 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 		RingBuzzer((BuzzerType)RecieveInt(Sock));
 
-		SendStatus(Sock, APIResults::API_OK);
-
 		break;
 
 	case APICommands::API_TARGET_SET_LED:
 
 		SetConsoleLED((ConsoleLEDColours)RecieveInt(Sock));
-
-		SendStatus(Sock, APIResults::API_OK);
 
 		break;
 
@@ -142,8 +132,8 @@ void Target::DoNotify(OrbisNetId Sock)
 {
 	auto Packet = new TargetNotifyPacket();
 
-	sceNetRecv(Sock, Packet, sizeof(TargetNotifyPacket), 0);
-
+	auto res = sceNetRecv(Sock, Packet, sizeof(TargetNotifyPacket), 0);
+	klog("%llX\n", res);
 	if (!strcmp(Packet->IconURI, ""))
 		Notify(Packet->Message);
 	else

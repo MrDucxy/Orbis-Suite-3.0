@@ -1,23 +1,12 @@
-﻿using OrbisNeighborHood.MVVM.ViewModel;
+﻿using OrbisLib2.Common.Database;
+using OrbisLib2.Targets;
+using OrbisNeighborHood.MVVM.ViewModel;
 using OrbisNeighborHood.MVVM.ViewModel.SubView;
-using OrbisSuite;
-using OrbisSuite.Common.Database;
 using SimpleUI.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OrbisNeighborHood.MVVM.View.SubView
 {
@@ -26,11 +15,10 @@ namespace OrbisNeighborHood.MVVM.View.SubView
     /// </summary>
     public partial class EditTargetView : UserControl
     {
-        private TargetInfo _thisTarget;
+        private SavedTarget _thisTarget;
         public EditTargetView()
         {
             InitializeComponent();
-            _thisTarget = new TargetInfo();
         }
 
         #region Target Info
@@ -97,62 +85,74 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         private void ShowTitleIdLabels_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _thisTarget.Details.ShowTitleId;
+            Switch.IsToggled = _thisTarget.Info.ShowTitleId;
 
         }
 
         private void ShowTitleIdLabels_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _thisTarget.Details.ShowTitleId = Switch.IsToggled;
+            _thisTarget.Info.ShowTitleId = Switch.IsToggled;
 
-            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
-            currentTarget.SetSettings(_thisTarget.Details.ShowTitleId, _thisTarget.Details.ShowDevkitPanel, _thisTarget.Details.ShowToolboxShortcut, _thisTarget.Details.ShowAppHome);
+            var currentTarget = TargetManager.GetTarget(_thisTarget.Name);
+            if(currentTarget != null)
+            {
+                currentTarget.SetSettings(_thisTarget.Info.ShowTitleId, _thisTarget.Info.ShowDevkitPanel, _thisTarget.Info.ShowToolboxShortcut, _thisTarget.Info.ShowAppHome);
+            }
         }
 
         private void ShowDevkitPanel_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _thisTarget.Details.ShowDevkitPanel;
+            Switch.IsToggled = _thisTarget.Info.ShowDevkitPanel;
         }
 
         private void ShowDevkitPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _thisTarget.Details.ShowDevkitPanel = Switch.IsToggled;
+            _thisTarget.Info.ShowDevkitPanel = Switch.IsToggled;
 
-            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
-            currentTarget.SetSettings(_thisTarget.Details.ShowTitleId, _thisTarget.Details.ShowDevkitPanel, _thisTarget.Details.ShowToolboxShortcut, _thisTarget.Details.ShowAppHome);
+            var currentTarget = TargetManager.GetTarget(_thisTarget.Name);
+            if (currentTarget != null)
+            {
+                currentTarget.SetSettings(_thisTarget.Info.ShowTitleId, _thisTarget.Info.ShowDevkitPanel, _thisTarget.Info.ShowToolboxShortcut, _thisTarget.Info.ShowAppHome);
+            }
         }
 
         private void ShowToolboxShortcut_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _thisTarget.Details.ShowToolboxShortcut;
+            Switch.IsToggled = _thisTarget.Info.ShowToolboxShortcut;
         }
 
         private void ShowToolboxShortcut_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _thisTarget.Details.ShowToolboxShortcut = Switch.IsToggled;
+            _thisTarget.Info.ShowToolboxShortcut = Switch.IsToggled;
 
-            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
-            currentTarget.SetSettings(_thisTarget.Details.ShowTitleId, _thisTarget.Details.ShowDevkitPanel, _thisTarget.Details.ShowToolboxShortcut, _thisTarget.Details.ShowAppHome);
+            var currentTarget = TargetManager.GetTarget(_thisTarget.Name);
+            if (currentTarget != null)
+            {
+                currentTarget.SetSettings(_thisTarget.Info.ShowTitleId, _thisTarget.Info.ShowDevkitPanel, _thisTarget.Info.ShowToolboxShortcut, _thisTarget.Info.ShowAppHome);
+            }
         }
 
         private void ShowAppHome_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _thisTarget.Details.ShowAppHome;
+            Switch.IsToggled = _thisTarget.Info.ShowAppHome;
         }
 
         private void ShowAppHome_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _thisTarget.Details.ShowAppHome = Switch.IsToggled;
+            _thisTarget.Info.ShowAppHome = Switch.IsToggled;
 
-            var currentTarget = OrbisLib.Instance.Targets[_thisTarget.Name];
-            currentTarget.SetSettings(_thisTarget.Details.ShowTitleId, _thisTarget.Details.ShowDevkitPanel, _thisTarget.Details.ShowToolboxShortcut, _thisTarget.Details.ShowAppHome);
+            var currentTarget = TargetManager.GetTarget(_thisTarget.Name);
+            if (currentTarget != null)
+            {
+                currentTarget.SetSettings(_thisTarget.Info.ShowTitleId, _thisTarget.Info.ShowDevkitPanel, _thisTarget.Info.ShowToolboxShortcut, _thisTarget.Info.ShowAppHome);
+            }
         }
 
         #endregion
@@ -220,7 +220,8 @@ namespace OrbisNeighborHood.MVVM.View.SubView
             var dc = ((EditTargetViewModel)DataContext);
             if (dc == null || dc.CurrentTarget == null)
             {
-                _thisTarget = new TargetInfo();
+                // Abort
+                MainViewModel.Instance.CurrentView = MainViewModel.Instance.DashboardHomeVM;
             }
             else
             {

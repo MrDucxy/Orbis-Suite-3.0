@@ -1,7 +1,7 @@
 ﻿using OrbisNeighborHood.Controls;
 using System.Windows.Controls;
-using OrbisSuite;
-using System;
+using OrbisLib2.General;
+using OrbisLib2.Targets;
 
 namespace OrbisNeighborHood.MVVM.View
 {
@@ -17,8 +17,8 @@ namespace OrbisNeighborHood.MVVM.View
             InitializeComponent();
             RefreshTargets();
 
-            OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
-            OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.DBTouched += Events_DBTouched;
+            Events.TargetStateChanged += Events_TargetStateChanged;
         }
 
         #endregion
@@ -46,15 +46,16 @@ namespace OrbisNeighborHood.MVVM.View
         {
             TargetList.Items.Clear();
 
-            if (OrbisLib.Instance.TargetManagement.TargetList == null)
-                return;
-
-            foreach (var Target in OrbisLib.Instance.TargetManagement.TargetList)
+            if (TargetManager.Targets.Count > 0)
             {
-                var targetView = new TargetPanel(Target.Name);
-                targetView.TargetChanged += Target_TargetChanged;
-                TargetList.Items.Add(targetView);
+                foreach (var Target in TargetManager.Targets)
+                {
+                    var targetView = new TargetPanel(Target.Name);
+                    targetView.TargetChanged += Target_TargetChanged;
+                    TargetList.Items.Add(targetView);
+                }
             }
+
             var newTargetView = new NewTargetPanel();
             newTargetView.TargetChanged += Target_TargetChanged;
             TargetList.Items.Add(newTargetView);

@@ -1,5 +1,4 @@
 ﻿using OrbisNeighborHood.Controls;
-using OrbisSuite;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -7,8 +6,9 @@ using System.Windows.Controls;
 using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Threading;
 using System.Linq;
+using OrbisLib2.Targets;
+using OrbisLib2.General;
 
 namespace OrbisNeighborHood.MVVM.View
 {
@@ -50,8 +50,8 @@ namespace OrbisNeighborHood.MVVM.View
         {
             InitializeComponent();
 
-            OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
-            OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.DBTouched += Events_DBTouched;
+            Events.TargetStateChanged += Events_TargetStateChanged;
 
             // Refresh the info about the current target.
             RefreshTargetInfo();
@@ -96,7 +96,7 @@ namespace OrbisNeighborHood.MVVM.View
 
         private void RefreshTargetInfo()
         {
-            var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
+            var CurrentTarget = TargetManager.SelectedTarget;
 
             if (CurrentTarget != null)
             {
@@ -112,7 +112,7 @@ namespace OrbisNeighborHood.MVVM.View
 
         public void AddApp(string appCachePath, AppInfo App)
         {
-            var currentTarget = OrbisLib.Instance.SelectedTarget;
+            var currentTarget = TargetManager.SelectedTarget;
 
             // Make sure the titleId format is correct. Helps weed out bad entries and folders.
             if (!Regex.IsMatch(App.TitleId, @"[a-zA-Z]{4}\d{5}"))
@@ -144,7 +144,7 @@ namespace OrbisNeighborHood.MVVM.View
             }
 
             // Cache icon0.png for app if we have not already.
-            if (!File.Exists(Path.Combine(currentAppPath, "icon0.png")) && !string.IsNullOrEmpty(App.MetaDataPath) && currentTarget.Info.Details.IsAvailable) //TODO: Maybe add a isFTPAvailable.
+            if (!File.Exists(Path.Combine(currentAppPath, "icon0.png")) && !string.IsNullOrEmpty(App.MetaDataPath) && currentTarget.Info.IsAvailable) //TODO: Maybe add a isFTPAvailable.
             {
                 currentTarget.FTP.DownloadFile($"{App.MetaDataPath}/icon0.png", Path.Combine(currentAppPath, "icon0.png"));
             }
@@ -173,11 +173,11 @@ namespace OrbisNeighborHood.MVVM.View
             Dispatcher.Invoke(() => AppList.Items.Clear());
 
             // Make sure we have a target we can pull the db from.
-            if (OrbisLib.Instance.TargetManagement.TargetList == null)
+            if (TargetManager.Targets.Count <= 0)
                 return;
 
             // Make sure the Target is online so we can pull the db.
-            var currentTarget = OrbisLib.Instance.SelectedTarget;
+            var currentTarget = TargetManager.SelectedTarget;
             if (currentTarget == null)
             {
                 Console.WriteLine("No current target we can use to load apps.");
@@ -206,12 +206,12 @@ namespace OrbisNeighborHood.MVVM.View
                 try
                 {
                     // Make sure we have a target we can pull the db from.
-                    if (OrbisLib.Instance.TargetManagement.TargetList == null)
+                    if (TargetManager.Targets.Count <= 0)
                         continue;
 
                     // Make sure the Target is online so we can pull the db.
-                    var currentTarget = OrbisLib.Instance.SelectedTarget;
-                    if (currentTarget == null || !currentTarget.Info.Details.IsAvailable)
+                    var currentTarget = TargetManager.SelectedTarget;
+                    if (currentTarget == null || !currentTarget.Info.IsAvailable)
                     {
                         continue;
                     }

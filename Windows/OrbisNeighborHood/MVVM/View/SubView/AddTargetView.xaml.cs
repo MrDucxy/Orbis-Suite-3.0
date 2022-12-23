@@ -1,23 +1,11 @@
-﻿using OrbisNeighborHood.MVVM.ViewModel;
+﻿using OrbisLib2.Common.Database;
+using OrbisNeighborHood.MVVM.ViewModel;
 using OrbisNeighborHood.MVVM.ViewModel.SubView;
-using OrbisSuite.Common.Database;
 using SimpleUI.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OrbisNeighborHood.MVVM.View.SubView
 {
@@ -26,7 +14,7 @@ namespace OrbisNeighborHood.MVVM.View.SubView
     /// </summary>
     public partial class AddTargetView : UserControl
     {
-        private TargetInfo _newTarget;
+        private SavedTarget _newTarget;
 
         #region Constructor
 
@@ -34,7 +22,7 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         {
             InitializeComponent();
 
-            _newTarget = new TargetInfo();
+            _newTarget = new SavedTarget();
         }
 
         #endregion
@@ -103,50 +91,50 @@ namespace OrbisNeighborHood.MVVM.View.SubView
         private void ShowTitleIdLabels_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Details.ShowTitleId;
+            Switch.IsToggled = _newTarget.Info.ShowTitleId;
 
         }
 
         private void ShowTitleIdLabels_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.Details.ShowTitleId = Switch.IsToggled;
+            _newTarget.Info.ShowTitleId = Switch.IsToggled;
         }
 
         private void ShowDevkitPanel_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Details.ShowDevkitPanel;
+            Switch.IsToggled = _newTarget.Info.ShowDevkitPanel;
         }
 
         private void ShowDevkitPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.Details.ShowDevkitPanel = Switch.IsToggled;
+            _newTarget.Info.ShowDevkitPanel = Switch.IsToggled;
         }
 
         private void ShowToolboxShortcut_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Details.ShowToolboxShortcut;
+            Switch.IsToggled = _newTarget.Info.ShowToolboxShortcut;
         }
 
         private void ShowToolboxShortcut_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.Details.ShowToolboxShortcut = Switch.IsToggled;
+            _newTarget.Info.ShowToolboxShortcut = Switch.IsToggled;
         }
 
         private void ShowAppHome_Loaded(object sender, RoutedEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Details.ShowAppHome;
+            Switch.IsToggled = _newTarget.Info.ShowAppHome;
         }
 
         private void ShowAppHome_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
-            _newTarget.Details.ShowAppHome = Switch.IsToggled;
+            _newTarget.Info.ShowAppHome = Switch.IsToggled;
         }
 
         #endregion

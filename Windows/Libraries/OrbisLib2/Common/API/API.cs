@@ -12,7 +12,7 @@ namespace OrbisLib2.Common.API
         /// </summary>
         /// <param name="IPAddress">IP Address of the remote target.</param>
         /// <param name="Port">The port of the remote target.</param>
-        /// <param name="TimeOut">The time we should wait before timing out.</param>
+        /// <param name="TimeOut">The time we should wait before timing out represented as seconds.</param>
         /// <param name="Sock">The socket created when connecting.</param>
         /// <returns>Returns true if successful.</returns>
         private static bool Connect(string IPAddress, int Port, int TimeOut, out Socket Sock)
@@ -26,7 +26,7 @@ namespace OrbisLib2.Common.API
         /// Makes an API call to the remote target.
         /// </summary>
         /// <param name="DesiredTarget">The desired target to recieve the command.</param>
-        /// <param name="TimeOut">The time the socket should wait before timing out.</param>
+        /// <param name="TimeOut">The time the socket should wait before timing out represented as seconds.</param>
         /// <param name="Command">The command to be run.</param>
         /// <param name="AdditionalCommunications">Optional lambda to send/recv additional data.</param>
         /// <returns>Returns result of the communications with the API.</returns>
@@ -40,10 +40,7 @@ namespace OrbisLib2.Common.API
             if (Connect(DesiredTarget.IPAddress, Settings.CreateInstance().APIPort, TimeOut, out Socket Sock))
             {
                 // Send Inital Packet.
-                Sock.Send(Helper.StructToBytes(new APIPacket() { PacketVersion = Config.PacketVersion, Command = Command }));
-
-                // Get API Response.
-                var result = (APIResults)Sock.RecvInt32();
+                var result = SendNextPacket(Sock, new APIPacket() { PacketVersion = Config.PacketVersion, Command = Command });
 
                 // Call lambda for additional calls.
                 if (result == APIResults.API_OK && AdditionalCommunications != null)

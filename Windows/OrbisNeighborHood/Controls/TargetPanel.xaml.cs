@@ -1,24 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using OrbisNeighborHood.MVVM.ViewModel;
-using OrbisSuite;
-using OrbisSuite.Common.Database;
 using SimpleUI.Controls;
+using OrbisLib2.Common.Database.Types;
+using OrbisLib2.Common.API;
+using OrbisLib2.Targets;
+using OrbisLib2.Common.Database;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -36,24 +30,31 @@ namespace OrbisNeighborHood.Controls
         {
             InitializeComponent();
 
-            _thisTarget = OrbisLib.Instance.Targets[TargetName];
-            _thisTargetInfo = _thisTarget.Info;
+            _thisTarget = TargetManager.GetTarget(TargetName);
+            if(_thisTarget != null )
+            {
+                _thisTargetInfo = _thisTarget.Info;
 
-            this.TargetName = _thisTarget.Info.Name;
-            TargetStatus = _thisTarget.Info.Details.Status;
-            ConsoleModel = _thisTarget.Info.Details.ModelType;
-            IsDefault = _thisTarget.Info.IsDefault;
-            FirmwareVersion = _thisTarget.Info.Details.SoftwareVersion;
-            SDKVersion = _thisTarget.Info.Details.SDKVersion;
-            IPAddress = _thisTarget.Info.IPAddress;
-            ConsoleName = _thisTarget.Info.Details.ConsoleName;
-            PayloadPort = _thisTarget.Info.PayloadPort.ToString();
+                this.TargetName = _thisTarget.Name;
+                TargetStatus = _thisTarget.Info.Status;
+                ConsoleModel = _thisTarget.Info.ModelType;
+                IsDefault = _thisTarget.IsDefault;
+                FirmwareVersion = _thisTarget.Info.SoftwareVersion;
+                SDKVersion = _thisTarget.Info.SDKVersion;
+                IPAddress = _thisTarget.IPAddress;
+                ConsoleName = _thisTarget.Info.ConsoleName;
+                PayloadPort = _thisTarget.PayloadPort.ToString();
 
-            LocateTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
-            SendPayload.IsEnabled = _thisTarget.Info.Details.IsAvailable;
-            RestartTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
-            ShutdownTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
-            SuspendTarget.IsEnabled = _thisTarget.Info.Details.IsAPIAvailable;
+                LocateTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+                SendPayload.IsEnabled = _thisTarget.Info.IsAvailable;
+                RestartTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+                ShutdownTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+                SuspendTarget.IsEnabled = _thisTarget.Info.IsAPIAvailable;
+            }
+            else
+            {
+                throw new Exception("TargetPanel(): Target not found when it should have been!");
+            }    
         }
 
         #region Properties
@@ -211,7 +212,7 @@ namespace OrbisNeighborHood.Controls
             var result = SimpleMessageBox.ShowWarning(Window.GetWindow(this), "Are you sure you want to delete this target?", "Delete this Target?", SimpleUI.SimpleMessageBoxButton.YesNo);
             if(result == SimpleUI.SimpleMessageBoxResult.Yes)
             {
-                _thisTargetInfo.Remove();
+                TargetManager.DeleteTarget(_thisTarget.Name);
                 TargetChanged?.Invoke(this, e);
             }  
         }
@@ -222,7 +223,7 @@ namespace OrbisNeighborHood.Controls
             {
                 var editTargetViewModel = MainViewModel.Instance.EditTargetVM;
                 editTargetViewModel.TargetChanged += EditTargetVM_TargetChanged;
-                editTargetViewModel.CurrentTarget = _thisTargetInfo.Clone();
+                editTargetViewModel.CurrentTarget = _thisTarget.SavedTarget.Clone();
                 editTargetViewModel.CallingVM = MainViewModel.Instance.TargetVM;
                 MainViewModel.Instance.CurrentView = editTargetViewModel;
             }
@@ -235,17 +236,18 @@ namespace OrbisNeighborHood.Controls
 
         private void DefaultTargetElement_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!_thisTargetInfo.IsDefault)
+            var savedTarget = _thisTarget.SavedTarget;
+            if (!savedTarget.IsDefault)
             {
-                _thisTargetInfo.IsDefault = true;
-                _thisTargetInfo.Save();
+                savedTarget.IsDefault = true;
+                savedTarget.Save();
                 TargetChanged?.Invoke(this, e);
             }
         }
 
         private void LocateTarget_Click(object sender, RoutedEventArgs e)
         {
-            _thisTarget.Buzzer(OrbisSuite.Common.BuzzerType.RingThree);
+            _thisTarget.Buzzer(BuzzerType.RingThree);
         }
 
         private void SendPayload_Click(object sender, RoutedEventArgs e)

@@ -1,21 +1,14 @@
-﻿using OrbisSuite;
-using OrbisSuite.Common.Database;
+﻿using OrbisLib2.Common.Database.Types;
+using OrbisLib2.General;
+using OrbisLib2.Targets;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -28,8 +21,8 @@ namespace OrbisNeighborHood.Controls
         {
             InitializeComponent();
 
-            OrbisLib.Instance.Events.DBTouched += Events_DBTouched;
-            OrbisLib.Instance.Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.DBTouched += Events_DBTouched;
+            Events.TargetStateChanged += Events_TargetStateChanged;
             RefreshTarget();
         }
 
@@ -45,11 +38,11 @@ namespace OrbisNeighborHood.Controls
 
         private void RefreshTarget()
         {
-            var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
+            var CurrentTarget = TargetManager.SelectedTarget;
 
             if (CurrentTarget != null)
             {
-                switch (CurrentTarget.Details.Status)
+                switch (CurrentTarget.Info.Status)
                 {
                     case TargetStatusType.Offline:
                         CurrentTargetState.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
@@ -74,7 +67,7 @@ namespace OrbisNeighborHood.Controls
 
                 CurrentTargetName.Text = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
 
-                if (CurrentTarget.Details.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Details.CurrentTitleID, @"CUSA\d{5}"))
+                if (CurrentTarget.Info.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Info.CurrentTitleID, @"CUSA\d{5}"))
                 {
                     CurrentTargetTitleName.Text = "Unknown Title";
                     CurrentTargetTitleId.Text = "-";
@@ -82,7 +75,7 @@ namespace OrbisNeighborHood.Controls
                 }
                 else
                 {
-                    var Title = new TMDB(CurrentTarget.Details.CurrentTitleID);
+                    var Title = new TMDB(CurrentTarget.Info.CurrentTitleID);
                     Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
                     CurrentTargetTitleName.Text = Title.Names.First();
                     CurrentTargetTitleId.Text = Title.NPTitleID;
@@ -94,11 +87,11 @@ namespace OrbisNeighborHood.Controls
 
         private void CurrentTargetTitleImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var CurrentTarget = OrbisLib.Instance.SelectedTarget.Info;
+            var CurrentTarget = TargetManager.SelectedTarget;
 
-            if (CurrentTarget != null && CurrentTarget.Details.CurrentTitleID != null && Regex.IsMatch(CurrentTarget.Details.CurrentTitleID, @"CUSA\d{5}"))
+            if (CurrentTarget != null && CurrentTarget.Info.CurrentTitleID != null && Regex.IsMatch(CurrentTarget.Info.CurrentTitleID, @"CUSA\d{5}"))
             {
-                var Title = new TMDB(CurrentTarget.Details.CurrentTitleID);
+                var Title = new TMDB(CurrentTarget.Info.CurrentTitleID);
                 var url = $"https://store.playstation.com/product/{Title.ContentID}/";
 
                 System.Diagnostics.Process.Start(new ProcessStartInfo

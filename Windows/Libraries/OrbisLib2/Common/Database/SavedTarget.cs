@@ -105,6 +105,10 @@ namespace OrbisLib2.Common.Database
             return (result > 0);
         }
 
+        /// <summary>
+        /// Duplicates this class to a new instance.
+        /// </summary>
+        /// <returns>Returns the new instance.</returns>
         public SavedTarget Clone()
         {
             return (SavedTarget)this.MemberwiseClone();

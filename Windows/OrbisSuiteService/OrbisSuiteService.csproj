@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>annotations</Nullable>
     <ApplicationIcon>OrbisTaskbarApp.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -14,10 +14,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+    <PackageReference Include="TinyIpc" Version="4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\OrbisLib\OrbisLib.csproj" />
+    <ProjectReference Include="..\Libraries\OrbisLib2\OrbisLib2.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

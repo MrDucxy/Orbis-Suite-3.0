@@ -12,6 +12,7 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
     <PackageReference Include="System.Json" Version="4.7.1" />
+    <PackageReference Include="TinyIpc" Version="4.1.1" />
   </ItemGroup>
 
 </Project>

@@ -173,7 +173,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\OrbisLib\OrbisLib.csproj" />
+    <ProjectReference Include="..\Libraries\OrbisLib2\OrbisLib2.csproj" />
   </ItemGroup>
 
   <ItemGroup>

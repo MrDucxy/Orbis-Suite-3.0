@@ -23,7 +23,7 @@ namespace OrbisLib2.Targets
         {
             var AppList = new List<AppInfo>();
 
-            var result = API.SendCommand(Target, 5000, APICommands.API_APPS_GET_LIST, (Socket Sock, APIResults Result) =>
+            var result = API.SendCommand(Target, 5, APICommands.API_APPS_GET_LIST, (Socket Sock, APIResults Result) =>
             {
                 // Get the number of apps installed.
                 int Count = Sock.RecvInt32();
@@ -71,7 +71,7 @@ namespace OrbisLib2.Targets
             }
 
             var resultBuffer = new byte[200];
-            var result = API.SendCommand(Target, 5000, APICommands.API_APPS_GET_INFO_STR, (Socket Sock, APIResults Result) => 
+            var result = API.SendCommand(Target, 5, APICommands.API_APPS_GET_INFO_STR, (Socket Sock, APIResults Result) => 
             {
                 // Send the titleId of the app.
                 Sock.Send(Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray());
@@ -94,7 +94,7 @@ namespace OrbisLib2.Targets
             }
 
             AppState result = AppState.STATE_ERROR;
-            API.SendCommand(Target, 5000, APICommands.API_APPS_STATUS, (Socket Sock, APIResults Result) => 
+            API.SendCommand(Target, 5, APICommands.API_APPS_STATUS, (Socket Sock, APIResults Result) => 
             {
                 // Send the titleId of the app.
                 var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
@@ -116,7 +116,7 @@ namespace OrbisLib2.Targets
             }
 
             int result = 0;
-            API.SendCommand(Target, 5000, APICommands.APP_START, (Socket Sock, APIResults Result) => 
+            API.SendCommand(Target, 5, APICommands.API_APPS_START, (Socket Sock, APIResults Result) => 
             {
                 // Send the titleId of the app.
                 var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
@@ -138,7 +138,7 @@ namespace OrbisLib2.Targets
             }
 
             int result = 0;
-            API.SendCommand(Target, 5000, APICommands.API_APPS_STOP, (Socket Sock, APIResults Result) =>
+            API.SendCommand(Target, 5, APICommands.API_APPS_STOP, (Socket Sock, APIResults Result) =>
             {
                 // Send the titleId of the app.
                 var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
@@ -160,7 +160,7 @@ namespace OrbisLib2.Targets
             }
 
             int result = 0;
-            API.SendCommand(Target, 5000, APICommands.API_APPS_SUSPEND, (Socket Sock, APIResults Result) =>
+            API.SendCommand(Target, 5, APICommands.API_APPS_SUSPEND, (Socket Sock, APIResults Result) =>
             {
                 // Send the titleId of the app.
                 var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
@@ -182,7 +182,7 @@ namespace OrbisLib2.Targets
             }
 
             int result = 0;
-            API.SendCommand(Target, 5000, APICommands.API_APPS_RESUME, (Socket Sock, APIResults Result) =>
+            API.SendCommand(Target, 5, APICommands.API_APPS_RESUME, (Socket Sock, APIResults Result) =>
             {
                 // Send the titleId of the app.
                 var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();

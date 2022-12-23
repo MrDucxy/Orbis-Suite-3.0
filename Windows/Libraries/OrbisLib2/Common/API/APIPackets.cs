@@ -125,7 +125,7 @@ namespace OrbisLib2.Common.API
         API_ERROR_DEBUG_TO_ATTACHED,
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi, Size = 40), Serializable]
+    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi, Size = 8), Serializable]
     public struct APIPacket
     {
         public int PacketVersion;
@@ -310,7 +310,7 @@ namespace OrbisLib2.Common.API
         public MemoryInfo VRam;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential, Pack = 4, Size = 2048, CharSet = CharSet.Ansi)]
     public struct TargetNotifyPacket
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]

@@ -1,4 +1,4 @@
-﻿using OrbisSuite.Common;
+﻿using OrbisLib2.Common;
 
 namespace OrbisSuiteService.Service
 {
