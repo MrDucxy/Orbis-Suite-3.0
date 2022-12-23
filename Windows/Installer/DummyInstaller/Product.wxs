@@ -31,7 +31,7 @@
 		
 		<!--Define icons-->
 		<Icon Id="OrbisTaskbarApp.ico" SourceFile="$(var.SolutionDir)Assets\OrbisTaskbarApp\OrbisTaskbarApp.ico"/>
-		<Icon Id="OrbisModuleManager.ico" SourceFile="$(var.SolutionDir)Assets\OrbisModuleManager\OrbisModuleManager.ico"/>
+		<Icon Id="OrbisLibraryManager.ico" SourceFile="$(var.SolutionDir)Assets\OrbisLibraryManager\OrbisLibraryManager.ico"/>
 		<Icon Id="OrbisTargetSettings.ico" SourceFile="$(var.SolutionDir)Assets\OrbisTargetSettings\OrbisTargetSettings.ico"/>
 		<Icon Id="OrbisNeighborhood.ico" SourceFile="$(var.SolutionDir)Assets\Neighborhood\OrbisNeighborhood.ico"/>
 		<Icon Id="OrbisConsoleOutput.ico" SourceFile="$(var.SolutionDir)Assets\OrbisConsoleOutput\OrbisConsoleOutput.ico"/>
@@ -76,7 +76,7 @@
 			<Component Id="ProgramFiles" Guid="{0FE299B0-EE20-4E20-AEA7-50B138D46958}" Directory="INSTALLFOLDER">
 				
 				<!-- Add Reference dll -->
-				<File Id="OrbisLib" Name="OrbisLib.dll" Source="$(var.SolutionDir)Windows\Executables\" />
+				<File Id="OrbisLib" Name="OrbisLib2.dll" Source="$(var.SolutionDir)Windows\Executables\" />
 			
 				<!-- Add Package File -->
 				<File Id="PackageFile" Name="IV0000-ORBS00000_00-ORBISSUITE000000.pkg" Source="$(var.SolutionDir)Windows\Executables\" />
