@@ -1,25 +1,7 @@
 #include "Common.h"
+#include "Detour.h"
 
 LocalSocketListener* LocalListener = nullptr;
-jailbreak_backup JailBackup;
-
-void SendExtProcessInfo(OrbisNetId Sock)
-{
-	ExtProccesInfoPacket packet;
-
-	// Get info using GoldHEN syscall.
-	proc_info info;
-	sys_sdk_proc_info(&info);
-
-	// Populate our packet.
-	strncpy(packet.Path, info.path, sizeof(packet.Path));
-	strncpy(packet.TitleId, info.titleid, sizeof(packet.TitleId));
-	strncpy(packet.ContentId, info.contentid, sizeof(packet.ContentId));
-	strncpy(packet.Version, info.version, sizeof(packet.Version));
-
-	// Ship it.
-	sceNetSend(Sock, (void*)&packet, sizeof(ExtProccesInfoPacket), 0);
-}
 
 void SendLibraryList(OrbisNetId Sock)
 {
@@ -62,21 +44,17 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 			klog("Invalid Command enum %i\n", Command);
 			break;
 
-		case GIPC_INFO:
-			SendExtProcessInfo(Sock); // Obsolite with app.db
-			break;
-
 		case GIPC_LIB_LIST:
 			SendLibraryList(Sock); // Really Only needed for the path.
 			break;
 
 		case GIPC_JAILBREAK:
-			sys_sdk_jailbreak(&JailBackup); // Could just use libjbc
+			//sys_sdk_jailbreak(&JailBackup); // Could just use libjbc
 			SockSendInt(Sock, GIPC_OK);
 			break;
 
 		case GIPC_JAIL:
-			sys_sdk_unjailbreak(&JailBackup); // Could just use libjbc
+			//sys_sdk_unjailbreak(&JailBackup); // Could just use libjbc
 			SockSendInt(Sock, GIPC_OK);
 			break;
 

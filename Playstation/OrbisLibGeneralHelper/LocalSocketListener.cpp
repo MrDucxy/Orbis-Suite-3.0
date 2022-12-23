@@ -105,8 +105,6 @@ void* LocalSocketListener::DoWork()
 Cleanup:
 	klog("Listener Thread Exiting!\n");
 
-	// Clean up.
-	this->ThreadCleanedUp = true;
 
 	// Clean up.
 	sceNetSocketClose(this->Socket);
@@ -127,10 +125,10 @@ LocalSocketListener::LocalSocketListener(void(*ClientCallBack)(void* tdParam, Or
 	this->ClientCallBack = ClientCallBack;
 	this->tdParam = tdParam;
 	this->ServerRunning = true;
-	this->ThreadCleanedUp = false;
 	strcpy(this->ServerAddress, ServerAddress);
 
 	scePthreadCreate(&ListenThreadHandle, NULL, &ListenThread, this, "Local Listen Thread");
+	scePthreadDetach(*ListenThreadHandle);
 }
 
 LocalSocketListener::~LocalSocketListener()
@@ -138,7 +136,7 @@ LocalSocketListener::~LocalSocketListener()
 	klog("~Socket Listener.\n");
 
 	this->ServerRunning = false;
-	while (!this->ThreadCleanedUp) { sceKernelUsleep(10); }
+	scePthreadJoin(*ListenThreadHandle, nullptr);
 
 	klog("Destruction sucessful.\n");
 }

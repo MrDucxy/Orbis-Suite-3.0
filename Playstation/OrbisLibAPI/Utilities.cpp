@@ -4,6 +4,7 @@
 #pragma region Modules
 
 void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
+int (*_sceSysmoduleLoadModuleByNameInternal)(const char* name, int, int, int, int);
 
 bool LoadModules()
 {
@@ -19,6 +20,12 @@ bool LoadModules()
 	sceKernelDlsym(ModuleHandle, "sceSysmoduleLoadModuleInternal", (void**)&_sceSysmoduleLoadModuleInternal);
 	if (_sceSysmoduleLoadModuleInternal == nullptr) {
 		klog("Failed to load _sceSysmoduleLoadModuleInternal Import.\n");
+		return false;
+	}
+
+	sceKernelDlsym(ModuleHandle, "sceSysmoduleLoadModuleByNameInternal", (void**)&_sceSysmoduleLoadModuleByNameInternal);
+	if (_sceSysmoduleLoadModuleInternal == nullptr) {
+		klog("Failed to load _sceSysmoduleLoadModuleByNameInternal Import.\n");
 		return false;
 	}
 

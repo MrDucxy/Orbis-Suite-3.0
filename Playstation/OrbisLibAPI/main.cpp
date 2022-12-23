@@ -71,7 +71,7 @@ int main()
 	CopySflash();
 
 	// Set the Name of this process so it shows up as something other than eboot.bin.
-	jbc_set_proc_name("OrbisLibAPI");
+	sceKernelSetProcessName("OrbisLibAPI");
 
 	klog("\n%s\n\n", ORBISLIB_BUILDSTRING);
 

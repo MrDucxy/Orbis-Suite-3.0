@@ -20,7 +20,6 @@
 
 #include "../../Misc/General_IPC.h"
 #include "../../Misc/libjbc.h"
-#include "GoldHEN.h"
 #include "Utilities.h"
 #include "LocalSocketListener.h"
 

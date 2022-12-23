@@ -2,6 +2,8 @@
 
 // Modules.
 extern void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
+extern int (*_sceSysmoduleLoadModuleByNameInternal)(const char* name, int, int, int, int);
+
 bool LoadModules();
 
 // Misc

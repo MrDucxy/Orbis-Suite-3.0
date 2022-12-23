@@ -7,8 +7,6 @@ private:
 	OrbisNetId Socket;
 	/// Used to signal thread to shut down
 	bool ServerRunning;
-	/// Used to see when listen thread has closed.
-	bool ThreadCleanedUp;
 	char ServerAddress[0x100];
 
 	void* DoWork();
