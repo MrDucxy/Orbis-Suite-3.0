@@ -3,8 +3,39 @@
 #include "System_Monitor.h"
 #include "GamePad.h"
 #include "RemoteCaller.h"
+#include "LocalSocketListener.h"
+#include "../../Misc/ShellUI_IPC.h"
 
-RemoteCaller* CallInMonoThread = NULL;
+RemoteCaller* CallInMonoThread = nullptr;
+LocalSocketListener* LocalListener = nullptr;
+
+void ListenerClientThread(void* tdParam, OrbisNetId Sock)
+{
+	int Command = RecieveInt(Sock);
+	if (Command != -1)
+	{
+		switch (Command)
+		{
+		default:
+			klog("Invalid Command enum %i\n", Command);
+			break;
+
+		case SIPC_HANDLE:
+
+			break;
+
+		case SIPC_REFRESH_CONTENT_AREA:
+
+			CallInMonoThread->RemoteCall(UI::Utilities::ReloadItemList);
+
+			break;
+
+		case SIPC_SETTINGS_RW:
+
+			break;
+		}
+	}
+}
 
 void* InitThread(void* args)
 {
@@ -25,6 +56,7 @@ void* InitThread(void* args)
 
 	// API
 	CallInMonoThread = new RemoteCaller();
+	LocalListener = new LocalSocketListener(ListenerClientThread, nullptr, SHELL_IPC_ADDR);
 
 	Notify(ORBIS_TOOLBOX_NOTIFY);
 	
@@ -49,10 +81,11 @@ extern "C"
 		// Toolbox
 		Settings_Menu::Term();
 		System_Monitor::Term();
-		//Title_Menu::Term(); 0x83D1E4A78
+		//Title_Menu::Term();
 
 		// API
 		delete CallInMonoThread;
+		delete LocalListener;
 
 		sceKernelSleep(4);
 

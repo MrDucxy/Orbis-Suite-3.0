@@ -103,6 +103,9 @@
     <ClCompile Include="AppDatabase.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
+    <ClCompile Include="ShellUIIPC.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="AppDatabase.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ShellUIIPC.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

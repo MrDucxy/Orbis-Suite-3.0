@@ -62,10 +62,22 @@ namespace OrbisLib2.Common.Database
         public string FactorySoftwareVersion { get; set; } = "-";
 
         /// <summary>
+        /// The process index of the current big app.
+        /// </summary>
+        [NotNull]
+        public int BigAppPid { get; set; } = -1;
+
+        /// <summary>
+        /// The process name of the current big app.
+        /// </summary>
+        [NotNull]
+        public string BigAppProcessName { get; set; } = "-";
+
+        /// <summary>
         /// The current big game titleId running on the target.
         /// </summary>
         [NotNull]
-        public string CurrentTitleID { get; set; } = "-";
+        public string BigAppTitleID { get; set; } = "-";
 
         /// <summary>
         /// The name of the target as set on the target.

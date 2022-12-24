@@ -1,28 +1,15 @@
 #pragma once 
 
 #define SHELL_IPC_ADDR "/system_tmp/ShellIPC"
-#define GENERAL_IPC_PORT 2023
 
 enum ShellIPCCommands
 {
-	SIPC_HANDLE,
-	SIPC_TARGET_INFO,
+	// Returns the current handle.
+	SIPC_HANDLE = 1,
+	// Refreshes the app list on the Home menu.
+	SIPC_REFRESH_CONTENT_AREA,
+	// Sets/Gets the Orbis Toolbox settings bellow.
 	SIPC_SETTINGS_RW,
-};
-
-struct ShellUI_TargetInfoPacket
-{
-	char MACAdressLAN[18];
-	char MACAdressWIFI[18];
-
-	uint64_t FreeSpace;
-	uint64_t TotalSpace;
-
-	int ThreadCount;
-	float AverageCPUUsage;
-	int BusyCore;
-	MemoryInfo Ram;
-	MemoryInfo VRam;
 };
 
 struct ShellUI_SettingsPacket

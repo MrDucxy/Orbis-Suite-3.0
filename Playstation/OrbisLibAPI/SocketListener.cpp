@@ -96,10 +96,6 @@ void* SocketListener::DoWork()
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
 
-				int sock_timeout = 3000000;
-				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_SNDTIMEO, &sock_timeout, sizeof(sock_timeout));
-				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_RCVTIMEO, &sock_timeout, sizeof(sock_timeout));
-
 				// Set up thread params.
 				ClientThreadParams* Params = new ClientThreadParams();
 				Params->socketListener = this;
@@ -107,7 +103,7 @@ void* SocketListener::DoWork()
 
 				// Create Thread to handle connection.
 				OrbisPthread* Thread;
-				int res = scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
+				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
 				scePthreadDetach(*Thread);
 
 				// Reset ClientSocket.

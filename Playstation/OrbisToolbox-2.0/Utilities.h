@@ -22,4 +22,6 @@ void Notify_Custom(const char* IconURI, const char* MessageFMT, ...);
 
 void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total);
 
-char* GetBigAppTitleId();
+bool SockSendInt(OrbisNetId Sock, int val);
+bool SockRecvInt(OrbisNetId Sock, int* val);
+int RecieveInt(OrbisNetId Sock);

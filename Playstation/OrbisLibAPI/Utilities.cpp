@@ -4,15 +4,14 @@
 #pragma region Modules
 
 void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
-int (*_sceSysmoduleLoadModuleByNameInternal)(const char* name, int, int, int, int);
+int(*sceAppInstUtilInitialize)();
+int(*sceAppInstUtilAppUnInstall)(const char* TitleId);
 
 bool LoadModules()
 {
 	//Load the sysmodule library and import for sceSysmoduleLoadModuleInternal for some reason wouldnt auto import.
-	char Buffer[0x200];
-	sprintf(Buffer, "/%s/common/lib/libSceSysmodule.sprx", sceKernelGetFsSandboxRandomWord());
-	int ModuleHandle = sceKernelLoadStartModule(Buffer, 0, nullptr, 0, nullptr, nullptr);
-	if (ModuleHandle == 0) {
+	int ModuleHandle = sceKernelLoadStartModule("/system/common/lib/libSceSysmodule.sprx", 0, nullptr, 0, nullptr, nullptr);
+	if (ModuleHandle < 0) {
 		klog("Failed to load libSceSysmodule Library.\n");
 		return false;
 	}
@@ -23,13 +22,8 @@ bool LoadModules()
 		return false;
 	}
 
-	sceKernelDlsym(ModuleHandle, "sceSysmoduleLoadModuleByNameInternal", (void**)&_sceSysmoduleLoadModuleByNameInternal);
-	if (_sceSysmoduleLoadModuleInternal == nullptr) {
-		klog("Failed to load _sceSysmoduleLoadModuleByNameInternal Import.\n");
-		return false;
-	}
-
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE);
+	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_APPINSTUTIL);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_USER_SERVICE);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYS_CORE);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PAD);
@@ -38,6 +32,24 @@ bool LoadModules()
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_HTTP);
 	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_BGFT);
 	_sceSysmoduleLoadModuleInternal(0xA4);
+
+	int libSceAppInstUtil = sceKernelLoadStartModule("/system/common/lib/libSceAppInstUtil.sprx", 0, nullptr, 0, nullptr, nullptr);
+	if (libSceAppInstUtil < 0) {
+		klog("Failed to load libSceAppInstUtil Library.\n");
+		return false;
+	}
+
+	sceKernelDlsym(libSceAppInstUtil, "sceAppInstUtilInitialize", (void**)&sceAppInstUtilInitialize);
+	if (sceAppInstUtilInitialize == nullptr) {
+		klog("Failed to load sceAppInstUtilInitialize Import.\n");
+		return false;
+	}
+
+	sceKernelDlsym(libSceAppInstUtil, "sceAppInstUtilAppUnInstall", (void**)&sceAppInstUtilAppUnInstall);
+	if (sceAppInstUtilAppUnInstall == nullptr) {
+		klog("Failed to load sceAppInstUtilAppUnInstall Import.\n");
+		return false;
+	}
 
 	return true;
 }

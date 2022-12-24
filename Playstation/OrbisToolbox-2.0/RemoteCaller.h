@@ -32,5 +32,23 @@ public:
 		return result;
 	}
 
+	template<class Func, typename... Args>
+	void RemoteCall(Func method, Args... args)
+	{
+		bool isWaiting = true;
+		auto internalMethod = std::bind(method, args...); // Bind our call to pass into the lambda easier.
+
+		// Set up lambda for function call.
+		auto isWaitingPtr = &isWaiting;
+		CallList.push([internalMethod, isWaitingPtr]() -> void
+			{
+				internalMethod();
+				*isWaitingPtr = false;
+			});
+
+		// Wait while the call is happening.
+		while (isWaiting) { sceKernelUsleep(10); }
+	}
+
 	void DoRemoteCalls();
 };

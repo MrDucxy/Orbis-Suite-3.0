@@ -1,8 +1,10 @@
 #include "Common.h"
 #include "Apps.h"
+#include "AppDatabase.h"
+#include "ShellUIIPC.h"
+
 #include <orbis/SysCore.h>
 #include <orbis/SystemService.h>
-#include "AppDatabase.h"
 
 void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 {
@@ -59,6 +61,24 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	case API_APPS_RESUME:
 
 		ResumeApp(Sock, titleId);
+
+		break;
+
+	case API_APPS_DELETE:
+
+		DeleteApp(Sock, titleId);
+
+		break;
+
+	case API_APPS_SET_VISIBILITY:
+
+		SetVisibility(Sock, titleId);
+
+		break;
+
+	case API_APPS_GET_VISIBILITY:
+
+		GetVisibility(Sock, titleId);
 
 		break;
 	}
@@ -206,7 +226,7 @@ void Apps::ResumeApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
 
-	if (appId > 0 && LncUtil::sceLncUtilResumeApp(appId, 0) == 0)
+	if (appId > 0 && LncUtil::sceLncUtilResumeApp(appId, 0) == 0 && sceApplicationSetApplicationFocus(appId) == 0)
 	{
 		SockSendInt(Sock, 1);
 	}
@@ -214,6 +234,35 @@ void Apps::ResumeApp(OrbisNetId Sock, const char* TitleId)
 	{
 		SockSendInt(Sock, 0);
 	}
+}
+
+void Apps::DeleteApp(OrbisNetId Sock, const char* TitleId)
+{
+	auto result = sceAppInstUtilAppUnInstall(TitleId);
+
+	SockSendInt(Sock, (result == 0) ? 1 : 0);
+}
+
+void Apps::SetVisibility(OrbisNetId Sock, const char* TitleId)
+{
+	auto value = RecieveInt(Sock);
+
+	if (value >= AppDatabase::VisibilityType::VT_NONE && value <= AppDatabase::VisibilityType::VT_INVISIBLE)
+	{
+		auto result = AppDatabase::SetVisibility(TitleId, (AppDatabase::VisibilityType)value);
+
+		ShellUIIPC::RefreshContentArea();
+
+		SockSendInt(Sock, result ? 1 : 0);
+	}
+
+	SockSendInt(Sock, 0);
+}
+
+void Apps::GetVisibility(OrbisNetId Sock, const char* TitleId)
+{
+	auto visibility = AppDatabase::GetVisibility(TitleId);
+	SockSendInt(Sock, visibility);
 }
 
 Apps::Apps()

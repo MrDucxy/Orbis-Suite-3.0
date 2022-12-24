@@ -123,9 +123,6 @@
     <ClInclude Include="UI.h">
       <Filter>Header Files\Toolbox\UI</Filter>
     </ClInclude>
-    <ClInclude Include="SocketListener.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="RemoteCaller.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
@@ -150,15 +147,6 @@
     <ClInclude Include="SysfileUtilWrapper.h">
       <Filter>Header Files\Utilities\Mono</Filter>
     </ClInclude>
-    <ClInclude Include="Flash.h">
-      <Filter>Header Files\Utilities\PS Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Registry.h">
-      <Filter>Header Files\Utilities\PS Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>Header Files\Utilities\PS Utils</Filter>
-    </ClInclude>
     <ClInclude Include="System_Monitor.h">
       <Filter>Header Files\Utilities\PS Utils</Filter>
     </ClInclude>
@@ -167,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="hde64.h">
       <Filter>Header Files\Utilities\Memory Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalSocketListener.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,9 +206,6 @@
     <ClCompile Include="Widget.cpp">
       <Filter>Source Files\Toolbox\UI\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="SocketListener.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="RemoteCaller.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
@@ -242,20 +230,14 @@
     <ClCompile Include="Patcher.cpp">
       <Filter>Source Files\Utilities\Memory Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Flash.cpp">
-      <Filter>Source Files\Utilities\PS Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Registry.cpp">
-      <Filter>Source Files\Utilities\PS Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="System.cpp">
-      <Filter>Source Files\Utilities\PS Utils</Filter>
-    </ClCompile>
     <ClCompile Include="System_Monitor.cpp">
       <Filter>Source Files\Utilities\PS Utils</Filter>
     </ClCompile>
     <ClCompile Include="hde64.cpp">
       <Filter>Source Files\Utilities\Memory Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalSocketListener.cpp">
+      <Filter>Source Files\Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

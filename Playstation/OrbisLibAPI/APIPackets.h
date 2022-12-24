@@ -28,6 +28,8 @@ enum APICommands
 	API_APPS_SUSPEND,
 	API_APPS_RESUME,
 	API_APPS_DELETE,
+	API_APPS_SET_VISIBILITY,
+	API_APPS_GET_VISIBILITY,
 
 	APP_END,
 	/* ############################## */
@@ -211,12 +213,19 @@ struct MemoryInfo
 	float Percentage;
 };
 
+struct CurrentBigApp
+{
+	int Pid;
+	char Name[32];
+	char TitleId[10];
+};
+
 struct TargetInfoPacket
 {
 	int SDKVersion;
 	int SoftwareVersion;
 	int FactorySoftwareVersion;
-	char CurrentTitleID[10];
+	CurrentBigApp BigApp;
 	char ConsoleName[100];
 	char MotherboardSerial[14];
 	char Serial[10];
@@ -232,9 +241,11 @@ struct TargetInfoPacket
 	int AttachedPid;
 	int ForegroundAccountId;
 
+	// Storage Stats
 	uint64_t FreeSpace;
 	uint64_t TotalSpace;
 
+	// System Stats
 	int CPUTemp;
 	int SOCTemp;
 	int ThreadCount;

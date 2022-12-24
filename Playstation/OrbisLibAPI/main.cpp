@@ -9,6 +9,14 @@
 
 int main()
 {
+	// Jailbreak our current process.
+	if (!Jailbreak())
+	{
+		Notify("Failed to jailbreak Process...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
+
 	// Load internal system modules.
 	if (!LoadModules())
 	{
@@ -49,14 +57,6 @@ int main()
 		return 0;
 	}
 
-	// Jailbreak our current process.
-	if (!Jailbreak())
-	{
-		Notify("Failed to jailbreak Process...");
-		sceSystemServiceLoadExec("exit", 0);
-		return 0;
-	}
-
 	// TODO: Bug? This doesnt seem to work for some reason.
 	// Check GoldHEN SDK Version make sure we can run!
 	auto sdkVersion = sys_sdk_version();
@@ -80,6 +80,22 @@ int main()
 
 	// Init SysCoreUtils.
 	sceApplicationInitialize();
+
+	// Init App install utils.
+	sceAppInstUtilInitialize();
+
+#define LOADTOOLBOX
+#ifdef LOADTOOLBOX
+	auto handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
+	if (handle > 0) {
+		klog("Orbis Toolbox loaded! %d\n", handle);
+	}
+	else
+	{
+		klog("error: %d\n", handle);
+		Notify("Failed to load Orbis Toolbox!");
+	}
+#endif
 
 	// start up the API. NOTE: this is blocking.
 	API::Init();

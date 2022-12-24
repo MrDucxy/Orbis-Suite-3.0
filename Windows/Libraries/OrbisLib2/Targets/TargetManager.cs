@@ -134,7 +134,9 @@ namespace OrbisLib2.Targets
                 savedTarget.Info.SDKVersion = $"{(Packet.SDKVersion >> 24 & 0xFF).ToString("X1")}.{(Packet.SDKVersion >> 12 & 0xFFF).ToString("X3")}.{(Packet.SDKVersion & 0xFFF).ToString("X3")}";
                 savedTarget.Info.SoftwareVersion = $"{(Packet.SoftwareVersion >> 24 & 0xFF).ToString("X1")}.{(Packet.SoftwareVersion >> 16 & 0xFF).ToString("X2")}";
                 savedTarget.Info.FactorySoftwareVersion = $"{(Packet.FactorySoftwareVersion >> 24 & 0xFF).ToString("X1")}.{(Packet.FactorySoftwareVersion >> 12 & 0xFFF).ToString("X3")}.{(Packet.FactorySoftwareVersion & 0xFFF).ToString("X3")}";
-                savedTarget.Info.CurrentTitleID = Packet.CurrentTitleID;
+                savedTarget.Info.BigAppPid = Packet.BigApp.Pid;
+                savedTarget.Info.BigAppProcessName = Packet.BigApp.Name;
+                savedTarget.Info.BigAppTitleID = Packet.BigApp.TitleId;
                 savedTarget.Info.ConsoleName = Packet.ConsoleName;
                 savedTarget.Info.MotherboardSerial = Packet.MotherboardSerial;
                 savedTarget.Info.Serial = Packet.Serial;

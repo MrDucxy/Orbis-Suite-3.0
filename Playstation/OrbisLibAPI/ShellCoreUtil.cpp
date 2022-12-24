@@ -7,9 +7,7 @@ int(*ShellCoreUtil::_sceShellCoreUtilGetFreeSizeOfUserPartition)(uint64_t* free,
 int ShellCoreUtil::Init()
 {
 	// Load the prx or get its module handle.
-	char Buffer[0x200];
-	sprintf(Buffer, "/%s/common/lib/libSceSystemService.sprx", sceKernelGetFsSandboxRandomWord());
-	int libHandle = sceKernelLoadStartModule(Buffer, 0, nullptr, 0, nullptr, nullptr);
+	int libHandle = sceKernelLoadStartModule("/system/common/lib/libSceSystemService.sprx", 0, nullptr, 0, nullptr, nullptr);
 	if (libHandle == 0) {
 		klog("Failed to load libSceSystemService Library.\n");
 		return -1;

@@ -134,9 +134,25 @@ void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total)
 		*Total = _Total;
 }
 
-char* GetBigAppTitleId()
+bool SockSendInt(OrbisNetId Sock, int val)
 {
-	auto bigAppId = sceSystemServiceGetAppIdOfBigApp();
+	return !(sceNetSend(Sock, &val, sizeof(int), 0) < 0);
+}
 
-	return LncUtil::GetAppTitleId(bigAppId);
+bool SockRecvInt(OrbisNetId Sock, int* val)
+{
+	return !(sceNetRecv(Sock, val, sizeof(int), 0) < 0);
+}
+
+int RecieveInt(OrbisNetId Sock)
+{
+	int Int = 0;
+	if (sceNetRecv(Sock, &Int, sizeof(int), 0) < 0)
+	{
+		SockSendInt(Sock, 0);
+		return 0;
+	}
+
+	SockSendInt(Sock, 1);
+	return Int;
 }

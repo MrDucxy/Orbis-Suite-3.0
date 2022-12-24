@@ -127,7 +127,7 @@ bool AppDatabase::GetAppInfoString(const char* TitleId, char* Out, size_t OutSiz
 	}
 
 	if (res != SQLITE_DONE) {
-		printf("GetApps(): Res %d Error: %s\n", res, sqlite3_errmsg(db));
+		printf("GetAppInfoString(): Res %d Error: %s\n", res, sqlite3_errmsg(db));
 	}
 
 	// Release resources.
@@ -168,6 +168,58 @@ bool AppDatabase::SetVisibility(const char* TitleId, VisibilityType Visibility)
 	sqlite3_close(db);
 
 	return true;
+}
+
+AppDatabase::VisibilityType AppDatabase::GetVisibility(const char* TitleId)
+{
+	int res;
+
+	auto db = OpenDatabase();
+	if (db == nullptr)
+	{
+		return VisibilityType::VT_NONE;
+	}
+
+	// Get the current user id.
+	int ForegroundAccountId;
+	sceUserServiceGetForegroundUser(&ForegroundAccountId);
+
+	// build statement.
+	char query[0x200];
+	snprintf(query, sizeof(query), "SELECT * FROM tbl_appbrowse_0%i WHERE titleId='%s'", ForegroundAccountId, TitleId);
+
+	// Prepare statement.
+	sqlite3_stmt* stmt;
+	res = sqlite3_prepare(db, query, -1, &stmt, NULL);
+	if (res != SQLITE_OK)
+	{
+		klog("sqlite3_prepare(): Failed because %s\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return VisibilityType::VT_NONE;
+	}
+
+	res = sqlite3_step(stmt);
+
+	if (res == SQLITE_ROW)
+	{
+		auto result = (VisibilityType)sqlite3_column_int(stmt, 8);
+
+		// Release resources.
+		sqlite3_finalize(stmt);
+		sqlite3_close(db);
+
+		return result;
+	}
+
+	if (res != SQLITE_DONE) {
+		printf("GetAppInfoString(): Res %d Error: %s\n", res, sqlite3_errmsg(db));
+	}
+
+	// Release resources.
+	sqlite3_finalize(stmt);
+	sqlite3_close(db);
+
+	return VisibilityType::VT_NONE;
 }
 
 AppDatabase::AppDatabase()

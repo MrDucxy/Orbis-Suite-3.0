@@ -219,7 +219,7 @@ namespace OrbisNeighborHood.MVVM.View
                 RamUsage = $"{CurrentTarget.Info.RamUsage} MB";
                 VRamUsage = $"{CurrentTarget.Info.VRamUsage} MB";
 
-                if (CurrentTarget.Info.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Info.CurrentTitleID, @"CUSA\d{5}"))
+                if (CurrentTarget.Info.BigAppTitleID == null || !Regex.IsMatch(CurrentTarget.Info.BigAppTitleID, @"CUSA\d{5}"))
                 {
                     TitleName = "Unknown Title";
                     TitleId = "-";
@@ -228,11 +228,11 @@ namespace OrbisNeighborHood.MVVM.View
                 }
                 else
                 {
-                    var Title = new TMDB(CurrentTarget.Info.CurrentTitleID);
+                    var Title = new TMDB(CurrentTarget.Info.BigAppTitleID);
                     Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
                     TitleName = Title.Names.First();
                     TitleId = Title.NPTitleID;
-                    ProcessName = "-"; // TODO: In the future we will need to pull the processname(processId) for the current big app.
+                    ProcessName = $"{CurrentTarget.Info.BigAppProcessName} ({CurrentTarget.Info.BigAppPid})";
                     var test = Title.BGM;
                     TitleImage.Source = new BitmapImage(new Uri(Title.Icons.First()));
                 }

@@ -25,6 +25,8 @@ namespace OrbisLib2.Common.API
         API_APPS_SUSPEND,
         API_APPS_RESUME,
         API_APPS_DELETE,
+        API_APPS_SET_VISIBILITY,
+        API_APPS_GET_VISIBILITY,
 
         APP_END,
         /* ############################## */
@@ -239,8 +241,6 @@ namespace OrbisLib2.Common.API
         public int prot;
     }
 
-
-
     public enum ConsoleTypes
     {
         UNK,
@@ -268,13 +268,22 @@ namespace OrbisLib2.Common.API
     };
 
     [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi), Serializable]
+    public struct CurrentBigApp
+    {
+        public int Pid;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        public string Name;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string TitleId;
+    };
+
+    [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi), Serializable]
     public struct TargetInfoPacket
     {
         public int SDKVersion;
         public int SoftwareVersion;
         public int FactorySoftwareVersion;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
-        public string CurrentTitleID;
+        public CurrentBigApp BigApp;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 100)]
         public string ConsoleName;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]

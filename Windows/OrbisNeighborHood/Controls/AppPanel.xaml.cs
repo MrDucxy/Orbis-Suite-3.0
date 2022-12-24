@@ -2,12 +2,14 @@
 using OrbisLib2.General;
 using OrbisLib2.Targets;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using static OrbisLib2.Targets.Application;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -19,6 +21,7 @@ namespace OrbisNeighborHood.Controls
         public AppInfo App;
 
         private AppState AppState = AppState.STATE_NOT_RUNNING;
+        private VisibilityType Visible = VisibilityType.VT_NONE;
 
         public AppPanel(AppInfo App, string AppVersion)
         {
@@ -115,7 +118,8 @@ namespace OrbisNeighborHood.Controls
                 }
 
                 // App Visibility.
-                if (App.Visible == 0 || App.Visible == 2)
+                Visible = currentTarget.Application.GetVisibility(App.TitleId);
+                if (Visible == VisibilityType.VT_NONE || Visible == VisibilityType.VT_INVISIBLE)
                 {
                     Dispatcher.Invoke(() => Visibility.ToolTip = $"Show {App.TitleName} from Home Menu.");
                 }
@@ -164,7 +168,24 @@ namespace OrbisNeighborHood.Controls
 
         private void Visibility_Click(object sender, RoutedEventArgs e)
         {
-
+            Task.Run(() =>
+            {
+                var currentTarget = TargetManager.SelectedTarget;
+                if (Visible == VisibilityType.VT_NONE || Visible == VisibilityType.VT_INVISIBLE)
+                {
+                    if(currentTarget.Application.SetVisibility(App.TitleId, VisibilityType.VT_VISIBLE))
+                    {
+                        Visible = VisibilityType.VT_VISIBLE;
+                    }
+                }
+                else
+                {
+                    if(currentTarget.Application.SetVisibility(App.TitleId, VisibilityType.VT_INVISIBLE))
+                    {
+                        Visible = VisibilityType.VT_INVISIBLE;
+                    }
+                }
+            });
         }
 
         private void ChangeIcon_Click(object sender, RoutedEventArgs e)
@@ -174,7 +195,21 @@ namespace OrbisNeighborHood.Controls
 
         private void OpenStore_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var Title = new TMDB(App.TitleId);
+                var url = $"https://store.playstation.com/product/{Title.ContentID}/";
 
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch
+            {
+
+            }
         }
 
         private void MoreInfo_Click(object sender, RoutedEventArgs e)
@@ -184,7 +219,8 @@ namespace OrbisNeighborHood.Controls
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            // TODO: Add are you sure?
+            Task.Run(() => TargetManager.SelectedTarget.Application.Delete(App.TitleId));
         }
 
         #endregion

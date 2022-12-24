@@ -19,4 +19,7 @@ private:
 	void KillApp(OrbisNetId Sock, const char* TitleId);
 	void SuspendApp(OrbisNetId Sock, const char* TitleId);
 	void ResumeApp(OrbisNetId Sock, const char* TitleId);
+	void DeleteApp(OrbisNetId Sock, const char* TitleId);
+	void SetVisibility(OrbisNetId Sock, const char* TitleId);
+	void GetVisibility(OrbisNetId Sock, const char* TitleId);
 };

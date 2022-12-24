@@ -12,6 +12,13 @@ namespace OrbisLib2.Targets
 
     public class Application
     {
+        public enum VisibilityType : int
+        {
+            VT_NONE,
+            VT_VISIBLE,
+            VT_INVISIBLE,
+        };
+
         private Target Target;
 
         public Application(Target Target)
@@ -193,6 +200,75 @@ namespace OrbisLib2.Targets
             });
 
             return (result == 1);
+        }
+
+        public bool Delete(string TitleId)
+        {
+            if (!Regex.IsMatch(TitleId, @"[a-zA-Z]{4}\d{5}"))
+            {
+                Console.WriteLine($"Invaild titleId format {TitleId}");
+                return false;
+            }
+
+            int result = 0;
+            API.SendCommand(Target, 5, APICommands.API_APPS_DELETE, (Socket Sock, APIResults Result) =>
+            {
+                // Send the titleId of the app.
+                var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
+                Sock.Send(bytes);
+
+                // Get the state from API.
+                result = Sock.RecvInt32();
+            });
+
+            return (result == 1);
+        }
+
+        public bool SetVisibility(string TitleId, VisibilityType Visibility)
+        {
+            if (!Regex.IsMatch(TitleId, @"[a-zA-Z]{4}\d{5}"))
+            {
+                Console.WriteLine($"Invaild titleId format {TitleId}");
+                return false;
+            }
+
+            int result = 0;
+            API.SendCommand(Target, 5, APICommands.API_APPS_SET_VISIBILITY, (Socket Sock, APIResults Result) =>
+            {
+                // Send the titleId of the app.
+                var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
+                Sock.Send(bytes);
+
+                // Send the visibility state.
+                Sock.SendInt32((int)Visibility);
+
+                // Get the state from API.
+                result = Sock.RecvInt32();
+            });
+
+            return (result == 1);
+        }
+
+        public VisibilityType GetVisibility(string TitleId)
+        {
+            if (!Regex.IsMatch(TitleId, @"[a-zA-Z]{4}\d{5}"))
+            {
+                Console.WriteLine($"Invaild titleId format {TitleId}");
+                return VisibilityType.VT_NONE;
+            }
+
+            VisibilityType result = VisibilityType.VT_NONE;
+            API.SendCommand(Target, 5, APICommands.API_APPS_GET_VISIBILITY, (Socket Sock, APIResults Result) =>
+            {
+                // Send the titleId of the app.
+                var bytes = Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray();
+                Sock.Send(bytes);
+
+                // Get the state from API.
+                result = (VisibilityType)Sock.RecvInt32();
+            });
+
+            return result;
         }
     }
 }

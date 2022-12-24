@@ -1,19 +1,14 @@
 #include "Common.h"
-#include "SocketListener.h"
+#include "LocalSocketListener.h"
+#include <sys/un.h>
 
-struct ClientThreadParams
-{
-	SocketListener* socketListener;
-	OrbisNetId Sock;
-};
-
-void* SocketListener::ClientThread(void* tdParam)
+void* LocalSocketListener::ClientThread(void* tdParam)
 {
 	ClientThreadParams* Params = (ClientThreadParams*)tdParam;
-	SocketListener* socketListener = Params->socketListener;
+	LocalSocketListener* localSocketListener = Params->LocalSocketListener;
 	OrbisNetId Sock = Params->Sock;
 
-	socketListener->ClientCallBack(socketListener->tdParam, Sock);
+	localSocketListener->ClientCallBack(localSocketListener->tdParam, Sock);
 
 	sceNetSocketClose(Sock);
 	free(Params);
@@ -23,15 +18,14 @@ void* SocketListener::ClientThread(void* tdParam)
 	return nullptr;
 }
 
-void* SocketListener::DoWork()
+void* LocalSocketListener::DoWork()
 {
-	OrbisNetSockaddrIn addr = { 0 };
-	addr.sin_family = ORBIS_NET_AF_INET;
-	addr.sin_addr.s_addr = ORBIS_NET_INADDR_ANY; // Any incoming address
-	addr.sin_port = sceNetHtons(this->Port); // Our desired listen port
+	OrbisNetSockaddrUn addr = { 0 };
+	addr.sun_family = ORBIS_NET_AF_LOCAL;
+	strncpy(addr.sun_path, this->ServerAddress, sizeof(addr.sun_path));
 
-	// Make new TCP Socket
-	this->Socket = sceNetSocket("Listener Socket", ORBIS_NET_AF_INET, ORBIS_NET_SOCK_STREAM, ORBIS_NET_IPPROTO_TCP);
+	// Make new local Socket
+	this->Socket = sceNetSocket("Local Listener Socket", ORBIS_NET_AF_LOCAL, ORBIS_NET_SOCK_STREAM, 0);
 
 	// Set Sending and reciving time out to 1000 ms
 	int sock_timeout = 10000;
@@ -42,10 +36,10 @@ void* SocketListener::DoWork()
 	int reusePort = 1;
 	sceNetSetsockopt(this->Socket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_REUSEPORT, &reusePort, sizeof(reusePort));
 
-	auto bindError = sceNetBind(this->Socket, (OrbisNetSockaddr*)&addr, sizeof(addr));
+	auto bindError = sceNetBind(this->Socket, (OrbisNetSockaddr*)&addr, SUN_LEN(&addr));
 	if (bindError != 0)
 	{
-		klog("Failed to bind Listener to port %i\nError: %X", this->Port, bindError);
+		klog("Failed to bind Listener to address %s\nError: %X", this->ServerAddress, bindError);
 
 		goto Cleanup;
 	}
@@ -67,7 +61,7 @@ void* SocketListener::DoWork()
 		timeout.tv_sec = 2;
 		timeout.tv_usec = 0;
 
-		// Wait fo rincoming connections.
+		// Wait for incoming connections.
 		auto rv = select((int)this->Socket + 1, &set, NULL, NULL, &timeout);
 		if (rv == -1)
 			goto Cleanup;
@@ -77,7 +71,7 @@ void* SocketListener::DoWork()
 				goto Cleanup;
 			continue;
 		}
-		else 
+		else
 		{
 			if (!this->ServerRunning)
 				goto Cleanup;
@@ -94,12 +88,13 @@ void* SocketListener::DoWork()
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
 				// Set up thread params.
 				ClientThreadParams* Params = new ClientThreadParams();
-				Params->socketListener = this;
+				Params->LocalSocketListener = this;
 				Params->Sock = ClientSocket;
 
 				// Create Thread to handle connection.
 				OrbisPthread* Thread;
 				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
+				scePthreadDetach(*Thread);
 
 				// Reset ClientSocket.
 				ClientSocket = -1;
@@ -110,8 +105,6 @@ void* SocketListener::DoWork()
 Cleanup:
 	klog("Listener Thread Exiting!\n");
 
-	// Clean up.
-	this->ThreadCleanedUp = true;
 
 	// Clean up.
 	sceNetSocketClose(this->Socket);
@@ -121,30 +114,29 @@ Cleanup:
 	return nullptr;
 }
 
-void* SocketListener::ListenThread(void* tdParam)
+void* LocalSocketListener::ListenThread(void* tdParam)
 {
-	return ((SocketListener*)tdParam)->DoWork();
+	return ((LocalSocketListener*)tdParam)->DoWork();
 }
 
-
-SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock), void* tdParam, unsigned short Port)
+LocalSocketListener::LocalSocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock), void* tdParam, char* ServerAddress)
 {
 	klog("Socket Listener.\n");
 	this->ClientCallBack = ClientCallBack;
 	this->tdParam = tdParam;
 	this->ServerRunning = true;
-	this->ThreadCleanedUp = false;
-	this->Port = Port;
+	strcpy(this->ServerAddress, ServerAddress);
 
-	scePthreadCreate(&ListenThreadHandle, NULL, &ListenThread, this, "Listen Thread");
+	scePthreadCreate(&ListenThreadHandle, NULL, &ListenThread, this, "Local Listen Thread");
+	scePthreadDetach(*ListenThreadHandle);
 }
 
-SocketListener::~SocketListener()
+LocalSocketListener::~LocalSocketListener()
 {
 	klog("~Socket Listener.\n");
 
 	this->ServerRunning = false;
-	while (!this->ThreadCleanedUp) { sceKernelUsleep(10); }
+	scePthreadJoin(*ListenThreadHandle, nullptr);
 
 	klog("Destruction sucessful.\n");
 }

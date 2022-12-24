@@ -67,7 +67,7 @@ namespace OrbisNeighborHood.Controls
 
                 CurrentTargetName.Text = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
 
-                if (CurrentTarget.Info.CurrentTitleID == null || !Regex.IsMatch(CurrentTarget.Info.CurrentTitleID, @"CUSA\d{5}"))
+                if (CurrentTarget.Info.BigAppTitleID == null || !Regex.IsMatch(CurrentTarget.Info.BigAppTitleID, @"CUSA\d{5}"))
                 {
                     CurrentTargetTitleName.Text = "Unknown Title";
                     CurrentTargetTitleId.Text = "-";
@@ -75,7 +75,7 @@ namespace OrbisNeighborHood.Controls
                 }
                 else
                 {
-                    var Title = new TMDB(CurrentTarget.Info.CurrentTitleID);
+                    var Title = new TMDB(CurrentTarget.Info.BigAppTitleID);
                     Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
                     CurrentTargetTitleName.Text = Title.Names.First();
                     CurrentTargetTitleId.Text = Title.NPTitleID;
@@ -89,9 +89,9 @@ namespace OrbisNeighborHood.Controls
         {
             var CurrentTarget = TargetManager.SelectedTarget;
 
-            if (CurrentTarget != null && CurrentTarget.Info.CurrentTitleID != null && Regex.IsMatch(CurrentTarget.Info.CurrentTitleID, @"CUSA\d{5}"))
+            if (CurrentTarget != null && CurrentTarget.Info.BigAppTitleID != null && Regex.IsMatch(CurrentTarget.Info.BigAppTitleID, @"CUSA\d{5}"))
             {
-                var Title = new TMDB(CurrentTarget.Info.CurrentTitleID);
+                var Title = new TMDB(CurrentTarget.Info.BigAppTitleID);
                 var url = $"https://store.playstation.com/product/{Title.ContentID}/";
 
                 System.Diagnostics.Process.Start(new ProcessStartInfo

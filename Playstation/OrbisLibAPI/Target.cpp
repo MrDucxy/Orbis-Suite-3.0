@@ -90,12 +90,32 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	auto bigAppAppId = sceSystemServiceGetAppIdOfBigApp();
 	if (bigAppAppId > 0)
 	{
-		OrbisAppInfo bigAppInfo;
-		sceApplicationGetAppInfoByAppId(bigAppAppId, &bigAppInfo);
-		strcpy(Packet->CurrentTitleID, bigAppInfo.TitleId);
+		// Get the list of running processes.
+		std::vector<kinfo_proc> processList;
+		GetProcessList(processList);
+
+		for (const auto& i : processList)
+		{
+			// Get the app info using the pid.
+			OrbisAppInfo appInfo;
+			sceKernelGetAppInfo(i.pid, &appInfo);
+
+			// Using the titleId match our desired app and return the appId from the appinfo.
+			if (appInfo.AppId == bigAppAppId)
+			{
+				Packet->BigApp.Pid = i.pid;
+				strcpy(Packet->BigApp.Name, i.name);
+				strcpy(Packet->BigApp.TitleId, appInfo.TitleId);
+
+				break;
+			}
+		}
 	}
 	else
-		strcpy(Packet->CurrentTitleID, "N/A");
+	{
+		strcpy(Packet->BigApp.TitleId, "N/A");
+	}
+		
 
 	GetConsoleName(Packet->ConsoleName, 100);
 	ReadFlash(FLASH_MB_SERIAL, &Packet->MotherboardSerial, 14);

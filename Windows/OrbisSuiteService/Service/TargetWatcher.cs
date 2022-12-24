@@ -51,7 +51,7 @@ namespace OrbisSuiteService.Service
                         Target.Info.BusyCore = 0;
                         Target.Info.RamUsage = 0;
                         Target.Info.VRamUsage = 0;
-                        Target.Info.CurrentTitleID = "-";
+                        Target.Info.BigAppTitleID = "-";
                         Target.Info.Save();
                     }
 

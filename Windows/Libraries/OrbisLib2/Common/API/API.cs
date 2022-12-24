@@ -37,24 +37,32 @@ namespace OrbisLib2.Common.API
                 return APIResults.API_ERROR_COULDNT_CONNECT;
             }
 
-            if (Connect(DesiredTarget.IPAddress, Settings.CreateInstance().APIPort, TimeOut, out Socket Sock))
+            try 
             {
-                // Send Inital Packet.
-                var result = SendNextPacket(Sock, new APIPacket() { PacketVersion = Config.PacketVersion, Command = Command });
-
-                // Call lambda for additional calls.
-                if (result == APIResults.API_OK && AdditionalCommunications != null)
+                if (Connect(DesiredTarget.IPAddress, Settings.CreateInstance().APIPort, TimeOut, out Socket Sock))
                 {
-                    AdditionalCommunications.Invoke(Sock, result);
+                    // Send Inital Packet.
+                    var result = SendNextPacket(Sock, new APIPacket() { PacketVersion = Config.PacketVersion, Command = Command });
+
+                    // Call lambda for additional calls.
+                    if (result == APIResults.API_OK && AdditionalCommunications != null)
+                    {
+                        AdditionalCommunications.Invoke(Sock, result);
+                    }
+
+                    // Clean up.
+                    Sock.Close();
+
+                    return result;
                 }
-
-                // Clean up.
-                Sock.Close();
-
-                return result;
+                else
+                    return APIResults.API_ERROR_COULDNT_CONNECT;
             }
-            else
+            catch (SocketException ex)
+            {
+                Console.WriteLine($"SendCommand() Sock Error: {ex.Message}");
                 return APIResults.API_ERROR_COULDNT_CONNECT;
+            }
         }
 
         /// <summary>
