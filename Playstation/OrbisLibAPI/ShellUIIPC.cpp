@@ -23,14 +23,14 @@ OrbisNetId ShellUIIPC::Connect()
 
 bool ShellUIIPC::SendCommand(OrbisNetId Sock, int Command)
 {
-	if (!SockSendInt(Sock, Command))
+	if (!Sockets::SendInt(Sock, Command))
 	{
 		klog("[GeneralIPC] Failed to send Command\n");
 		return false;
 	}
 
 	int Status;
-	if (!SockRecvInt(Sock, &Status))
+	if (!Sockets::RecvInt(Sock, &Status))
 	{
 		klog("[GeneralIPC] Failed to recv status\n");
 		return false;

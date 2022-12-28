@@ -44,7 +44,7 @@ void Proc::SendProcessList(OrbisNetId Sock)
 	std::vector<kinfo_proc> processList;
 	GetProcessList(processList);
 
-	SockSendInt(Sock, processList.size());
+	Sockets::SendInt(Sock, processList.size());
 
 	for (const auto& i : processList)
 	{

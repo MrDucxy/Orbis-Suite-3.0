@@ -30,14 +30,14 @@ namespace OrbisSuiteService.Service
                     var oldAvailable = Target.Info.IsAvailable;
                     var OldAPIAvailable = Target.Info.IsAPIAvailable;
 
-                    if(Helper.PingHost(Target.IPAddress))
+                    if(Sockets.PingHost(Target.IPAddress))
                     {
                         var detail = Target.Info;
                         detail.IsAvailable = true;
                     }
 
-                    Target.Info.IsAvailable = Helper.PingHost(Target.IPAddress);
-                    Target.Info.IsAPIAvailable = Helper.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
+                    Target.Info.IsAvailable = Sockets.PingHost(Target.IPAddress);
+                    Target.Info.IsAPIAvailable = Sockets.TestTcpConnection(Target.IPAddress, Settings.CreateInstance().APIPort);
                     Target.Info.Save();
 
                     if (Target.Info.IsAPIAvailable)

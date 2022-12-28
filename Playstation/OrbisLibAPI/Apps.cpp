@@ -89,13 +89,13 @@ void Apps::GetAppsList(OrbisNetId Sock)
 	std::vector<AppDatabase::AppInfo> AppList;
 	if (!AppDatabase::GetApps(AppList))
 	{
-		SockSendInt(Sock, 0);
+		Sockets::SendInt(Sock, 0);
 		return;
 	}
 
-	SockSendInt(Sock, AppList.size());
+	Sockets::SendInt(Sock, AppList.size());
 
-	SendLargeData(Sock, (unsigned char*)AppList.data(), AppList.size() * sizeof(AppInfoPacket));
+	Sockets::SendLargeData(Sock, (unsigned char*)AppList.data(), AppList.size() * sizeof(AppInfoPacket));
 }
 
 void Apps::GetAppInfoString(OrbisNetId Sock, const char* TitleId)
@@ -147,7 +147,7 @@ void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
 	// If we have no appId that means the process is not running. 
 	if (appId <= 0)
 	{
-		SockSendInt(Sock, STATE_NOT_RUNNING);
+		Sockets::SendInt(Sock, STATE_NOT_RUNNING);
 	}
 	else
 	{
@@ -155,11 +155,11 @@ void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
 		auto res = sceSystemServiceIsAppSuspended(appId, &state);
 		if (res == 0 && state)
 		{
-			SockSendInt(Sock, STATE_SUSPENDED);
+			Sockets::SendInt(Sock, STATE_SUSPENDED);
 		}
 		else
 		{
-			SockSendInt(Sock, STATE_RUNNING);
+			Sockets::SendInt(Sock, STATE_RUNNING);
 		}
 	}
 }
@@ -173,7 +173,7 @@ void Apps::StartApp(OrbisNetId Sock, const char* TitleId)
 	{
 		klog("sceUserServiceGetForegroundUser(): Failed with error %llX\n", res);
 
-		SockSendInt(Sock, 0);
+		Sockets::SendInt(Sock, 0);
 		return;
 	}
 
@@ -182,11 +182,11 @@ void Apps::StartApp(OrbisNetId Sock, const char* TitleId)
 	{
 		klog("sceLncUtilLaunchApp() : Failed with error % llX\n", res);
 
-		SockSendInt(Sock, 0);
+		Sockets::SendInt(Sock, 0);
 		return;
 	}
 
-	SockSendInt(Sock, res);
+	Sockets::SendInt(Sock, res);
 }
 
 void Apps::KillApp(OrbisNetId Sock, const char* TitleId)
@@ -195,11 +195,11 @@ void Apps::KillApp(OrbisNetId Sock, const char* TitleId)
 
 	if (appId > 0 && sceSystemServiceKillApp(appId, -1, 0, 0) == 0)
 	{
-		SockSendInt(Sock, 1);
+		Sockets::SendInt(Sock, 1);
 	}
 	else
 	{
-		SockSendInt(Sock, 0);
+		Sockets::SendInt(Sock, 0);
 	}
 }
 
@@ -209,11 +209,11 @@ void Apps::SuspendApp(OrbisNetId Sock, const char* TitleId)
 
 	if (appId > 0 && LncUtil::sceLncUtilSuspendApp(appId, 0) == 0)
 	{
-		SockSendInt(Sock, 1);
+		Sockets::SendInt(Sock, 1);
 	}
 	else
 	{
-		SockSendInt(Sock, 0);
+		Sockets::SendInt(Sock, 0);
 	}
 }
 
@@ -223,11 +223,11 @@ void Apps::ResumeApp(OrbisNetId Sock, const char* TitleId)
 
 	if (appId > 0 && LncUtil::sceLncUtilResumeApp(appId, 0) == 0 && sceApplicationSetApplicationFocus(appId) == 0)
 	{
-		SockSendInt(Sock, 1);
+		Sockets::SendInt(Sock, 1);
 	}
 	else
 	{
-		SockSendInt(Sock, 0);
+		Sockets::SendInt(Sock, 0);
 	}
 }
 
@@ -235,7 +235,7 @@ void Apps::DeleteApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto result = sceAppInstUtilAppUnInstall(TitleId);
 
-	SockSendInt(Sock, (result == 0) ? 1 : 0);
+	Sockets::SendInt(Sock, (result == 0) ? 1 : 0);
 }
 
 void Apps::SetVisibility(OrbisNetId Sock, const char* TitleId)
@@ -248,16 +248,16 @@ void Apps::SetVisibility(OrbisNetId Sock, const char* TitleId)
 
 		ShellUIIPC::RefreshContentArea();
 
-		SockSendInt(Sock, result ? 1 : 0);
+		Sockets::SendInt(Sock, result ? 1 : 0);
 	}
 
-	SockSendInt(Sock, 0);
+	Sockets::SendInt(Sock, 0);
 }
 
 void Apps::GetVisibility(OrbisNetId Sock, const char* TitleId)
 {
 	auto visibility = AppDatabase::GetVisibility(TitleId);
-	SockSendInt(Sock, visibility);
+	Sockets::SendInt(Sock, visibility);
 }
 
 Apps::Apps()

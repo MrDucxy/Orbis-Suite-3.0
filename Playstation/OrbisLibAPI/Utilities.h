@@ -15,12 +15,6 @@ bool Jailbreak();
 bool CopySflash();
 int getMacAddress(OrbisNetIfName ifName_Num, char* strOut, size_t strlen);
 
-//TODO: Make socket class.
-// Networking
-bool SockSendInt(OrbisNetId Sock, int val);
-bool SockRecvInt(OrbisNetId Sock, int* val);
-bool SendLargeData(OrbisNetId Sock, unsigned char* data, size_t dataLen);
-
 struct kinfo_proc {
 	int structSize;				//0x00
 	int layout;					//0x04

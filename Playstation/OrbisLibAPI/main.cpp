@@ -84,7 +84,7 @@ int main()
 	// Init App install utils.
 	sceAppInstUtilInitialize();
 
-//#define LOADTOOLBOX
+#define LOADTOOLBOX
 #ifdef LOADTOOLBOX
 	auto handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 	if (handle > 0) {

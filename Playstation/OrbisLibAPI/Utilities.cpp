@@ -190,46 +190,6 @@ int getMacAddress(OrbisNetIfName ifName_Num, char* strOut, size_t len)
 
 #pragma endregion
 
-#pragma region Networking
-
-bool SockSendInt(OrbisNetId Sock, int val)
-{
-	return !(sceNetSend(Sock, &val, sizeof(int), 0) < 0);
-}
-
-bool SockRecvInt(OrbisNetId Sock, int* val)
-{
-	return !(sceNetRecv(Sock, val, sizeof(int), 0) < 0);
-}
-
-#define MIN(a,b) ((a) < (b) ? (a) : (b))
-
-bool SendLargeData(OrbisNetId Sock, unsigned char* data, size_t dataLen)
-{
-	unsigned char* CurrentPosition = data;
-	size_t DataLeft = dataLen;
-	int res = 0;
-
-	while (DataLeft > 0)
-	{
-		size_t DataChunkSize = MIN(8192, DataLeft);
-
-		res = sceNetSend(Sock, CurrentPosition, DataChunkSize, 0);
-
-		if (res < 0)
-		{
-			return false;
-		}
-
-		DataLeft -= res;
-		CurrentPosition += res;
-	}
-
-	return true;
-}
-
-#pragma endregion
-
 void hexdump(void* ptr, int buflen) {
 	unsigned char* buf = (unsigned char*)ptr;
 	int i, j;

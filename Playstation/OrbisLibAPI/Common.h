@@ -28,6 +28,7 @@
 #include "Utilities.h"
 #include "GoldHEN.h"
 #include "../../Misc/libjbc.h"
+#include "Sockets.h"
 #include "System.h"
 #include "Flash.h"
 
