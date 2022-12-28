@@ -140,11 +140,12 @@ namespace OrbisLib2.Common.API
     [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi)]
     public struct ProcPacket
     {
-        public int ProcessID;
+        public int AppId;
+        public int ProcessId;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
         public string Name;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
-        public string TitleID;
+        public string TitleId;
     }
 
     #endregion
@@ -159,7 +160,7 @@ namespace OrbisLib2.Common.API
         STATE_SUSPENDED,
     };
 
-    [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi), Serializable]
+    [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi, Size = 652), Serializable]
     public struct AppInfoPacket
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]

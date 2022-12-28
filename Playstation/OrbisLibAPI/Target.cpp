@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "Target.h"
 #include "APIHelper.h"
+#include "Debug.h"
 #include <orbis/SysCore.h>
 
 void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
@@ -66,9 +67,9 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	}
 }
 
-Target::Target()
+Target::Target(class Debug* Debug)
 {
-
+	this->Debug = Debug;
 }
 
 Target::~Target()
@@ -87,6 +88,7 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	Packet->CPUTemp = GetCPUTemp();
 	Packet->SOCTemp = GetSOCTemp();
 
+	// Current Big App.
 	auto bigAppAppId = sceSystemServiceGetAppIdOfBigApp();
 	if (bigAppAppId > 0)
 	{
@@ -129,11 +131,14 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	GetPSID(Packet->PSID);
 	Packet->ConsoleType = GetConsoleType();
 
-	// TODO: Debugging Added Later.
-	Packet->Attached = false; // TODO: Add funcionality.
-	//Packet->CurrentProc
+	// Debugging.
+	Packet->AttachedPid = Debug->CurrentPID;
+	Packet->Attached = Debug->IsDebugging;
 
+	// User.
 	sceUserServiceGetForegroundUser(&Packet->ForegroundAccountId);
+
+	// Storage Stats.
 	auto res = ShellCoreUtil::sceShellCoreUtilGetFreeSizeOfUserPartition(&Packet->FreeSpace, &Packet->TotalSpace);
 
 	// Perf Stats. TODO: Move from toolbox

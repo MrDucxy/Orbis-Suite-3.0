@@ -2,6 +2,7 @@
 using OrbisLib2.Common.Helpers;
 using OrbisLib2.Targets;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 
 namespace OrbisLib2.Common.API
 {
@@ -79,6 +80,34 @@ namespace OrbisLib2.Common.API
 
             // Get API Response.
             return (APIResults)Sock.RecvInt32();
+        }
+
+        /// <summary>
+        /// Recieves the next packet.
+        /// </summary>
+        /// <typeparam name="T">The packet type.</typeparam>
+        /// <param name="Sock">Socket to recieve the packet on.</param>
+        /// <param name="Packet">The packet to be recieved on.</param>
+        /// <returns>Returns true if successful.</returns>
+        public static bool RecieveNextPacket<T>(Socket Sock, ref T Packet)
+        {
+            try
+            {
+                var RawPacket = new byte[Marshal.SizeOf(Packet)];
+                var bytes = Sock.Receive(RawPacket);
+
+                if (bytes <= 0)
+                    return false;
+
+                // Convert the recieved bytes to a struct.
+                Helper.BytesToStruct(RawPacket, ref Packet);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

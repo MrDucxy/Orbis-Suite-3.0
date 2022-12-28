@@ -83,7 +83,7 @@ namespace OrbisLib2.Targets
         public TargetEvents Events;
         // public Debug Debug;
         public Payload Payload;
-        // public Process Process;
+        public Process Process;
         public FTP FTP;
         public Application Application;
 
@@ -94,7 +94,7 @@ namespace OrbisLib2.Targets
             Events = new TargetEvents(this);
             // Debug = new Debug(this);
             Payload = new Payload(this);
-            // Process = new Process(PS4, this);
+            Process = new Process(this);
             FTP = new FTP(this);
             Application = new Application(this);
         }

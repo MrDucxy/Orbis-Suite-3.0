@@ -1,9 +1,11 @@
 #pragma once
 
+class Debug;
+
 class Target
 {
 public:
-	Target();
+	Target(Debug* Debug);
 	~Target();
 	void HandleAPI(OrbisNetId Sock, APIPacket* Packet);
 
@@ -12,5 +14,5 @@ public:
 	void SetSettings(OrbisNetId Sock);
 
 private:
-
+	Debug* Debug;
 };

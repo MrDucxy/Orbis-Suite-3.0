@@ -1,8 +1,10 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Data;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using static SQLite.SQLite3;
 
 namespace OrbisLib2.Common.Helpers
 {
@@ -87,6 +89,21 @@ namespace OrbisLib2.Common.Helpers
             var Data = new byte[sizeof(int)];
             s.Receive(Data);
             return BitConverter.ToInt32(Data, 0);
+        }
+
+        public static void RecvLarge(this Socket s, byte[] data)
+        {
+            int Left = data.Length;
+            int Received = 0;
+
+            while(Left > 0)
+            {
+                var chunkSize = Math.Min(s.ReceiveBufferSize, Left);
+                var res = s.Receive(data, Received, chunkSize, 0);
+
+                Received += res;
+                Left -= res;
+            }
         }
 
         /// <summary>

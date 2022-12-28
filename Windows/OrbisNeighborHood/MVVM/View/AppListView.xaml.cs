@@ -46,24 +46,24 @@ namespace OrbisNeighborHood.MVVM.View
             "CUSA01000"
         };
 
+        private List<AppPanel> PanelList = new List<AppPanel>();
+
         public AppListView()
         {
             InitializeComponent();
 
             Events.DBTouched += Events_DBTouched;
             Events.TargetStateChanged += Events_TargetStateChanged;
+            // TODO: add event for selected target changing.
 
             // Refresh the info about the current target.
             RefreshTargetInfo();
 
-            Task.Run(() => 
-            {
-                // Initially populate the app list.
-                InitAppList();
+            // Set Item source for listbox.
+            AppList.ItemsSource = PanelList;
 
-                // Create task to periodically check for app.db changes.
-                // Task.Run(() => CheckAppDatabase());
-            });
+            // Create task to periodically check for app.db changes.
+            Task.Run(() => CheckAppDatabase());
         }
 
         #region Properties
@@ -110,95 +110,6 @@ namespace OrbisNeighborHood.MVVM.View
 
         #endregion
 
-        public void AddApp(string appCachePath, AppInfo App)
-        {
-            var currentTarget = TargetManager.SelectedTarget;
-
-            // Make sure the titleId format is correct. Helps weed out bad entries and folders.
-            if (!Regex.IsMatch(App.TitleId, @"[a-zA-Z]{4}\d{5}"))
-                return;
-
-            // Skip the Destiny entries that just exist for some reason even after a restore?... lol
-            if ((App.TitleId.Equals("CUSA00219") || App.TitleId.Equals("CUSA00568") || App.TitleId.Equals("CUSA01000")) && App.ContentSize <= 0)
-                return;
-
-            // Skip some that aren't technically an app.
-            if (TitleIdExlusionList.Contains(App.TitleId))
-                return;
-
-            // Weed out some more bad entries created by default.
-            if (App.TitleName.Length <= 2)
-                return;
-
-            // Make sure only add ones with a category.
-            if (App.UICategory.Length <= 0 || App.Category.Length <= 0)
-                return;
-
-            // Directory to cache stuff for app.
-            string currentAppPath = Path.Combine(appCachePath, App.TitleId);
-
-            // Create Directory for current app.
-            if (!Directory.Exists(currentAppPath))
-            {
-                Directory.CreateDirectory(currentAppPath);
-            }
-
-            // Cache icon0.png for app if we have not already.
-            if (!File.Exists(Path.Combine(currentAppPath, "icon0.png")) && !string.IsNullOrEmpty(App.MetaDataPath) && currentTarget.Info.IsAvailable) //TODO: Maybe add a isFTPAvailable.
-            {
-                currentTarget.FTP.DownloadFile($"{App.MetaDataPath}/icon0.png", Path.Combine(currentAppPath, "icon0.png"));
-            }
-
-            // Fetch the App version.
-            var appVersion = currentTarget.Application.GetAppInfoString(App.TitleId, "APP_VER");
-
-            // Add or update app list item.
-            Dispatcher.Invoke(() =>
-            {
-                var panel = AppList.Items.Cast<AppPanel>().ToList().Find(x => x.App.TitleId == App.TitleId);
-                if (panel != null)
-                {
-                    panel.Update(App, appVersion);
-                }
-                else
-                {
-                    AppList.Items.Add(new AppPanel(App, appVersion));
-                }
-            });
-        }
-
-        private void InitAppList()
-        {
-            // Clear lists so we can re-populate them.
-            Dispatcher.Invoke(() => AppList.Items.Clear());
-
-            // Make sure we have a target we can pull the db from.
-            if (TargetManager.Targets.Count <= 0)
-                return;
-
-            // Make sure the Target is online so we can pull the db.
-            var currentTarget = TargetManager.SelectedTarget;
-            if (currentTarget == null)
-            {
-                Console.WriteLine("No current target we can use to load apps.");
-                return;
-            }
-
-            // Make sure we have the appCache folder.
-            string appCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Orbis Suite\AppCache\");
-            if (!Directory.Exists(appCachePath))
-            {
-                Directory.CreateDirectory(appCachePath);
-            }
-
-            var appList = currentTarget.Application.GetAppList();
-
-            Parallel.ForEach(appList, app =>
-            {
-                AddApp(appCachePath, app);
-            });
-        }
-
         private async Task CheckAppDatabase()
         {
             while (true)
@@ -216,30 +127,81 @@ namespace OrbisNeighborHood.MVVM.View
                         continue;
                     }
 
-                    // Appcache location.
-                    string appCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Orbis Suite\AppCache\");
-
                     // Get the current app list.
                     var appList = currentTarget.Application.GetAppList();
 
-                    // Check for deletions.
-                    Parallel.ForEach(AppList.Items.Cast<AppPanel>().ToList(), app =>
+                    // Check for adding apps.
+                    Parallel.ForEach(appList, app =>
                     {
-                        if (appList.Find(x => x.TitleId == app.App.TitleId) == null)
+                        var currentTarget = TargetManager.SelectedTarget;
+                        string appCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), @"Orbis Suite\AppCache\");
+
+                        // Make sure the titleId format is correct. Helps weed out bad entries and folders.
+                        if (!Regex.IsMatch(app.TitleId, @"[a-zA-Z]{4}\d{5}"))
+                            return;
+
+                        // Skip the Destiny entries that just exist for some reason even after a restore?... lol
+                        if ((app.TitleId.Equals("CUSA00219") || app.TitleId.Equals("CUSA00568") || app.TitleId.Equals("CUSA01000")) && app.ContentSize <= 0)
+                            return;
+
+                        // Skip some that aren't technically an app.
+                        if (TitleIdExlusionList.Contains(app.TitleId))
+                            return;
+
+                        // Weed out some more bad entries created by default.
+                        if (app.TitleName.Length <= 2)
+                            return;
+
+                        // Make sure only add ones with a category.
+                        if (app.UICategory.Length <= 0 || app.Category.Length <= 0)
+                            return;
+
+                        // Directory to cache stuff for app.
+                        string currentAppPath = Path.Combine(appCachePath, app.TitleId);
+
+                        // Create Directory for current app.
+                        if (!Directory.Exists(currentAppPath))
                         {
-                            Dispatcher.Invoke(() => AppList.Items.Remove(app));
+                            Directory.CreateDirectory(currentAppPath);
+                        }
+
+                        // Cache icon0.png for app if we have not already.
+                        if (!File.Exists(Path.Combine(currentAppPath, "icon0.png")) && !string.IsNullOrEmpty(app.MetaDataPath) && currentTarget.Info.IsAvailable) //TODO: Maybe add a isFTPAvailable.
+                        {
+                            currentTarget.FTP.DownloadFile($"{app.MetaDataPath}/icon0.png", Path.Combine(currentAppPath, "icon0.png"));
+                        }
+
+                        // Fetch the App version.
+                        var appVersion = currentTarget.Application.GetAppInfoString(app.TitleId, "APP_VER");
+
+                        Dispatcher.Invoke(() =>
+                        {
+                            var pannel = PanelList.Find(x => x.App.TitleId == app.TitleId);
+                            if(pannel != null)
+                            {
+                                pannel.Update(app, appVersion);
+                            }
+                            else
+                            {
+                                PanelList.Add(new AppPanel(app, appVersion));
+                            }
+                        });
+                    });
+
+                    // Check to remove apps.
+                    Parallel.ForEach(PanelList, panel =>
+                    {
+                        var app = appList.Find(x => x.TitleId == panel.App.TitleId);
+                        if(app == null)
+                        {
+                            PanelList.Remove(panel);
                         }
                     });
 
-                    // Check for new apps / updates.
-                    Parallel.ForEach(appList, app => 
+                    // Update view.
+                    Dispatcher.Invoke(() =>
                     {
-                        var currentAppList = AppList.Items.Cast<AppPanel>().ToList();
-
-                        if (currentAppList.Find(x => x.App.TitleId == app.TitleId) == null)
-                        {
-                            AddApp(appCachePath, app);
-                        }
+                        AppList.Items.Refresh();
                     });
 
                     await Task.Delay(2000);

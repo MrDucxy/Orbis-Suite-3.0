@@ -1,5 +1,7 @@
 ﻿using OrbisLib2.Common.API;
 using OrbisLib2.Common.Helpers;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Drawing;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -29,25 +31,25 @@ namespace OrbisLib2.Targets
         public List<AppInfo> GetAppList()
         {
             var AppList = new List<AppInfo>();
-
             var result = API.SendCommand(Target, 5, APICommands.API_APPS_GET_LIST, (Socket Sock, APIResults Result) =>
             {
                 // Get the number of apps installed.
-                int Count = Sock.RecvInt32();
+                var Count = Sock.RecvInt32();
 
-                // Itterate through the count to recieve all the apps details.
-                for (int i = 0; i < Count; i++)
+                // Recieve all of the arrary as one large packet.
+                var dataSize = Count * Marshal.SizeOf(typeof(AppInfoPacket));
+                var data = new byte[dataSize];
+                Sock.RecvLarge(data);
+
+                // Allocate and copy the packet to begin marshaling it.
+                IntPtr ptr = Marshal.AllocHGlobal(dataSize);
+                Marshal.Copy(data, 0, ptr, dataSize);
+
+                for(int i = 0; i < Count; i++)
                 {
-                    // Recieve the bytes of the struct.
+                    // Marshal each part of the buffer to a struct.
                     var Packet = new AppInfoPacket();
-                    var RawPacket = new byte[Marshal.SizeOf(Packet)];
-                    var bytes = Sock.Receive(RawPacket);
-
-                    if (bytes <= 0)
-                        break;
-
-                    // Convert the recieved bytes to a struct.
-                    Helper.BytesToStruct(RawPacket, ref Packet);
+                    Packet = (AppInfoPacket)Marshal.PtrToStructure(IntPtr.Add(ptr, i * Marshal.SizeOf(typeof(AppInfoPacket))), typeof(AppInfoPacket));
 
                     // Try to parse the date time strings.
                     if (!DateTime.TryParse(Packet.LastAccessTime, out DateTime LastAccessTime))
@@ -60,10 +62,11 @@ namespace OrbisLib2.Targets
                     var firstNullIndex = Array.FindIndex(Packet.TitleName, b => b == 0);
                     string titleName = Encoding.UTF8.GetString(Packet.TitleName, 0, firstNullIndex);
 
-                    // Add the entry to the list.
                     AppList.Add(new AppInfo(Packet.TitleId, Packet.ContentId, titleName, Packet.MetaDataPath, LastAccessTime, Packet.Visible,
                         Packet.SortPriority, Packet.DispLocation, Packet.CanRemove == 1, Packet.Category, Packet.ContentSize, InstallDate, Packet.UICategory));
                 }
+
+                Marshal.FreeHGlobal(ptr);
             });
 
             return AppList;

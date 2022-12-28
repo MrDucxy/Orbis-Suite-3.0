@@ -93,14 +93,9 @@ void Apps::GetAppsList(OrbisNetId Sock)
 		return;
 	}
 
-	// Send the number of apps.
 	SockSendInt(Sock, AppList.size());
 
-	// Send all of the apps.
-	for (const auto& App : AppList)
-	{
-		sceNetSend(Sock, &App, sizeof(AppDatabase::AppInfo), 0);
-	}
+	SendLargeData(Sock, (unsigned char*)AppList.data(), AppList.size() * sizeof(AppInfoPacket));
 }
 
 void Apps::GetAppInfoString(OrbisNetId Sock, const char* TitleId)

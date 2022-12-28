@@ -67,7 +67,7 @@ void API::Init()
 		Proc = new class Proc();
 		Apps = new class Apps();
 		Debug = new class Debug();
-		Target = new class Target();
+		Target = new class Target(Debug);
 		Listener = new SocketListener(ListenerCallback, NULL, 6900);
 		Running = true;
 	}
