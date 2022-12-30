@@ -1,10 +1,6 @@
-﻿using System.Data;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
+﻿using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using static SQLite.SQLite3;
 
 namespace OrbisLib2.Common.Helpers
 {

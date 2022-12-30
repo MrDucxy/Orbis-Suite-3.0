@@ -7,13 +7,14 @@
         xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
         xmlns:controls="clr-namespace:OrbisLibraryManager.Controls"
         mc:Ignorable="d"
-        Title="LibraryManager" Height="640" Width="960"
-        MinHeight="640" MinWidth="960"
-        MaxHeight="640" MaxWidth="960"
+        Title="LibraryManager" Height="640" Width="980"
+        MinHeight="640" MinWidth="980"
+        MaxHeight="640" MaxWidth="980"
         ResizeMode="CanMinimize">
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -24,19 +25,18 @@
 
         <!-- Menu BG -->
         <Rectangle Grid.Column="0" Grid.Row="0"
-                   Fill="{DynamicResource WindowBar}"/>
+                   Fill="{DynamicResource WindowBar}" Grid.ColumnSpan="2"/>
 
         <!-- Separation bar -->
         <Rectangle Grid.Column="0" Grid.Row="0"
                    Height="0.5" VerticalAlignment="Top"
-                   Fill="{DynamicResource WindowBackground}"/>
+                   Fill="{DynamicResource WindowBackground}" Grid.ColumnSpan="2"/>
 
         <!-- Current Target -->
-        <controls:CurrentTargetDisplay VerticalAlignment="Center"
-                                       HorizontalAlignment="Stretch"/>
+        <controls:CurrentTargetDisplay VerticalAlignment="Center" Grid.ColumnSpan="2"/>
 
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="582,0,0,0">
 
             <!-- SPRX Loader -->
             <StackPanel HorizontalAlignment="Right"
@@ -67,13 +67,13 @@
                                                  Content="Unload"
                                                  Width="56"
                                                  Height="25"/>
-                    
+
                     <simpleControls:SimpleButton Grid.Column="4"
                                                  Content="Reload"
                                                  Width="56"
                                                  Height="25"/>
                 </Grid>
-                
+
 
             </StackPanel>
 
@@ -109,7 +109,8 @@
                                           Height="25"
                                           ToolTip="Attach to new process"
                                           ImageSource="/OrbisLibraryManager;component/Images/Attached.png"
-                                          ImageMargin="1"/>
+                                          ImageMargin="1"
+                                          Click="AttachProcess_Click"/>
 
                     <controls:ImageButton x:Name="DetachProcess"
                                           Grid.Column="2"
@@ -167,7 +168,7 @@
                   BorderBrush="Transparent"
                   BorderThickness="0"
                   Name="LibraryList"
-                  AlternationCount="2">
+                  AlternationCount="2" Grid.ColumnSpan="2" Margin="13,0,13,0">
 
             <ListView.View>
                 <GridView>
@@ -186,5 +187,5 @@
         </ListView>
 
     </Grid>
-    
+
 </simpleControls:SimpleWindow>
