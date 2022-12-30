@@ -1,6 +1,7 @@
 ﻿using OrbisLib2.Targets;
 using SimpleUI.Dialogs;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace OrbisLib2.Dialog
 {
@@ -22,6 +23,14 @@ namespace OrbisLib2.Dialog
         {
             var dlg = new SelectProcess(Owner);
             dlg.ShowDialog();
+
+            var selectedProc = (ProcInfo)dlg.ProcessList.SelectedItem;
+            if(selectedProc != null)
+            {
+                // TODO: Handle Attach here.
+                Console.WriteLine($"Attaching to {selectedProc.Name}");
+            }
+
             return dlg.Result;
         }
 
@@ -52,6 +61,16 @@ namespace OrbisLib2.Dialog
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             RefreshProcessList();
+        }
+
+        private void ProcessList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var item = ((FrameworkElement)e.OriginalSource).DataContext as ProcInfo;
+            if (item != null && ProcessList.SelectedItem != null)
+            {
+                Result = SimpleDialogResult.Button1;
+                Close();
+            }
         }
     }
 }

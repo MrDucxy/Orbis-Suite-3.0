@@ -29,6 +29,7 @@
                   SelectionMode="Single"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                   ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  MouseDoubleClick="ProcessList_MouseDoubleClick"
                   AlternationCount="2" Grid.ColumnSpan="2">
 
             <ListView.View>
