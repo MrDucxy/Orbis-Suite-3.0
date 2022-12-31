@@ -23,6 +23,8 @@
 #include <orbis/SystemService.h>
 #include <orbis/UserService.h>
 #include <orbis/Sysmodule.h>
+#include <orbis/AppInstUtil.h>
+#include <orbis/SysCore.h>
 
 #include "SocketListener.h"
 #include "Utilities.h"
@@ -36,3 +38,6 @@
 #include "LncUtil.h"
 #include "ShellCoreUtil.h"
 #include "SystemMonitor.h"
+
+//#define FIRMWARE_505
+#define FIRMWARE_900

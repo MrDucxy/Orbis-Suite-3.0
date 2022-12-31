@@ -157,11 +157,11 @@ void* SystemMonitor::MonitorThread(void* args)
 		sceKernelGetSocSensorTemperature(0, &SOC_Temp);
 
 		// Ram Usage.
-		Get_Page_Table_Stats(1, 1, &RAM.Used, &RAM.Free, &RAM.Total);
+		Get_Page_Table_Stats(-1, 1, &RAM.Used, &RAM.Free, &RAM.Total);
 		RAM.Percentage = (((float)RAM.Used / (float)RAM.Total) * 100.0f);
 
 		// Video Ram Usage.
-		Get_Page_Table_Stats(1, 2, &VRAM.Used, &VRAM.Free, &VRAM.Total);
+		Get_Page_Table_Stats(-1, 2, &VRAM.Used, &VRAM.Free, &VRAM.Total);
 		VRAM.Percentage = (((float)VRAM.Used / (float)VRAM.Total) * 100.0f);
 
 		sceKernelSleep(2);
@@ -180,6 +180,7 @@ void SystemMonitor::Init()
 
 	OrbisPthread* id;
 	scePthreadCreate(&id, nullptr, MonitorThread, NULL, "System Monitor Thread");
+	scePthreadDetach(*id);
 }
 
 void SystemMonitor::Term()

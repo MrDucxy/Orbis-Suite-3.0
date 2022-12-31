@@ -37,6 +37,7 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 	}
 }
 
+
 void* InitThread(void* args)
 {
 	klog("!! Hello World !!\n");
@@ -70,6 +71,7 @@ extern "C"
 	{
 		OrbisPthread* hThread;
 		scePthreadCreate(&hThread, nullptr, InitThread, nullptr, "Init");
+		scePthreadJoin(*hThread, nullptr);
 
 		return 0;
 	}

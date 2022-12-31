@@ -1,7 +1,7 @@
 SETLOCAL EnableDelayedExpansion
 
 Rem Libraries to link in
-set libraries=-lc++ -lc -lSceSysModule -lkernel -lSceVideoOut -lSceSystemService -lSceSysCore -lSceSystemStateMgr -lSceNet -lScePad -lSceUserService -lSceRegMgr -lSceFreeType -lSceMsgDialog -lSceCommonDialog -lGoldHEN_Hook -lSQLite -lSceAppInstUtil
+set libraries=-lc++ -lc -lSceSysmodule -lkernel -lSceVideoOut -lSceSystemService -lSceSysCore -lSceSystemStateMgr -lSceNet -lScePad -lSceUserService -lSceRegMgr -lSceFreeType -lSceMsgDialog -lSceCommonDialog -lGoldHEN_Hook -lSQLite -lSceAppInstUtil
 
 Rem Read the script arguments into local vars
 set intdir=%1
@@ -24,14 +24,14 @@ Rem Link the input ELF
 ld.lld -m elf_x86_64 -pie --script "%OO_PS4_TOOLCHAIN%\link.x" --eh-frame-hdr -o "%outputElf%" "-L%OO_PS4_TOOLCHAIN%\\lib" "-L..\\..\\External\\GoldHEN_Plugins_SDK" "-L..\\..\\External\\LibSQLite-ps4" %libraries% --verbose "%OO_PS4_TOOLCHAIN%\lib\crt1.o" %obj_files% "..\\..\\External\\ps4-libjbc\\jbc.o"
 
 Rem Create the eboot
-%OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin" --paid 0x3800000000010003
+%OO_PS4_TOOLCHAIN%\bin\windows\create-fself.exe -in "%outputElf%" --out "%outputOelf%" --eboot "eboot.bin" --paid 0x3800000000000010 --authinfo 000000000000000000000000001C004000FF000000000080000000000000000000000000000000000000008000400040000000000000008000000000000000080040FFFF000000F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 Rem Cleanup
 copy "eboot.bin" %outputPath%\Playstation\Build\pkg\Daemons\ORBS30000\eboot.bin
 del "eboot.bin"
 
 REM Generate the script. Will overwrite any existing temp.txt
-echo open 1.1.0.13 2121> temp.txt
+echo open 1.1.0.79 2121> temp.txt
 echo anonymous>> temp.txt
 echo anonymous>> temp.txt
 echo cd "/system/vsh/app/ORBS30000/">> temp.txt

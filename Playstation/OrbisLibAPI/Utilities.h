@@ -1,13 +1,9 @@
 #pragma once
 
-// Modules.
-extern void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
-extern int(*sceAppInstUtilInitialize)();
-extern int(*sceAppInstUtilAppUnInstall)(const char* TitleId);
 
-bool LoadModules();
 
 // Misc
+bool LoadModules();
 void Notify(const char* MessageFMT, ...);
 void Notify_Custom(const char* IconURI, const char* MessageFMT, ...);
 void klog(const char* fmt, ...);

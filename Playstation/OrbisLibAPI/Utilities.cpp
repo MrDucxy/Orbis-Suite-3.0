@@ -1,62 +1,118 @@
 #include "Common.h"
 #include "Utilities.h"
 
-#pragma region Modules
-
-void(*_sceSysmoduleLoadModuleInternal)(uint32_t); //Import is broken for some reason
-int(*sceAppInstUtilInitialize)();
-int(*sceAppInstUtilAppUnInstall)(const char* TitleId);
+#pragma region Misc
 
 bool LoadModules()
 {
-	//Load the sysmodule library and import for sceSysmoduleLoadModuleInternal for some reason wouldnt auto import.
-	int ModuleHandle = sceKernelLoadStartModule("/system/common/lib/libSceSysmodule.sprx", 0, nullptr, 0, nullptr, nullptr);
-	if (ModuleHandle < 0) {
-		klog("Failed to load libSceSysmodule Library.\n");
+	auto res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE (%llX)\n", res);
 		return false;
 	}
 
-	sceKernelDlsym(ModuleHandle, "sceSysmoduleLoadModuleInternal", (void**)&_sceSysmoduleLoadModuleInternal);
-	if (_sceSysmoduleLoadModuleInternal == nullptr) {
-		klog("Failed to load _sceSysmoduleLoadModuleInternal Import.\n");
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_APPINSTUTIL);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_APPINSTUTIL (%llX)\n", res);
 		return false;
 	}
 
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYSTEM_SERVICE);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_APPINSTUTIL);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_USER_SERVICE);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYS_CORE);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_PAD);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NETCTL);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NET);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_HTTP);
-	_sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_BGFT);
-	_sceSysmoduleLoadModuleInternal(0xA4);
-
-	int libSceAppInstUtil = sceKernelLoadStartModule("/system/common/lib/libSceAppInstUtil.sprx", 0, nullptr, 0, nullptr, nullptr);
-	if (libSceAppInstUtil < 0) {
-		klog("Failed to load libSceAppInstUtil Library.\n");
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_USER_SERVICE);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_USER_SERVICE (%llX)\n", res);
 		return false;
 	}
 
-	sceKernelDlsym(libSceAppInstUtil, "sceAppInstUtilInitialize", (void**)&sceAppInstUtilInitialize);
-	if (sceAppInstUtilInitialize == nullptr) {
-		klog("Failed to load sceAppInstUtilInitialize Import.\n");
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_SYS_CORE);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_SYS_CORE (%llX)\n", res);
 		return false;
 	}
 
-	sceKernelDlsym(libSceAppInstUtil, "sceAppInstUtilAppUnInstall", (void**)&sceAppInstUtilAppUnInstall);
-	if (sceAppInstUtilAppUnInstall == nullptr) {
-		klog("Failed to load sceAppInstUtilAppUnInstall Import.\n");
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NETCTL);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_NETCTL (%llX)\n", res);
 		return false;
 	}
 
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_NET);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_NET (%llX)\n", res);
+		return false;
+	}
+
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_HTTP);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_HTTP (%llX)\n", res);
+		return false;
+	}
+
+	res = sceSysmoduleLoadModuleInternal(SCE_SYSMODULE_INTERNAL_BGFT);
+	if (res != 0)
+	{
+		klog("LoadModules(): Failed to load SCE_SYSMODULE_INTERNAL_BGFT (%llX)\n", res);
+		return false;
+	}
+
+	// Start up networking interface
+	res = sceNetInit();
+	if (res != 0)
+	{
+		klog("LoadModules(): sceNetInit failed\n");
+		return false;
+	}
+
+	// Start up user service.
+	res = sceUserServiceInitialize(nullptr);
+	if (res != 0)
+	{
+		klog("LoadModules(): sceUserServiceInitialize failed (%llX)\n", res);
+		return false;
+	}
+
+	// Init temporary wrapper for lncutils.
+	res = LncUtil::Init();
+	if (res != 0)
+	{
+		klog("LoadModules(): LncUtil::Init failed (%llX)\n", res);
+		return false;
+	}
+
+	// Init temporary wrapper for shellcoreutils.
+	res = ShellCoreUtil::Init();
+	if (res != 0)
+	{
+		klog("LoadModules(): ShellCoreUtil::Init failed (%llX)\n", res);
+		return false;
+	}
+
+	// Init SysCoreUtils.
+	res = sceApplicationInitialize();
+	if (res != 0)
+	{
+		klog("LoadModules(): sceApplicationInitialize failed (%llX)\n", res);
+		return false;
+	}
+
+	// Init App install utils.
+	res = sceAppInstUtilInitialize();
+	if (res != 0)
+	{
+		klog("LoadModules(): sceAppInstUtilInitialize failed (%llX)\n", res);
+		return false;
+	}
+
+	klog("LoadModules(): Success!\n");
 	return true;
+	//res = sceSysmoduleLoadModuleInternal(0xA4);
 }
-
-#pragma endregion
-
-#pragma region Misc
 
 void Notify(const char* MessageFMT, ...)
 {
@@ -119,7 +175,7 @@ void klog(const char* fmt, ...)
 
 bool Jailbreak()
 {
-	jbc_cred cred;
+	struct jbc_cred cred;
 	if (jbc_get_cred(&cred) != 0)
 	{
 		klog("jbc failed to get cred.\n");

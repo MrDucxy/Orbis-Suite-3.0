@@ -7,6 +7,22 @@ int(*LncUtil::_sceLncUtilLaunchApp)(const char* titleId, char* args, LaunchAppPa
 int(*LncUtil::_sceLncUtilSuspendApp)(int AppId, int Flag);
 int(*LncUtil::_sceLncUtilResumeApp)(int AppId, int Flag);
 
+#ifdef FIRMWARE_505
+#define sceLncUtilInitializeOffset 0x4BF0
+#define sceLncUtilGetAppIdOffset 0x4E10
+#define sceLncUtilLaunchAppOffset 0x4C10
+#define sceLncUtilSuspendAppOffset 0x4F20
+#define sceLncUtilResumeAppOffset 0x4F40
+#endif
+
+#ifdef FIRMWARE_900
+#define sceLncUtilInitializeOffset 0x5580
+#define sceLncUtilGetAppIdOffset 0x5770
+#define sceLncUtilLaunchAppOffset 0x55A0
+#define sceLncUtilSuspendAppOffset 0x5880
+#define sceLncUtilResumeAppOffset 0x58A0
+#endif
+
 int LncUtil::Init()
 {
 	// Load the prx or get its module handle.
@@ -35,7 +51,7 @@ int LncUtil::Init()
 	}
 
 	// Init the lnc util library.
-	auto sceLncUtilInitialize = (int(*)())(LibraryBaseAddress + 0x4BF0);
+	auto sceLncUtilInitialize = (int(*)())(LibraryBaseAddress + sceLncUtilInitializeOffset);
 	if (sceLncUtilInitialize() != 0)
 	{
 		klog("Failed to call sceLncUtilInitialize().\n");
@@ -43,17 +59,17 @@ int LncUtil::Init()
 	}
 
 	// Set up Functions.
-	_sceLncUtilGetAppId = (decltype(_sceLncUtilGetAppId))(LibraryBaseAddress + 0x4E10);
-	_sceLncUtilLaunchApp = (decltype(_sceLncUtilLaunchApp))(LibraryBaseAddress + 0x4C10);
-	_sceLncUtilSuspendApp = (decltype(_sceLncUtilSuspendApp))(LibraryBaseAddress + 0x4F20);
-	_sceLncUtilResumeApp = (decltype(_sceLncUtilResumeApp))(LibraryBaseAddress + 0x4F40);
+	_sceLncUtilGetAppId = (decltype(_sceLncUtilGetAppId))(LibraryBaseAddress + sceLncUtilGetAppIdOffset);
+	_sceLncUtilLaunchApp = (decltype(_sceLncUtilLaunchApp))(LibraryBaseAddress + sceLncUtilLaunchAppOffset);
+	_sceLncUtilSuspendApp = (decltype(_sceLncUtilSuspendApp))(LibraryBaseAddress + sceLncUtilSuspendAppOffset);
+	_sceLncUtilResumeApp = (decltype(_sceLncUtilResumeApp))(LibraryBaseAddress + sceLncUtilResumeAppOffset);
 
 	return 0;
 }
 
 int LncUtil::sceLncUtilGetAppId(const char* TitleId)
 {
-	if ((uint64_t)_sceLncUtilGetAppId > 0x4E10)
+	if ((uint64_t)_sceLncUtilGetAppId > sceLncUtilGetAppIdOffset)
 	{
 		return _sceLncUtilGetAppId(TitleId);
 	}
@@ -66,7 +82,7 @@ int LncUtil::sceLncUtilGetAppId(const char* TitleId)
 
 int LncUtil::sceLncUtilLaunchApp(const char* titleId, char* args, LaunchAppParam* appParam)
 {
-	if ((uint64_t)_sceLncUtilLaunchApp > 0x4C10)
+	if ((uint64_t)_sceLncUtilLaunchApp > sceLncUtilLaunchAppOffset)
 	{
 		return _sceLncUtilLaunchApp(titleId, args, appParam);
 	}
@@ -79,7 +95,7 @@ int LncUtil::sceLncUtilLaunchApp(const char* titleId, char* args, LaunchAppParam
 
 int LncUtil::sceLncUtilSuspendApp(int AppId, int Flag)
 {
-	if ((uint64_t)_sceLncUtilSuspendApp > 0x4F20)
+	if ((uint64_t)_sceLncUtilSuspendApp > sceLncUtilSuspendAppOffset)
 	{
 		return _sceLncUtilSuspendApp(AppId, Flag);
 	}
@@ -92,7 +108,7 @@ int LncUtil::sceLncUtilSuspendApp(int AppId, int Flag)
 
 int LncUtil::sceLncUtilResumeApp(int AppId, int Flag)
 {
-	if ((uint64_t)_sceLncUtilResumeApp > 0x4F40)
+	if ((uint64_t)_sceLncUtilResumeApp > sceLncUtilResumeAppOffset)
 	{
 		return _sceLncUtilResumeApp(AppId, Flag);
 	}

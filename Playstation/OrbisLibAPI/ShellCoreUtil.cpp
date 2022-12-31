@@ -4,6 +4,14 @@
 uint64_t ShellCoreUtil::LibraryBaseAddress = 0;
 int(*ShellCoreUtil::_sceShellCoreUtilGetFreeSizeOfUserPartition)(uint64_t* free, uint64_t* total);
 
+#ifdef FIRMWARE_505
+#define sceShellCoreUtilGetFreeSizeOfUserPartitionOffset 0x105A0
+#endif
+
+#ifdef FIRMWARE_900
+#define sceShellCoreUtilGetFreeSizeOfUserPartitionOffset 0x10B40
+#endif
+
 int ShellCoreUtil::Init()
 {
 	// Load the prx or get its module handle.
@@ -32,14 +40,14 @@ int ShellCoreUtil::Init()
 	}
 
 	// Set up Functions.
-	_sceShellCoreUtilGetFreeSizeOfUserPartition = (decltype(_sceShellCoreUtilGetFreeSizeOfUserPartition))(LibraryBaseAddress + 0x105A0);
+	_sceShellCoreUtilGetFreeSizeOfUserPartition = (decltype(_sceShellCoreUtilGetFreeSizeOfUserPartition))(LibraryBaseAddress + sceShellCoreUtilGetFreeSizeOfUserPartitionOffset);
 
 	return 0;
 }
 
 int ShellCoreUtil::sceShellCoreUtilGetFreeSizeOfUserPartition(uint64_t* free, uint64_t* total)
 {
-	if ((uint64_t)_sceShellCoreUtilGetFreeSizeOfUserPartition > 0x105A0)
+	if ((uint64_t)_sceShellCoreUtilGetFreeSizeOfUserPartition > sceShellCoreUtilGetFreeSizeOfUserPartitionOffset)
 	{
 		return _sceShellCoreUtilGetFreeSizeOfUserPartition(free, total);
 	}
