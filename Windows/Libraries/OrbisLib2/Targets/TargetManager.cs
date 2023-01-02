@@ -1,9 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
-using OrbisLib2.Common.API;
+﻿using OrbisLib2.Common.API;
 using OrbisLib2.Common.Database;
 using OrbisLib2.Common.Database.Types;
 using OrbisLib2.Common.Helpers;
-using System.Net.Sockets;
+using OrbisLib2.General;
 using System.Runtime.InteropServices;
 
 namespace OrbisLib2.Targets
@@ -55,7 +54,11 @@ namespace OrbisLib2.Targets
 
                 return _SelectedTarget;
             }
-            set { _SelectedTarget = value; }
+            set 
+            { 
+                _SelectedTarget = value;
+                Events.FireSelectedTargetChanged(_SelectedTarget.Name);
+            }
         }
 
         /// <summary>

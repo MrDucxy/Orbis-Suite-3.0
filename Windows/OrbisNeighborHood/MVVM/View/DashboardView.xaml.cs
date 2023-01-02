@@ -25,6 +25,7 @@ namespace OrbisNeighborHood.MVVM.View
 
             Events.DBTouched += Events_DBTouched;
             Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.SelectedTargetChanged += Events_SelectedTargetChanged;
 
             RefreshTargetInfo();
         }
@@ -174,6 +175,11 @@ namespace OrbisNeighborHood.MVVM.View
         #endregion
 
         #region Events / Refresh Target
+
+        private void Events_SelectedTargetChanged(object? sender, SelectedTargetChangedEvent e)
+        {
+            Dispatcher.Invoke(() => { RefreshTargetInfo(); });
+        }
 
         private void Events_TargetStateChanged(object? sender, TargetStateChangedEvent e)
         {

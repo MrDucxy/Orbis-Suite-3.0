@@ -31,7 +31,7 @@ copy "eboot.bin" %outputPath%\Playstation\Build\pkg\Daemons\ORBS30000\eboot.bin
 del "eboot.bin"
 
 REM Generate the script. Will overwrite any existing temp.txt
-echo open 1.1.0.79 2121> temp.txt
+echo open 1.1.0.14 2121> temp.txt
 echo anonymous>> temp.txt
 echo anonymous>> temp.txt
 echo cd "/system/vsh/app/ORBS30000/">> temp.txt

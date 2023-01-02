@@ -21,7 +21,6 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class TargetPanel : UserControl
     {
-        private TargetInfo _thisTargetInfo;
         private readonly Target _thisTarget;
 
         public event EventHandler<RoutedEventArgs>? TargetChanged;
@@ -33,8 +32,6 @@ namespace OrbisNeighborHood.Controls
             _thisTarget = TargetManager.GetTarget(TargetName);
             if(_thisTarget != null )
             {
-                _thisTargetInfo = _thisTarget.Info;
-
                 this.TargetName = _thisTarget.Name;
                 TargetStatus = _thisTarget.Info.Status;
                 ConsoleModel = _thisTarget.Info.ModelType;

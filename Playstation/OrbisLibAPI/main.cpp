@@ -49,10 +49,28 @@ int main()
 	klog("\n%s\n\n", ORBISLIB_BUILDSTRING);
 
 	// Init a thread to monitor the system usage stats.
-	//SystemMonitor::Init();
+	// SystemMonitor::Init();
 
 	// start up the API. NOTE: this is blocking.
-	//API::Init();
+	API::Init();
+
+//#define LOADTOOLBOX
+#ifdef LOADTOOLBOX
+	auto handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
+	if (handle > 0) {
+		klog("Orbis Toolbox loaded! %d\n", handle);
+	}
+	else
+	{
+		klog("error: %d\n", handle);
+		Notify("Failed to load Orbis Toolbox!");
+	}
+#endif
+
+//#define KILLSHELLUI
+#ifdef KILLSHELLUI
+	sceSystemServiceKillApp(LncUtil::sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
+#endif
 
 	sceSystemServiceLoadExec("exit", 0);
 

@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -23,7 +24,14 @@ namespace OrbisLibraryManager.Controls
 
             Events.DBTouched += Events_DBTouched;
             Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.SelectedTargetChanged += Events_SelectedTargetChanged;
+
             RefreshTarget();
+        }
+
+        private void Events_SelectedTargetChanged(object? sender, SelectedTargetChangedEvent e)
+        {
+            Dispatcher.Invoke(() => { RefreshTarget(); });
         }
 
         private void Events_TargetStateChanged(object? sender, TargetStateChangedEvent e)
@@ -100,6 +108,11 @@ namespace OrbisLibraryManager.Controls
                     UseShellExecute = true
                 });
             }  
+        }
+
+        private void CurrentTargetName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OrbisLib2.Dialog.SelectTarget.ShowDialog(Window.GetWindow(this));
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrbisLib2.General
+﻿namespace OrbisLib2.General
 {
     public class DBTouchedEvent : EventArgs
     {
@@ -33,6 +27,16 @@ namespace OrbisLib2.General
         }
     }
 
+    public class SelectedTargetChangedEvent : EventArgs
+    {
+        public string Name { get; private set; }
+
+        public SelectedTargetChangedEvent(string Name) 
+        {
+            this.Name = Name;
+        }
+    }
+
     public class Events
     {
         /// <summary>
@@ -44,6 +48,11 @@ namespace OrbisLib2.General
         /// Even is fired when ever the state of the target changes.
         /// </summary>
         public static event EventHandler<TargetStateChangedEvent>? TargetStateChanged;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static event EventHandler<SelectedTargetChangedEvent>? SelectedTargetChanged;
 
         /// <summary>
         /// Will Fire the event for when the Database has been updated.
@@ -77,6 +86,15 @@ namespace OrbisLib2.General
                 TargetStateChanged?.Invoke(null, new TargetStateChangedEvent(TargetName, TargetStateChangedEvent.TargetState.APIAvailable));
             else
                 TargetStateChanged?.Invoke(null, new TargetStateChangedEvent(TargetName, TargetStateChangedEvent.TargetState.APIUnAvailable));
+        }
+
+        /// <summary>
+        /// Will fire the event whent the selected target changes.
+        /// </summary>
+        /// <param name="Name">The name of the target.</param>
+        internal static void FireSelectedTargetChanged(string Name)
+        {
+            SelectedTargetChanged?.Invoke(null, new SelectedTargetChangedEvent(Name));
         }
     }
 }

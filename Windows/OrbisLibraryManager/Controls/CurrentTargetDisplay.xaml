@@ -57,7 +57,9 @@
                            Margin="0 0 0 0"
                            Text="-"
                            FontSize="13"
-                           Foreground="{DynamicResource Text}"/>
+                           Foreground="{DynamicResource Text}"
+                           Cursor="Hand"
+                           MouseDown="CurrentTargetName_MouseDown"/>
 
             </StackPanel>
             
