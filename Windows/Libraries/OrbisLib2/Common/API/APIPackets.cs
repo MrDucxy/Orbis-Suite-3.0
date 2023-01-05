@@ -55,10 +55,10 @@ namespace OrbisLib2.Common.API
         API_DBG_SET_DBGREG,
 
         /* Remote Library functions */
-        API_DBG_LOAD_SPRX,
-        API_DBG_UNLOAD_SPRX,
-        API_DBG_RELOAD_SPRX,
-        API_DBG_MODULE_LIST,
+        API_DBG_LOAD_LIBRARY,
+        API_DBG_UNLOAD_LIBRARY,
+        API_DBG_RELOAD_LIBRARY,
+        API_DBG_LIBRARY_LIST,
 
         /* Thread Management */
         API_DBG_THREAD_LIST,
@@ -191,35 +191,41 @@ namespace OrbisLib2.Common.API
     #region Debug
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
+    public struct SegmentInfo
+    {
+        public ulong baseAddr;
+        public uint size;
+        public int prot;
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi)]
     public struct LibraryPacket
     {
-        public Int64 Handle;
+        public long Handle;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string Path;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64)]
+        public int SegmentCount;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         public SegmentInfo[] Segments;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ProcRWPacket
+    public struct DbgRWPacket
     {
         public UInt64 Address;
         public UInt64 Length;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ProcSPRXPacket
+    public struct DbgSPRXPacket
     {
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
-        public string Name;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string Path;
-        public int ModuleHandle;
-        public int Flags;
+        public int Handle;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct ProcBreakpointPacket
+    public struct DbgBreakpointPacket
     {
         public int Index;
         public UInt64 Address;
@@ -233,14 +239,6 @@ namespace OrbisLib2.Common.API
     #endregion
 
     #region Target
-
-    [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
-    public struct SegmentInfo
-    {
-        public UInt64 baseAddr;
-        public uint size;
-        public int prot;
-    }
 
     public enum ConsoleTypes
     {

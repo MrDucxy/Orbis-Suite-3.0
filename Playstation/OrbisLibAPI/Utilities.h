@@ -35,3 +35,4 @@ struct kinfo_proc {
 
 void hexdump(void* ptr, int buflen);
 int GetProcessList(std::vector<kinfo_proc>& ProcessList);
+bool LinkDir(const char* Dir, const char* LinkedDir);

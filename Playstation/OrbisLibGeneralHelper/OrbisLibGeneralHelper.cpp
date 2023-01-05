@@ -5,37 +5,59 @@ LocalSocketListener* LocalListener = nullptr;
 
 void SendLibraryList(OrbisNetId Sock)
 {
-	int MaxOutput = 0;
-	if (!SockRecvInt(Sock, &MaxOutput))
-	{
-		klog("Failed to recv int.\n");
-		return;
-	}
-
 	// Get the libraries.
-	LibraryInfo* LibraryList = (LibraryInfo*)malloc(MaxOutput * sizeof(LibraryInfo));
-	int RealLibCount = jbc_get_proc_libraries(LibraryList, MaxOutput);
-
-	// Make sure not to overflow the sender.
-	if (RealLibCount > MaxOutput)
-	{
-		klog("Warning: SendLibraryList MaxOutput too small.");
-		RealLibCount = MaxOutput;
-	}
+	LibraryInfo* LibraryList = (LibraryInfo*)malloc(200 * sizeof(LibraryInfo));
+	int RealLibCount = jbc_get_proc_libraries(LibraryList, 200);
 
 	// Send the Count
-	SockSendInt(Sock, RealLibCount);
+	Sockets::SendInt(Sock, RealLibCount);
 
 	// Ship it.
-	sceNetSend(Sock, (void*)LibraryList, RealLibCount * sizeof(LibraryInfo), 0);
+	Sockets::SendLargeData(Sock, (unsigned char*)LibraryList, RealLibCount * sizeof(LibraryInfo));
 
 	// Clean up!
 	free(LibraryList);
 }
 
+void LoadUnloadLib(int Command, OrbisNetId Sock)
+{
+	auto Packet = (LibPacket*)malloc(sizeof(LibPacket));
+	sceNetRecv(Sock, Packet, sizeof(LibPacket), 0);
+
+	if (Command == GIPC_LIB_LOAD)
+	{
+		int res = sceKernelLoadStartModule(Packet->Path, 0, 0, 0, 0, 0);
+
+		// Send the result.
+		Sockets::SendInt(Sock, res);
+	}
+	else
+	{
+		int res = sceKernelStopUnloadModule(Packet->Handle, 0, 0, 0, 0, 0);
+
+		// Send the result.
+		Sockets::SendInt(Sock, res);
+	}
+
+	free(Packet);
+}
+
 void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 {
-	int Command = RecieveInt(Sock);
+	int Command = 0;
+
+	if (!Sockets::RecvInt(Sock, &Command))
+	{
+		klog("Failed to recv Command.\n");
+		return;
+	}
+
+	if (!Sockets::SendInt(Sock, GIPC_OK))
+	{
+		klog("Failed to send confirm command.\n");
+		return;
+	}
+
 	if (Command != -1)
 	{
 		switch (Command)
@@ -48,14 +70,27 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 			SendLibraryList(Sock); // Really Only needed for the path.
 			break;
 
+		case GIPC_LIB_LOAD:
+		case GIPC_LIB_UNLOAD:
+
+			LoadUnloadLib(Command, Sock);
+
+			break;
+
 		case GIPC_JAILBREAK:
-			//sys_sdk_jailbreak(&JailBackup); // Could just use libjbc
-			SockSendInt(Sock, GIPC_OK);
+
+			Jailbreak();
+
+			Sockets::SendInt(Sock, GIPC_OK);
+
 			break;
 
 		case GIPC_JAIL:
-			//sys_sdk_unjailbreak(&JailBackup); // Could just use libjbc
-			SockSendInt(Sock, GIPC_OK);
+
+			RestoreJail();
+			
+			Sockets::SendInt(Sock, GIPC_OK);
+
 			break;
 
 		case  GIPC_RW:
@@ -75,15 +110,14 @@ extern "C"
 	{
 		klog("Hello from Helper!\n");
 
-		char ProcName[0x20];
-		sceKernelGetProcessName(getpid(), ProcName);
-
-		klog("Helping with %s\n", ProcName);
+		klog("Helping with %d\n", getpid());
 
 		char serverAddress[0x200];
-		snprintf(serverAddress, sizeof(serverAddress), GENERAL_IPC_ADDR, ProcName);
+		snprintf(serverAddress, sizeof(serverAddress), GENERAL_IPC_ADDR, getpid());
 
 		LocalListener = new LocalSocketListener(ListenerClientThread, nullptr, serverAddress);
+
+		klog("Helper Init Complete.\n");
 
 		return 0;
 	}

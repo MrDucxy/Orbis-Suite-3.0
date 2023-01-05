@@ -20,6 +20,8 @@ void* LocalSocketListener::ClientThread(void* tdParam)
 
 void* LocalSocketListener::DoWork()
 {
+	Jailbreak();
+
 	OrbisNetSockaddrUn addr = { 0 };
 	addr.sun_family = ORBIS_NET_AF_LOCAL;
 	strncpy(addr.sun_path, this->ServerAddress, sizeof(addr.sun_path));
@@ -43,6 +45,8 @@ void* LocalSocketListener::DoWork()
 
 		goto Cleanup;
 	}
+
+	RestoreJail();
 
 	if (sceNetListen(this->Socket, 100) != 0)
 	{
@@ -86,6 +90,7 @@ void* LocalSocketListener::DoWork()
 
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
+
 				// Set up thread params.
 				ClientThreadParams* Params = new ClientThreadParams();
 				Params->LocalSocketListener = this;
@@ -105,9 +110,9 @@ void* LocalSocketListener::DoWork()
 Cleanup:
 	klog("Listener Thread Exiting!\n");
 
-
 	// Clean up.
 	sceNetSocketClose(this->Socket);
+	sceKernelUnlink(this->ServerAddress);
 
 	// Kill our thread and exit.
 	scePthreadExit(NULL);

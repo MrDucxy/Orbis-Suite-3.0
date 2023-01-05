@@ -1,7 +1,7 @@
 SETLOCAL EnableDelayedExpansion
 
 Rem Libraries to link in
-set libraries=-lc++ -lc -lSceSysmodule -lkernel -lSceVideoOut -lSceSystemService -lSceSysCore -lSceSystemStateMgr -lSceNet -lScePad -lSceUserService -lSceRegMgr -lSceFreeType -lSceMsgDialog -lSceCommonDialog -lGoldHEN_Hook -lSQLite -lSceAppInstUtil
+set libraries=-lc++ -lc -lSceSysmodule -lkernel -lSceVideoOut -lSceSystemService -lSceSysCore -lSceSystemStateMgr -lSceNet -lScePad -lSceUserService -lSceRegMgr -lSceFreeType -lSceMsgDialog -lSceCommonDialog -lGoldHEN_Hook -lSQLite -lSceAppInstUtil -lSceLncUtil -lSceShellCoreUtil
 
 Rem Read the script arguments into local vars
 set intdir=%1
@@ -31,7 +31,7 @@ copy "eboot.bin" %outputPath%\Playstation\Build\pkg\Daemons\ORBS30000\eboot.bin
 del "eboot.bin"
 
 REM Generate the script. Will overwrite any existing temp.txt
-echo open 1.1.0.14 2121> temp.txt
+echo open 1.1.0.15 2121> temp.txt
 echo anonymous>> temp.txt
 echo anonymous>> temp.txt
 echo cd "/system/vsh/app/ORBS30000/">> temp.txt

@@ -13,16 +13,23 @@ namespace OrbisLib2.Common.Helpers
         /// <param name="data">The data to be recieved.</param>
         public static void RecvLarge(this Socket s, byte[] data)
         {
-            int Left = data.Length;
-            int Received = 0;
-
-            while (Left > 0)
+            try
             {
-                var chunkSize = Math.Min(s.ReceiveBufferSize, Left);
-                var res = s.Receive(data, Received, chunkSize, 0);
+                int Left = data.Length;
+                int Received = 0;
 
-                Received += res;
-                Left -= res;
+                while (Left > 0)
+                {
+                    var chunkSize = Math.Min(s.ReceiveBufferSize, Left);
+                    var res = s.Receive(data, Received, chunkSize, 0);
+
+                    Received += res;
+                    Left -= res;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 

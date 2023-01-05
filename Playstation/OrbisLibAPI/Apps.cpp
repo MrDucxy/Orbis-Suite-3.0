@@ -177,7 +177,7 @@ void Apps::StartApp(OrbisNetId Sock, const char* TitleId)
 		return;
 	}
 
-	auto res = LncUtil::sceLncUtilLaunchApp(TitleId, nullptr, &appParam);
+	auto res = sceLncUtilLaunchApp(TitleId, nullptr, &appParam);
 	if (res <= 0)
 	{
 		klog("sceLncUtilLaunchApp() : Failed with error % llX\n", res);
@@ -207,7 +207,7 @@ void Apps::SuspendApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
 
-	if (appId > 0 && LncUtil::sceLncUtilSuspendApp(appId, 0) == 0)
+	if (appId > 0 && sceLncUtilSuspendApp(appId, 0) == 0)
 	{
 		Sockets::SendInt(Sock, 1);
 	}
@@ -221,7 +221,7 @@ void Apps::ResumeApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
 
-	if (appId > 0 && LncUtil::sceLncUtilResumeApp(appId, 0) == 0 && sceApplicationSetApplicationFocus(appId) == 0)
+	if (appId > 0 && sceLncUtilResumeApp(appId, 0) == 0 && sceLncUtilSetAppFocus(appId, 0) == 0)
 	{
 		Sockets::SendInt(Sock, 1);
 	}

@@ -139,7 +139,7 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	sceUserServiceGetForegroundUser(&Packet->ForegroundAccountId);
 
 	// Storage Stats.
-	auto res = ShellCoreUtil::sceShellCoreUtilGetFreeSizeOfUserPartition(&Packet->FreeSpace, &Packet->TotalSpace);
+	auto res = sceShellCoreUtilGetFreeSizeOfUserPartition(&Packet->FreeSpace, &Packet->TotalSpace);
 
 	// Perf Stats. TODO: Move from toolbox
 	/*Packet->ThreadCount = SystemMonitor::Thread_Count;

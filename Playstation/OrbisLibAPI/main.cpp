@@ -3,10 +3,6 @@
 #include "API.h"
 #include "GoldHEN.h"
 
-#include "AppDatabase.h"
-
-#include "GeneralIPC.h"
-
 void exiting()
 {
 	klog("Good bye friends! :)\n");
@@ -67,9 +63,9 @@ int main()
 	}
 #endif
 
-//#define KILLSHELLUI
+// #define KILLSHELLUI
 #ifdef KILLSHELLUI
-	sceSystemServiceKillApp(LncUtil::sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
+	sceSystemServiceKillApp(sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
 #endif
 
 	sceSystemServiceLoadExec("exit", 0);

@@ -68,6 +68,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="hde64.cpp" />
     <ClCompile Include="LocalSocketListener.cpp" />
     <ClCompile Include="OrbisLibGeneralHelper.cpp" />
+    <ClCompile Include="Socket.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +76,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="Detour.h" />
     <ClInclude Include="hde64.h" />
     <ClInclude Include="LocalSocketListener.h" />
+    <ClInclude Include="Sockets.h" />
     <ClInclude Include="table64.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>

@@ -15,4 +15,8 @@ private:
 	void Attach(OrbisNetId Sock);
 	void Detach(OrbisNetId Sock);
 
+	void LoadLibrary(OrbisNetId Sock);
+	void UnloadLibrary(OrbisNetId Sock);
+	void ReloadLibrary(OrbisNetId Sock);
+	void GetLibraryList(OrbisNetId Sock);
 };

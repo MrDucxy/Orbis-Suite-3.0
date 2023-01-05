@@ -19,25 +19,30 @@ void klog(const char* fmt, ...)
 	sceKernelDebugOutText(0, Buffer2);
 }
 
-bool SockSendInt(OrbisNetId Sock, int val)
-{
-	return !(sceNetSend(Sock, &val, sizeof(int), 0) < 0);
-}
+jbc_cred BackupCred;
+bool Jailbroken = false;
 
-bool SockRecvInt(OrbisNetId Sock, int* val)
+void Jailbreak()
 {
-	return !(sceNetRecv(Sock, val, sizeof(int), 0) < 0);
-}
-
-int RecieveInt(OrbisNetId Sock)
-{
-	int Int = 0;
-	if (sceNetRecv(Sock, &Int, sizeof(int), 0) < 0)
+	if (!Jailbroken)
 	{
-		SockSendInt(Sock, GIPC_FAIL);
-		return 0;
-	}
+		jbc_get_cred(&BackupCred);
 
-	SockSendInt(Sock, GIPC_OK);
-	return Int;
+		jbc_cred jbCred;
+		jbc_get_cred(&jbCred);
+
+		jbc_jailbreak_cred(&jbCred);
+
+		jbc_set_cred(&jbCred);
+
+		Jailbroken = true;
+	}
+}
+
+void RestoreJail()
+{
+	if (Jailbroken)
+	{
+		jbc_set_cred(&BackupCred);
+	}
 }

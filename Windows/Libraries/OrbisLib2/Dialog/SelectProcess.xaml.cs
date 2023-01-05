@@ -27,8 +27,7 @@ namespace OrbisLib2.Dialog
             var selectedProc = (ProcInfo)dlg.ProcessList.SelectedItem;
             if(selectedProc != null)
             {
-                // TODO: Handle Attach here.
-                Console.WriteLine($"Attaching to {selectedProc.Name}");
+                TargetManager.SelectedTarget.Debug.Attach(selectedProc.ProcessId);
             }
 
             return dlg.Result;

@@ -58,10 +58,10 @@ enum APICommands
 	API_DBG_SET_DBGREG,
 
 	/* Remote Library functions */
-	API_DBG_LOAD_SPRX,
-	API_DBG_UNLOAD_SPRX,
-	API_DBG_RELOAD_SPRX,
-	API_DBG_MODULE_LIST,
+	API_DBG_LOAD_LIBRARY,
+	API_DBG_UNLOAD_LIBRARY,
+	API_DBG_RELOAD_LIBRARY,
+	API_DBG_LIBRARY_LIST,
 
 	/* Thread Management */
 	API_DBG_THREAD_LIST,
@@ -194,7 +194,7 @@ struct LibraryPacket
 	int64_t Handle;
 	char Path[256];
 	int32_t SegmentCount;
-	OrbisKernelModuleInfo Segments[4];
+	OrbisKernelModuleSegmentInfo Segments[4];
 };
 
 struct DbgRWPacket
@@ -205,13 +205,11 @@ struct DbgRWPacket
 
 struct DbgSPRXPacket
 {
-	char Name[256];
 	char Path[256];
-	int ModuleHandle;
-	int Flags;
+	int Handle;
 };
 
-struct ProcBreakpointPacket
+struct DbgBreakpointPacket
 {
 	int Index;
 	uint64_t Address;

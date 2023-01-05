@@ -78,18 +78,10 @@ bool LoadModules()
 	}
 
 	// Init temporary wrapper for lncutils.
-	res = LncUtil::Init();
+	res = sceLncUtilInitialize();
 	if (res != 0)
 	{
-		klog("LoadModules(): LncUtil::Init failed (%llX)\n", res);
-		return false;
-	}
-
-	// Init temporary wrapper for shellcoreutils.
-	res = ShellCoreUtil::Init();
-	if (res != 0)
-	{
-		klog("LoadModules(): ShellCoreUtil::Init failed (%llX)\n", res);
+		klog("LoadModules(): sceLncUtilInitialize failed (%llX)\n", res);
 		return false;
 	}
 
@@ -289,4 +281,70 @@ int GetProcessList(std::vector<kinfo_proc>& ProcessList)
 	}), ProcessList.end());
 
 	return 0;
+}
+
+static void build_iovec(iovec** iov, int* iovlen, const char* name, const void* val, size_t len) {
+	int i;
+
+	if (*iovlen < 0)
+		return;
+
+	i = *iovlen;
+	*iov = (iovec*)realloc(*iov, sizeof * *iov * (i + 2));
+	if (*iov == NULL) {
+		*iovlen = -1;
+		return;
+	}
+
+	(*iov)[i].iov_base = strdup(name);
+	(*iov)[i].iov_len = strlen(name) + 1;
+	++i;
+
+	(*iov)[i].iov_base = (void*)val;
+	if (len == (size_t)-1) {
+		if (val != NULL)
+			len = strlen((const char*)val) + 1;
+		else
+			len = 0;
+	}
+	(*iov)[i].iov_len = (int)len;
+
+	*iovlen = ++i;
+}
+
+int nmount(struct iovec* iov, unsigned int niov, int flags)
+{
+	return syscall(378, iov, niov, flags);
+}
+
+bool LinkDir(const char* Dir, const char* LinkedDir)
+{
+	auto res = sceKernelMkdir(LinkedDir, 0777);
+	if (res != 0)
+	{
+		if (res == 0x80020011)
+		{
+			klog("Directory '%s' already exists!\n", LinkedDir);
+			return true;
+		}
+
+		klog("Failed to make dir '%s' err: %llX\n", LinkedDir, res);
+		return false;
+	}
+
+	struct iovec* iov = NULL;
+	int iovlen = 0;
+
+	build_iovec(&iov, &iovlen, "fstype", "nullfs", -1);
+	build_iovec(&iov, &iovlen, "fspath", LinkedDir, -1);
+	build_iovec(&iov, &iovlen, "target", Dir, -1);
+
+	if (nmount(iov, iovlen, 0))
+	{
+		klog("nmount failed\n");
+		sceKernelRmdir(LinkedDir);
+		return false;
+	}
+
+	return true;
 }

@@ -22,5 +22,6 @@
 #include "../../Misc/libjbc.h"
 #include "Utilities.h"
 #include "LocalSocketListener.h"
+#include "Sockets.h"
 
 extern LocalSocketListener* LocalListener;

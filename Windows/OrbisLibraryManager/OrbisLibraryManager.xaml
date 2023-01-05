@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:OrbisLibraryManager"
         xmlns:simpleControls="clr-namespace:SimpleUI.Controls;assembly=SimpleUI"
         xmlns:controls="clr-namespace:OrbisLibraryManager.Controls"
+        xmlns:valueConverters="clr-namespace:OrbisLibraryManager.ValueConverters"
         mc:Ignorable="d"
         Title="LibraryManager" Height="640" Width="980"
         MinHeight="640" MinWidth="980"
         MaxHeight="640" MaxWidth="980"
         ResizeMode="CanMinimize">
+
+    <simpleControls:SimpleWindow.Resources>
+        <valueConverters:PathNameConverter x:Key="PathNameConverter"/>
+        <valueConverters:SegmentConverter x:Key="SegmentConverter"/>
+    </simpleControls:SimpleWindow.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -118,7 +124,8 @@
                                           Height="25"
                                           ToolTip="Detach the current attached process"
                                           ImageSource="/OrbisLibraryManager;component/Images/Detached.png"
-                                          ImageMargin="2"/>
+                                          ImageMargin="2"
+                                          Click="DetachProcess_Click"/>
 
                     <controls:ImageButton x:Name="Send"
                                           Grid.Column="4"
@@ -172,15 +179,15 @@
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Handle" Width="60" DisplayMemberBinding="{Binding [0]}"/>
-                    <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding [1]}"/>
-                    <GridViewColumn Header="Segments" Width="Auto" DisplayMemberBinding="{Binding [2]}"/>
+                    <GridViewColumn Header="Handle" Width="60" DisplayMemberBinding="{Binding Path=Handle}"/>
+                    <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Path=Path, Converter={StaticResource PathNameConverter}}"/>
+                    <GridViewColumn Header="Segments" Width="Auto" DisplayMemberBinding="{Binding Path=Segments, Converter={StaticResource SegmentConverter}}"/>
                 </GridView>
             </ListView.View>
 
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Refresh" />
+                    <MenuItem Header="Refresh" Click="Refresh_Click"/>
                 </ContextMenu>
             </ListView.ContextMenu>
 

@@ -81,7 +81,7 @@ namespace OrbisLib2.Targets
         }
 
         public TargetEvents Events;
-        // public Debug Debug;
+        public Debug Debug;
         public Payload Payload;
         public Process Process;
         public FTP FTP;
@@ -92,7 +92,7 @@ namespace OrbisLib2.Targets
             _SavedTargetId = SavedTarget.Id;
 
             Events = new TargetEvents(this);
-            // Debug = new Debug(this);
+            Debug = new Debug(this);
             Payload = new Payload(this);
             Process = new Process(this);
             FTP = new FTP(this);
