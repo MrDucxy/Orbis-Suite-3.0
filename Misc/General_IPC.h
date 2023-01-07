@@ -22,6 +22,8 @@ enum GeneralIPCResult
 
 struct LibPacket
 {
-	char Path[100];
-	int Handle;
+	uint32_t Handle;
+	char Path[256];
+	int SegmentCount;
+	OrbisKernelModuleSegmentInfo Segments[4];
 };

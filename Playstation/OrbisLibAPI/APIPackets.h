@@ -191,9 +191,9 @@ struct AppListPacket
 
 struct LibraryPacket
 {
-	int64_t Handle;
+	uint32_t Handle;
 	char Path[256];
-	int32_t SegmentCount;
+	int SegmentCount;
 	OrbisKernelModuleSegmentInfo Segments[4];
 };
 

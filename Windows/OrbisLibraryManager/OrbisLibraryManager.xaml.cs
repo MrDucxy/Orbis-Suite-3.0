@@ -1,6 +1,8 @@
 ﻿using OrbisLib2.Common.Dispatcher;
+using OrbisLib2.General;
 using OrbisLib2.Targets;
 using SimpleUI.Controls;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,6 +17,25 @@ namespace OrbisLibraryManager
         {
             InitializeComponent();
             DispatcherClient.Subscribe();
+
+            Events.ProcAttach += Events_ProcAttach;
+            Events.ProcDetach += Events_ProcDetach;
+        }
+
+        private void Events_ProcDetach(object? sender, ProcDetachEvent e)
+        {
+            if(e.SendingTarget.IPAddress ==  TargetManager.SelectedTarget.IPAddress)
+            {
+                Console.WriteLine("ProcDetach");
+            }
+        }
+
+        private void Events_ProcAttach(object? sender, ProcAttachEvent e)
+        {
+            if (e.SendingTarget.IPAddress == TargetManager.SelectedTarget.IPAddress)
+            {
+                Console.WriteLine($"ProcAttach {e.NewProcessId}");
+            }
         }
 
         private void RefreshLibraryList()

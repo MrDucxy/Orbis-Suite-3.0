@@ -82,7 +82,6 @@
             TargetSuspend,
             TargetResume,
             TargetShutdown,
-            TargetNewTitle,
             TargetAvailability,
             TargetAPIAvailability,
 
@@ -101,9 +100,9 @@
         public string? SenderIPAddress { get; set; }
 
         /// <summary>
-        /// Name of the process that the event was triggered for.
+        /// The process id for the event triggered.
         /// </summary>
-        public string? ProcessName { get; set; }
+        public int ProcessId { get; set; }
 
         public TitleChange? TitleChange { get; set; }
 

@@ -2,6 +2,7 @@
 #include "Debug.h"
 #include "APIHelper.h"
 #include "GeneralIPC.h"
+#include "Events.h"
 
 #include <sys/ptrace.h>
 
@@ -109,11 +110,17 @@ void Debug::Attach(OrbisNetId Sock)
 	char processName[32];
 	sceKernelGetProcessName(pid, processName);
 
+	// Aquire lock.
+	scePthreadMutexLock(&DebugMutex);
+
 	klog("Attempting to attach to %s (%d)\n", processName, pid);
 
 	// If we are currently debugging another process lets detach from it.
 	if (!TryDetach(pid))
 	{
+		// release the lock.
+		scePthreadMutexUnlock(&DebugMutex);
+
 		klog("Attach(): TryDetach Failed. :(\n");
 		SendStatus(Sock, 0);
 		return;
@@ -123,6 +130,9 @@ void Debug::Attach(OrbisNetId Sock)
 	int res = ptrace(PT_ATTACH, pid, nullptr, 0);
 	if (res != 0)
 	{
+		// release the lock.
+		scePthreadMutexUnlock(&DebugMutex);
+
 		klog("Attach(): ptrace(PT_ATTACH) failed with error %llX\n", res);
 		SendStatus(Sock, 0);
 		return;
@@ -134,13 +144,23 @@ void Debug::Attach(OrbisNetId Sock)
 	res = ptrace(PT_CONTINUE, pid, (void*)1, 0);
 	if (res != 0)
 	{
+		// release the lock.
+		scePthreadMutexUnlock(&DebugMutex);
+
 		klog("Attach(): ptrace(PT_CONTINUE) failed with error %llX\n", res);
 		SendStatus(Sock, 0);
 		return;
 	}
 
+	// Set current debugging state.
 	IsDebugging = true;
 	CurrentPID = pid;
+
+	// release the lock.
+	scePthreadMutexUnlock(&DebugMutex);
+
+	// Send attach event to host.
+	Events::SendEvent(Events::EVENT_ATTACH, pid);
 
 	klog("Attached to %s(%d)\n", processName, pid);
 
@@ -167,10 +187,30 @@ void Debug::Attach(OrbisNetId Sock)
 
 void Debug::Detach(OrbisNetId Sock)
 {
-	bool result = false;
-	if (IsDebugging)
-		result = TryDetach(CurrentPID);
-	SendStatus(Sock, result ? 1 : 0);
+	if(!IsDebugging)
+		SendStatus(Sock, 0);
+
+	// Aquire lock.
+	scePthreadMutexLock(&DebugMutex);
+
+	if (TryDetach(CurrentPID))
+	{
+		// release the lock.
+		scePthreadMutexUnlock(&DebugMutex);
+
+		Events::SendEvent(Events::EVENT_DETACH);
+
+		SendStatus(Sock, 1);
+	}
+	else
+	{
+		// release the lock.
+		scePthreadMutexUnlock(&DebugMutex);
+
+		klog("Failed to detach from %d\n", CurrentPID);
+
+		SendStatus(Sock, 0);
+	}
 }
 
 void Debug::LoadLibrary(OrbisNetId Sock)
@@ -259,25 +299,8 @@ void Debug::GetLibraryList(OrbisNetId Sock)
 	}
 
 	// Get the library list with path.
-	std::vector<LibraryInfo> klibraryList;
-	GeneralIPC::GetLibraryList(CurrentPID, klibraryList);
-
-	// Parse the library list.
 	std::vector<LibraryPacket> libraryList;
-	for (const auto& i : klibraryList)
-	{
-		OrbisKernelModuleInfo moduleInfo;
-		moduleInfo.size = sizeof(OrbisKernelModuleInfo);
-		sceKernelGetModuleInfo(i.ModuleHandle, &moduleInfo);
-
-		LibraryPacket temp;
-		temp.Handle = i.ModuleHandle;
-		strcpy(temp.Path, i.Path);
-		temp.SegmentCount = moduleInfo.segmentCount;
-		memcpy(&temp.Segments, &moduleInfo.segmentInfo, sizeof(OrbisKernelModuleSegmentInfo) * 4);
-
-		libraryList.push_back(temp);
-	}
+	GeneralIPC::GetLibraryList(CurrentPID, libraryList);
 
 	// Send the data size.
 	Sockets::SendInt(Sock, libraryList.size());
@@ -290,9 +313,17 @@ Debug::Debug()
 {
 	IsDebugging = false;
 	CurrentPID = -1;
+
+	// Create the mutex to protect our host list.
+	auto res = scePthreadMutexInit(&DebugMutex, nullptr, "DebugMutex");
+	if (res != 0)
+	{
+		klog("Error: Failed to create mutex for Debug class!! Err 0x%llX\n", res);
+	}
 }
 
 Debug::~Debug()
 {
-
+	// Destroy for clean up.
+	scePthreadMutexDestroy(&DebugMutex);
 }

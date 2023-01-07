@@ -3,6 +3,7 @@
 class Debug
 {
 public:
+	OrbisPthreadMutex DebugMutex;
 	bool IsDebugging;
 	int CurrentPID;
 

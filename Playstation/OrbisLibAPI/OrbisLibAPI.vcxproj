@@ -67,6 +67,7 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClCompile Include="Apps.cpp" />
     <ClCompile Include="Breakpoint.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Events.cpp" />
     <ClCompile Include="Flash.cpp" />
     <ClCompile Include="GeneralIPC.cpp" />
     <ClCompile Include="main.cpp" />
@@ -90,7 +91,9 @@ del /s /q /f $(IntDir)\*.oelf</NMakeCleanCommandLine>
     <ClInclude Include="Apps.h" />
     <ClInclude Include="Breakpoint.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Events.h" />
     <ClInclude Include="Flash.h" />
     <ClInclude Include="GeneralIPC.h" />
     <ClInclude Include="Proc.h" />

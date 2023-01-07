@@ -3,6 +3,7 @@ using OrbisLib2.Common.Database;
 using OrbisLib2.Common.Database.Types;
 using OrbisLib2.Common.Helpers;
 using OrbisLib2.General;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
 namespace OrbisLib2.Targets
@@ -65,11 +66,27 @@ namespace OrbisLib2.Targets
         /// Gets the specified target by name.
         /// </summary>
         /// <param name="TargetName">The specified target name.</param>
-        /// <param name="Out">Target output.</param>
         /// <returns>Returns true if target is found.</returns>
         public static Target? GetTarget(string TargetName)
         {
             var saveedTarget = SavedTarget.FindTarget(x => x.Name == TargetName);
+
+            if (saveedTarget == null)
+            {
+                return null;
+            }
+
+            return new Target(saveedTarget);
+        }
+
+        /// <summary>
+        /// Gets the specified target by predicate.
+        /// </summary>
+        /// <param name="predicate">The predicate to be used to find the target.</param>
+        /// <returns></returns>
+        public static Target? GetTarget(Expression<Func<SavedTarget, bool>> predicate)
+        {
+            var saveedTarget = SavedTarget.FindTarget(predicate);
 
             if (saveedTarget == null)
             {

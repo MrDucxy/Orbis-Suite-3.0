@@ -15,7 +15,7 @@ private:
 	static Target* Target;
 	static SocketListener* Listener;
 
-	static void ListenerCallback(void* tdParam, OrbisNetId s);
+	static void ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr);
 
 public:
 	static bool Running;

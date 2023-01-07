@@ -201,7 +201,7 @@ namespace OrbisLib2.Common.API
     [StructLayout(LayoutKind.Sequential, Pack = 8, CharSet = CharSet.Ansi)]
     public struct LibraryPacket
     {
-        public long Handle;
+        public int Handle;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string Path;
         public int SegmentCount;

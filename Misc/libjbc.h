@@ -7,7 +7,7 @@ extern "C"
     struct LibraryInfo
     {
         char Path[256];
-        uint64_t ModuleHandle;
+        uint64_t Handle;
         uint64_t map_base;
         size_t map_size;
         size_t text_size;

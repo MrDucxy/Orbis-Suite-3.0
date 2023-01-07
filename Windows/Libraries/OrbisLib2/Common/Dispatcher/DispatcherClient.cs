@@ -34,51 +34,42 @@ namespace OrbisLib2.Common.Dispatcher
                     Console.WriteLine("Invalid Packet...");
                     break;
 
-                // Debugging
-                case ForwardPacket.PacketType.Print:
-                    TargetManager.SelectedTarget.Events.RaiseProcPrintEvent(Packet.SenderIPAddress, Packet.Print.Sender, Packet.Print.Data);
-                    break;
-
                 case ForwardPacket.PacketType.SerialCom:
                     // TODO:
                     break;
 
                 case ForwardPacket.PacketType.Intercept:
-                    TargetManager.SelectedTarget.Events.RaiseProcInterceptEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcInterceptEvent(Packet.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.Continue:
-                    TargetManager.SelectedTarget.Events.RaiseProcContinueEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcContinueEvent(Packet.SenderIPAddress);
                     break;
 
                 // Process States
                 case ForwardPacket.PacketType.ProcessDie:
-                    TargetManager.SelectedTarget.Events.RaiseProcDieEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcDieEvent(Packet.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.ProcessAttach:
-                    TargetManager.SelectedTarget.Events.RaiseProcAttachEvent(Packet.SenderIPAddress, Packet.ProcessName);
+                    Events.RaiseProcAttachEvent(Packet.SenderIPAddress, Packet.ProcessId);
                     break;
 
                 case ForwardPacket.PacketType.ProcessDetach:
-                    TargetManager.SelectedTarget.Events.RaiseProcDetachEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcDetachEvent(Packet.SenderIPAddress);
                     break;
 
                 // Target State
                 case ForwardPacket.PacketType.TargetSuspend:
-                    TargetManager.SelectedTarget.Events.RaiseTargetSuspendEvent(Packet.SenderIPAddress);
+                    Events.RaiseTargetSuspendEvent(Packet.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.TargetResume:
-                    TargetManager.SelectedTarget.Events.RaiseTargetResumeEvent(Packet.SenderIPAddress);
+                    Events.RaiseTargetResumeEvent(Packet.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.TargetShutdown:
-                    TargetManager.SelectedTarget.Events.RaiseTargetShutdownEvent(Packet.SenderIPAddress);
-                    break;
-
-                case ForwardPacket.PacketType.TargetNewTitle:
-                    TargetManager.SelectedTarget.Events.RaiseTargetNewTitleEvent(Packet.SenderIPAddress, Packet.TitleChange.TitleID);
+                    Events.RaiseTargetShutdownEvent(Packet.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.TargetAvailability:

@@ -13,7 +13,8 @@ namespace OrbisSuiteService.Service
         private Settings _Settings = Settings.CreateInstance();
         //private SerialComHelper _SerialMonitor = new SerialComHelper();
         private TargetWatcher _TargetWatcher;
-        
+        private TargetEventListener _TargetEventListener;
+
 
         public Dispatcher()
         {
@@ -25,6 +26,7 @@ namespace OrbisSuiteService.Service
             _SerialMonitor.Settings.PortName = "";
             _SerialMonitor.StartListening();*/
             _TargetWatcher = new TargetWatcher(this);
+            _TargetEventListener = new TargetEventListener(this);
         }
 
         private byte[] _SerialDataBuffer = new byte[0];

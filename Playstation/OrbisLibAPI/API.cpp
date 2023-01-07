@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "API.h"
+#include "Events.h"
 
 Proc* API::Proc;
 Apps* API::Apps;
@@ -8,9 +9,13 @@ Target* API::Target;
 SocketListener* API::Listener;
 bool API::Running = false;
 
-void API::ListenerCallback(void* tdParam, OrbisNetId s)
+void API::ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr)
 {
+	// Deserialize the packet.
 	auto Packet = RecievePacket<APIPacket>(s);
+
+	// Add host to the host list.
+	Events::AddHost(sin_addr.s_addr);
 
 	if (Packet != nullptr)
 	{
@@ -68,7 +73,7 @@ void API::Init()
 		Apps = new class Apps();
 		Debug = new class Debug();
 		Target = new class Target(Debug);
-		Listener = new SocketListener(ListenerCallback, NULL, 6900);
+		Listener = new SocketListener(ListenerCallback, NULL, API_PORT);
 		Running = true;
 	}
 

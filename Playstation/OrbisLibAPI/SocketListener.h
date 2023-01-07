@@ -15,10 +15,17 @@ private:
 	void* DoWork();
 	static void* ClientThread(void* tdParam);
 	void* tdParam;
-	void(*ClientCallBack)(void* tdParam, OrbisNetId Sock);
+	void(*ClientCallBack)(void* tdParam, OrbisNetId Sock, OrbisNetInAddr sin_addr);
 	static void* ListenThread(void* tdParam);
 
 public:
-	SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock), void* tdParam, unsigned short Port);
+	struct ClientThreadParams
+	{
+		SocketListener* socketListener;
+		OrbisNetId Sock;
+		OrbisNetInAddr sin_addr;
+	};
+
+	SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock, OrbisNetInAddr sin_addr), void* tdParam, unsigned short Port);
 	~SocketListener();
 };

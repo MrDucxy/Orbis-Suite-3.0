@@ -29,6 +29,7 @@
 #include <orbis/ShellCoreUtil.h>
 #include <orbis/SystemStateMgr.h>
 
+#include "Config.h"
 #include "SocketListener.h"
 #include "Utilities.h"
 #include "GoldHEN.h"

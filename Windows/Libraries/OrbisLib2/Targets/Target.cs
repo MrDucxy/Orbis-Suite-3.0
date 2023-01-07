@@ -80,7 +80,6 @@ namespace OrbisLib2.Targets
             }
         }
 
-        public TargetEvents Events;
         public Debug Debug;
         public Payload Payload;
         public Process Process;
@@ -91,7 +90,6 @@ namespace OrbisLib2.Targets
         {
             _SavedTargetId = SavedTarget.Id;
 
-            Events = new TargetEvents(this);
             Debug = new Debug(this);
             Payload = new Payload(this);
             Process = new Process(this);

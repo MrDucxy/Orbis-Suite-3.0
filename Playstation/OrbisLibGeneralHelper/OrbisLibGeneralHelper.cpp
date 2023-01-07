@@ -5,18 +5,35 @@ LocalSocketListener* LocalListener = nullptr;
 
 void SendLibraryList(OrbisNetId Sock)
 {
+	std::vector<LibPacket> libraryList;
+
 	// Get the libraries.
-	LibraryInfo* LibraryList = (LibraryInfo*)malloc(200 * sizeof(LibraryInfo));
-	int RealLibCount = jbc_get_proc_libraries(LibraryList, 200);
+	LibraryInfo* klibraryList = (LibraryInfo*)malloc(200 * sizeof(LibraryInfo));
+	int realLibCount = jbc_get_proc_libraries(klibraryList, 200);
 
 	// Send the Count
-	Sockets::SendInt(Sock, RealLibCount);
+	Sockets::SendInt(Sock, realLibCount);
+
+	for (int i = 0; i < realLibCount; i++)
+	{
+		OrbisKernelModuleInfo moduleInfo;
+		moduleInfo.size = sizeof(OrbisKernelModuleInfo);
+		int res = sceKernelGetModuleInfo(klibraryList[i].Handle, &moduleInfo);
+
+		LibPacket temp;
+		temp.Handle = klibraryList[i].Handle;
+		strcpy(temp.Path, klibraryList[i].Path);
+		temp.SegmentCount = moduleInfo.segmentCount;
+		memcpy(&temp.Segments[0], &moduleInfo.segmentInfo[0], sizeof(OrbisKernelModuleSegmentInfo) * 4);
+
+		libraryList.push_back(temp);
+	}
 
 	// Ship it.
-	Sockets::SendLargeData(Sock, (unsigned char*)LibraryList, RealLibCount * sizeof(LibraryInfo));
+	Sockets::SendLargeData(Sock, (unsigned char*)libraryList.data(), realLibCount * sizeof(LibPacket));
 
 	// Clean up!
-	free(LibraryList);
+	free(klibraryList);
 }
 
 void LoadUnloadLib(int Command, OrbisNetId Sock)

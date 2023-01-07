@@ -1,19 +1,14 @@
 #include "Common.h"
 #include "SocketListener.h"
 
-struct ClientThreadParams
-{
-	SocketListener* socketListener;
-	OrbisNetId Sock;
-};
-
 void* SocketListener::ClientThread(void* tdParam)
 {
 	ClientThreadParams* Params = (ClientThreadParams*)tdParam;
 	SocketListener* socketListener = Params->socketListener;
 	OrbisNetId Sock = Params->Sock;
+	OrbisNetInAddr sin_addr = Params->sin_addr;
 
-	socketListener->ClientCallBack(socketListener->tdParam, Sock);
+	socketListener->ClientCallBack(socketListener->tdParam, Sock, sin_addr);
 
 	sceNetSocketClose(Sock);
 	free(Params);
@@ -100,6 +95,7 @@ void* SocketListener::DoWork()
 				ClientThreadParams* Params = new ClientThreadParams();
 				Params->socketListener = this;
 				Params->Sock = ClientSocket;
+				Params->sin_addr = ClientAddr.sin_addr;
 
 				// Create Thread to handle connection.
 				OrbisPthread* Thread;
@@ -132,7 +128,7 @@ void* SocketListener::ListenThread(void* tdParam)
 }
 
 
-SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock), void* tdParam, unsigned short Port)
+SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock, OrbisNetInAddr sin_addr), void* tdParam, unsigned short Port)
 {
 	klog("Socket Listener.\n");
 	this->ClientCallBack = ClientCallBack;

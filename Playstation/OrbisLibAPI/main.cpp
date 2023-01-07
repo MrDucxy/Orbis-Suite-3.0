@@ -2,6 +2,7 @@
 #include "Version.h"
 #include "API.h"
 #include "GoldHEN.h"
+#include "Events.h"
 
 void exiting()
 {
@@ -9,6 +10,9 @@ void exiting()
 
 	// Terminate System Monitor
 	SystemMonitor::Term();
+
+	// Terminate the Events class.
+	Events::Term();
 
 	// Terminate API
 	API::Term();
@@ -46,6 +50,13 @@ int main()
 
 	// Init a thread to monitor the system usage stats.
 	// SystemMonitor::Init();
+
+	if (!Events::Init())
+	{
+		Notify("Failed to init Events...");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
+	}
 
 	// start up the API. NOTE: this is blocking.
 	API::Init();

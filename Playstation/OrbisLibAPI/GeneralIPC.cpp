@@ -42,7 +42,7 @@ bool GeneralIPC::SendCommand(OrbisNetId Sock, int Command)
 	return Status == GIPC_OK;
 }
 
-bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryInfo>& Libraries)
+bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryPacket>& Libraries)
 {
 	// Open a new local socket connection for the process.
 	auto sock = Connect(pid);
@@ -70,7 +70,7 @@ bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryInfo>& Libraries)
 	// Resize the vector to accept the data.
 	Libraries.resize(LibraryCount);
 
-	if (!Sockets::RecvLargeData(sock, (unsigned char*)Libraries.data(), LibraryCount * sizeof(LibraryInfo)))
+	if (!Sockets::RecvLargeData(sock, (unsigned char*)Libraries.data(), LibraryCount * sizeof(LibPacket)))
 	{
 		klog("[GeneralIPC] Failed to recv library data.\n");
 		return false;
