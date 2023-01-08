@@ -90,16 +90,87 @@ bool Debug::TryDetach(int pid)
 	int res = ptrace(PT_DETACH, pid, nullptr, 0);
 	if (res != 0)
 	{
+		// Check if proc is dead anyway and just detach.
+
 		klog("DetachProcess(): ptrace(PT_DETACH) failed with error %llX\n", res);
 		return false;
 	}
 
-	// TODO: Kill the watching thread and Remove any Watchpoints / Breakpoints now.
-
+	// Reset vars.
 	IsDebugging = false;
 	CurrentPID = -1;
 
+	// Wait for the current proc thread to die.
+	scePthreadJoin(*ProcMonitorThreadHandle, nullptr);
+
 	return true;
+}
+
+void* Debug::ProcessMonotorThread()
+{
+	while (IsDebugging && CurrentPID != -1)
+	{
+		std::vector<kinfo_proc> procList;
+		GetProcessList(procList);
+
+		int currentPID = CurrentPID;
+		if (std::find_if(procList.begin(), procList.end(), [&currentPID](const kinfo_proc& arg) {
+				return arg.pid == currentPID;
+			}) == procList.end())
+		{
+			klog("Proc %d has died.\n", CurrentPID);
+
+			// Aquire lock.
+			scePthreadMutexLock(&DebugMutex);
+
+			// Reset vars.
+			IsDebugging = false;
+			CurrentPID = -1;
+
+			// Send attach event to host.
+			Events::SendEvent(Events::EVENT_DIE, CurrentPID);
+
+			// Let the process die.
+			ptrace(PT_CONTINUE, CurrentPID, (void*)1, SIGKILL);
+
+			// release the lock.
+			scePthreadMutexUnlock(&DebugMutex);
+
+			goto Thread_Exit;
+		}
+
+		int status;
+		auto debuggiePid = wait4(CurrentPID, &status, WNOHANG, nullptr);
+		if (debuggiePid == CurrentPID)
+		{
+			int signal = WSTOPSIG(status);
+			klog("Process %d has recieved the signal %d\n", CurrentPID, signal);
+
+			switch (signal)
+			{
+			case SIGSTOP:
+				klog("SIGSTOP\n");
+				break;
+			}
+		}
+
+		sceKernelSleep(1);
+	}
+
+Thread_Exit:
+	klog("Client Thread Exiting!\n");
+
+	// TODO: Remove any Watchpoints / Breakpoints now.
+	//		 Unless the process is dying maybe?
+
+	// Kill our thread and exit.
+	scePthreadExit(NULL);
+	return nullptr;
+}
+
+void* Debug::ProcessMonotorThreadHelper(void* tdParam)
+{
+	return ((Debug*)tdParam)->ProcessMonotorThread();
 }
 
 void Debug::Attach(OrbisNetId Sock)
@@ -156,6 +227,9 @@ void Debug::Attach(OrbisNetId Sock)
 	IsDebugging = true;
 	CurrentPID = pid;
 
+	// Create thread to monitor the state of the running process.
+	scePthreadCreate(&ProcMonitorThreadHandle, NULL, &ProcessMonotorThreadHelper, this, "Process Monitor Thread");
+
 	// release the lock.
 	scePthreadMutexUnlock(&DebugMutex);
 
@@ -166,23 +240,27 @@ void Debug::Attach(OrbisNetId Sock)
 
 	SendStatus(Sock, 1);
 
-	if (strcmp(processName, "SceShellCore"))
+	// Check the satus of the general helper.
+	if (!GeneralIPC::TestConnection(pid))
 	{
-		// Get app info.
-		OrbisAppInfo appInfo;
-		sceKernelGetAppInfo(pid, &appInfo);
+		if (strcmp(processName, "SceShellCore"))
+		{
+			// Get app info.
+			OrbisAppInfo appInfo;
+			sceKernelGetAppInfo(pid, &appInfo);
 
-		// Get sandbox path.
-		char sandBoxPath[PATH_MAX];
-		snprintf(sandBoxPath, sizeof(sandBoxPath), "/mnt/sandbox/%s_000/data", appInfo.TitleId);
+			// Get sandbox path.
+			char sandBoxPath[PATH_MAX];
+			snprintf(sandBoxPath, sizeof(sandBoxPath), "/mnt/sandbox/%s_000/data", appInfo.TitleId);
 
-		// Mount data into sandbox
-		LinkDir("/data/", sandBoxPath);
+			// Mount data into sandbox
+			LinkDir("/data/", sandBoxPath);
+		}
+
+		// Load the helper library.
+		int handle = sys_sdk_proc_prx_load(processName, HelperPrxPath);
+		klog("Helper handle = %llX\n", handle);
 	}
-
-	// Load the helper library.
-	int handle = sys_sdk_proc_prx_load(processName, HelperPrxPath);
-	klog("Helper handle = %llX\n", handle);
 }
 
 void Debug::Detach(OrbisNetId Sock)

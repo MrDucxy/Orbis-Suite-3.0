@@ -83,6 +83,12 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 			klog("Invalid Command enum %i\n", Command);
 			break;
 
+		case GIPC_HELLO:
+
+			Sockets::SendInt(Sock, GIPC_OK);
+
+			break;
+
 		case GIPC_LIB_LIST:
 			SendLibraryList(Sock); // Really Only needed for the path.
 			break;

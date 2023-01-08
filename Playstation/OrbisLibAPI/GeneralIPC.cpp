@@ -42,6 +42,43 @@ bool GeneralIPC::SendCommand(OrbisNetId Sock, int Command)
 	return Status == GIPC_OK;
 }
 
+bool GeneralIPC::TestConnection(int pid)
+{
+	// Open a new local socket connection for the process.
+	auto sock = Connect(pid);
+	if (!sock)
+	{
+		klog("[GeneralIPC] Failed to connect to socket.\n");
+		return false;
+	}
+
+	// Send the command.
+	if (!SendCommand(sock, GIPC_HELLO))
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		klog("[GeneralIPC] Failed to send command.\n");
+		return false;
+	}
+
+	// Get the library count.
+	int status = 0;
+	if (!Sockets::RecvInt(sock, &status))
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		klog("[GeneralIPC] Failed to recv status.\n");
+		return false;
+	}
+
+	// Close the socket.
+	sceNetSocketClose(sock);
+
+	return status == GIPC_OK;
+}
+
 bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryPacket>& Libraries)
 {
 	// Open a new local socket connection for the process.
@@ -55,6 +92,9 @@ bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryPacket>& Libraries)
 	// Send the command.
 	if (!SendCommand(sock, GIPC_LIB_LIST))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to send command.\n");
 		return false;
 	}
@@ -63,6 +103,9 @@ bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryPacket>& Libraries)
 	int LibraryCount = 0;
 	if (!Sockets::RecvInt(sock, &LibraryCount))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to recv library count.\n");
 		return false;
 	}
@@ -72,9 +115,15 @@ bool GeneralIPC::GetLibraryList(int pid, std::vector<LibraryPacket>& Libraries)
 
 	if (!Sockets::RecvLargeData(sock, (unsigned char*)Libraries.data(), LibraryCount * sizeof(LibPacket)))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to recv library data.\n");
 		return false;
 	}
+
+	// Close the socket.
+	sceNetSocketClose(sock);
 
 	return true;
 }
@@ -92,6 +141,9 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 	// Send the command.
 	if (!SendCommand(sock, GIPC_LIB_LOAD))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to send command.\n");
 		return false;
 	}
@@ -106,6 +158,9 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 	// Send the packet.
 	if (sceNetSend(sock, Packet, sizeof(LibPacket), 0) < 0)
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to send LibPacket.\n");
 
 		// Restore the jail.
@@ -117,6 +172,9 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 	// Recieve the result.
 	if (!Sockets::RecvInt(sock, HandleOut))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to recv handle.\n");
 
 		// Restore the jail.
@@ -128,6 +186,9 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 	// Check to see if it was loaded successfully.
 	if (*HandleOut <= 0)
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to load PRX '%s' (0x%llX).\n", *HandleOut);
 
 		// Restore the jail.
@@ -138,6 +199,9 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 
 	// Restore the jail.
 	Jail(pid);
+
+	// Close the socket.
+	sceNetSocketClose(sock);
 
 	return true;
 }
@@ -155,6 +219,9 @@ bool GeneralIPC::UnLoadLibrary(int pid, int Handle)
 	// Send the command.
 	if (!SendCommand(sock, GIPC_LIB_UNLOAD))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to send command.\n");
 		return false;
 	}
@@ -163,6 +230,9 @@ bool GeneralIPC::UnLoadLibrary(int pid, int Handle)
 	int result = 0;
 	if (!Sockets::RecvInt(sock, &result))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to recv result.\n");
 		return false;
 	}
@@ -170,9 +240,15 @@ bool GeneralIPC::UnLoadLibrary(int pid, int Handle)
 	// Check to see if it was unloaded successfully.
 	if (result != 0)
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to un load PRX '%s' (0x%llX).\n", result);
 		return false;
 	}
+
+	// Close the socket.
+	sceNetSocketClose(sock);
 
 	return true;
 }
@@ -190,6 +266,9 @@ bool GeneralIPC::Jailbreak(int pid)
 	// Send the command.
 	if (!SendCommand(sock, GIPC_JAILBREAK))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to send command.\n");
 		return false;
 	}
@@ -198,11 +277,17 @@ bool GeneralIPC::Jailbreak(int pid)
 	int result = 0;
 	if (!Sockets::RecvInt(sock, &result))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to recv result.\n");
 		return false;
 	}
 
-	return result == 1;
+	// Close the socket.
+	sceNetSocketClose(sock);
+
+	return result == GIPC_OK;
 }
 
 bool GeneralIPC::Jail(int pid)
@@ -218,6 +303,9 @@ bool GeneralIPC::Jail(int pid)
 	// Send the command.
 	if (!SendCommand(sock, GIPC_JAIL))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to send command.\n");
 		return false;
 	}
@@ -226,9 +314,15 @@ bool GeneralIPC::Jail(int pid)
 	int result = 0;
 	if (!Sockets::RecvInt(sock, &result))
 	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
 		klog("[GeneralIPC] Failed to recv result.\n");
 		return false;
 	}
 
-	return result == 1;
+	// Close the socket.
+	sceNetSocketClose(sock);
+
+	return result == GIPC_OK;
 }

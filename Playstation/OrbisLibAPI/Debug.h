@@ -4,6 +4,7 @@ class Debug
 {
 public:
 	OrbisPthreadMutex DebugMutex;
+	OrbisPthread* ProcMonitorThreadHandle;
 	bool IsDebugging;
 	int CurrentPID;
 
@@ -13,6 +14,8 @@ public:
 
 private:
 	bool TryDetach(int pid);
+	void* ProcessMonotorThread();
+	static void* ProcessMonotorThreadHelper(void* tdParam);
 	void Attach(OrbisNetId Sock);
 	void Detach(OrbisNetId Sock);
 

@@ -21,8 +21,16 @@ void exiting()
 
 }
 
+// Signal handler function
+void signal_handler(int signum) {
+	klog("Signal %d\n", signum);
+}
+
 int main()
 {
+	signal(17, signal_handler);
+	signal(SIGTERM, signal_handler);
+
 	// Jailbreak our current process.
 	if (!Jailbreak())
 	{

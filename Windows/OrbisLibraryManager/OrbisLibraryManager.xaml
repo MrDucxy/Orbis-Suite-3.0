@@ -48,8 +48,10 @@
             <StackPanel HorizontalAlignment="Right"
                     Margin="6">
 
-                <simpleControls:SimpleTextField FieldName="SPRX Path"
-                                                FieldText="/data/something.sprx"
+                <simpleControls:SimpleTextField Name="SPRXPath"
+                                                FieldName="SPRX Path"
+                                                FieldText=""
+                                                IsReadOnly="False"
                                                 VerticalContentAlignment="Center"
                                                 Width="180"/>
 
@@ -65,19 +67,25 @@
                     </Grid.ColumnDefinitions>
 
                     <simpleControls:SimpleButton Grid.Column="0"
+                                                 Name="LoadPRX"
                                                  Content="Load"
                                                  Width="56"
-                                                 Height="25"/>
+                                                 Height="25"
+                                                 Click="LoadPRX_Click"/>
 
                     <simpleControls:SimpleButton Grid.Column="2"
+                                                 Name="UnloadPRX"
                                                  Content="Unload"
                                                  Width="56"
-                                                 Height="25"/>
+                                                 Height="25"
+                                                 Click="UnloadPRX_Click"/>
 
                     <simpleControls:SimpleButton Grid.Column="4"
+                                                 Name="ReloadPRX"
                                                  Content="Reload"
                                                  Width="56"
-                                                 Height="25"/>
+                                                 Height="25"
+                                                 Click="ReloadPRX_Click"/>
                 </Grid>
 
 
@@ -87,8 +95,9 @@
             <StackPanel HorizontalAlignment="Right"
                     Margin="0 6 6 6">
 
-                <simpleControls:SimpleTextField FieldName="Currently Debugging"
-                                                FieldText="SceShellUI.ELF (75)"
+                <simpleControls:SimpleTextField Name="CurrentDebuggingProccess"
+                                                FieldName="Currently Debugging"
+                                                FieldText="N/A"
                                                 VerticalContentAlignment="Center"
                                                 Width="180"/>
 
@@ -127,13 +136,14 @@
                                           ImageMargin="2"
                                           Click="DetachProcess_Click"/>
 
-                    <controls:ImageButton x:Name="Send"
+                    <controls:ImageButton x:Name="LoadSomething"
                                           Grid.Column="4"
                                           Width="25"
                                           Height="25"
                                           ToolTip="Browse for something to load from local machine"
                                           ImageSource="/OrbisLibraryManager;component/Images/Send.png"
-                                          ImageMargin="5"/>
+                                          ImageMargin="5"
+                                          Click="LoadSomething_Click"/>
 
                     <controls:ImageButton x:Name="KillProcess"
                                           Grid.Column="6"
@@ -141,7 +151,8 @@
                                           Height="25"
                                           ToolTip="Kills the currently attached process"
                                           ImageSource="/OrbisLibraryManager;component/Images/KillProcess.png"
-                                          ImageMargin="1"/>
+                                          ImageMargin="1"
+                                          Click="KillProcess_Click"/>
 
                     <controls:ImageButton x:Name="RestartTarget"
                                           Grid.Column="8"
@@ -149,7 +160,8 @@
                                           Height="25"
                                           ToolTip="Restart the Target"
                                           ImageSource="/OrbisLibraryManager;component/Images/Restart.png"
-                                          ImageMargin="0"/>
+                                          ImageMargin="0"
+                                          Click="RestartTarget_Click"/>
 
                     <controls:ImageButton x:Name="ShutdownTarget"
                                           Grid.Column="10"
@@ -157,7 +169,8 @@
                                           Height="25"
                                           ToolTip="Shutdown the Target"
                                           ImageSource="/OrbisLibraryManager;component/Images/Shutdown.png"
-                                          ImageMargin="0"/>
+                                          ImageMargin="0"
+                                          Click="ShutdownTarget_Click"/>
 
                 </Grid>
 
@@ -187,7 +200,10 @@
 
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Refresh" Click="Refresh_Click"/>
+                    <MenuItem Name="RefreshLibraries" Header="Refresh Library List" Click="Refresh_Click"/>
+                    <Separator/>
+                    <MenuItem Name="UnloadLibrary" Header="Unload Library"/>
+                    <MenuItem Name="ReloadLibrary" Header="Reload Library"/>
                 </ContextMenu>
             </ListView.ContextMenu>
 

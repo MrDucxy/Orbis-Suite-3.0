@@ -127,10 +127,8 @@ void* SocketListener::ListenThread(void* tdParam)
 	return ((SocketListener*)tdParam)->DoWork();
 }
 
-
 SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock, OrbisNetInAddr sin_addr), void* tdParam, unsigned short Port)
 {
-	klog("Socket Listener.\n");
 	this->ClientCallBack = ClientCallBack;
 	this->tdParam = tdParam;
 	this->ServerRunning = true;
@@ -145,7 +143,7 @@ SocketListener::~SocketListener()
 	klog("~Socket Listener.\n");
 
 	this->ServerRunning = false;
-	while (!this->ThreadCleanedUp) { sceKernelUsleep(10); }
+	scePthreadJoin(*ListenThreadHandle, nullptr);
 
 	klog("Destruction sucessful.\n");
 }

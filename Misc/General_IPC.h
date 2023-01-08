@@ -5,6 +5,7 @@
 
 enum GeneralIPCCommands
 {
+	GIPC_HELLO,
 	GIPC_LIB_LIST,
 	GIPC_LIB_LOAD,
 	GIPC_LIB_UNLOAD,
