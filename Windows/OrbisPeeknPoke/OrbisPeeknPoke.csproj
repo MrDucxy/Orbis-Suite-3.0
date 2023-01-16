@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>OrbisLibraryManager.ico</ApplicationIcon>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>OrbisPeeknPoke.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,33 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="OrbisLibraryManager.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\Attached.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Detached.png">
+    <Resource Include="Images\DefaultTitleIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Libraries\OrbisLib2\OrbisLib2.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Expression.Drawing">
-      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\Microsoft.Expression.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleUI">
-      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\DefaultTitleIcon.png">
+    <Resource Include="Images\Detached.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\KillProcess.png">
@@ -64,26 +45,31 @@
     <Resource Include="Images\Shutdown.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Content Include="OrbisPeeknPoke.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controls\CurrentTargetDisplay.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\ImageButton.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <ProjectReference Include="..\Libraries\OrbisLib2\OrbisLib2.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Controls\CurrentTargetDisplay.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\ImageButton.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
+    <Reference Include="Microsoft.Expression.Drawing">
+      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleUI">
+      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFHexaEditor">
+      <HintPath>C:\Users\grego\.nuget\packages\wpfhexaeditor\2.1.7\lib\net5.0-windows7.0\WPFHexaEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HexView.Wpf" Version="0.1.0" />
   </ItemGroup>
 
 </Project>

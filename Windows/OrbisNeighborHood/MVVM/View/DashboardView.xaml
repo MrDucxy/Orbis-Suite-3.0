@@ -213,7 +213,7 @@
                                                      Click="LaunchDebugger_Click"/>
 
                         <simpleControls:SimpleButton Name="LaunchPeekPoke"
-                                                     IsEnabled="False"
+                                                     IsEnabled="true"
                                                      Grid.Column="2" 
                                                      Margin="5 0 0 0"
                                                      Content="Peek n' Poke"
@@ -222,7 +222,7 @@
                                                      Click="LaunchPeekPoke_Click"/>
 
                         <simpleControls:SimpleButton Name="LaunchLibraryManager"
-                                                     IsEnabled="False"
+                                                     IsEnabled="true"
                                                      Grid.Column="4"
                                                      Margin="5 0 0 0"
                                                      Content="Library Manager"
@@ -391,7 +391,7 @@
                 <!-- Peek n' Poke -->
                 <controls:AppLauncherButton 
                     Grid.Column="1"
-                    IsEnabled="False"
+                    IsEnabled="true"
                     ToolTip="Currently under development."
                     Text="Peek n' Poke"
                     Source="/OrbisNeighborHood;component/Images/Icons/OrbisPeeknPoke.ico"/>

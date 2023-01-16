@@ -47,7 +47,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbisLibAPI", "Playstation\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrbisLibGeneralHelper", "Playstation\OrbisLibGeneralHelper\OrbisLibGeneralHelper.vcxproj", "{F0E3446E-D9D7-4F44-AC98-797C5124BE91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbisLib2", "Windows\Libraries\OrbisLib2\OrbisLib2.csproj", "{75BA171D-708A-40AA-A27D-57150E5DFB7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrbisLib2", "Windows\Libraries\OrbisLib2\OrbisLib2.csproj", "{75BA171D-708A-40AA-A27D-57150E5DFB7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbisPeeknPoke", "Windows\OrbisPeeknPoke\OrbisPeeknPoke.csproj", "{90180080-9585-499C-99A8-6F4D1725CAF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +239,22 @@ Global
 		{75BA171D-708A-40AA-A27D-57150E5DFB7B}.Release|x64.Build.0 = Release|Any CPU
 		{75BA171D-708A-40AA-A27D-57150E5DFB7B}.Release|x86.ActiveCfg = Release|Any CPU
 		{75BA171D-708A-40AA-A27D-57150E5DFB7B}.Release|x86.Build.0 = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|Win32.Build.0 = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|x64.Build.0 = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Debug|x86.Build.0 = Debug|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|Win32.ActiveCfg = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|Win32.Build.0 = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|x64.ActiveCfg = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|x64.Build.0 = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{90180080-9585-499C-99A8-6F4D1725CAF4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,6 +273,7 @@ Global
 		{22E600CA-B7A4-4FA1-A1DB-6BA4736E6121} = {8E8E4C8D-E3E1-4CB9-BD78-7ADAB2F2CF45}
 		{F0E3446E-D9D7-4F44-AC98-797C5124BE91} = {8E8E4C8D-E3E1-4CB9-BD78-7ADAB2F2CF45}
 		{75BA171D-708A-40AA-A27D-57150E5DFB7B} = {72E29C1E-8723-4885-A5ED-BD3A929D81B6}
+		{90180080-9585-499C-99A8-6F4D1725CAF4} = {8F0E1457-FB1E-47A4-9DA8-74A6B757CAA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B6EE1D0-5ADF-44A2-B6EE-E5C8E110EE47}

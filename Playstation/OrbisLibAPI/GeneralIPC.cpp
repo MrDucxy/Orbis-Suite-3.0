@@ -166,8 +166,14 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 		// Restore the jail.
 		Jail(pid);
 
+		// Cleanup
+		free(Packet);
+
 		return false;
 	}
+
+	// Cleanup
+	free(Packet);
 
 	// Recieve the result.
 	if (!Sockets::RecvInt(sock, HandleOut))
@@ -225,6 +231,27 @@ bool GeneralIPC::UnLoadLibrary(int pid, int Handle)
 		klog("[GeneralIPC] Failed to send command.\n");
 		return false;
 	}
+
+	// Create next packet.
+	auto Packet = (LibPacket*)malloc(sizeof(LibPacket));
+	Packet->Handle = Handle;
+
+	// Send the packet.
+	if (sceNetSend(sock, Packet, sizeof(LibPacket), 0) < 0)
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		// Cleanup
+		free(Packet);
+
+		klog("[GeneralIPC] Failed to send LibPacket.\n");
+
+		return false;
+	}
+
+	// Cleanup
+	free(Packet);
 
 	// Recieve the result.
 	int result = 0;

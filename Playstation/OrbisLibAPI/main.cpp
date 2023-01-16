@@ -82,7 +82,7 @@ int main()
 	}
 #endif
 
-// #define KILLSHELLUI
+ //#define KILLSHELLUI
 #ifdef KILLSHELLUI
 	sceSystemServiceKillApp(sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
 #endif

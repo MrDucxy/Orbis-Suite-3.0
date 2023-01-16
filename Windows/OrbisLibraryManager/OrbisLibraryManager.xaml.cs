@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Linq;
 using System.Threading;
+using static OrbisLib2.General.TargetStateChangedEvent;
 
 namespace OrbisLibraryManager
 {
@@ -25,6 +26,8 @@ namespace OrbisLibraryManager
             Events.ProcDetach += Events_ProcDetach;
             Events.ProcDie += Events_ProcDie;
             Events.TargetStateChanged += Events_TargetStateChanged;
+            Events.DBTouched += Events_DBTouched;
+            Events.SelectedTargetChanged += Events_SelectedTargetChanged;
 
             // Update State
             Task.Run(() => EnableTargetOptions(TargetManager.SelectedTarget.Info.Status == TargetStatusType.APIAvailable));
@@ -139,6 +142,18 @@ namespace OrbisLibraryManager
             }
         }
 
+        private void Events_DBTouched(object? sender, DBTouchedEvent e)
+        {
+            var currentTarget = TargetManager.SelectedTarget;
+            EnableTargetOptions(currentTarget.Info.Status == TargetStatusType.APIAvailable);
+        }
+
+        private void Events_SelectedTargetChanged(object? sender, SelectedTargetChangedEvent e)
+        {
+            var currentTarget = TargetManager.SelectedTarget;
+            EnableTargetOptions(currentTarget.Info.Status == TargetStatusType.APIAvailable);
+        }
+
         #endregion
 
         #region Context Menu
@@ -153,9 +168,11 @@ namespace OrbisLibraryManager
             var selectedLibrary = LibraryList.SelectedItems.Cast<LibraryInfo>().FirstOrDefault();
             if(selectedLibrary != null)
             {
+                var Handle = (int)selectedLibrary.Handle;
+
                 Task.Run(() =>
                 {
-                    TargetManager.SelectedTarget.Debug.UnloadLibrary((int)selectedLibrary.Handle);
+                    TargetManager.SelectedTarget.Debug.UnloadLibrary(Handle);
                     Dispatcher.Invoke(() => RefreshLibraryList());
                 });
             }
@@ -166,11 +183,14 @@ namespace OrbisLibraryManager
             var selectedLibrary = LibraryList.SelectedItems.Cast<LibraryInfo>().FirstOrDefault();
             if (selectedLibrary != null)
             {
+                var Handle = (int)selectedLibrary.Handle;
+                var Path = selectedLibrary.Path;
+
                 Task.Run(() =>
                 {
-                    TargetManager.SelectedTarget.Debug.UnloadLibrary((int)selectedLibrary.Handle);
+                    TargetManager.SelectedTarget.Debug.UnloadLibrary(Handle);
                     Thread.Sleep(2000);
-                    TargetManager.SelectedTarget.Debug.LoadLibrary(selectedLibrary.Path);
+                    TargetManager.SelectedTarget.Debug.LoadLibrary(Path);
                     Dispatcher.Invoke(() => RefreshLibraryList());
                 });
             }
@@ -188,7 +208,9 @@ namespace OrbisLibraryManager
             {
                 Task.Run(() =>
                 {
-                    TargetManager.SelectedTarget.Debug.LoadLibrary(SPRXPath.FieldText);
+                    string Path = string.Empty;
+                    Dispatcher.Invoke(() => Path = SPRXPath.FieldText);
+                    TargetManager.SelectedTarget.Debug.LoadLibrary(Path);
                     Dispatcher.Invoke(() => RefreshLibraryList());
                 });
             }
@@ -204,9 +226,11 @@ namespace OrbisLibraryManager
             var library = libraryList.Find(x => x.Path == SPRXPath.FieldText);
             if (library != null)
             {
+                var Handle = (int)library.Handle;
+
                 Task.Run(() =>
                 {
-                    TargetManager.SelectedTarget.Debug.UnloadLibrary((int)library.Handle);
+                    TargetManager.SelectedTarget.Debug.UnloadLibrary(Handle);
                     Dispatcher.Invoke(() => RefreshLibraryList());
                 });
             }
@@ -222,11 +246,14 @@ namespace OrbisLibraryManager
             var library = libraryList.Find(x => x.Path == SPRXPath.FieldText);
             if (library != null)
             {
+                var Handle = (int)library.Handle;
+                var Path = library.Path;
+
                 Task.Run(() =>
                 {
-                    TargetManager.SelectedTarget.Debug.UnloadLibrary((int)library.Handle);
+                    TargetManager.SelectedTarget.Debug.UnloadLibrary(Handle);
                     Thread.Sleep(2000);
-                    TargetManager.SelectedTarget.Debug.LoadLibrary(library.Path);
+                    TargetManager.SelectedTarget.Debug.LoadLibrary(Path);
                     Dispatcher.Invoke(() => RefreshLibraryList());
                 });
             }
