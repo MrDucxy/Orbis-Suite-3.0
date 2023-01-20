@@ -1,6 +1,6 @@
 #pragma once
 
-// Genreall IPC ADDRS should follow the GeneralIPC#<ProcessName> pattern.
+// Genreall IPC ADDRS should follow the GeneralIPC-<ProcessName> pattern.
 #define GENERAL_IPC_ADDR "/system_tmp/GeneralIPC-%d"
 
 enum GeneralIPCCommands
@@ -19,6 +19,13 @@ enum GeneralIPCResult
 {
 	GIPC_FAIL,
 	GIPC_OK,
+};
+
+struct RWPacket
+{
+	bool Write;
+	uint64_t Address;
+	uint64_t Length;
 };
 
 struct LibPacket

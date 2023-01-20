@@ -1,12 +1,23 @@
-﻿using OrbisLib2.Common.Database.Types;
+﻿using Be.Windows.Forms;
+using OrbisLib2.Common.Database.Types;
 using OrbisLib2.Common.Dispatcher;
 using OrbisLib2.Dialog;
 using OrbisLib2.General;
 using OrbisLib2.Targets;
 using SimpleUI.Controls;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
-using WpfHexaEditor;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using System.Windows.Input;
+using System.Windows.Shell;
 
 namespace OrbisPeeknPoke
 {
@@ -15,8 +26,12 @@ namespace OrbisPeeknPoke
     /// </summary>
     public partial class MainWindow : SimpleWindow
     {
+        private List<ulong> JumpList = new();
+
         public MainWindow()
         {
+            System.Windows.Forms.Application.EnableVisualStyles();
+
             InitializeComponent();
             DispatcherClient.Subscribe();
 
@@ -27,56 +42,19 @@ namespace OrbisPeeknPoke
             Events.DBTouched += Events_DBTouched;
             Events.SelectedTargetChanged += Events_SelectedTargetChanged;
 
-
+            HexBox.CurrentLineChanged += HexBox_CurrentLineChanged;
+            HexBox.CurrentPositionInLineChanged += HexBox_CurrentPositionInLineChanged;
         }
 
-        public byte[] testData = 
+        private void HexBox_CurrentPositionInLineChanged(object? sender, EventArgs e)
         {
-            0x2F, 0x6C, 0x69, 0x62, 0x65, 0x78, 0x65, 0x63, 0x2F, 0x6C, 0x64, 0x2D,
-            0x65, 0x6C, 0x66, 0x2E, 0x73, 0x6F, 0x2E, 0x31, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x55, 0x48, 0x89, 0xE5,
-            0x41, 0x57, 0x41, 0x56, 0x53, 0x50, 0x48, 0x8D, 0x1D, 0x0F, 0x7E, 0x62,
-            0x01, 0x4C, 0x8D, 0x35, 0xE8, 0x7D, 0x62, 0x01, 0x48, 0x3B, 0x1D, 0x59,
-            0x08, 0x60, 0x01, 0x73, 0x33, 0x4C, 0x8D, 0x3D, 0xF8, 0x7D, 0x62, 0x01,
-            0x0F, 0x1F, 0x84, 0x00, 0x00, 0x00, 0x00, 0x00, 0x48, 0x8B, 0x03, 0x48,
-            0x85, 0xC0, 0x74, 0x02, 0xFF, 0xD0, 0x48, 0x83, 0xC3, 0x08, 0x4C, 0x39,
-            0xFB, 0x72, 0xED, 0xEB, 0x0F, 0x66, 0x66, 0x2E, 0x0F, 0x1F, 0x84, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x49, 0x83, 0xC6, 0xF8, 0x49, 0x8B, 0x06, 0x48,
-            0x85, 0xC0, 0x74, 0xF4, 0x48, 0x83, 0xF8, 0xFF, 0x74, 0x04, 0xFF, 0xD0,
-            0xEB, 0xEA, 0x48, 0x83, 0xC4, 0x08, 0x5B, 0x41, 0x5E, 0x41, 0x5F, 0x5D,
-            0xC3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x00, 0x55, 0x48, 0x89, 0xE5, 0x41, 0x57, 0x41, 0x56,
-            0x53, 0x50, 0x44, 0x8B, 0x37, 0x48, 0x89, 0xF3, 0x4C, 0x8D, 0x7F, 0x08,
-            0xE8, 0xC7, 0xC7, 0x21, 0x01, 0x48, 0x89, 0xDF, 0xE8, 0xCF, 0xC7, 0x21,
-            0x01, 0x48, 0x8D, 0x3D, 0xA8, 0xE2, 0x20, 0x01, 0xE8, 0xC3, 0xC7, 0x21,
-            0x01, 0xE8, 0x4E, 0xFF, 0xFF, 0xFF, 0x31, 0xD2, 0x44, 0x89, 0xF7, 0x4C,
-            0x89, 0xFE, 0xE8, 0x21, 0xB4, 0xEC, 0x00, 0x89, 0xC3, 0x89, 0xDF, 0xE8,
-            0xB8, 0xC7, 0x21, 0x01, 0x89, 0xDF, 0xE8, 0x41, 0xB2, 0x21, 0x01, 0x0F,
-            0x0B, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
-            0x90, 0x90, 0x90, 0x90, 0x55, 0x48, 0x89, 0xE5, 0x48, 0x83, 0xEC, 0x10,
-            0x89, 0x4C, 0x24, 0x08, 0x48, 0x89, 0x14, 0x24, 0xBA, 0x08, 0x00, 0x00,
-            0x00, 0xB9, 0x0F, 0x00, 0x00, 0x00, 0x41, 0xB8, 0x08, 0x00, 0x00, 0x00,
-            0x45, 0x31, 0xC9, 0xE8, 0x08, 0x00, 0x00, 0x00, 0x48, 0x83, 0xC4, 0x10,
-            0x5D, 0xC3, 0x66, 0x90, 0x55, 0x48, 0x89, 0xE5, 0x41, 0x57, 0x41, 0x56,
-            0x41, 0x55, 0x41, 0x54, 0x53, 0x48, 0x83, 0xEC, 0x18, 0x45, 0x89, 0xC4,
-            0x49, 0x89, 0xFD, 0x48, 0x8B, 0x45, 0x10, 0x41, 0xBE, 0xFA, 0xFF, 0xFF,
-            0xFF, 0x48, 0x85, 0xC0, 0x0F, 0x84, 0x17, 0x03, 0x00, 0x00, 0x0F, 0xB6,
-            0x00, 0x83, 0xF8, 0x31, 0x0F, 0x85, 0x0B, 0x03, 0x00, 0x00, 0x83, 0x7D,
-            0x18, 0x70, 0x0F, 0x85, 0x01, 0x03, 0x00, 0x00, 0x41, 0xBE, 0xFE, 0xFF,
-            0xFF, 0xFF, 0x4D, 0x85, 0xED, 0x0F, 0x84, 0xF2, 0x02, 0x00, 0x00, 0x49,
-            0xC7, 0x45, 0x30, 0x00, 0x00, 0x00, 0x00, 0x49, 0x8B, 0x45, 0x40, 0x48,
-            0x85, 0xC0, 0x75, 0x13, 0x48, 0x8D, 0x05, 0x19, 0x84, 0x00, 0x00, 0x49,
-            0x89, 0x45, 0x40, 0x49, 0xC7, 0x45, 0x50, 0x00, 0x00, 0x00, 0x00, 0x49,
-            0x83, 0x7D, 0x48, 0x00, 0x75, 0x0B, 0x48, 0x8D, 0x3D, 0x0F, 0x84, 0x00,
-            0x00, 0x49, 0x89, 0x7D, 0x48, 0x83, 0xFE, 0xFF, 0xBF, 0x06, 0x00, 0x00,
-            0x00, 0x0F, 0x45, 0xFE, 0x85, 0xC9, 0x78, 0x15, 0x8D, 0x71, 0xF0, 0x83,
-            0xF9, 0x0F, 0x0F, 0x9F, 0xC3, 0x0F, 0x4E, 0xF1, 0x0F, 0xB6, 0xDB, 0xFF,
-            0xC3, 0x89, 0xF1, 0xEB, 0x04, 0xF7, 0xD9, 0x31, 0xDB, 0x41, 0x8D, 0x74,
-            0x24, 0xFF, 0x83, 0xFE, 0x08, 0x0F, 0x87, 0x86, 0x02, 0x00, 0x00, 0x83,
-            0xFA, 0x08, 0x0F, 0x85, 0x7D, 0x02, 0x00, 0x00, 0x83, 0xF9, 0x08, 0x0F,
-            0x8C, 0x74, 0x02, 0x00, 0x00, 0x83, 0xF9, 0x0F
-        };
+            OffsetValue.Text = $"0x{(((HexBox.CurrentLine - 1) * 0x10) + (HexBox.CurrentPositionInLine - 1)).ToString("X")}";
+        }
 
+        private void HexBox_CurrentLineChanged(object? sender, EventArgs e)
+        {
+            OffsetValue.Text = $"0x{(((HexBox.CurrentLine - 1) * 0x10) + (HexBox.CurrentPositionInLine - 1)).ToString("X")}";
+        }
 
         #region Events
 
@@ -171,21 +149,109 @@ namespace OrbisPeeknPoke
 
         #region Buttons
 
+        private bool TryConvertStringToUlong(string str, out ulong val)
+        {
+            if (str.StartsWith("0x"))
+            {
+                if (!ulong.TryParse(str.Substring(2), NumberStyles.HexNumber, CultureInfo.CurrentCulture, out val))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!ulong.TryParse(str, out val) && !ulong.TryParse(str, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out val))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool GetPeekPokeInfo(out ulong address, out ulong length)
+        {
+            // Hex or decimal value of address
+            if (!TryConvertStringToUlong(BaseAddress.FieldText, out address))
+            {
+                SimpleMessageBox.ShowError(this, "Failed to parse Base Address please ensure that it is a valid hex or decimal number.", "Failed to parse Base Address.");
+                length = 0;
+                return false;
+            }
+
+            // Hex or decimal value of offset
+            ulong offset;
+            if (TryConvertStringToUlong(Offset.FieldText, out offset))
+            {
+                address += offset;
+            }
+
+            // Hex or decimal value of length
+            if (!TryConvertStringToUlong(Length.FieldText, out length))
+            {
+                SimpleMessageBox.ShowError(this, "Failed to parse Length please ensure that it is a valid hex or decimal number.", "Failed to parse Length.");
+                return false;
+            }
+
+            return true;
+        }
+
         private void SelectBase_Click(object sender, RoutedEventArgs e)
         {
+            Task.Run(() =>
+            {
+                var mainExecutable = TargetManager.SelectedTarget.Debug.GetLibraries().FirstOrDefault();
 
+                if (mainExecutable != null)
+                {
+                    Dispatcher.Invoke(() => BaseAddress.FieldText = $"0x{mainExecutable.Segments[0].Address.ToString("X")}");
+                }
+            });
         }
 
         private void Peek_Click(object sender, RoutedEventArgs e)
         {
-            HexBox.DataSource = new BinaryReader(new MemoryStream(testData));
-            //HexBox.DataContext = new BinaryReader(new MemoryStream(testData));
-            //HexBox.a = 0x400000;
+            GetPeekPokeInfo(out var address, out var length);
+
+            Task.Run(() =>
+            {
+                var data = TargetManager.SelectedTarget.Debug.ReadMemory(address, length);
+
+                if (data != null && data.Length > 0)
+                {
+                    // Clear the jump list if were reading new memory.
+                    if (JumpList.Count > 0 && address != JumpList.Last())
+                    {
+                        JumpList.Clear();
+                        Dispatcher.Invoke(() => ReturnPointer.IsEnabled = false);
+                    }
+
+                    // Fill the hex box on the UI thread.
+                    Dispatcher.Invoke(() =>
+                    {
+                        HexBox.VScrollBarVisible = true;
+                        HexBox.ByteProvider = new DynamicByteProvider(data);
+                        HexBox.VScrollBarVisible = false;
+                    });
+                }
+            });
         }
 
         private void Poke_Click(object sender, RoutedEventArgs e)
         {
+            if (HexBox.ByteProvider.Length <= 0)
+                return;
 
+            GetPeekPokeInfo(out var address, out var length);
+
+            byte[] bytes = new byte[HexBox.ByteProvider.Length];
+
+            //Grab the bytes from the hex window
+            for (int i = 0; i < HexBox.ByteProvider.Length; i++)
+                bytes[i] = HexBox.ByteProvider.ReadByte(i);
+
+            // Write bytes in task so we dont lock up the UI thread.
+            Task.Run(() => TargetManager.SelectedTarget.Debug.WriteMemory(address, bytes));
         }
 
         private void AttachProcess_Click(object sender, RoutedEventArgs e)
@@ -195,7 +261,7 @@ namespace OrbisPeeknPoke
 
         private void DetachProcess_Click(object sender, RoutedEventArgs e)
         {
-            TargetManager.SelectedTarget.Debug.Detach();
+            Task.Run(() => TargetManager.SelectedTarget.Debug.Detach());
         }
 
         private void LoadSomething_Click(object sender, RoutedEventArgs e)
@@ -205,34 +271,169 @@ namespace OrbisPeeknPoke
 
         private void KillProcess_Click(object sender, RoutedEventArgs e)
         {
-            var currentTarget = TargetManager.SelectedTarget;
-            var processList = TargetManager.SelectedTarget.Process.GetList();
-            var process = processList.Find(x => x.ProcessId == currentTarget.Debug.GetCurrentProcessId());
-            if (process != null)
+            Task.Run(() =>
             {
-                if (process.AppId > 0)
+                var currentTarget = TargetManager.SelectedTarget;
+                var processList = TargetManager.SelectedTarget.Process.GetList();
+                var process = processList.Find(x => x.ProcessId == currentTarget.Debug.GetCurrentProcessId());
+                if (process != null)
                 {
-                    currentTarget.Application.Stop(process.TitleId);
+                    if (process.AppId > 0)
+                    {
+                        currentTarget.Application.Stop(process.TitleId);
+                    }
+                    else
+                    {
+                        SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not kill process \"{process.Name}\" because Orbis Suite doesnt currently support killing processes with out an appId.", "Error: Could not kill this process.");
+                    }
                 }
-                else
-                {
-                    SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not kill process \"{process.Name}\" because Orbis Suite doesnt currently support killing processes with out an appId.", "Error: Could not kill this process.");
-                }
-            }
+            });
         }
 
         private void RestartTarget_Click(object sender, RoutedEventArgs e)
         {
-            TargetManager.SelectedTarget.Reboot();
+            Task.Run(() => TargetManager.SelectedTarget.Reboot());
         }
 
         private void ShutdownTarget_Click(object sender, RoutedEventArgs e)
         {
-            TargetManager.SelectedTarget.Shutdown();
+            Task.Run(() => TargetManager.SelectedTarget.Shutdown());
         }
 
         #endregion
 
-        
+        #region Context Menu
+
+        private void HexBox_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                FormsHost.ContextMenu.IsOpen = true;
+            }
+        }
+
+        private void CopyHex_Click(object sender, RoutedEventArgs e)
+        {
+            HexBox.CopyHex();
+        }
+
+        private void CopyText_Click(object sender, RoutedEventArgs e)
+        {
+            HexBox.Copy();
+        }
+        private void PasteText_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HexBox.Paste();
+            }
+            catch (Exception ex)
+            {
+                SimpleMessageBox.ShowError(this, $"Paste failed becase {ex.Message}", "Paste Failed.");
+            }
+        }
+
+        private void PasteHex_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HexBox.PasteHex();
+            }
+            catch (Exception ex)
+            {
+                SimpleMessageBox.ShowError(this, $"Paste failed becase {ex.Message}", "Paste Failed.");
+            }
+        }
+
+        private void SelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            HexBox.SelectAll();
+        }
+
+        private void FollowPointer_Click(object sender, RoutedEventArgs e)
+        {
+            GetPeekPokeInfo(out var lastAddress, out var length);
+
+            byte[] RawJumpAddress = new byte[8];
+
+            //Grab 8 bytes
+            for (int i = 7; i >= 0; i--)
+                RawJumpAddress[i] = HexBox.ByteProvider.ReadByte(HexBox.SelectionStart + i);
+
+            // Hex or decimal value of offset
+            ulong offset;
+            if (TryConvertStringToUlong(Offset.FieldText, out offset))
+            {
+                lastAddress += offset;
+            }
+
+            ulong address;
+            try
+            {
+                address = BitConverter.ToUInt64(RawJumpAddress, 0);
+            }
+            catch
+            {
+                SimpleMessageBox.ShowError(this, "The memory was not a Pointer.", "The memory was not a Pointer.");
+                return;
+            }
+
+            Task.Run(() =>
+            {
+                var data = TargetManager.SelectedTarget.Debug.ReadMemory(address, length);
+
+                if (data != null && data.Length > 0)
+                {
+                    // Add the last address to the list.
+                    JumpList.Add(lastAddress);
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        ReturnPointer.IsEnabled = true;
+
+                        BaseAddress.FieldText = $"0x{address.ToString("X")}";
+                        Offset.FieldText = $"0x0";
+
+                        HexBox.VScrollBarVisible = true;
+                        HexBox.ByteProvider = new DynamicByteProvider(data);
+                        HexBox.VScrollBarVisible = false;
+                    });
+                }
+            });
+        }
+
+        private void ReturnPointer_Click(object sender, RoutedEventArgs e)
+        {
+            if (JumpList.Count == 0)
+                ReturnPointer.IsEnabled = false;
+
+            GetPeekPokeInfo(out var lastAddress, out var length);
+            Task.Run(() =>
+            {
+                var data = TargetManager.SelectedTarget.Debug.ReadMemory(JumpList.Last(), length);
+
+                if (data != null && data.Length > 0)
+                {
+                    // Add the last address to the list.
+                    JumpList.Remove(JumpList.Last());
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        // Disable if we are back where we started.
+                        if (JumpList.Count == 0)
+                            ReturnPointer.IsEnabled = false;
+
+                        BaseAddress.FieldText = $"0x{lastAddress.ToString("X")}";
+                        Offset.FieldText = $"0x0";
+
+                        HexBox.VScrollBarVisible = true;
+                        HexBox.ByteProvider = new DynamicByteProvider(data);
+                        HexBox.VScrollBarVisible = false;
+                    });
+                }
+            });
+        }
+
+        #endregion
     }
 }

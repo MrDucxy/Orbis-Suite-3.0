@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Data;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 
@@ -20,7 +21,7 @@ namespace OrbisLib2.Common.Helpers
 
                 while (Left > 0)
                 {
-                    var chunkSize = Math.Min(s.ReceiveBufferSize, Left);
+                    var chunkSize = Math.Min(8192, Left);
                     var res = s.Receive(data, Received, chunkSize, 0);
 
                     Received += res;
@@ -28,6 +29,28 @@ namespace OrbisLib2.Common.Helpers
                 }
             }
             catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public static void SendLarge(this Socket s, byte[] data)
+        {
+            try
+            {
+                int Left = data.Length;
+                int CurrentPosition = 0;
+
+                while (Left > 0)
+                {
+                    var chunkSize = Math.Min(8192, Left);
+                    var res = s.Send(data, CurrentPosition, chunkSize, 0);
+
+                    Left -= res;
+                    CurrentPosition += res;
+                }
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

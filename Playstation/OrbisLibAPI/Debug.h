@@ -23,4 +23,6 @@ private:
 	void UnloadLibrary(OrbisNetId Sock);
 	void ReloadLibrary(OrbisNetId Sock);
 	void GetLibraryList(OrbisNetId Sock);
+
+	void ReadWriteMemory(OrbisNetId Sock, bool write);
 };

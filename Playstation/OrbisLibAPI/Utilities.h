@@ -1,6 +1,6 @@
 #pragma once
 
-
+#define ARRAY_COUNT(arry) sizeof(arry) / sizeof(arry[0])
 
 // Misc
 bool LoadModules();
@@ -32,6 +32,7 @@ struct kinfo_proc {
 #define KERN_PROC 14
 #define KERN_PROC_ALL 0
 #define KERN_PROC_PROC 8
+#define KERN_PROC_PID 1
 
 void hexdump(void* ptr, int buflen);
 int GetProcessList(std::vector<kinfo_proc>& ProcessList);

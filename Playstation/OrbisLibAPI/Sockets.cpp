@@ -19,7 +19,7 @@ bool Sockets::RecvInt(OrbisNetId Sock, int* val)
 	auto res = sceNetRecv(Sock, val, sizeof(int), 0);
 	if (res <= 0)
 	{
-		klog("RecvInt(): Failed to send %llX\n", res);
+		klog("RecvInt(): Failed to recv %llX\n", res);
 
 		return false;
 	}

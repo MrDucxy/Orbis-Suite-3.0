@@ -2,16 +2,6 @@
 #include "Detour.h"
 #include "hde64.h"
 
-#define	VM_PROT_NONE		((int) 0x00)
-#define	VM_PROT_READ		((int) 0x01)
-#define	VM_PROT_WRITE		((int) 0x02)
-#define	VM_PROT_EXECUTE		((int) 0x04)
-#define	VM_PROT_COPY		((int) 0x08)	/* copy-on-read */
-
-#define	VM_PROT_ALL		(VM_PROT_READ|VM_PROT_WRITE|VM_PROT_EXECUTE)
-#define VM_PROT_RW		(VM_PROT_READ|VM_PROT_WRITE)
-#define	VM_PROT_DEFAULT		VM_PROT_ALL
-
 void Detour::WriteJump(void* Address, void* Destination)
 {
 	uint8_t JumpInstructions[] = {

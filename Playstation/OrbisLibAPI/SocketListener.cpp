@@ -11,7 +11,7 @@ void* SocketListener::ClientThread(void* tdParam)
 	socketListener->ClientCallBack(socketListener->tdParam, Sock, sin_addr);
 
 	sceNetSocketClose(Sock);
-	free(Params);
+	delete Params;
 
 	// Kill our thread and exit.
 	scePthreadDetach(scePthreadSelf());
@@ -86,7 +86,7 @@ void* SocketListener::DoWork()
 
 			if (ClientSocket != -1)
 			{
-				// klog("New Connection from %i.%i.%i.%i!\n", ClientAddr.sin_addr.s_addr & 0xFF, (ClientAddr.sin_addr.s_addr >> 8) & 0xFF, (ClientAddr.sin_addr.s_addr >> 16) & 0xFF, (ClientAddr.sin_addr.s_addr >> 24) & 0xFF);
+				//klog("New Connection from %i.%i.%i.%i!\n", ClientAddr.sin_addr.s_addr & 0xFF, (ClientAddr.sin_addr.s_addr >> 8) & 0xFF, (ClientAddr.sin_addr.s_addr >> 16) & 0xFF, (ClientAddr.sin_addr.s_addr >> 24) & 0xFF);
 
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));

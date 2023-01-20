@@ -59,6 +59,107 @@ void LoadUnloadLib(int Command, OrbisNetId Sock)
 	free(Packet);
 }
 
+void ReadWriteMemory(OrbisNetId Sock)
+{
+	int res = 0;
+
+	// Get the packet for the info.
+	auto Packet = (RWPacket*)malloc(sizeof(RWPacket));
+	if (sceNetRecv(Sock, Packet, sizeof(RWPacket), 0) < 0)
+	{
+		klog("ReadWriteMemory(): Failed to recieve packet\n");
+
+		free(Packet);
+
+		return;
+	}
+
+	// Make sure the address is valid.
+	OrbisKernelModuleInfo info;
+	if (Packet->Address == 0 || !GetModuleFromAddress(Packet->Address, &info) && !IsMemoryMapped(Packet->Address))
+	{
+		Sockets::SendInt(Sock, 0);
+	 
+		klog("ReadWriteMemory(): Failed to validate address.\n");
+	
+		free(Packet);
+	
+		return;
+	}
+
+	// Get the current protection of the memory.
+	int prot;
+	res = sceKernelQueryMemoryProtection((void*)Packet->Address, nullptr, nullptr, &prot);
+	if (res != 0)
+	{
+		Sockets::SendInt(Sock, 0);
+
+		klog("ReadWriteMemory(): Failed to get memory prot: %llX\n", res);
+	
+		free(Packet);
+	
+		return;
+	}
+
+	// Set the protection level so we can RW.
+	res = sceKernelMprotect((void* )Packet->Address, Packet->Length, VM_PROT_ALL);
+	if (res != 0)
+	{
+		Sockets::SendInt(Sock, 0);
+
+		klog("ReadWriteMemory(): Failed to set memory prot: %llX\n", res);
+
+		free(Packet);
+
+		return;
+	}
+
+	Sockets::SendInt(Sock, 1);
+
+	// Read / Write the memory.
+	if (Packet->Write)
+	{
+		auto buffer = (unsigned char*)malloc(Packet->Length);
+
+		if (!Sockets::RecvLargeData(Sock, buffer, Packet->Length))
+		{
+			klog("ReadWriteMemory(): Failed to recieve the data.\n");
+
+			free(buffer);
+
+			goto Exit;
+		}
+
+		memcpy((void*)Packet->Address, buffer, Packet->Length);
+
+		free(buffer);
+	}
+	else
+	{
+		auto buffer = (unsigned char*)malloc(Packet->Length);
+		memcpy(buffer, (void*)Packet->Address, Packet->Length);
+
+		if (!Sockets::SendLargeData(Sock, buffer, Packet->Length))
+		{
+			klog("ReadWriteMemory(): Failed to send memory.\n");
+		}
+
+		free(buffer);
+	}
+	
+Exit:
+	// Reset the protection back.
+	res = sceKernelMprotect((void*)Packet->Address, Packet->Length, prot);
+	if (res != 0)
+	{
+		klog("ReadMemory(): Failed to restore memory prot: %llX\n", res);
+	}
+
+	free(Packet);
+
+	Sockets::SendInt(Sock, 1);
+}
+
 void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 {
 	int Command = 0;
@@ -69,7 +170,7 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 		return;
 	}
 
-	if (!Sockets::SendInt(Sock, GIPC_OK))
+	if (!Sockets::SendInt(Sock, 1))
 	{
 		klog("Failed to send confirm command.\n");
 		return;
@@ -85,7 +186,7 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 
 		case GIPC_HELLO:
 
-			Sockets::SendInt(Sock, GIPC_OK);
+			Sockets::SendInt(Sock, 1);
 
 			break;
 
@@ -104,7 +205,7 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 
 			Jailbreak();
 
-			Sockets::SendInt(Sock, GIPC_OK);
+			Sockets::SendInt(Sock, 1);
 
 			break;
 
@@ -112,12 +213,14 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 
 			RestoreJail();
 			
-			Sockets::SendInt(Sock, GIPC_OK);
+			Sockets::SendInt(Sock, 1);
 
 			break;
 
-		case  GIPC_RW:
-			// Might not really need this.
+		case GIPC_RW:
+
+			ReadWriteMemory(Sock);
+
 			break;
 
 		case GIPC_PROT:
@@ -131,8 +234,6 @@ extern "C"
 {
 	int __cdecl module_start(size_t argc, const void* args)
 	{
-		klog("Hello from Helper!\n");
-
 		klog("Helping with %d\n", getpid());
 
 		char serverAddress[0x200];

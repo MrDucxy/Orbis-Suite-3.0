@@ -14,50 +14,58 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr)
 	// Deserialize the packet.
 	auto Packet = RecievePacket<APIPacket>(s);
 
+	// Did we recieve a packet?
+	if (Packet == nullptr)
+	{
+		return;
+	}
+
+	// Validate Packet
+	if (strcmp(Packet->PacketMagic, "ORBIS_SUITE") && Packet->PacketVersion != PACKET_VERSION)
+	{
+		klog("Invalid Packet with Magic %s and Version %i\n", Packet->PacketMagic, Packet->PacketVersion);
+
+		free(Packet);
+
+		return;
+	}
+
+	//if (Packet->Command > 0 && Packet->Command <= ARRAY_COUNT(CommandList))
+	//{
+	//	klog("Recieved the Command %i(%s)\n", Packet->Command, CommandList[Packet->Command]);
+	//}
+
 	// Add host to the host list.
 	Events::AddHost(sin_addr.s_addr);
 
-	if (Packet != nullptr)
+	// Send out the command to the right places.
+	switch (Packet->Command)
 	{
-		// Make sure were getting the proper packet version.
-		if (Packet->PacketVersion != PACKET_VERSION)
-		{
-			//klog("Packet version %i does not match our expected %i version!\n", Packet->PacketVersion, PACKET_VERSION);
+	default:
+		klog("API: Invalid Command %i...\n", Packet->Command);
+		break;
 
-			free(Packet);
+	case APICommands::PROC_START ... APICommands::PROC_END:
+		Proc->HandleAPI(s, Packet);
+		break;
 
-			return;
-		}
+	case APICommands::APP_START ... APICommands::APP_END:
+		Apps->HandleAPI(s, Packet);
+		break;
 
-		// Send out the command to the right places.
-		switch (Packet->Command)
-		{
-		default:
-			klog("API: Invalid Command %i...\n", Packet->Command);
-			break;
+	case APICommands::DBG_START ... APICommands::DBG_END:
+		Debug->HandleAPI(s, Packet);
+		break;
 
-		case APICommands::PROC_START ... APICommands::PROC_END:
-			Proc->HandleAPI(s, Packet);
-			break;
+	case APICommands::KERN_START ... APICommands::KERN_END:
+		klog("Kernel API Call\n");
 
-		case APICommands::APP_START ... APICommands::APP_END:
-			Apps->HandleAPI(s, Packet);
-			break;
+		break;
 
-		case APICommands::DBG_START ... APICommands::DBG_END:
-			Debug->HandleAPI(s, Packet);
-			break;
+	case APICommands::TARGET_START ... APICommands::TARGET_END:
+		Target->HandleAPI(s, Packet);
+		break;
 
-		case APICommands::KERN_START ... APICommands::KERN_END:
-			klog("Kernel API Call\n");
-
-			break;
-
-		case APICommands::TARGET_START ... APICommands::TARGET_END:
-			Target->HandleAPI(s, Packet);
-			break;
-
-		}
 	}
 
 	// Clean up. :)

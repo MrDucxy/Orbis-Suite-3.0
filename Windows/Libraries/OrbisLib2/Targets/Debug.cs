@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using static SQLite.SQLite3;
 
 namespace OrbisLib2.Targets
@@ -197,6 +198,69 @@ namespace OrbisLib2.Targets
             });
 
             return libraryList;
+        }
+
+
+        public byte[] ReadMemory(ulong Address, ulong Length)
+        {
+            if (!IsDebugging)
+            {
+                return new byte[0];
+            }
+
+            int readResult = 0;
+            var data = new byte[Length];
+            var result = API.SendCommand(Target, 6, APICommands.API_DBG_READ, (Socket Sock, APIResults Result) =>
+            {
+                var isDebugging = Sock.RecvInt32();
+                if (isDebugging == 1)
+                {
+                    var Packet = new DbgRWPacket();
+                    Packet.Address = Address;
+                    Packet.Length = Length;
+                    Sock.Send(Helper.StructToBytes(Packet));
+
+                    // Status
+                    readResult = Sock.RecvInt32();
+
+                    // Recv the memory if the address was valid.
+                    if (readResult == 1)
+                    {
+                        Sock.RecvLarge(data);
+                    }
+                }
+            });
+
+            return readResult == 1 ? data : new byte[0];
+        }
+
+        public bool WriteMemory(ulong Address, byte[] Data)
+        {
+            if (!IsDebugging)
+            {
+                return false;
+            }
+
+            int writeResult = 0;
+            var result = API.SendCommand(Target, 6, APICommands.API_DBG_WRITE, (Socket Sock, APIResults Result) =>
+            {
+                var isDebugging = Sock.RecvInt32();
+                if (isDebugging == 1)
+                {
+                    var Packet = new DbgRWPacket();
+                    Packet.Address = Address;
+                    Packet.Length = (ulong)Data.Length;
+                    Sock.Send(Helper.StructToBytes(Packet));
+
+                    // Send the memory to write.
+                    Sock.SendLarge(Data);
+
+                    // Status
+                    writeResult = Sock.RecvInt32();
+                }
+            });
+
+            return writeResult == 1;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace OrbisLib2.Common.API
                 if (Connect(DesiredTarget.IPAddress, Settings.CreateInstance().APIPort, TimeOut, out Socket Sock))
                 {
                     // Send Inital Packet.
-                    var result = SendNextPacket(Sock, new APIPacket() { PacketVersion = Config.PacketVersion, Command = Command });
+                    var result = SendNextPacket(Sock, new APIPacket() { PacketMagic="ORBIS_SUITE", PacketVersion = Config.PacketVersion, Command = Command });
 
                     // Call lambda for additional calls.
                     if (result == APIResults.API_OK && AdditionalCommunications != null)

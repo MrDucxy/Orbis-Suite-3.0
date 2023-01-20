@@ -10,6 +10,11 @@ OrbisNetId ShellUIIPC::Connect()
 
 	// Make new local Socket
 	auto Socket = sceNetSocket("GeneralIPC Socket", ORBIS_NET_AF_LOCAL, ORBIS_NET_SOCK_STREAM, 0);
+	if (Socket < 0)
+	{
+		klog("Failed to get socket: %llX\n", Socket);
+		return NULL;
+	}
 
 	auto res = sceNetConnect(Socket, (OrbisNetSockaddr*)&addr, SUN_LEN(&addr));
 	if (!res)

@@ -40,9 +40,13 @@ void Debug::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 	case API_DBG_READ:
 
+		ReadWriteMemory(Sock, false);
+
 		break;
 
 	case API_DBG_WRITE:
+
+		ReadWriteMemory(Sock, true);
 
 		break;
 
@@ -385,6 +389,75 @@ void Debug::GetLibraryList(OrbisNetId Sock)
 
 	// Send the list to host.
 	Sockets::SendLargeData(Sock, (unsigned char*)libraryList.data(), libraryList.size() * sizeof(LibraryPacket));
+}
+
+void Debug::ReadWriteMemory(OrbisNetId Sock, bool write)
+{
+	if (!IsDebugging || CurrentPID == -1)
+	{
+		return;
+	}
+
+	// Get next packet.
+	auto Packet = (DbgRWPacket*)malloc(sizeof(DbgRWPacket));
+	sceNetRecv(Sock, Packet, sizeof(DbgRWPacket), 0);
+
+	if (write)
+	{
+		auto buffer = (unsigned char*)malloc(Packet->Length);
+
+		if (!Sockets::RecvLargeData(Sock, buffer, Packet->Length))
+		{
+			free(buffer);
+
+			klog("Failed to recieve memory to write\n");
+
+			return;
+		}
+
+		if (!GeneralIPC::ReadWriteMemory(CurrentPID, Packet->Address, buffer, Packet->Length, true))
+		{
+			free(buffer);
+
+			klog("Failed to write memory to process %i at %llX\n", CurrentPID, Packet->Address);
+
+			Sockets::SendInt(Sock, 0);
+
+			return;
+		}
+
+		free(buffer);
+
+		Sockets::SendInt(Sock, 1);
+	}
+	else
+	{
+		auto buffer = (unsigned char*)malloc(Packet->Length);
+
+		if (!GeneralIPC::ReadWriteMemory(CurrentPID, Packet->Address, buffer, Packet->Length, false))
+		{
+			free(buffer);
+
+			klog("Failed to write memory to process %i at %llX\n", CurrentPID, Packet->Address);
+
+			Sockets::SendInt(Sock, 0);
+
+			return;
+		}
+
+		Sockets::SendInt(Sock, 1);
+
+		if (!Sockets::SendLargeData(Sock, buffer, Packet->Length))
+		{
+			free(buffer);
+
+			klog("Failed to send memory\n");
+
+			return;
+		}
+
+		free(buffer);
+	}
 }
 
 Debug::Debug()

@@ -14,4 +14,5 @@ public:
 	static bool UnLoadLibrary(int pid, int Handle);
 	static bool Jailbreak(int pid);
 	static bool Jail(int pid);
+	static bool ReadWriteMemory(int pid, uint64_t address, unsigned char* data, size_t length, bool write);
 };

@@ -13,6 +13,11 @@ OrbisNetId GeneralIPC::Connect(int pid)
 
 	// Make new local Socket
 	auto Socket = sceNetSocket("GeneralIPC Socket", ORBIS_NET_AF_LOCAL, ORBIS_NET_SOCK_STREAM, 0);
+	if (Socket < 0)
+	{
+		klog("Failed to get socket: %llX\n", Socket);
+		return NULL;
+	}
 
 	auto res = sceNetConnect(Socket, (OrbisNetSockaddr*)&addr, SUN_LEN(&addr));
 	if (!res)
@@ -339,6 +344,106 @@ bool GeneralIPC::Jail(int pid)
 
 	// Recieve the result.
 	int result = 0;
+	if (!Sockets::RecvInt(sock, &result))
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		klog("[GeneralIPC] Failed to recv result.\n");
+		return false;
+	}
+
+	// Close the socket.
+	sceNetSocketClose(sock);
+
+	return result == GIPC_OK;
+}
+
+bool GeneralIPC::ReadWriteMemory(int pid, uint64_t address, unsigned char* data, size_t length, bool write)
+{
+	// Open a new local socket connection for the process.
+	auto sock = Connect(pid);
+	if (!sock)
+	{
+		klog("[GeneralIPC] ReadWriteMemory(): Failed to connect to socket.\n");
+		return false;
+	}
+
+	// Send the command.
+	if (!SendCommand(sock, GIPC_RW))
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		klog("[GeneralIPC] ReadWriteMemory(): Failed to send command.\n");
+		return false;
+	}
+
+	// Create next packet.
+	auto Packet = (RWPacket*)malloc(sizeof(RWPacket));
+	Packet->Address = address;
+	Packet->Length = length;
+	Packet->Write = write;
+
+	// Send the packet.
+	if (sceNetSend(sock, Packet, sizeof(RWPacket), 0) < 0)
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		// Cleanup
+		free(Packet);
+
+		klog("[GeneralIPC] ReadWriteMemory(): Failed to send RWPacket.\n");
+
+		return false;
+	}
+
+	// Cleanup
+	free(Packet);
+
+	// Make sure the address was valid.
+	int result = 0;
+	if (!Sockets::RecvInt(sock, &result))
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		klog("[GeneralIPC] Failed to recv result.\n");
+		return false;
+	}
+
+	if (result == 0)
+	{
+		// Close the socket.
+		sceNetSocketClose(sock);
+
+		klog("[GeneralIPC] ReadWriteMemory():Invalid Address %llX\n", address);
+		return false;
+	}
+
+	// Recieve/Send Data
+	if (write)
+	{
+		if (!Sockets::SendLargeData(sock, data, length))
+		{
+			klog("[GeneralIPC] ReadWriteMemory(): Failed to send the data.");
+
+			return false;
+		}
+	}
+	else
+	{
+		if (!Sockets::RecvLargeData(sock, data, length))
+		{
+			klog("[GeneralIPC] ReadWriteMemory(): Failed to recv the data.");
+
+			return false;
+		}
+	}
+
+	// Recieve the result.
+	result = 0;
 	if (!Sockets::RecvInt(sock, &result))
 	{
 		// Close the socket.

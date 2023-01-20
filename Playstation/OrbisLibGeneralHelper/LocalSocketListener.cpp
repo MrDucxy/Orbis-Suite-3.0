@@ -11,9 +11,10 @@ void* LocalSocketListener::ClientThread(void* tdParam)
 	localSocketListener->ClientCallBack(localSocketListener->tdParam, Sock);
 
 	sceNetSocketClose(Sock);
-	free(Params);
+	delete Params;
 
 	// Kill our thread and exit.
+	scePthreadDetach(scePthreadSelf());
 	scePthreadExit(NULL);
 	return nullptr;
 }

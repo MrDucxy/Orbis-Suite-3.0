@@ -181,8 +181,7 @@
       <HintPath>..\..\External\SimpleUI\SimpleUI\Libraries\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="SimpleUI">
-      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Debug\net6.0-windows\SimpleUI.dll</HintPath>
-      <CopyLocal>True</CopyLocal>
+      <HintPath>..\..\External\SimpleUI\SimpleUI\bin\Release\net6.0-windows\SimpleUI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

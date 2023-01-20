@@ -130,6 +130,8 @@ namespace OrbisLib2.Common.API
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi, Size = 8), Serializable]
     public struct APIPacket
     {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
+        public string PacketMagic;
         public int PacketVersion;
         public APICommands Command;
     }
