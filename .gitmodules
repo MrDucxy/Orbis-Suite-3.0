@@ -12,9 +12,6 @@
 [submodule "External/LibSQLite-ps4"]
 	path = External/LibSQLite-ps4
 	url = https://github.com/bucanero/libSQLite-ps4
-[submodule "External/HexView"]
-	path = External/HexView
-	url = https://github.com/OSM-Made/HexView.Wpf
 [submodule "External/Be.HexEditor"]
 	path = External/Be.HexEditor
 	url = https://github.com/OSM-Made/Be.HexEditor
