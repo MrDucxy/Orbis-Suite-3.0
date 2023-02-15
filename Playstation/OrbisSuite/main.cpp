@@ -33,8 +33,8 @@ int main()
 
 	// Install all the things! :D
 	//InstallDaemon("ORBS30000"); // Orbis Lib
-	InstallOrbisToolbox();
-	InstallOrbisSuite();
+	//InstallOrbisToolbox();
+	//InstallOrbisSuite();
 
 	//TODO: use IPC to see if prx is already loaded.
 

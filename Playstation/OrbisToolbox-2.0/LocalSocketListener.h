@@ -3,7 +3,7 @@
 class LocalSocketListener
 {
 private:
-	OrbisPthread* ListenThreadHandle;
+	OrbisPthread ListenThreadHandle;
 	OrbisNetId Socket;
 	/// Used to signal thread to shut down
 	bool ServerRunning;

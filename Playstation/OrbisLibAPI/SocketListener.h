@@ -10,7 +10,7 @@ private:
 	/// Used to see when listen thread has closed.
 	bool ThreadCleanedUp;
 	unsigned short Port;
-	OrbisPthread* ListenThreadHandle;
+	OrbisPthread ListenThreadHandle;
 
 	void* DoWork();
 	static void* ClientThread(void* tdParam);

@@ -12,6 +12,7 @@ public:
 		float Percentage;
 	};
 
+	static OrbisPthread ThreadId;
 	static int Thread_Count;
 	static int Busy_Core;
 	static float Usage[8];

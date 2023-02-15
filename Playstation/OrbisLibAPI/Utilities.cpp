@@ -61,6 +61,8 @@ bool LoadModules()
 		return false;
 	}
 
+	sceSysmoduleLoadModuleInternal(0x8000000D);
+
 	// Start up networking interface
 	res = sceNetInit();
 	if (res != 0)
@@ -179,6 +181,8 @@ bool Jailbreak()
 		klog("jbc failed to jailbreak cred.\n");
 		return false;
 	}
+	
+	//cred.sonyCred = 0x3800000000010003;
 
 	if (jbc_set_cred(&cred) != 0)
 	{

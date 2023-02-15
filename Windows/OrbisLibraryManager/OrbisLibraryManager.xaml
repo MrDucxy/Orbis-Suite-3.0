@@ -35,8 +35,8 @@
                    Fill="{DynamicResource WindowBar}" Grid.ColumnSpan="2"/>
 
         <!-- Separation bar -->
-        <Rectangle Grid.Column="0" Grid.Row="0"
-                   Height="0.5" VerticalAlignment="Top"
+        <Rectangle Grid.Column="0"
+                   Height="0.6" VerticalAlignment="Top"
                    Fill="{DynamicResource WindowBackground}" Grid.ColumnSpan="2"/>
 
         <!-- Current Target -->

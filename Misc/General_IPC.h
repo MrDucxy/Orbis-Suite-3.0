@@ -35,3 +35,9 @@ struct LibPacket
 	int SegmentCount;
 	OrbisKernelModuleSegmentInfo Segments[4];
 };
+
+struct PRXPacket
+{
+	uint32_t Handle;
+	char Path[256];
+};

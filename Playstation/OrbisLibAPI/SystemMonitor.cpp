@@ -1,6 +1,7 @@
 #include "Common.h"
 #include "SystemMonitor.h"
 
+OrbisPthread SystemMonitor::ThreadId;
 int SystemMonitor::Thread_Count = 0;
 int SystemMonitor::Busy_Core = 0;
 float SystemMonitor::Usage[8] = { 0 };
@@ -177,14 +178,13 @@ void* SystemMonitor::MonitorThread(void* args)
 void SystemMonitor::Init()
 {
 	klog("[System Monitor] Starting System Monitor Thread...\n");
-
-	OrbisPthread* id;
-	scePthreadCreate(&id, nullptr, MonitorThread, NULL, "System Monitor Thread");
-	scePthreadDetach(*id);
+	
+	scePthreadCreate(&ThreadId, nullptr, MonitorThread, NULL, "System Monitor Thread");
+	scePthreadDetach(ThreadId);
 }
 
 void SystemMonitor::Term()
 {
 	Should_Run_Thread = false;
-	while (!Should_Run_Thread) { sceKernelUsleep(1000 * 10); }
+	scePthreadJoin(ThreadId, nullptr);
 }

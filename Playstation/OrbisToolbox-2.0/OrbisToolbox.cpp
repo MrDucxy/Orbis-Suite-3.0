@@ -69,9 +69,9 @@ extern "C"
 {
 	int __cdecl module_start(size_t argc, const void* args)
 	{
-		OrbisPthread* hThread;
+		OrbisPthread hThread;
 		scePthreadCreate(&hThread, nullptr, InitThread, nullptr, "Init");
-		scePthreadJoin(*hThread, nullptr);
+		scePthreadJoin(hThread, nullptr);
 
 		return 0;
 	}

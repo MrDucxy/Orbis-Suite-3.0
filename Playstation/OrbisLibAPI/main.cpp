@@ -3,6 +3,7 @@
 #include "API.h"
 #include "GoldHEN.h"
 #include "Events.h"
+#include <orbis/NpManager.h>
 
 void exiting()
 {
@@ -21,16 +22,8 @@ void exiting()
 
 }
 
-// Signal handler function
-void signal_handler(int signum) {
-	klog("Signal %d\n", signum);
-}
-
 int main()
 {
-	signal(17, signal_handler);
-	signal(SIGTERM, signal_handler);
-
 	// Jailbreak our current process.
 	if (!Jailbreak())
 	{
@@ -66,10 +59,11 @@ int main()
 		return 0;
 	}
 
-	// start up the API. NOTE: this is blocking.
-	API::Init();
+	// Mount data & hostapp into ShellUI sandbox
+	LinkDir("/data/", "/mnt/sandbox/NPXS20001_000/data");
+	LinkDir("/hostapp/", "/mnt/sandbox/NPXS20001_000/hostapp");
 
-//#define LOADTOOLBOX
+#define LOADTOOLBOX
 #ifdef LOADTOOLBOX
 	auto handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
 	if (handle > 0) {
@@ -81,6 +75,9 @@ int main()
 		Notify("Failed to load Orbis Toolbox!");
 	}
 #endif
+	
+	// start up the API. NOTE: this is blocking.
+	API::Init();
 
  //#define KILLSHELLUI
 #ifdef KILLSHELLUI

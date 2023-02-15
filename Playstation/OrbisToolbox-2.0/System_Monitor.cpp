@@ -179,8 +179,9 @@ void System_Monitor::Init()
 
 	scePthreadAttrSetstacksize(&attr, 0x80000);
 
-	OrbisPthread* id;
+	OrbisPthread id;
 	scePthreadCreate(&id, &attr, Monitor_Thread, NULL, "System Monitor Thread");
+	scePthreadDetach(id);
 }
 
 void System_Monitor::Term()

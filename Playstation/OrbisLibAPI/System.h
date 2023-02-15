@@ -1,6 +1,6 @@
 #pragma once
 
-enum SystemState
+enum NewSystemState
 {
 	Suspend = 0x8004000,
 	Shutdown = 0x4000,
@@ -24,7 +24,7 @@ enum ConsoleTypes
 	CT_KRATOS,	//0xA0 IMPOSSIBLE??
 };
 
-int ChangeSystemState(SystemState State);
+int ChangeSystemState(NewSystemState State);
 void SetConsoleLED(ConsoleLEDColours Colour);
 void SetControllerLED();
 void RingBuzzer(BuzzerType Type);

@@ -98,9 +98,9 @@ void* LocalSocketListener::DoWork()
 				Params->Sock = ClientSocket;
 
 				// Create Thread to handle connection.
-				OrbisPthread* Thread;
+				OrbisPthread Thread;
 				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
-				scePthreadDetach(*Thread);
+				scePthreadDetach(Thread);
 
 				// Reset ClientSocket.
 				ClientSocket = -1;
@@ -134,7 +134,7 @@ LocalSocketListener::LocalSocketListener(void(*ClientCallBack)(void* tdParam, Or
 	strcpy(this->ServerAddress, ServerAddress);
 
 	scePthreadCreate(&ListenThreadHandle, NULL, &ListenThread, this, "Local Listen Thread");
-	scePthreadDetach(*ListenThreadHandle);
+	scePthreadDetach(ListenThreadHandle);
 }
 
 LocalSocketListener::~LocalSocketListener()
@@ -142,7 +142,7 @@ LocalSocketListener::~LocalSocketListener()
 	klog("~Socket Listener.\n");
 
 	this->ServerRunning = false;
-	scePthreadJoin(*ListenThreadHandle, nullptr);
+	scePthreadJoin(ListenThreadHandle, nullptr);
 
 	klog("Destruction sucessful.\n");
 }

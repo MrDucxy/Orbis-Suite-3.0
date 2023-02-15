@@ -66,7 +66,7 @@ namespace OrbisLib2.Common.Helpers
                 Socket s_Client = s_Listener.EndAccept(ar);
                 if (SocketAccepted != null)
                 {
-                    SocketAccepted(s_Client);
+                    Task.Run(() => SocketAccepted(s_Client));
                 }
 
                 //Begin Accepting other Connections again with our call back.

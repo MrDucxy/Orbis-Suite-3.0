@@ -21,19 +21,19 @@ void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 	case APICommands::API_TARGET_RESTMODE:
 
-		ChangeSystemState(SystemState::Suspend);
+		ChangeSystemState(NewSystemState::Suspend);
 
 		break;
 
 	case APICommands::API_TARGET_SHUTDOWN:
 
-		ChangeSystemState(SystemState::Shutdown);
+		ChangeSystemState(NewSystemState::Shutdown);
 
 		break;
 
 	case APICommands::API_TARGET_REBOOT:
 
-		ChangeSystemState(SystemState::Reboot);;
+		ChangeSystemState(NewSystemState::Reboot);;
 
 		break;
 

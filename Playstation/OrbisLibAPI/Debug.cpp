@@ -3,7 +3,6 @@
 #include "APIHelper.h"
 #include "GeneralIPC.h"
 #include "Events.h"
-
 #include <sys/ptrace.h>
 
 #define HelperPrxPath "/data/Orbis Suite/OrbisLibGeneralHelper.sprx"
@@ -54,8 +53,6 @@ void Debug::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 
 		break;
 
-		//...
-
 	case API_DBG_LOAD_LIBRARY:
 
 		LoadLibrary(Sock);
@@ -105,7 +102,7 @@ bool Debug::TryDetach(int pid)
 	CurrentPID = -1;
 
 	// Wait for the current proc thread to die.
-	scePthreadJoin(*ProcMonitorThreadHandle, nullptr);
+	scePthreadJoin(ProcMonitorThreadHandle, nullptr);
 
 	return true;
 }
@@ -123,6 +120,9 @@ void* Debug::ProcessMonotorThread()
 			}) == procList.end())
 		{
 			klog("Proc %d has died.\n", CurrentPID);
+
+			// Release the IPC file
+			GeneralIPC::DeleteTempFile(CurrentPID);
 
 			// Aquire lock.
 			scePthreadMutexLock(&DebugMutex);
@@ -149,6 +149,7 @@ void* Debug::ProcessMonotorThread()
 		{
 			int signal = WSTOPSIG(status);
 			klog("Process %d has recieved the signal %d\n", CurrentPID, signal);
+			// TODO: Back trace here on bad sig
 
 			switch (signal)
 			{
@@ -162,8 +163,6 @@ void* Debug::ProcessMonotorThread()
 	}
 
 Thread_Exit:
-	klog("Client Thread Exiting!\n");
-
 	// TODO: Remove any Watchpoints / Breakpoints now.
 	//		 Unless the process is dying maybe?
 
@@ -304,7 +303,16 @@ void Debug::LoadLibrary(OrbisNetId Sock)
 
 	// Get next packet.
 	auto Packet = (DbgSPRXPacket*)malloc(sizeof(DbgSPRXPacket));
-	sceNetRecv(Sock, Packet, sizeof(DbgSPRXPacket), 0);
+	if (sceNetRecv(Sock, Packet, sizeof(DbgSPRXPacket), 0) < 0)
+	{
+		klog("Failed to recieve next packet.\n");
+
+		free(Packet);
+
+		Sockets::SendInt(Sock, -1);
+
+		return;
+	}
 
 	// Load the library.
 	int handle = 0;

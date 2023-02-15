@@ -47,6 +47,14 @@ bool GeneralIPC::SendCommand(OrbisNetId Sock, int Command)
 	return Status == GIPC_OK;
 }
 
+void GeneralIPC::DeleteTempFile(int pid)
+{
+	char fullPath[0x200];
+	snprintf(fullPath, sizeof(fullPath), GENERAL_IPC_ADDR, pid);
+
+	sceKernelUnlink(fullPath);
+}
+
 bool GeneralIPC::TestConnection(int pid)
 {
 	// Open a new local socket connection for the process.
@@ -157,16 +165,16 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 	Jailbreak(pid);
 
 	// Create next packet.
-	auto Packet = (LibPacket*)malloc(sizeof(LibPacket));
+	auto Packet = (PRXPacket*)malloc(sizeof(PRXPacket));
 	strcpy(Packet->Path, Path);
 
 	// Send the packet.
-	if (sceNetSend(sock, Packet, sizeof(LibPacket), 0) < 0)
+	if (sceNetSend(sock, Packet, sizeof(PRXPacket), 0) < 0)
 	{
 		// Close the socket.
 		sceNetSocketClose(sock);
 
-		klog("[GeneralIPC] Failed to send LibPacket.\n");
+		klog("[GeneralIPC] Failed to send PRXPacket.\n");
 
 		// Restore the jail.
 		Jail(pid);
@@ -194,25 +202,19 @@ bool GeneralIPC::LoadLibrary(int pid, const char* Path, int* HandleOut)
 		return false;
 	}
 
-	// Check to see if it was loaded successfully.
-	if (*HandleOut <= 0)
-	{
-		// Close the socket.
-		sceNetSocketClose(sock);
-
-		klog("[GeneralIPC] Failed to load PRX '%s' (0x%llX).\n", *HandleOut);
-
-		// Restore the jail.
-		Jail(pid);
-
-		return false;
-	}
+	// Close the socket.
+	sceNetSocketClose(sock);
 
 	// Restore the jail.
 	Jail(pid);
 
-	// Close the socket.
-	sceNetSocketClose(sock);
+	// Check to see if it was loaded successfully.
+	if (*HandleOut <= 0)
+	{
+		klog("[GeneralIPC] Failed to load PRX '%s' (0x%llX).\n", Path, *HandleOut);
+
+		return false;
+	}
 
 	return true;
 }
@@ -238,11 +240,11 @@ bool GeneralIPC::UnLoadLibrary(int pid, int Handle)
 	}
 
 	// Create next packet.
-	auto Packet = (LibPacket*)malloc(sizeof(LibPacket));
+	auto Packet = (PRXPacket*)malloc(sizeof(PRXPacket));
 	Packet->Handle = Handle;
 
 	// Send the packet.
-	if (sceNetSend(sock, Packet, sizeof(LibPacket), 0) < 0)
+	if (sceNetSend(sock, Packet, sizeof(PRXPacket), 0) < 0)
 	{
 		// Close the socket.
 		sceNetSocketClose(sock);
@@ -250,7 +252,7 @@ bool GeneralIPC::UnLoadLibrary(int pid, int Handle)
 		// Cleanup
 		free(Packet);
 
-		klog("[GeneralIPC] Failed to send LibPacket.\n");
+		klog("[GeneralIPC] Failed to send PRXPacket.\n");
 
 		return false;
 	}

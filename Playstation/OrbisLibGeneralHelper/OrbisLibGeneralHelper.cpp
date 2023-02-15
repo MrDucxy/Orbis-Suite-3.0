@@ -38,8 +38,8 @@ void SendLibraryList(OrbisNetId Sock)
 
 void LoadUnloadLib(int Command, OrbisNetId Sock)
 {
-	auto Packet = (LibPacket*)malloc(sizeof(LibPacket));
-	sceNetRecv(Sock, Packet, sizeof(LibPacket), 0);
+	auto Packet = (PRXPacket*)malloc(sizeof(PRXPacket));
+	sceNetRecv(Sock, Packet, sizeof(PRXPacket), 0);
 
 	if (Command == GIPC_LIB_LOAD)
 	{
@@ -114,6 +114,7 @@ void ReadWriteMemory(OrbisNetId Sock)
 		return;
 	}
 
+	// Let the client know we have validated the memory.
 	Sockets::SendInt(Sock, 1);
 
 	// Read / Write the memory.
@@ -157,6 +158,7 @@ Exit:
 
 	free(Packet);
 
+	// success!
 	Sockets::SendInt(Sock, 1);
 }
 
@@ -224,7 +226,7 @@ void ListenerClientThread(void* tdParam, OrbisNetId Sock)
 			break;
 
 		case GIPC_PROT:
-			// Might not really need this either? Depends on if we can set the protection from the debug proc.
+			
 			break;
 		}
 	}

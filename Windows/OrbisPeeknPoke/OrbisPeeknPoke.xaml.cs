@@ -360,13 +360,6 @@ namespace OrbisPeeknPoke
             for (int i = 7; i >= 0; i--)
                 RawJumpAddress[i] = HexBox.ByteProvider.ReadByte(HexBox.SelectionStart + i);
 
-            // Hex or decimal value of offset
-            ulong offset;
-            if (TryConvertStringToUlong(Offset.FieldText, out offset))
-            {
-                lastAddress += offset;
-            }
-
             ulong address;
             try
             {
@@ -407,15 +400,17 @@ namespace OrbisPeeknPoke
             if (JumpList.Count == 0)
                 ReturnPointer.IsEnabled = false;
 
-            GetPeekPokeInfo(out var lastAddress, out var length);
+            GetPeekPokeInfo(out var address, out var length);
             Task.Run(() =>
             {
-                var data = TargetManager.SelectedTarget.Debug.ReadMemory(JumpList.Last(), length);
+                var lastAddress = JumpList.Last();
+
+                var data = TargetManager.SelectedTarget.Debug.ReadMemory(lastAddress, length);
 
                 if (data != null && data.Length > 0)
                 {
                     // Add the last address to the list.
-                    JumpList.Remove(JumpList.Last());
+                    JumpList.Remove(lastAddress);
 
                     Dispatcher.Invoke(() =>
                     {

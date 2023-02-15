@@ -4,7 +4,7 @@ class Debug
 {
 public:
 	OrbisPthreadMutex DebugMutex;
-	OrbisPthread* ProcMonitorThreadHandle;
+	OrbisPthread ProcMonitorThreadHandle;
 	bool IsDebugging;
 	int CurrentPID;
 

@@ -1,7 +1,7 @@
 #include "Common.h"
 #include "System.h"
 
-int ChangeSystemState(SystemState State)
+int ChangeSystemState(NewSystemState State)
 {
 	OrbisKernelEventFlag EventFlag = 0;
 	int ret = 0;

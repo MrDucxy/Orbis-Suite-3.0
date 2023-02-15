@@ -13,6 +13,7 @@ using OrbisLib2.Common.Database.Types;
 using OrbisLib2.Common.API;
 using OrbisLib2.Targets;
 using OrbisLib2.Common.Database;
+using System.Threading.Tasks;
 
 namespace OrbisNeighborHood.Controls
 {
@@ -244,74 +245,80 @@ namespace OrbisNeighborHood.Controls
 
         private void LocateTarget_Click(object sender, RoutedEventArgs e)
         {
-            _thisTarget.Buzzer(BuzzerType.RingThree);
+            Task.Run(() =>
+            {
+                _thisTarget.Buzzer(BuzzerType.RingThree);
+            });
         }
 
         private void SendPayload_Click(object sender, RoutedEventArgs e)
         {
-            try
+            Task.Run(() =>
             {
-                string PayloadPath = string.Empty;
-                var openFileDialog = new OpenFileDialog();
-
-                openFileDialog.Title = "Open BIN File...";
-                openFileDialog.CheckFileExists = true;
-                openFileDialog.CheckPathExists = true;
-                openFileDialog.InitialDirectory = Properties.Settings.Default.LastPayloadPath;
-                openFileDialog.Filter = "BIN files (*.BIN)|*.BIN";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == true)
+                try
                 {
-                    PayloadPath = openFileDialog.FileName;
-                    Properties.Settings.Default.LastPayloadPath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
-                    Properties.Settings.Default.Save();
-                }
-                else
-                    return;
+                    string PayloadPath = string.Empty;
+                    var openFileDialog = new OpenFileDialog();
 
-                FileStream fPayload = File.Open(PayloadPath, FileMode.Open);
-                if (fPayload.CanRead)
-                {
-                    byte[] PayloadBuffer = new byte[fPayload.Length];
+                    openFileDialog.Title = "Open BIN File...";
+                    openFileDialog.CheckFileExists = true;
+                    openFileDialog.CheckPathExists = true;
+                    openFileDialog.InitialDirectory = Properties.Settings.Default.LastPayloadPath;
+                    openFileDialog.Filter = "BIN files (*.BIN)|*.BIN";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
 
-                    if (fPayload.Read(PayloadBuffer, 0, (int)fPayload.Length) == fPayload.Length)
+                    if (openFileDialog.ShowDialog() == true)
                     {
-                        if (!_thisTarget.Payload.InjectPayload(PayloadBuffer))
-                        {
-                            SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed to send payload to target please try again.", "Error: Failed to inject payload.");
-                        }
-                        else
-                        {
-                            SimpleMessageBox.ShowInformation(Window.GetWindow(this), "The payload has been sucessfully sent.", "Payload Sent!");
-                        }
+                        PayloadPath = openFileDialog.FileName;
+                        Properties.Settings.Default.LastPayloadPath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
+                        Properties.Settings.Default.Save();
                     }
                     else
-                        SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed read payload from disc to target please try again.", "Error: Failed to inject payload.");
+                        return;
+
+                    FileStream fPayload = File.Open(PayloadPath, FileMode.Open);
+                    if (fPayload.CanRead)
+                    {
+                        byte[] PayloadBuffer = new byte[fPayload.Length];
+
+                        if (fPayload.Read(PayloadBuffer, 0, (int)fPayload.Length) == fPayload.Length)
+                        {
+                            if (!_thisTarget.Payload.InjectPayload(PayloadBuffer))
+                            {
+                                SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed to send payload to target please try again.", "Error: Failed to inject payload.");
+                            }
+                            else
+                            {
+                                SimpleMessageBox.ShowInformation(Window.GetWindow(this), "The payload has been sucessfully sent.", "Payload Sent!");
+                            }
+                        }
+                        else
+                            SimpleMessageBox.ShowError(Window.GetWindow(this), "Failed read payload from disc to target please try again.", "Error: Failed to inject payload.");
+                    }
+
+                    fPayload.Close();
                 }
+                catch
+                {
 
-                fPayload.Close();
-            }
-            catch
-            {
-
-            }
+                }
+            });
         }
 
         private void RestartTarget_Click(object sender, RoutedEventArgs e)
         {
-            _thisTarget.Reboot();
+            Task.Run(() => _thisTarget.Reboot());
         }
 
         private void ShutdownTarget_Click(object sender, RoutedEventArgs e)
         {
-            _thisTarget.Shutdown();
+            Task.Run(() => _thisTarget.Shutdown());
         }
 
         private void SuspendTarget_Click(object sender, RoutedEventArgs e)
         {
-            _thisTarget.Suspend();
+            Task.Run(() => _thisTarget.Suspend());
         }
 
         #endregion

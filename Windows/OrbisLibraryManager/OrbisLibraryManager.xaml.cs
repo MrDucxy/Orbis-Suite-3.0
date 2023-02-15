@@ -216,7 +216,7 @@ namespace OrbisLibraryManager
             }
             else
             {
-                SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not load \"{SPRXPath}\" since it is already loaded.", "Error: Failed to load SPRX.");
+                SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not load \"{SPRXPath.FieldText}\" since it is already loaded.", "Error: Failed to load SPRX.");
             }
         }
 
@@ -236,7 +236,7 @@ namespace OrbisLibraryManager
             }
             else
             {
-                SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not unload \"{SPRXPath}\" since it is not loaded.", "Error: Failed to unload SPRX.");
+                SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not unload \"{SPRXPath.FieldText}\" since it is not loaded.", "Error: Failed to unload SPRX.");
             }
         }
 
@@ -259,7 +259,7 @@ namespace OrbisLibraryManager
             }
             else
             {
-                SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not reload \"{SPRXPath}\" since it is not loaded.", "Error: Failed to reload SPRX.");
+                SimpleMessageBox.ShowError(Window.GetWindow(this), $"Could not reload \"{SPRXPath.FieldText}\" since it is not loaded.", "Error: Failed to reload SPRX.");
             }
         }
 

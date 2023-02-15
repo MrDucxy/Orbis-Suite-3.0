@@ -98,9 +98,9 @@ void* SocketListener::DoWork()
 				Params->sin_addr = ClientAddr.sin_addr;
 
 				// Create Thread to handle connection.
-				OrbisPthread* Thread;
+				OrbisPthread Thread;
 				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
-				scePthreadDetach(*Thread);
+				scePthreadDetach(Thread);
 
 				// Reset ClientSocket.
 				ClientSocket = -1;
@@ -143,7 +143,7 @@ SocketListener::~SocketListener()
 	klog("~Socket Listener.\n");
 
 	this->ServerRunning = false;
-	scePthreadJoin(*ListenThreadHandle, nullptr);
+	scePthreadJoin(ListenThreadHandle, nullptr);
 
 	klog("Destruction sucessful.\n");
 }
