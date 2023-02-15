@@ -75,39 +75,29 @@ namespace OrbisPeeknPoke.Controls
 
                 CurrentTargetName.Text = CurrentTarget.IsDefault ? $"★{CurrentTarget.Name}" : CurrentTarget.Name;
 
-                if (CurrentTarget.Info.BigAppTitleID == null || !Regex.IsMatch(CurrentTarget.Info.BigAppTitleID, @"CUSA\d{5}"))
+                try
+                {
+                    if (CurrentTarget.Info.BigAppTitleID == null || !Regex.IsMatch(CurrentTarget.Info.BigAppTitleID, @"CUSA\d{5}"))
+                    {
+                        CurrentTargetTitleName.Text = "Unknown Title";
+                        CurrentTargetTitleId.Text = "-";
+                        CurrentTargetTitleImage.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisPeeknPoke;component/Images/DefaultTitleIcon.png"));
+                    }
+                    else
+                    {
+                        var Title = new TMDB(CurrentTarget.Info.BigAppTitleID);
+                        CurrentTargetTitleName.Text = Title.Names.First();
+                        CurrentTargetTitleId.Text = Title.NPTitleID;
+                        CurrentTargetTitleImage.Source = new BitmapImage(new Uri(Title.Icons.First()));
+                    }
+                }
+                catch
                 {
                     CurrentTargetTitleName.Text = "Unknown Title";
                     CurrentTargetTitleId.Text = "-";
                     CurrentTargetTitleImage.Source = new BitmapImage(new Uri("pack://application:,,,/OrbisPeeknPoke;component/Images/DefaultTitleIcon.png"));
                 }
-                else
-                {
-                    var Title = new TMDB(CurrentTarget.Info.BigAppTitleID);
-                    Regex rgx = new Regex(@"[^0-9a-zA-Z +.:']");
-                    CurrentTargetTitleName.Text = Title.Names.First();
-                    CurrentTargetTitleId.Text = Title.NPTitleID;
-                    var test = Title.BGM;
-                    CurrentTargetTitleImage.Source = new BitmapImage(new Uri(Title.Icons.First()));
-                }
             }
-        }
-
-        private void CurrentTargetTitleImage_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var CurrentTarget = TargetManager.SelectedTarget;
-
-            if (CurrentTarget != null && CurrentTarget.Info.BigAppTitleID != null && Regex.IsMatch(CurrentTarget.Info.BigAppTitleID, @"CUSA\d{5}"))
-            {
-                var Title = new TMDB(CurrentTarget.Info.BigAppTitleID);
-                var url = $"https://store.playstation.com/product/{Title.ContentID}/";
-
-                System.Diagnostics.Process.Start(new ProcessStartInfo
-                {
-                    FileName = url,
-                    UseShellExecute = true
-                });
-            }  
         }
 
         private void CurrentTargetName_MouseDown(object sender, MouseButtonEventArgs e)

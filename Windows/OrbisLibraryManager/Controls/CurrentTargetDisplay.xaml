@@ -26,8 +26,7 @@
             <Image Name="CurrentTargetTitleImage"
                    Source="/OrbisLibraryManager;component/Images/DefaultTitleIcon.png"
                    RenderOptions.BitmapScalingMode="Fant"
-                   RenderOptions.EdgeMode="Aliased"
-                   MouseDown="CurrentTargetTitleImage_MouseDown"/>
+                   RenderOptions.EdgeMode="Aliased"/>
         </Border>
 
         <StackPanel Grid.Column="1" Grid.Row="1"

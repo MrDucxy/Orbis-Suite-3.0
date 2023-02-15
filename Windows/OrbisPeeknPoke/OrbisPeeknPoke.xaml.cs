@@ -48,25 +48,32 @@ namespace OrbisPeeknPoke
 
         private void HexBox_CurrentPositionInLineChanged(object? sender, EventArgs e)
         {
-            OffsetValue.Text = $"0x{(((HexBox.CurrentLine - 1) * 0x10) + (HexBox.CurrentPositionInLine - 1)).ToString("X")}";
+            if (HexBox.ByteProvider != null)
+                OffsetValue.Text = $"0x{(((HexBox.CurrentLine - 1) * 0x10) + (HexBox.CurrentPositionInLine - 1)).ToString("X")}";
+            else
+                OffsetValue.Text = string.Empty;
         }
 
         private void HexBox_CurrentLineChanged(object? sender, EventArgs e)
         {
-            OffsetValue.Text = $"0x{(((HexBox.CurrentLine - 1) * 0x10) + (HexBox.CurrentPositionInLine - 1)).ToString("X")}";
+            if (HexBox.ByteProvider != null)
+                OffsetValue.Text = $"0x{(((HexBox.CurrentLine - 1) * 0x10) + (HexBox.CurrentPositionInLine - 1)).ToString("X")}";
+            else
+                OffsetValue.Text = string.Empty;
         }
 
         #region Events
 
         private void EnableProgram(bool Attached)
         {
-            if (Attached)
+            SelectBase.IsEnabled = Attached;
+            Peek.IsEnabled = Attached;
+            Poke.IsEnabled = Attached;
+            HexBox.Enabled = Attached;
+
+            if (!Attached)
             {
-                // Try to load memory window.
-            }
-            else
-            {
-                // Clear memory window.
+                HexBox.ByteProvider = null;
             }
 
             DetachProcess.IsEnabled = Attached;
