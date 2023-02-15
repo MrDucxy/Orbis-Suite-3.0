@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
@@ -72,5 +72,9 @@
   <ItemGroup>
     <PackageReference Include="BinaryTools.Elf" Version="0.3.0" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /E $(ProjectDir)$(OutDir) $(SolutionDir)Windows\Executables\$(ProjectName)" />
+  </Target>
 
 </Project>

@@ -22,11 +22,15 @@
     <DefineConstants>
     </DefineConstants>
     <LinkerAdditionalOptions>-dneighborhoodloc=..\..\..\..\Executables\OrbisNeighborHood
+-dlibrarymanagerloc=..\..\..\..\Executables\OrbisLibraryManager
+-dpeeknpokeloc=..\..\..\..\Executables\OrbisPeeknPoke
 -dserviceloc=..\..\..\..\Executables\OrbisSuiteService</LinkerAdditionalOptions>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Directories.wxs" />
+    <Compile Include="Generated\OrbisLibraryManager.wxs" />
     <Compile Include="Generated\OrbisNeighborhood.wxs" />
+    <Compile Include="Generated\OrbisPeeknPoke.wxs" />
     <Compile Include="Generated\OrbisSuiteService.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
@@ -56,6 +60,8 @@
   </Target>
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\..\..\..\Executables\OrbisNeighborHood" -cg OrbisNeighborHood -gg  -var wix.neighborhoodloc -dr INSTALLFOLDER -out ..\..\Generated\OrbisNeighborhood.wxs
+"C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\..\..\..\Executables\OrbisLibraryManager" -cg OrbisLibraryManager -gg  -var wix.librarymanagerloc -dr INSTALLFOLDER -out ..\..\Generated\OrbisLibraryManager.wxs
+"C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\..\..\..\Executables\OrbisPeeknPoke" -cg OrbisPeeknPoke -gg  -var wix.peeknpokeloc -dr INSTALLFOLDER -out ..\..\Generated\OrbisPeeknPoke.wxs
 "C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\..\..\..\Executables\OrbisSuiteService" -cg OrbisSuiteService -gg  -var wix.serviceloc -dr INSTALLFOLDER -out ..\..\Generated\OrbisSuiteService.wxs</PreBuildEvent>
   </PropertyGroup>
 </Project>

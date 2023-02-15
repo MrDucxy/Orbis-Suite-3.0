@@ -43,6 +43,8 @@
 
 			<!-- Installs program files and starts windows service. -->
 			<ComponentGroupRef Id="OrbisNeighborHood"/>
+			<ComponentGroupRef Id="OrbisLibraryManager"/>
+			<ComponentGroupRef Id="OrbisPeeknPoke"/>
 			<ComponentGroupRef Id="OrbisSuiteService"/>
 			
 			<!-- Start Menu files -->
@@ -55,6 +57,20 @@
 						  Directory="InstallProgramMenuFolder"
 						  WorkingDirectory="INSTALLFOLDER"
 						  Icon="OrbisNeighborhood.ico"
+						  />
+				<Shortcut Id="OrbisLibraryManagerShortcut"
+						  Name="Orbis Library Manager"
+						  Target="[INSTALLFOLDER]\OrbisLibraryManager\OrbisLibraryManager.exe"
+						  Directory="InstallProgramMenuFolder"
+						  WorkingDirectory="INSTALLFOLDER"
+						  Icon="OrbisLibraryManager.ico"
+						  />
+				<Shortcut Id="OrbisPeeknPokeShortcut"
+						  Name="Orbis Peek n' Poke"
+						  Target="[INSTALLFOLDER]\OrbisPeeknPoke\OrbisPeeknPoke.exe"
+						  Directory="InstallProgramMenuFolder"
+						  WorkingDirectory="INSTALLFOLDER"
+						  Icon="OrbisPeeknPoke.ico"
 						  />
 
 				<!-- Our unique key for this component/shortcut -->
