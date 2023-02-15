@@ -76,7 +76,7 @@ void Menu::Init()
 	End:
 		free(Dent_Buffer);
 
-	});
+	})->Visible = false;
 
 	Add_Option("id_option_daemon_refresh", []() -> void {
 
@@ -126,7 +126,7 @@ void Menu::Init()
 	End:
 		free(Dent_Buffer);
 
-	});
+	})->Visible = false;
 
 	// ShellUI Plugin Manager
 	Add_Option("id_plugins")->Visible = false;
@@ -162,6 +162,8 @@ void Menu::Init()
 	Add_Option("id_system_disp_devkit_panel", &Debug_Feature::DevkitPanel::ShowPanel, Type_Boolean, Debug_Feature::DevkitPanel::Update);
 	Add_Option("id_system_disp_debug_settings_panel", &Debug_Feature::Custom_Content::Show_Debug_Settings, Type_Boolean, UI::Utilities::ReloadItemList);
 	Add_Option("id_system_disp_app_home_panel", &Debug_Feature::Custom_Content::Show_App_Home, Type_Boolean, UI::Utilities::ReloadItemList);
+	Add_Option("id_mount_system_rw", []() -> void { mount_large_fs("/dev/da0x4.crypt", "/system", "exfatfs", "511", MNT_UPDATE); Notify("/system mounted as R/W."); });
+	Add_Option("id_disable_system_updates", []() -> void { DisableUpdates(); Notify("System updates are disabled/blocked.\nMake sure to do this after every database rebuild just in case."); });
 
 	//Debug Overlay
 	Add_Option("id_overlay_dbg", &Build_Overlay::Draw, Type_Boolean, Build_Overlay::Update);
@@ -199,7 +201,12 @@ void Menu::Init()
 	});
 	Add_Option("id_save_settings", []() -> void { Config::Write(SETTIN_DIR) ? Notify("Orbis Toolbox: Saved Settings Sucessfully!") : Notify("Orbis Toolbox: Failed to Save Settings..."); });
 
+
+
 	// Orbis Suite Debug
+	Add_Option("orbis_debug", []() -> void
+		{
+		})->Visible = false;
 	Add_Option("id_orbis_api", []() -> void 
 	{ 
 	});

@@ -62,21 +62,14 @@ void Notify_Custom(const char* IconURI, const char* MessageFMT, ...)
 	// I found some clues on how to build the buffer.
 }
 
-struct Myiovec
-{
-	void* iov_base;
-	size_t iov_len;
-};
-
-void build_iovec(Myiovec** iov, int* iovlen, const char* name, const void* val, size_t len)
-{
+static void build_iovec(iovec** iov, int* iovlen, const char* name, const void* val, size_t len) {
 	int i;
 
 	if (*iovlen < 0)
 		return;
 
 	i = *iovlen;
-	*iov = (Myiovec*)realloc(*iov, sizeof **iov * (i + 2));
+	*iov = (iovec*)realloc(*iov, sizeof * *iov * (i + 2));
 	if (*iov == NULL) {
 		*iovlen = -1;
 		return;
@@ -98,6 +91,47 @@ void build_iovec(Myiovec** iov, int* iovlen, const char* name, const void* val, 
 	*iovlen = ++i;
 }
 
+int nmount(struct iovec* iov, uint32_t niov, int flags)
+{
+	return syscall(378, iov, niov, flags);
+}
+
+int unmount(const char* dir, int flags)
+{
+	return syscall(22, dir, flags);
+}
+
+int mount_large_fs(const char* device, const char* mountpoint, const char* fstype, const char* mode, unsigned int flags)
+{
+	struct iovec* iov = NULL;
+	int iovlen = 0;
+
+	build_iovec(&iov, &iovlen, "fstype", fstype, -1);
+	build_iovec(&iov, &iovlen, "fspath", mountpoint, -1);
+	build_iovec(&iov, &iovlen, "from", device, -1);
+	build_iovec(&iov, &iovlen, "large", "yes", -1);
+	build_iovec(&iov, &iovlen, "timezone", "static", -1);
+	build_iovec(&iov, &iovlen, "async", "", -1);
+	build_iovec(&iov, &iovlen, "ignoreacl", "", -1);
+
+	if (mode) {
+		build_iovec(&iov, &iovlen, "dirmask", mode, -1);
+		build_iovec(&iov, &iovlen, "mask", mode, -1);
+	}
+
+	return nmount(iov, iovlen, flags);
+}
+
+void DisableUpdates()
+{
+	sceKernelUnlink("/update/PS4UPDATE.PUP.net.temp");
+	sceKernelRmdir("/update/PS4UPDATE.PUP.net.temp");
+	sceKernelMkdir("/update/PS4UPDATE.PUP.net.temp", 777);
+
+	sceKernelUnlink("/update/PS4UPDATE.PUP");
+	sceKernelRmdir("/update/PS4UPDATE.PUP");
+	sceKernelMkdir("/update/PS4UPDATE.PUP", 777);
+}
 
 /*
 

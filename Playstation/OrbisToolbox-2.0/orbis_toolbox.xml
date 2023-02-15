@@ -143,11 +143,17 @@
       <!-- Show Devkit Panel -->
       <toggle_switch id="id_system_disp_devkit_panel" title="Show Devkit Panel" value="0"/>
 
-      <!-- Show"★Orbis Toolbox" shortcu -->
+      <!-- Show"★Orbis Toolbox" shortcut -->
       <toggle_switch id="id_system_disp_debug_settings_panel" title="Show &quot;★Orbis Toolbox&quot; shortcut" value="0"/>
 
       <!-- Show ";★APP_HOME" -->
       <toggle_switch id="id_system_disp_app_home_panel" title="Show &quot;★APP_HOME&quot;" value="0"/>
+
+	  <!-- Mount System as R/W -->
+	  <button id="id_mount_system_rw" title="Mount System as R/W"/>
+
+	  <!-- Disable System Updates -->
+	  <button id="id_disable_system_updates" title="Disable System Updates"/>
 
       <!-- Debug Overlay -->
       <toggle_switch id="id_overlay_dbg" title="Debug Overlay" value="0"/>
