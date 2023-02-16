@@ -1,24 +1,38 @@
-﻿using TinyIpc.Messaging;
-using OrbisLib2.Common.Database;
-using OrbisLib2.Common.Dispatcher;
-using OrbisLib2.Common.Helpers;
+﻿using OrbisLib2.Common.Dispatcher;
+using Microsoft.Extensions.Logging;
+using H.Pipes;
+using System.IO.Pipes;
+using System.Security.AccessControl;
+using System.Security.Principal;
+using H.Pipes.AccessControl;
 
 namespace OrbisSuiteService.Service
 {
     public class Dispatcher
     {
-        private TinyMessageBus _ServiceMessageBus;
+        private IPipeServer<ForwardPacket> _PipeServer;
+        private ILogger _Logger;
 
         private DBWatcher _DBWatcher = new DBWatcher();
-        private Settings _Settings = Settings.CreateInstance();
         //private SerialComHelper _SerialMonitor = new SerialComHelper();
         private TargetWatcher _TargetWatcher;
         private TargetEventListener _TargetEventListener;
 
 
-        public Dispatcher()
+        public Dispatcher(ILogger logger)
         {
-            _ServiceMessageBus = new TinyMessageBus("OrbisSuite");
+            _Logger = logger;
+
+            // Set up the named pipe server.
+            _PipeServer = new PipeServer<ForwardPacket>("OrbisSuite");
+
+            // Set the pipe security so userland can interact with us.
+            var pipeSecurity = new PipeSecurity();
+            pipeSecurity.AddAccessRule(new PipeAccessRule(new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, null), PipeAccessRights.ReadWrite, AccessControlType.Allow));
+            _PipeServer.SetPipeSecurity(pipeSecurity);
+
+            // start the pipe server.
+            _PipeServer.StartAsync();
 
             //Helpers
             _DBWatcher.DBChanged += _DBWatcher_DBChanged;
@@ -26,7 +40,7 @@ namespace OrbisSuiteService.Service
             _SerialMonitor.Settings.PortName = "";
             _SerialMonitor.StartListening();*/
             _TargetWatcher = new TargetWatcher(this);
-            _TargetEventListener = new TargetEventListener(this);
+            _TargetEventListener = new TargetEventListener(this, _Logger);
         }
 
         private byte[] _SerialDataBuffer = new byte[0];
@@ -54,7 +68,8 @@ namespace OrbisSuiteService.Service
 
         public void PublishEvent(ForwardPacket Packet)
         {
-            _ServiceMessageBus.PublishAsync(Helper.ObjectToByteArray(Packet));
+            _Logger.LogInformation($"Publishing Event: {Packet.Type}.");
+            _PipeServer.WriteAsync(Packet);
         }
     }
 }

@@ -13,6 +13,8 @@
 		<!-- Provide package details -->
 		<Package
 		  InstallerVersion="405"
+		  InstallPrivileges="elevated"
+		  AdminImage="yes"
 		  Compressed="yes"
 		  InstallScope="perMachine"
 		  Manufacturer="!(loc.Company)"

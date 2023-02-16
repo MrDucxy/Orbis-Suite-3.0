@@ -5,6 +5,7 @@ using OrbisLib2.Common.Dispatcher;
 using System.Windows.Threading;
 using System.Net;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace OrbisSuiteService.Service
 {
@@ -24,19 +25,25 @@ namespace OrbisSuiteService.Service
     {
         private Listener _TargetListener;
         private Dispatcher _Dispatcher;
+        private ILogger _Logger;
 
-        public TargetEventListener(Dispatcher Dispatcher)
+        public TargetEventListener(Dispatcher Dispatcher, ILogger logger)
         {
+            _Logger = logger;
+            _Logger.LogInformation("TargetEventListener\n");
             _Dispatcher = Dispatcher;
 
             _TargetListener = new Listener(Config.EventPort);
             _TargetListener.SocketAccepted += _TargetListener_SocketAccepted;
             _TargetListener.Start();
+
+            _Logger.LogInformation("TargetEventListener Done\n");
         }
 
         private void _TargetListener_SocketAccepted(Socket s)
         {
             var eventId = s.RecvInt32();
+            _Logger.LogInformation($"{eventId}\n");
             var ipAddress = ((IPEndPoint)s.RemoteEndPoint).Address.ToString();
             switch (eventId)
             {

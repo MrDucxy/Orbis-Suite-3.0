@@ -1,34 +1,25 @@
-﻿using OrbisLib2.Common.Helpers;
+﻿using H.Pipes;
 using OrbisLib2.General;
-using OrbisLib2.Targets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using TinyIpc.Messaging;
 
 namespace OrbisLib2.Common.Dispatcher
 {
     public class DispatcherClient
     {
-        private static TinyMessageBus _ServiceMessageBus;
+        private static IPipeClient<ForwardPacket> _Client;
 
         /// <summary>
         /// Call this to subscribe for events from the windows service.
         /// </summary>
         public static void Subscribe()
         {
-            _ServiceMessageBus = new TinyMessageBus("OrbisSuite");
-            _ServiceMessageBus.MessageReceived += _ServiceMessageBus_MessageReceived;
+            _Client = new PipeClient<ForwardPacket>("OrbisSuite");
+            _Client.MessageReceived += _Client_MessageReceived;
+            _Client.ConnectAsync();
         }
 
-        private static void _ServiceMessageBus_MessageReceived(object? sender, TinyMessageReceivedEventArgs e)
+        private static void _Client_MessageReceived(object? sender, H.Pipes.Args.ConnectionMessageEventArgs<ForwardPacket?> e)
         {
-            var Packet = (ForwardPacket)Helper.ByteArrayToObject(e.Message.ToArray());
-
-            switch (Packet.Type)
+            switch (e.Message.Type)
             {
                 default:
                     Console.WriteLine("Invalid Packet...");
@@ -39,45 +30,45 @@ namespace OrbisLib2.Common.Dispatcher
                     break;
 
                 case ForwardPacket.PacketType.Intercept:
-                    Events.RaiseProcInterceptEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcInterceptEvent(e.Message.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.Continue:
-                    Events.RaiseProcContinueEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcContinueEvent(e.Message.SenderIPAddress);
                     break;
 
                 // Process States
                 case ForwardPacket.PacketType.ProcessDie:
-                    Events.RaiseProcDieEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcDieEvent(e.Message.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.ProcessAttach:
-                    Events.RaiseProcAttachEvent(Packet.SenderIPAddress, Packet.ProcessId);
+                    Events.RaiseProcAttachEvent(e.Message.SenderIPAddress, e.Message.ProcessId);
                     break;
 
                 case ForwardPacket.PacketType.ProcessDetach:
-                    Events.RaiseProcDetachEvent(Packet.SenderIPAddress);
+                    Events.RaiseProcDetachEvent(e.Message.SenderIPAddress);
                     break;
 
                 // Target State
                 case ForwardPacket.PacketType.TargetSuspend:
-                    Events.RaiseTargetSuspendEvent(Packet.SenderIPAddress);
+                    Events.RaiseTargetSuspendEvent(e.Message.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.TargetResume:
-                    Events.RaiseTargetResumeEvent(Packet.SenderIPAddress);
+                    Events.RaiseTargetResumeEvent(e.Message.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.TargetShutdown:
-                    Events.RaiseTargetShutdownEvent(Packet.SenderIPAddress);
+                    Events.RaiseTargetShutdownEvent(e.Message.SenderIPAddress);
                     break;
 
                 case ForwardPacket.PacketType.TargetAvailability:
-                    Events.FireTargetAvailability(Packet.TargetAvailability.Available, Packet.TargetAvailability.Name);
+                    Events.FireTargetAvailability(e.Message.TargetAvailability.Available, e.Message.TargetAvailability.Name);
                     break;
 
                 case ForwardPacket.PacketType.TargetAPIAvailability:
-                    Events.FireTargetAPIAvailability(Packet.TargetAvailability.Available, Packet.TargetAvailability.Name);
+                    Events.FireTargetAPIAvailability(e.Message.TargetAvailability.Available, e.Message.TargetAvailability.Name);
                     break;
 
                 // Misc
