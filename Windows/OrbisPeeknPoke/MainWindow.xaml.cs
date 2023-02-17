@@ -1,4 +1,5 @@
 ﻿using Be.Windows.Forms;
+using Microsoft.Extensions.Logging;
 using OrbisLib2.Common.Database.Types;
 using OrbisLib2.Common.Dispatcher;
 using OrbisLib2.Dialog;
@@ -33,7 +34,13 @@ namespace OrbisPeeknPoke
             System.Windows.Forms.Application.EnableVisualStyles();
 
             InitializeComponent();
-            DispatcherClient.Subscribe();
+        }
+
+        public void Show(ILogger logger)
+        {
+            base.Show();
+
+            DispatcherClient.Subscribe(logger);
 
             Events.ProcAttach += Events_ProcAttach;
             Events.ProcDetach += Events_ProcDetach;
@@ -44,6 +51,9 @@ namespace OrbisPeeknPoke
 
             HexBox.CurrentLineChanged += HexBox_CurrentLineChanged;
             HexBox.CurrentPositionInLineChanged += HexBox_CurrentPositionInLineChanged;
+
+            // Update State
+            Task.Run(() => EnableTargetOptions(TargetManager.SelectedTarget.Info.Status == TargetStatusType.APIAvailable));
         }
 
         private void HexBox_CurrentPositionInLineChanged(object? sender, EventArgs e)
@@ -74,6 +84,14 @@ namespace OrbisPeeknPoke
             if (!Attached)
             {
                 HexBox.ByteProvider = null;
+            }
+            else
+            {
+                var currentTarget = TargetManager.SelectedTarget;
+                var currentProcessId = currentTarget.Debug.GetCurrentProcessId();
+                var proc = TargetManager.SelectedTarget.Process.GetList().Find(x => x.ProcessId == currentProcessId);
+                if (proc != null)
+                    CurrentDebuggingProccess.FieldText = $"{proc.Name}({currentProcessId})";
             }
 
             DetachProcess.IsEnabled = Attached;

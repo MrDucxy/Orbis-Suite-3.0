@@ -9,6 +9,7 @@ using System.Windows;
 using System.Linq;
 using System.Threading;
 using static OrbisLib2.General.TargetStateChangedEvent;
+using Microsoft.Extensions.Logging;
 
 namespace OrbisLibraryManager
 {
@@ -17,10 +18,19 @@ namespace OrbisLibraryManager
     /// </summary>
     public partial class MainWindow : SimpleWindow
     {
+        private ILogger _logger;
         public MainWindow()
         {
             InitializeComponent();
-            DispatcherClient.Subscribe();
+        }
+
+        public void Show(ILogger logger)
+        {
+            base.Show();
+
+            _logger = logger;
+
+            DispatcherClient.Subscribe(_logger);
 
             Events.ProcAttach += Events_ProcAttach;
             Events.ProcDetach += Events_ProcDetach;
@@ -63,6 +73,12 @@ namespace OrbisLibraryManager
         {
             if(Attached)
             {
+                var currentTarget = TargetManager.SelectedTarget;
+                var currentProcessId = currentTarget.Debug.GetCurrentProcessId();
+                var proc = TargetManager.SelectedTarget.Process.GetList().Find(x => x.ProcessId == currentProcessId);
+                if (proc != null)
+                    CurrentDebuggingProccess.FieldText = $"{proc.Name}({currentProcessId})";
+
                 RefreshLibraryList();
             }
             else

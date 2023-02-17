@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:OrbisLibraryManager.Controls"
         xmlns:valueConverters="clr-namespace:OrbisLibraryManager.ValueConverters"
         mc:Ignorable="d"
-        Title="LibraryManager" 
+        Title="Library Manager" 
         Height="640" Width="980"
         MinHeight="640" MinWidth="980"
         MaxHeight="640" MaxWidth="980"

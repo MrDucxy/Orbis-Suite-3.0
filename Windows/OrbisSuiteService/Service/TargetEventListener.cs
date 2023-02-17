@@ -30,25 +30,25 @@ namespace OrbisSuiteService.Service
         public TargetEventListener(Dispatcher Dispatcher, ILogger logger)
         {
             _Logger = logger;
-            _Logger.LogInformation("TargetEventListener\n");
+            _Logger.LogInformation("TargetEventListener");
             _Dispatcher = Dispatcher;
 
             _TargetListener = new Listener(Config.EventPort);
             _TargetListener.SocketAccepted += _TargetListener_SocketAccepted;
             _TargetListener.Start();
 
-            _Logger.LogInformation("TargetEventListener Done\n");
+            _Logger.LogInformation("TargetEventListener Done");
         }
 
         private void _TargetListener_SocketAccepted(Socket s)
         {
             var eventId = s.RecvInt32();
-            _Logger.LogInformation($"{eventId}\n");
+            _Logger.LogInformation($"{eventId}");
             var ipAddress = ((IPEndPoint)s.RemoteEndPoint).Address.ToString();
             switch (eventId)
             {
                 default:
-                    Console.WriteLine($"Unknown Event {eventId}\n");
+                    _Logger.LogWarning($"Unknown Event {eventId}");
                     break;
 
                 case (int)EventId.EVENT_EXCEPTION:
