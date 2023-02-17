@@ -1,5 +1,6 @@
 #include "Common.h"
 #include "SystemMonitor.h"
+#include "ThreadPool.h"
 
 OrbisPthread SystemMonitor::ThreadId;
 int SystemMonitor::Thread_Count = 0;
@@ -98,9 +99,9 @@ void SystemMonitor::Get_Page_Table_Stats(int vm, int type, int* Used, int* Free,
 		*Total = _Total;
 }
 
-void* SystemMonitor::MonitorThread(void* args)
+void SystemMonitor::MonitorThread()
 {
-	//klog("[System Monitor] Thread Started\n");
+	klog("[System Monitor] Thread Started\n");
 
 	unsigned int Idle_Thread_ID[8];
 
@@ -168,23 +169,17 @@ void* SystemMonitor::MonitorThread(void* args)
 		sceKernelSleep(2);
 	}
 
-	Should_Run_Thread = true;
 	klog("[System Monitor] Thread Shutdown.\n");
-	void* res;
-	scePthreadExit(res);
-	return res;
 }
 
 void SystemMonitor::Init()
 {
 	klog("[System Monitor] Starting System Monitor Thread...\n");
 	
-	scePthreadCreate(&ThreadId, nullptr, MonitorThread, NULL, "System Monitor Thread");
-	scePthreadDetach(ThreadId);
+	ThreadPool::QueueJob([] { MonitorThread(); });
 }
 
 void SystemMonitor::Term()
 {
 	Should_Run_Thread = false;
-	scePthreadJoin(ThreadId, nullptr);
 }

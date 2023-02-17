@@ -4,6 +4,7 @@
 #include "GoldHEN.h"
 #include "Events.h"
 #include <orbis/NpManager.h>
+#include "ThreadPool.h"
 
 void exiting()
 {
@@ -19,7 +20,7 @@ void exiting()
 	API::Term();
 
 	// Terminate Thread Pool
-
+	ThreadPool::Term();
 }
 
 int main()
@@ -49,40 +50,29 @@ int main()
 	// Log the loaded version string.
 	klog("\n%s\n\n", ORBISLIB_BUILDSTRING);
 
+	// Start up the thread pool.
+	ThreadPool::Init(100);
+
 	// Init a thread to monitor the system usage stats.
 	// SystemMonitor::Init();
 
+	// Set up the events.
 	if (!Events::Init())
 	{
 		Notify("Failed to init Events...");
 		sceSystemServiceLoadExec("exit", 0);
 		return 0;
 	}
-
-	// Mount data & hostapp into ShellUI sandbox
-	LinkDir("/data/", "/mnt/sandbox/NPXS20001_000/data");
-	LinkDir("/hostapp/", "/mnt/sandbox/NPXS20001_000/hostapp");
-
-#define LOADTOOLBOX
-#ifdef LOADTOOLBOX
-	auto handle = sys_sdk_proc_prx_load("SceShellUI", "/user/data/Orbis Toolbox/OrbisToolbox-2.0.sprx");
-	if (handle > 0) {
-		klog("Orbis Toolbox loaded! %d\n", handle);
-	}
-	else
+	
+	// Load the tool box.
+	if (!LoadToolbox())
 	{
-		klog("error: %d\n", handle);
-		Notify("Failed to load Orbis Toolbox!");
+		sceSystemServiceLoadExec("exit", 0);
+		return 0;
 	}
-#endif
 	
 	// start up the API. NOTE: this is blocking.
 	API::Init();
-
- //#define KILLSHELLUI
-#ifdef KILLSHELLUI
-	sceSystemServiceKillApp(sceLncUtilGetAppId("NPXS20001"), -1, 0, 0);
-#endif
 
 	sceSystemServiceLoadExec("exit", 0);
 

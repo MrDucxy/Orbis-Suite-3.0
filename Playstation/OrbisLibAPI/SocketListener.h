@@ -12,11 +12,9 @@ private:
 	unsigned short Port;
 	OrbisPthread ListenThreadHandle;
 
-	void* DoWork();
-	static void* ClientThread(void* tdParam);
+	void ListenThread();
 	void* tdParam;
 	void(*ClientCallBack)(void* tdParam, OrbisNetId Sock, OrbisNetInAddr sin_addr);
-	static void* ListenThread(void* tdParam);
 
 public:
 	struct ClientThreadParams

@@ -102,6 +102,9 @@
     <ClCompile Include="Events.cpp">
       <Filter>Source Files\API</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadPool.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Events.h">
       <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

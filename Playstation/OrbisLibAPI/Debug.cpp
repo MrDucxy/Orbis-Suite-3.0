@@ -4,6 +4,7 @@
 #include "GeneralIPC.h"
 #include "Events.h"
 #include <sys/ptrace.h>
+#include "ThreadPool.h"
 
 #define HelperPrxPath "/data/Orbis Suite/OrbisLibGeneralHelper.sprx"
 
@@ -171,11 +172,6 @@ Thread_Exit:
 	return nullptr;
 }
 
-void* Debug::ProcessMonotorThreadHelper(void* tdParam)
-{
-	return ((Debug*)tdParam)->ProcessMonotorThread();
-}
-
 void Debug::Attach(OrbisNetId Sock)
 {
 	auto pid = RecieveInt(Sock);
@@ -231,7 +227,7 @@ void Debug::Attach(OrbisNetId Sock)
 	CurrentPID = pid;
 
 	// Create thread to monitor the state of the running process.
-	scePthreadCreate(&ProcMonitorThreadHandle, NULL, &ProcessMonotorThreadHelper, this, "Process Monitor Thread");
+	ThreadPool::QueueJob([this] { ProcessMonotorThread(); });
 
 	// release the lock.
 	scePthreadMutexUnlock(&DebugMutex);

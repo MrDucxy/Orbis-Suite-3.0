@@ -40,6 +40,6 @@ private:
 
 	static void CalculateCpuUsage(unsigned int idle_tid[8], threadUsage* cur, threadUsage* prev, float usage_out[8]);
 	static void Get_Page_Table_Stats(int vm, int type, int* Used, int* Free, int* Total);
-	static void* MonitorThread(void* args);
+	static void MonitorThread();
 
 };

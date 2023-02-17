@@ -1,25 +1,8 @@
 #include "Common.h"
+#include "ThreadPool.h"
 #include "SocketListener.h"
 
-void* SocketListener::ClientThread(void* tdParam)
-{
-	ClientThreadParams* Params = (ClientThreadParams*)tdParam;
-	SocketListener* socketListener = Params->socketListener;
-	OrbisNetId Sock = Params->Sock;
-	OrbisNetInAddr sin_addr = Params->sin_addr;
-
-	socketListener->ClientCallBack(socketListener->tdParam, Sock, sin_addr);
-
-	sceNetSocketClose(Sock);
-	delete Params;
-
-	// Kill our thread and exit.
-	scePthreadDetach(scePthreadSelf());
-	scePthreadExit(NULL);
-	return nullptr;
-}
-
-void* SocketListener::DoWork()
+void SocketListener::ListenThread()
 {
 	OrbisNetSockaddrIn addr = { 0 };
 	addr.sin_family = ORBIS_NET_AF_INET;
@@ -91,16 +74,11 @@ void* SocketListener::DoWork()
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
 
-				// Set up thread params.
-				ClientThreadParams* Params = new ClientThreadParams();
-				Params->socketListener = this;
-				Params->Sock = ClientSocket;
-				Params->sin_addr = ClientAddr.sin_addr;
-
-				// Create Thread to handle connection.
-				OrbisPthread Thread;
-				scePthreadCreate(&Thread, NULL, &ClientThread, Params, "Client Thread");
-				scePthreadDetach(Thread);
+				ThreadPool::QueueJob([=] 
+					{
+						ClientCallBack(tdParam, ClientSocket, ClientAddr.sin_addr);
+						sceNetSocketClose(ClientSocket);
+					});
 
 				// Reset ClientSocket.
 				ClientSocket = -1;
@@ -116,15 +94,6 @@ Cleanup:
 
 	// Clean up.
 	sceNetSocketClose(this->Socket);
-
-	// Kill our thread and exit.
-	scePthreadExit(NULL);
-	return nullptr;
-}
-
-void* SocketListener::ListenThread(void* tdParam)
-{
-	return ((SocketListener*)tdParam)->DoWork();
 }
 
 SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId Sock, OrbisNetInAddr sin_addr), void* tdParam, unsigned short Port)
@@ -135,7 +104,7 @@ SocketListener::SocketListener(void(*ClientCallBack)(void* tdParam, OrbisNetId S
 	this->ThreadCleanedUp = false;
 	this->Port = Port;
 
-	scePthreadCreate(&ListenThreadHandle, NULL, &ListenThread, this, "Listen Thread");
+	ThreadPool::QueueJob([this] { ListenThread(); });
 }
 
 SocketListener::~SocketListener()
@@ -143,7 +112,6 @@ SocketListener::~SocketListener()
 	klog("~Socket Listener.\n");
 
 	this->ServerRunning = false;
-	scePthreadJoin(ListenThreadHandle, nullptr);
 
 	klog("Destruction sucessful.\n");
 }
