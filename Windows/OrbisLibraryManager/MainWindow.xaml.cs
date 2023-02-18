@@ -41,6 +41,9 @@ namespace OrbisLibraryManager
 
             // Update State
             Task.Run(() => EnableTargetOptions(TargetManager.SelectedTarget.Info.Status == TargetStatusType.APIAvailable));
+
+            // Load settings.
+            SPRXPath.FieldText = Properties.Settings.Default.SPRXPath;
         }
 
         private void RefreshLibraryList()
@@ -322,6 +325,12 @@ namespace OrbisLibraryManager
         private void ShutdownTarget_Click(object sender, RoutedEventArgs e)
         {
             TargetManager.SelectedTarget.Shutdown();
+        }
+
+        private void SPRXPath_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.SPRXPath = SPRXPath.FieldText;
+            Properties.Settings.Default.Save();
         }
 
         #endregion

@@ -51,10 +51,11 @@
 
                 <simpleControls:SimpleTextField Name="SPRXPath"
                                                 FieldName="SPRX Path"
-                                                FieldText="/data/Frost Engine/BO3.sprx"
+                                                FieldText=""
                                                 IsReadOnly="False"
                                                 VerticalContentAlignment="Center"
-                                                Width="180"/>
+                                                Width="180"
+                                                LostFocus="SPRXPath_LostFocus"/>
 
                 <Grid Margin="0 6 0 0">
                     <Grid.ColumnDefinitions>
