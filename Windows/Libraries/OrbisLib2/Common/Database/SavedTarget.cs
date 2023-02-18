@@ -51,7 +51,7 @@ namespace OrbisLib2.Common.Database
                     db.CreateTable<TargetInfo>();
 
                     _Info = db.Find<TargetInfo>(x => x.TargetId == Id);
-                    if (_Info == null)
+                    if (_Info == null && Id != 0)
                     {
                         _Info = new TargetInfo();
                         _Info.TargetId = Id;

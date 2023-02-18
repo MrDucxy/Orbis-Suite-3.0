@@ -88,23 +88,10 @@ namespace OrbisNeighborHood.MVVM.View.SubView
 
         #region Target Settings
 
-        private void ShowTitleIdLabels_Loaded(object sender, RoutedEventArgs e)
-        {
-            var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Info.ShowTitleId;
-
-        }
-
         private void ShowTitleIdLabels_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
             _newTarget.Info.ShowTitleId = Switch.IsToggled;
-        }
-
-        private void ShowDevkitPanel_Loaded(object sender, RoutedEventArgs e)
-        {
-            var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Info.ShowDevkitPanel;
         }
 
         private void ShowDevkitPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -113,22 +100,10 @@ namespace OrbisNeighborHood.MVVM.View.SubView
             _newTarget.Info.ShowDevkitPanel = Switch.IsToggled;
         }
 
-        private void ShowToolboxShortcut_Loaded(object sender, RoutedEventArgs e)
-        {
-            var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Info.ShowToolboxShortcut;
-        }
-
         private void ShowToolboxShortcut_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var Switch = (SimpleSwitch)sender;
             _newTarget.Info.ShowToolboxShortcut = Switch.IsToggled;
-        }
-
-        private void ShowAppHome_Loaded(object sender, RoutedEventArgs e)
-        {
-            var Switch = (SimpleSwitch)sender;
-            Switch.IsToggled = _newTarget.Info.ShowAppHome;
         }
 
         private void ShowAppHome_MouseDown(object sender, MouseButtonEventArgs e)
