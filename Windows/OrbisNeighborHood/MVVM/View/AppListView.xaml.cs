@@ -170,7 +170,7 @@ namespace OrbisNeighborHood.MVVM.View
 
                         Dispatcher.Invoke(() =>
                         {
-                            var pannel = PanelList.Find(x => x.App.TitleId == app.TitleId);
+                            var pannel = PanelList.Find(x => x._App.TitleId == app.TitleId);
                             if(pannel != null)
                             {
                                 pannel.Update(app, appVersion);
@@ -185,7 +185,7 @@ namespace OrbisNeighborHood.MVVM.View
                     // Check to remove apps.
                     Parallel.ForEach(PanelList, panel =>
                     {
-                        var app = appList.Find(x => x.TitleId == panel.App.TitleId);
+                        var app = appList.Find(x => x.TitleId == panel._App.TitleId);
                         if(app == null)
                         {
                             PanelList.Remove(panel);

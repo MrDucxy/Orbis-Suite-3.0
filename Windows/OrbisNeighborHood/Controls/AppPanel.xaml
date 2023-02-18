@@ -180,14 +180,14 @@
                                    Click="ChangeIcon_Click"
                                    Grid.Column="6"/>
 
-                <!-- OpenStore -->
-                <local:ImageButton x:Name="OpenStore"
+                <!-- SetAsFocus -->
+                <local:ImageButton x:Name="SetAsFocus"
                                    Width="35"
                                    Height="35"
-                                   ToolTip="Open in Playstation store."
+                                   ToolTip="Set this app as the main focus."
                                    ImageSource="/OrbisNeighborHood;component/Images/Store.png"
                                    ImageMargin="4"
-                                   Click="OpenStore_Click"
+                                   Click="SetAsFocus_Click"
                                    Grid.Column="8"/>
 
                 <!-- More Info -->
