@@ -174,6 +174,9 @@ namespace OrbisLib2.Targets
                 // TODO: Implement this into the API.
                 savedTarget.Info.CurrentProcessId = 0;// TODO: Update this to process Id Packet.CurrentProc;
 
+                // Misc
+                savedTarget.Info.ForegroundAccountId = Packet.ForegroundAccountId;
+
                 // Storage.
                 savedTarget.Info.HDDUsedSpace = (long)(Packet.TotalSpace - Packet.FreeSpace);
                 savedTarget.Info.HDDFreeSpace = (long)Packet.FreeSpace;

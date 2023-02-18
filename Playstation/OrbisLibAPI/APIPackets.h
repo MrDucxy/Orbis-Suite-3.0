@@ -20,7 +20,8 @@ enum APICommands
 	/* ####### Apps functions ####### */
 	APP_START,
 
-	API_APPS_GET_LIST,
+	API_APPS_CHECK_VER,
+	API_APPS_GET_DB,
 	API_APPS_GET_INFO_STR,
 	API_APPS_STATUS,
 	API_APPS_START,

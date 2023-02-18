@@ -11,7 +11,8 @@ public:
 	void HandleAPI(OrbisNetId Sock, APIPacket* Packet);
 
 private:
-	void GetAppsList(OrbisNetId Sock);
+	void CheckDBVersion(OrbisNetId Sock);
+	void GetDB(OrbisNetId Sock);
 	void GetAppInfoString(OrbisNetId Sock, const char* TitleId);
 	int GetAppId(const char* TitleId);
 	void SendAppStatus(OrbisNetId Sock, const char* TitleId);

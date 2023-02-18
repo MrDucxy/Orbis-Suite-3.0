@@ -12,13 +12,13 @@ namespace OrbisLib2.Common.Helpers
         /// </summary>
         /// <param name="s">The current socket.</param>
         /// <param name="data">The data to be recieved.</param>
-        public static void RecvLarge(this Socket s, byte[] data)
+        public static int RecvLarge(this Socket s, byte[] data)
         {
+            int Left = data.Length;
+            int Received = 0;
+
             try
             {
-                int Left = data.Length;
-                int Received = 0;
-
                 while (Left > 0)
                 {
                     var chunkSize = Math.Min(8192, Left);
@@ -32,6 +32,8 @@ namespace OrbisLib2.Common.Helpers
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return Received;
         }
 
         public static void SendLarge(this Socket s, byte[] data)

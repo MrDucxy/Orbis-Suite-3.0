@@ -120,14 +120,8 @@ namespace OrbisNeighborHood.MVVM.View
                     if (TargetManager.Targets.Count <= 0)
                         continue;
 
-                    // Make sure the Target is online so we can pull the db.
-                    var currentTarget = TargetManager.SelectedTarget;
-                    if (currentTarget == null || !currentTarget.Info.IsAvailable)
-                    {
-                        continue;
-                    }
-
                     // Get the current app list.
+                    var currentTarget = TargetManager.SelectedTarget;
                     var appList = currentTarget.Application.GetAppList();
 
                     // Check for adding apps.

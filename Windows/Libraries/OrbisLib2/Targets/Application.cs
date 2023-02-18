@@ -1,17 +1,18 @@
 ﻿using OrbisLib2.Common.API;
+using OrbisLib2.Common.Database.App;
 using OrbisLib2.Common.Helpers;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Drawing;
+using System.IO;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using static SQLite.SQLite3;
 
 namespace OrbisLib2.Targets
 {
-    public record AppInfo(string TitleId, string ContentId, string TitleName, string MetaDataPath, DateTime LastAccessTime,
-        int Visible, int SortPriority, int DisplayLocation, bool CanRemove, string Category, int ContentSize, DateTime InstallDate, string UICategory);
-
     public class Application
     {
         public enum VisibilityType : int
@@ -28,71 +29,108 @@ namespace OrbisLib2.Targets
             this.Target = Target;
         }
 
-        public List<AppInfo> GetAppList()
+        public string GetAppDBPath()
         {
-            var AppList = new List<AppInfo>();
-            var result = API.SendCommand(Target, 5, APICommands.API_APPS_GET_LIST, (Socket Sock, APIResults Result) =>
+            var foregroundAccountId = Target.Info.ForegroundAccountId;
+            if (foregroundAccountId <= 0)
+                return string.Empty;
+
+            // Create the db cache folder if it does not exist.
+            var dbCachePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)}\Orbis Suite\DBCache";
+            if (!Directory.Exists(dbCachePath))
             {
-                // Get the number of apps installed.
-                var Count = Sock.RecvInt32();
+                Directory.CreateDirectory(dbCachePath);
+            }
 
-                // Recieve all of the arrary as one large packet.
-                var dataSize = Count * Marshal.SizeOf(typeof(AppInfoPacket));
-                var data = new byte[dataSize];
-                Sock.RecvLarge(data);
+            // create a folder for this target if it does not exist yet.
+            var targetFolder = @$"{dbCachePath}\{Target.Info.MACAddressLAN.Replace(":", "-")}";
+            if (!Directory.Exists(targetFolder))
+            {
+                Directory.CreateDirectory(targetFolder);
+            }
 
-                // Allocate and copy the packet to begin marshaling it.
-                IntPtr ptr = Marshal.AllocHGlobal(dataSize);
-                Marshal.Copy(data, 0, ptr, dataSize);
+            return @$"{targetFolder}\app.db";
+        }
 
-                for(int i = 0; i < Count; i++)
-                {
-                    // Marshal each part of the buffer to a struct.
-                    var Packet = new AppInfoPacket();
-                    Packet = (AppInfoPacket)Marshal.PtrToStructure(IntPtr.Add(ptr, i * Marshal.SizeOf(typeof(AppInfoPacket))), typeof(AppInfoPacket));
+        public bool IsOutOfDate()
+        {
+            var databasePath = GetAppDBPath();
 
-                    // Try to parse the date time strings.
-                    if (!DateTime.TryParse(Packet.LastAccessTime, out DateTime LastAccessTime))
-                        LastAccessTime = DateTime.MinValue;
+            if (!File.Exists(databasePath))
+            {
+                return true;
+            }
 
-                    if (!DateTime.TryParse(Packet.LastAccessTime, out DateTime InstallDate))
-                        InstallDate = DateTime.MinValue;
+            var currentAppVersion = AppBrowseVersion.GetAppBrowseVersion(databasePath);
 
-                    // For some reason there is garbage after the string so this stops that :)
-                    var firstNullIndex = Array.FindIndex(Packet.TitleName, b => b == 0);
-                    string titleName = Encoding.UTF8.GetString(Packet.TitleName, 0, firstNullIndex);
+            bool result = false;
+            API.SendCommand(Target, 5, APICommands.API_APPS_CHECK_VER, (Socket Sock, APIResults Result) =>
+            {
+                // Send the current app version.
+                Sock.SendInt32(currentAppVersion);
 
-                    AppList.Add(new AppInfo(Packet.TitleId, Packet.ContentId, titleName, Packet.MetaDataPath, LastAccessTime, Packet.Visible,
-                        Packet.SortPriority, Packet.DispLocation, Packet.CanRemove == 1, Packet.Category, Packet.ContentSize, InstallDate, Packet.UICategory));
-                }
-
-                Marshal.FreeHGlobal(ptr);
+                // Get the state from API.
+                result = Sock.RecvInt32() == 1;
             });
 
-            return AppList;
+            return result;
+        }
+
+        public void UpdateLocalDB()
+        {
+            if(IsOutOfDate())
+            {
+                API.SendCommand(Target, 5, APICommands.API_APPS_GET_DB, (Socket Sock, APIResults Result) =>
+                {
+                    var fileSize = Sock.RecvInt32();
+                    var newDatabaseBytes = new byte[fileSize];
+                    if (Sock.RecvLarge(newDatabaseBytes) < fileSize)
+                        return;
+
+                    var databasePath = GetAppDBPath();
+                    var oldDatabasePath = @$"{databasePath}.old";
+
+                    // If we already have a db back it up.
+                    if (File.Exists(databasePath))
+                    {
+                        File.Copy(databasePath, oldDatabasePath, true);
+
+                        // Remove the last db
+                        File.Delete(databasePath);
+                    }
+
+                    // Write the new DB.
+                    File.WriteAllBytes(databasePath, newDatabaseBytes);
+                });
+            }
+        }
+
+        public List<AppBrowse> GetAppList()
+        {
+            var databasePath = GetAppDBPath();
+
+            // Update the DB if needed.
+            UpdateLocalDB();
+
+            // Make sure we actually have a DB now.
+            if (!File.Exists(databasePath))
+            {
+                return new List<AppBrowse>();
+            }
+
+            return AppBrowse.GetAppBrowseList(databasePath, Target.Info.ForegroundAccountId);
         }
 
         public string GetAppInfoString(string TitleId, string Key)
         {
-            if (!Regex.IsMatch(TitleId, @"[a-zA-Z]{4}\d{5}"))
+            var databasePath = GetAppDBPath();
+
+            if (!File.Exists(databasePath))
             {
-                Console.WriteLine($"Invaild titleId format {TitleId}");
                 return string.Empty;
             }
 
-            var resultBuffer = new byte[200];
-            var result = API.SendCommand(Target, 5, APICommands.API_APPS_GET_INFO_STR, (Socket Sock, APIResults Result) => 
-            {
-                // Send the titleId of the app.
-                Sock.Send(Encoding.ASCII.GetBytes(TitleId.PadRight(10, '\0')).Take(10).ToArray());
-
-                // Send the bytes of the key string.
-                Sock.Send(Encoding.ASCII.GetBytes(Key.PadRight(50, '\0')));
-
-                Sock.Receive(resultBuffer);
-            });
-
-            return Encoding.ASCII.GetString(resultBuffer);
+            return AppInfo.GetStringFromAppInfo(databasePath, TitleId, Key);
         }
 
         public AppState GetAppState(string TitleId)

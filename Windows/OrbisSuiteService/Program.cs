@@ -38,6 +38,9 @@ class Service : ServiceBase
 
     public void OnStartPublic(string[] args)
     {
+#if DEBUG
+
+#else
         // setup up rule in firewall for event listener.
         INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
         List<INetFwRule> firewallRules = firewallPolicy.Rules.OfType<INetFwRule>().Where(x => x.Name.Contains("OrbisSuiteEvents")).ToList();
@@ -56,6 +59,7 @@ class Service : ServiceBase
             firewallRule.LocalPorts = Config.EventPort.ToString();
             firewallPolicy.Rules.Add(firewallRule);
         }
+#endif
         
         // Create logger instance.
         var logger = _serviceProvider.GetService<ILoggerFactory>() 

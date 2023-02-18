@@ -38,6 +38,7 @@ public:
 		char UICategory[10];
 	};
 
+	static int GetDBVersion();
 	static bool GetApps(std::vector<AppInfo> &Apps);
 	static bool GetAppInfoString(const char* TitleId, char* Out, size_t OutSize, const char* Key);
 	static bool SetVisibility(const char* TitleId, VisibilityType Visibility);

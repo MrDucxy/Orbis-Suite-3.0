@@ -12,7 +12,7 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	memset(titleId, 0, sizeof(titleId));
 
 	// For commands that need it get the titleId of the App
-	if (Packet->Command > API_APPS_GET_LIST)
+	if (Packet->Command > API_APPS_GET_DB)
 	{
 		sceNetRecv(Sock, titleId, sizeof(titleId), 0);
 	}
@@ -22,9 +22,15 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	default:
 		break;
 
-	case API_APPS_GET_LIST:
+	case API_APPS_CHECK_VER:
 
-		GetAppsList(Sock);
+		CheckDBVersion(Sock);
+
+		break;
+
+	case API_APPS_GET_DB:
+
+		GetDB(Sock);
 
 		break;
 
@@ -84,18 +90,62 @@ void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
 	}
 }
 
-void Apps::GetAppsList(OrbisNetId Sock)
+void Apps::CheckDBVersion(OrbisNetId Sock)
 {
-	std::vector<AppDatabase::AppInfo> AppList;
-	if (!AppDatabase::GetApps(AppList))
+	int remoteVersion = 0;
+	auto currentVersion = AppDatabase::GetDBVersion();
+
+	// Get the remote version.
+	if (!Sockets::RecvInt(Sock, &remoteVersion))
+	{
+		klog("GetAppsList(): Failed to get remote app db version.\n");
+		return;
+	}
+
+	// Send if the remote version is out of date.
+	Sockets::SendInt(Sock, remoteVersion != currentVersion ? 1 : 0);
+}
+
+void Apps::GetDB(OrbisNetId Sock)
+{
+	// Open the file.
+	auto fd = sceKernelOpen("/system_data/priv/mms/app.db", ORBIS_KERNEL_O_RDONLY, 0);
+	if (!fd)
 	{
 		Sockets::SendInt(Sock, 0);
 		return;
 	}
 
-	Sockets::SendInt(Sock, AppList.size());
+	// Get File stats.
+	OrbisKernelStat stats;
+	if (sceKernelFstat(fd, &stats) != 0)
+	{
+		Sockets::SendInt(Sock, 0);
+		return;
+	}
 
-	Sockets::SendLargeData(Sock, (unsigned char*)AppList.data(), AppList.size() * sizeof(AppInfoPacket));
+	// Store the file size.
+	auto fileSize = stats.st_size;
+
+	// Allocate space to read data.
+	auto fileData = (unsigned char*)malloc(fileSize);
+
+	// ReadFile.
+	if (sceKernelRead(fd, fileData, fileSize) <= 0)
+	{
+		Sockets::SendInt(Sock, 0);
+		return;
+	}
+
+	// Send the size of the db file.
+	Sockets::SendInt(Sock, fileSize);
+
+	// Send the db file.
+	Sockets::SendLargeData(Sock, fileData, fileSize);
+
+	// clean up.
+	free(fileData);
+	sceKernelClose(fd);
 }
 
 void Apps::GetAppInfoString(OrbisNetId Sock, const char* TitleId)
@@ -113,47 +163,29 @@ void Apps::GetAppInfoString(OrbisNetId Sock, const char* TitleId)
 	sceNetSend(Sock, OutStr, sizeof(OutStr), 0);
 }
 
-// TODO: Currently cant get the appId of child processes like the Web Browser since it is a child of the ShellUI.
 int Apps::GetAppId(const char* TitleId)
 {
-	int appId = 0;
+	bool isLaunched = false;
+	auto res = sceLncUtilIsAppLaunched(TitleId, &isLaunched);
 
-	// Get the list of running processes.
-	std::vector<kinfo_proc> processList;
-	GetProcessList(processList);
+	if (!isLaunched || res != 0)
+		return 0;
 
-	for (const auto& i : processList)
-	{
-		// Get the app info using the pid.
-		OrbisAppInfo appInfo;
-		sceKernelGetAppInfo(i.pid, &appInfo);
-
-		// Using the titleId match our desired app and return the appId from the appinfo.
-		if (!strcmp(appInfo.TitleId, TitleId))
-		{
-			appId = appInfo.AppId;
-
-			break;
-		}
-	}
-
-	return appId;
+	return sceLncUtilGetAppId(TitleId);
 }
 
 void Apps::SendAppStatus(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
-
-	// If we have no appId that means the process is not running. 
 	if (appId <= 0)
 	{
 		Sockets::SendInt(Sock, STATE_NOT_RUNNING);
 	}
 	else
 	{
-		bool state = false;
-		auto res = sceSystemServiceIsAppSuspended(appId, &state);
-		if (res == 0 && state)
+		bool isSuspended = 0;
+		auto res = sceLncUtilIsAppSuspended(appId, &isSuspended);
+		if (res == 0 && isSuspended)
 		{
 			Sockets::SendInt(Sock, STATE_SUSPENDED);
 		}
@@ -192,7 +224,6 @@ void Apps::StartApp(OrbisNetId Sock, const char* TitleId)
 void Apps::KillApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
-
 	if (appId > 0 && sceSystemServiceKillApp(appId, -1, 0, 0) == 0)
 	{
 		Sockets::SendInt(Sock, 1);
@@ -206,7 +237,6 @@ void Apps::KillApp(OrbisNetId Sock, const char* TitleId)
 void Apps::SuspendApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
-
 	if (appId > 0 && sceLncUtilSuspendApp(appId, 0) == 0)
 	{
 		Sockets::SendInt(Sock, 1);
@@ -220,7 +250,6 @@ void Apps::SuspendApp(OrbisNetId Sock, const char* TitleId)
 void Apps::ResumeApp(OrbisNetId Sock, const char* TitleId)
 {
 	auto appId = GetAppId(TitleId);
-
 	if (appId > 0 && sceLncUtilResumeApp(appId, 0) == 0 && sceLncUtilSetAppFocus(appId, 0) == 0)
 	{
 		Sockets::SendInt(Sock, 1);

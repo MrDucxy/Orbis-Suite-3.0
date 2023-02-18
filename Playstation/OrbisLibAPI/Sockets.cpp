@@ -41,7 +41,7 @@ bool Sockets::SendLargeData(OrbisNetId Sock, unsigned char* data, size_t dataLen
 
 		if (res < 0)
 		{
-			klog("SendLargeData() Error: %llX\n", res);
+			klog("SendLargeData() Error: %llX(%llX)\n", res, *sceNetErrnoLoc());
 			return false;
 		}
 
@@ -65,6 +65,7 @@ bool Sockets::RecvLargeData(OrbisNetId Sock, unsigned char* data, size_t dataLen
 
 		if (res < 0)
 		{
+			klog("RecvLargeData() Error: %llX(%llX)\n", res, *sceNetErrnoLoc());
 			return false;
 		}
 

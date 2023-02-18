@@ -74,10 +74,13 @@ void SocketListener::ListenThread()
 				int optval = 1;
 				sceNetSetsockopt(ClientSocket, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &optval, sizeof(optval));
 
-				ThreadPool::QueueJob([=] 
+				ThreadPool::QueueJob([=]
 					{
-						ClientCallBack(tdParam, ClientSocket, ClientAddr.sin_addr);
-						sceNetSocketClose(ClientSocket);
+						auto sock = ClientSocket;
+						auto addr = ClientAddr.sin_addr;
+
+						ClientCallBack(tdParam, sock, addr);
+						sceNetSocketClose(sock);
 					});
 
 				// Reset ClientSocket.

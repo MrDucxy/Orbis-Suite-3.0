@@ -26,7 +26,9 @@ void ThreadPool::WorkingLoop()
 			job = JobQueue.front();
 			JobQueue.pop();
 		}
-		job();
+
+		if (job != nullptr)
+			job();
 	}
 }
 

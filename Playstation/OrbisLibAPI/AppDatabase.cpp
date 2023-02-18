@@ -29,6 +29,45 @@ const char* GetText(sqlite3_stmt* stmt, int column)
 	return "";
 }
 
+int AppDatabase::GetDBVersion()
+{
+	int res;
+	int version = 0;
+
+	auto db = OpenDatabase();
+	if (db == nullptr)
+	{
+		return false;
+	}
+
+	// Prepare statement.
+	sqlite3_stmt* stmt;
+	res = sqlite3_prepare(db, "SELECT * FROM tbl_version WHERE category='sync_server'", -1, &stmt, NULL);
+	if (res != SQLITE_OK)
+	{
+		klog("sqlite3_prepare(): Failed because %s\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return false;
+	}
+
+	// execute a single step.
+	res = sqlite3_step(stmt);
+	if (res == SQLITE_ROW)
+	{
+		version = sqlite3_column_int(stmt, 1);
+	}
+
+	if (res != SQLITE_DONE) {
+		printf("GetApps(): Res %d Error: %s\n", res, sqlite3_errmsg(db));
+	}
+
+	// Release resources.
+	sqlite3_finalize(stmt);
+	sqlite3_close(db);
+
+	return version;
+}
+
 bool AppDatabase::GetApps(std::vector<AppInfo> &Apps)
 {
 	int res;

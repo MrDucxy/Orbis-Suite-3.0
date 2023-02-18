@@ -1,4 +1,5 @@
 ﻿using OrbisLib2.Common.API;
+using OrbisLib2.Common.Database.App;
 using OrbisLib2.General;
 using OrbisLib2.Targets;
 using System;
@@ -18,12 +19,12 @@ namespace OrbisNeighborHood.Controls
     /// </summary>
     public partial class AppPanel : UserControl
     {
-        public AppInfo App;
+        public AppBrowse App;
 
         private AppState AppState = AppState.STATE_NOT_RUNNING;
         private VisibilityType Visible = VisibilityType.VT_NONE;
 
-        public AppPanel(AppInfo App, string AppVersion)
+        public AppPanel(AppBrowse App, string AppVersion)
         {
             InitializeComponent();
 
@@ -36,7 +37,7 @@ namespace OrbisNeighborHood.Controls
             Task.Run(() => UpdateApp());
         }
 
-        public void Update(AppInfo App, string AppVersion)
+        public void Update(AppBrowse App, string AppVersion)
         {
             // Set the Info about this application.
             ApplicationNameElement.Text = App.TitleName;
@@ -60,7 +61,10 @@ namespace OrbisNeighborHood.Controls
                 IconImage.Source = image;
             }
 
-            InstallDateElement.FieldText = App.InstallDate.ToString("ddd dd MMM yyy hh:mm tt");
+            if (!DateTime.TryParse(App.InstallDate, out DateTime InstallDate))
+                InstallDate = DateTime.MinValue;
+
+            InstallDateElement.FieldText = InstallDate.ToString("ddd dd MMM yyy hh:mm tt");
 
             // Set the tool tips.
             StartStop.ToolTip = $"Start {App.TitleName}.";
@@ -118,7 +122,7 @@ namespace OrbisNeighborHood.Controls
                 }
 
                 // App Visibility.
-                Visible = currentTarget.Application.GetVisibility(App.TitleId);
+                //Visible = currentTarget.Application.GetVisibility(App.TitleId);
                 if (Visible == VisibilityType.VT_NONE || Visible == VisibilityType.VT_INVISIBLE)
                 {
                     Dispatcher.Invoke(() => Visibility.ToolTip = $"Show {App.TitleName} from Home Menu.");
