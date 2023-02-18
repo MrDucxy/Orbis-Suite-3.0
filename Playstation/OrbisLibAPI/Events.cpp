@@ -69,34 +69,53 @@ OrbisNetId Events::Connect(OrbisNetInAddr_t HostAddress)
 
 	// Create socket.
 	auto sock = sceNetSocket("SendEventSock", ORBIS_NET_AF_INET, ORBIS_NET_SOCK_STREAM, ORBIS_NET_IPPROTO_TCP);
+	if (sock < 0)
+	{
+		klog("Events::Connect() Failed to allocate sock: %llX %llX\n", sock, *sceNetErrnoLoc());
+		return NULL;
+	}
+
+	int nopipe = 1;
+	sceNetSetsockopt(sock, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_NOSIGPIPE, &nopipe, sizeof(nopipe));
 
 	// Set connection time out to 4s.
 	int sock_timeout = 4000000;
 	sceNetSetsockopt(sock, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_CONNECTTIMEO, &sock_timeout, sizeof(sock_timeout));
+	sceNetSetsockopt(sock, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_SNDTIMEO, &sock_timeout, sizeof(sock_timeout));
+	sceNetSetsockopt(sock, ORBIS_NET_SOL_SOCKET, ORBIS_NET_SO_RCVTIMEO, &sock_timeout, sizeof(sock_timeout));
 
 	auto res = sceNetConnect(sock, (OrbisNetSockaddr*)&addr, sizeof(addr));
 	if (!res)
 		return sock;
 	else
 	{
-		klog("Events::Connect() Error: %llX\n", res);
+		klog("Events::Connect() sceNetConnect(): %llX %llX\n", res, *sceNetErrnoLoc());
 		return NULL;
 	}
 }
 
 void Events::SendEvent(int EventId, int pid)
 {
+	klog("SendEvent()\n");
+
 	if (HostList.empty())
+	{
+		klog("SendEvent(): Host List Empty :(\n");
 		return;
+	}
 
 	for (const auto& host : HostList)
 	{
+		klog("SendEvent(): Sending for host %i.%i.%i.%i\n", host & 0xFF, (host >> 8) & 0xFF, (host >> 16) & 0xFF, (host >> 24) & 0xFF);
+
 		// Aquire a lock for the list.
 		scePthreadMutexLock(&HostListMutex);
 
 		auto sock = Connect(host);
 		if (sock)
 		{
+			klog("Sending Event: %i\n", EventId);
+
 			// Send EventId
 			Sockets::SendInt(sock, EventId);
 
@@ -105,11 +124,16 @@ void Events::SendEvent(int EventId, int pid)
 				Sockets::SendInt(sock, pid);
 			}
 
+			// Close the socket.
+			sceNetSocketClose(sock);
+
 			// Revoke the lock on the list.
 			scePthreadMutexUnlock(&HostListMutex);
 		}
 		else
 		{
+			klog("SendEvent(): Failed to connect to host %i.%i.%i.%i\n", host & 0xFF, (host >> 8) & 0xFF, (host >> 16) & 0xFF, (host >> 24) & 0xFF);
+
 			// Revoke the lock on the list.
 			scePthreadMutexUnlock(&HostListMutex);
 

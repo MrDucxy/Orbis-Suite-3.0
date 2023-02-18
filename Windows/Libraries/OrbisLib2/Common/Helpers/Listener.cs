@@ -35,10 +35,9 @@ namespace OrbisLib2.Common.Helpers
 
             //Bind Socket to Port and Listen with a backlog of 100.
             s_Listener.Bind(new IPEndPoint(0, Port));
-            s_Listener.Listen(1000);
+            s_Listener.Listen(100);
 
             //Call BeginAccept with our call back so on every accept of a new socket connection the call back is called.
-
             s_Listener.BeginAccept(CallBack, null);
             Listening = true;
         }

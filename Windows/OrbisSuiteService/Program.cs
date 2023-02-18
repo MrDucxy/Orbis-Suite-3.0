@@ -2,6 +2,8 @@
 using System.ServiceProcess;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using NetFwTypeLib;
+using OrbisLib2.Common;
 
 #if DEBUG
 var service = new Service();
@@ -36,9 +38,30 @@ class Service : ServiceBase
 
     public void OnStartPublic(string[] args)
     {
+        // setup up rule in firewall for event listener.
+        INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
+        List<INetFwRule> firewallRules = firewallPolicy.Rules.OfType<INetFwRule>().Where(x => x.Name.Contains("OrbisSuiteEvents")).ToList();
+
+        // Only add the rule when it does not exist.
+        if(firewallRules.Count <= 0) 
+        {
+            INetFwRule firewallRule = (INetFwRule)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWRule"));
+            firewallRule.Action = NET_FW_ACTION_.NET_FW_ACTION_ALLOW;
+            firewallRule.Description = "Allow for events to be sent from target PS4 to windows service.";
+            firewallRule.Direction = NET_FW_RULE_DIRECTION_.NET_FW_RULE_DIR_IN;
+            firewallRule.Enabled = true;
+            firewallRule.InterfaceTypes = "All";
+            firewallRule.Name = "OrbisSuiteEvents";
+            firewallRule.Protocol = (int)NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP;
+            firewallRule.LocalPorts = Config.EventPort.ToString();
+            firewallPolicy.Rules.Add(firewallRule);
+        }
+        
+        // Create logger instance.
         var logger = _serviceProvider.GetService<ILoggerFactory>() 
             .AddFile(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Orbis Suite\Logging\OrbisServiceLog.txt")
             .CreateLogger<Program>();
+
         var dp = new Dispatcher(logger);
 #if DEBUG
         while (RunService) {  Thread.Sleep(10); }
