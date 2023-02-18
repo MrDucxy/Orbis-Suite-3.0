@@ -78,6 +78,8 @@ namespace OrbisLibraryManager
                 var proc = TargetManager.SelectedTarget.Process.GetList().Find(x => x.ProcessId == currentProcessId);
                 if (proc != null)
                     CurrentDebuggingProccess.FieldText = $"{proc.Name}({currentProcessId})";
+                else
+                    CurrentDebuggingProccess.FieldText = "N/A";
 
                 RefreshLibraryList();
             }
