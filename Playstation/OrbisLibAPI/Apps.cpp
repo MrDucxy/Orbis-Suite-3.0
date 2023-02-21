@@ -133,6 +133,10 @@ void Apps::GetDB(OrbisNetId Sock)
 	// ReadFile.
 	if (sceKernelRead(fd, fileData, fileSize) <= 0)
 	{
+		// clean up.
+		free(fileData);
+		sceKernelClose(fd);
+
 		Sockets::SendInt(Sock, 0);
 		return;
 	}

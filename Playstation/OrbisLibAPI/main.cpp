@@ -66,7 +66,7 @@ int main()
 	klog("\n%s\n\n", ORBISLIB_BUILDSTRING);
 	
 	// Start up the thread pool.
-	ThreadPool::Init(20);
+	ThreadPool::Init(10);
 	
 	// Init a thread to monitor the system usage stats.
 	// SystemMonitor::Init();

@@ -122,6 +122,9 @@ namespace OrbisNeighborHood.MVVM.View
 
                     // Get the current app list.
                     var currentTarget = TargetManager.SelectedTarget;
+                    if (currentTarget == null)
+                        continue;
+
                     var appList = currentTarget.Application.GetAppList();
 
                     // Check for adding apps.

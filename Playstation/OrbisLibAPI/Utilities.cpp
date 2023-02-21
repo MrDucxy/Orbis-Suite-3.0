@@ -329,13 +329,15 @@ bool LinkDir(const char* Dir, const char* LinkedDir)
 		if (res == 0x80020011)
 		{
 			klog("Directory '%s' already exists!\n", LinkedDir);
-			return true;
+			//return true;
+			goto keepgoing;
 		}
 
 		klog("Failed to make dir '%s' err: %llX\n", LinkedDir, res);
 		return false;
 	}
 
+keepgoing:
 	struct iovec* iov = NULL;
 	int iovlen = 0;
 

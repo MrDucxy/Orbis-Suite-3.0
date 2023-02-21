@@ -21,9 +21,9 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr)
 	}
 
 	// Validate Packet
-	if (strcmp(Packet->PacketMagic, "ORBIS_SUITE") && Packet->PacketVersion != PACKET_VERSION)
+	if (strcmp(Packet->PacketMagic, "ORBIS_SUITE") || Packet->PacketVersion != PACKET_VERSION)
 	{
-		klog("Invalid Packet with Magic %s and Version %i\n", Packet->PacketMagic, Packet->PacketVersion);
+		klog("Invalid Packet with Magic '%s' and Version %i\nExpected 'ORBIS_SUITE' and %i\n", Packet->PacketMagic, Packet->PacketVersion, PACKET_VERSION);
 
 		free(Packet);
 

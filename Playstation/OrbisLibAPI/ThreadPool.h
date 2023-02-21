@@ -18,6 +18,6 @@ private:
 	static bool ShouldRun;
 	static std::mutex JobQueueMtx;
 	static std::condition_variable MtxCondition;
-	static std::vector<std::thread> ThreadsPool;
+	static std::vector<OrbisPthread> ThreadsPool;
 	static std::queue<std::function<void()>> JobQueue;
 };

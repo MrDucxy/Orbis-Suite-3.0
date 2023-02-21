@@ -13,7 +13,7 @@ set outputOelf=%intdir%%targetname%.oelf
 
 Rem Compile object files for all the source files
 for %%f in (*.cpp) do (
-    clang++ -cc1 -triple x86_64-scei-ps4-elf -I"%OO_PS4_TOOLCHAIN%\\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -I"..\\..\\External\\GoldHEN_Plugins_SDK\\include" -I"..\\..\\External\\ps4-libjbc" -I"..\\..\\External\\LibSQLite-ps4\\include" -DORBISLIB_DEBUG -emit-obj -o %intdir%\%%~nf.o %%~nf.cpp
+    clang++ -cc1 -triple x86_64-scei-ps4-elf -I"%OO_PS4_TOOLCHAIN%\\include" -I"%OO_PS4_TOOLCHAIN%\\include\\c++\\v1" -I"..\\..\\External\\GoldHEN_Plugins_SDK\\include" -I"..\\..\\External\\ps4-libjbc" -I"..\\..\\External\\LibSQLite-ps4\\include" -DORBISLIB_DEBUG -emit-obj -o %intdir%\%%~nf.o %%~nf.cpp -fcxx-exceptions -fexceptions
 )
 
 Rem Get a list of object files for linking

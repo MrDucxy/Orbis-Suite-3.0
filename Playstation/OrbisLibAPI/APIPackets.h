@@ -1,7 +1,7 @@
 #pragma once
 #include "Common.h"
 
-#define PACKET_VERSION 3
+#define PACKET_VERSION 4
 
 #pragma region Commands
 
@@ -248,7 +248,7 @@ enum APIResults
 
 struct APIPacket
 {
-	char PacketMagic[10];
+	char PacketMagic[12];
 	int PacketVersion;
 	int Command;
 };

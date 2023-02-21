@@ -4,7 +4,7 @@
 bool ThreadPool::ShouldRun;
 std::mutex ThreadPool::JobQueueMtx;
 std::condition_variable ThreadPool::MtxCondition;
-std::vector<std::thread> ThreadPool::ThreadsPool;
+std::vector<OrbisPthread> ThreadPool::ThreadsPool;
 std::queue<std::function<void()>> ThreadPool::JobQueue;
 
 void ThreadPool::WorkingLoop()
@@ -13,6 +13,7 @@ void ThreadPool::WorkingLoop()
 	{
 		std::function<void()> job;
 		{
+
 			std::unique_lock<std::mutex> lock(JobQueueMtx);
 			MtxCondition.wait(lock,
 				[]
@@ -27,8 +28,18 @@ void ThreadPool::WorkingLoop()
 			JobQueue.pop();
 		}
 
-		if (job != nullptr)
+		try
+		{
 			job();
+		}
+		catch(const std::exception& ex)
+		{
+			klog("Std Error: %s\n", ex.what());
+		}
+		catch (...)
+		{
+			klog("Other Uknown Error Occured in Worker Thread.\n");
+		}
 	}
 }
 
@@ -38,7 +49,18 @@ void ThreadPool::Init(int poolSize)
 	ThreadsPool.resize(poolSize);
 	for (int i = 0; i < poolSize; i++)
 	{
-		ThreadsPool.at(i) = std::thread(WorkingLoop);
+		char threadName[0x200];
+		snprintf(threadName, sizeof(threadName), "WorkerThread%i", i);
+		scePthreadCreate(&ThreadsPool.at(i), nullptr, [](void*) -> void*
+			{
+				ThreadPool::WorkingLoop();
+
+				// Clean up the thread.
+				scePthreadExit(nullptr);
+				return nullptr;
+			}, nullptr, threadName);
+
+		scePthreadSetaffinity(ThreadsPool.at(i), 0x7f); // SCE_KERNEL_CPUMASK_7CPU_ALL
 	}
 }
 
@@ -51,9 +73,9 @@ void ThreadPool::Term()
 
 	MtxCondition.notify_all();
 
-	for (std::thread& activeThread : ThreadsPool)
+	for (OrbisPthread& activeThread : ThreadsPool)
 	{
-		activeThread.join();
+		scePthreadJoin(activeThread, nullptr);
 	}
 
 	ThreadsPool.clear();
