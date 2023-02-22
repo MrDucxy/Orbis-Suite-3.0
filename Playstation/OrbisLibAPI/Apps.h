@@ -8,7 +8,7 @@ public:
 	Apps();
 	~Apps();
 
-	void HandleAPI(OrbisNetId Sock, APIPacket* Packet);
+	void HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet);
 
 private:
 	void CheckDBVersion(OrbisNetId Sock);

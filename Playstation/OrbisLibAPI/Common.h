@@ -28,6 +28,7 @@
 #include <orbis/LncUtil.h>
 #include <orbis/ShellCoreUtil.h>
 #include <orbis/SystemStateMgr.h>
+#include <memory>
 
 #include "Config.h"
 #include "SocketListener.h"

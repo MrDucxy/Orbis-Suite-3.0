@@ -2,7 +2,7 @@
 #include "Proc.h"
 #include "APIHelper.h"
 
-void Proc::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
+void Proc::HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet)
 {
 	switch (Packet->Command)
 	{

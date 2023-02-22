@@ -12,20 +12,18 @@ bool API::Running = false;
 void API::ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr)
 {
 	// Deserialize the packet.
-	auto Packet = RecievePacket<APIPacket>(s);
+	auto packet = RecievePacket<APIPacket>(s);
 
 	// Did we recieve a packet?
-	if (Packet == nullptr)
+	if (packet == nullptr)
 	{
 		return;
 	}
 
 	// Validate Packet
-	if (strcmp(Packet->PacketMagic, "ORBIS_SUITE") || Packet->PacketVersion != PACKET_VERSION)
+	if (strcmp(packet->PacketMagic, "ORBIS_SUITE") || packet->PacketVersion != PACKET_VERSION)
 	{
-		klog("Invalid Packet with Magic '%s' and Version %i\nExpected 'ORBIS_SUITE' and %i\n", Packet->PacketMagic, Packet->PacketVersion, PACKET_VERSION);
-
-		free(Packet);
+		klog("Invalid Packet with Magic '%s' and Version %i\nExpected 'ORBIS_SUITE' and %i\n", packet->PacketMagic, packet->PacketVersion, PACKET_VERSION);
 
 		return;
 	}
@@ -39,22 +37,22 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr)
 	Events::AddHost(sin_addr.s_addr);
 
 	// Send out the command to the right places.
-	switch (Packet->Command)
+	switch (packet->Command)
 	{
 	default:
-		klog("API: Invalid Command %i...\n", Packet->Command);
+		klog("API: Invalid Command %i...\n", packet->Command);
 		break;
 
 	case APICommands::PROC_START ... APICommands::PROC_END:
-		Proc->HandleAPI(s, Packet);
+		Proc->HandleAPI(s, packet);
 		break;
 
 	case APICommands::APP_START ... APICommands::APP_END:
-		Apps->HandleAPI(s, Packet);
+		Apps->HandleAPI(s, packet);
 		break;
 
 	case APICommands::DBG_START ... APICommands::DBG_END:
-		Debug->HandleAPI(s, Packet);
+		Debug->HandleAPI(s, packet);
 		break;
 
 	case APICommands::KERN_START ... APICommands::KERN_END:
@@ -63,13 +61,10 @@ void API::ListenerCallback(void* tdParam, OrbisNetId s, OrbisNetInAddr sin_addr)
 		break;
 
 	case APICommands::TARGET_START ... APICommands::TARGET_END:
-		Target->HandleAPI(s, Packet);
+		Target->HandleAPI(s, packet);
 		break;
 
 	}
-
-	// Clean up. :)
-	free(Packet);
 }
 
 void API::Init()

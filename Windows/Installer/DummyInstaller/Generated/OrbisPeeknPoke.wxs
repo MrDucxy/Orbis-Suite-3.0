@@ -7,13 +7,13 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="OrbisPeeknPoke">
-            <Component Id="cmpB9900D1785DE9FA569D16974A32CC203" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{42DCB132-F074-478C-9593-8FDE35DBC4C4}">
+            <Component Id="cmpB9900D1785DE9FA569D16974A32CC203" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{327348CC-A8C0-4321-9DA4-321EE583BC23}">
                 <File Id="filEA972DE6C0035C1EF134C23E4103417C" KeyPath="yes" Source="!(wix.peeknpokeloc)\Be.Windows.Forms.HexBox.dll" />
             </Component>
-            <Component Id="cmp13F0330FE35E242956CE1653F3BC49CF" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{956DBC76-7A73-47CA-9CB9-EF885640409D}">
+            <Component Id="cmp13F0330FE35E242956CE1653F3BC49CF" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F4E31BC2-A4C7-4E52-81BA-B7134E0E6842}">
                 <File Id="fil965FD648BFEBCE9F54A6AF5991C97555" KeyPath="yes" Source="!(wix.peeknpokeloc)\Be.Windows.Forms.HexBox.xml" />
             </Component>
-            <Component Id="cmpB3622DBB61A94BD22A3A746A9CE05005" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{78524E9D-E9F9-40C7-80C2-93A2EC97C7C2}">
+            <Component Id="cmpB3622DBB61A94BD22A3A746A9CE05005" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{071B25A3-6588-4347-8BBC-89089D5CA4BB}">
                 <Class Id="{0DE15873-7CDB-3B6F-A434-87AB7C25B6B2}" Context="InprocServer32" Description="BinaryTools.Elf.InaccessibleAddressException" ThreadingModel="both" ForeignServer="mscoree.dll">
                     <ProgId Id="BinaryTools.Elf.InaccessibleAddressException" Description="BinaryTools.Elf.InaccessibleAddressException" />
                 </Class>
@@ -109,25 +109,25 @@
                 <RegistryValue Root="HKCR" Key="Record\{FBECD64C-F9A4-3AC8-BFE3-DB941301C0F5}\0.3.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{FBECD64C-F9A4-3AC8-BFE3-DB941301C0F5}\0.3.0.0" Name="CodeBase" Value="file:///[#fil8C355079320A39AADC292F44EE69F5D0]" Type="string" Action="write" />
             </Component>
-            <Component Id="cmp74BB58E82B95B22A67CF068B5484E5BF" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{B164C788-DC7F-4CDB-9FB2-8C665E755D8F}">
+            <Component Id="cmp74BB58E82B95B22A67CF068B5484E5BF" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{6E7A958F-2104-456B-B82D-C06F8305904F}">
                 <File Id="filDE1A0DF9A33B6354BDD1FD2576D0B5B1" KeyPath="yes" Source="!(wix.peeknpokeloc)\EntityFramework.dll" />
             </Component>
-            <Component Id="cmp0967530BE1BC71ADB3CFFBD473737FDD" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{D50C5079-50F9-47F0-A727-AC2CD86A3A8E}">
+            <Component Id="cmp0967530BE1BC71ADB3CFFBD473737FDD" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{878934B9-CBE4-4A37-BAB4-8B914C2B8F5C}">
                 <File Id="filEB0A0557482D58030F10AA9FD48D2F6E" KeyPath="yes" Source="!(wix.peeknpokeloc)\EntityFramework.SqlServer.dll" />
             </Component>
-            <Component Id="cmp67528E124A7291C517675CC2DF48ED46" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{671DDA0B-C12F-4D61-A728-89F81E547305}">
+            <Component Id="cmp67528E124A7291C517675CC2DF48ED46" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{8F08E7BA-0878-4226-8B02-BA7907A6A704}">
                 <File Id="filD359F7C35F83B0404F068EED3D2722A7" KeyPath="yes" Source="!(wix.peeknpokeloc)\Ftp.dll" />
             </Component>
-            <Component Id="cmp513BD0CCC12BBA3BC95BC4F19D9F399B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{6A856447-46BB-4099-A634-6B833364D2BC}">
+            <Component Id="cmp513BD0CCC12BBA3BC95BC4F19D9F399B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{968441D0-C1D4-4B9E-9131-6E0BF7D1ABE9}">
                 <File Id="fil1AB2FFBA27DD8F1DDBC3854BB99312C1" KeyPath="yes" Source="!(wix.peeknpokeloc)\H.Formatters.BinaryFormatter.dll" />
             </Component>
-            <Component Id="cmp85D05C4C884857B11FA3CF861B92C49C" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{8FE33F0F-8B0C-4794-B995-397FC9DEEE9B}">
+            <Component Id="cmp85D05C4C884857B11FA3CF861B92C49C" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{5B867BBD-5148-4909-B245-6C31394E1A69}">
                 <File Id="filCEEBBEF302CDAA0D8AF1957C2EFB4141" KeyPath="yes" Source="!(wix.peeknpokeloc)\H.Formatters.dll" />
             </Component>
-            <Component Id="cmp171E39E5868E71AE0F3566DC088862C3" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{D74F3B8E-817F-46DA-9A3C-6B5F58EE986B}">
+            <Component Id="cmp171E39E5868E71AE0F3566DC088862C3" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{FFFB9D54-EB2E-4B58-AB1A-C90EDFE553CB}">
                 <File Id="fil0CB0C2C8F42526F3337BE0A412A03AB0" KeyPath="yes" Source="!(wix.peeknpokeloc)\H.Pipes.dll" />
             </Component>
-            <Component Id="cmpE8837FFC693A09466AC2D14C5DCA4DB6" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{C55515E8-4FE9-4CE1-826C-6DD95B79BEAC}">
+            <Component Id="cmpE8837FFC693A09466AC2D14C5DCA4DB6" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{34E93FE4-5DA3-448A-AF4E-A5BB0ED31D10}">
                 <Class Id="{39112808-0A21-314B-89CA-F42875110288}" Context="InprocServer32" Description="MessagePack.IgnoreMemberAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
                     <ProgId Id="MessagePack.IgnoreMemberAttribute" Description="MessagePack.IgnoreMemberAttribute" />
                 </Class>
@@ -154,103 +154,103 @@
                 <RegistryValue Root="HKCR" Key="CLSID\{DC4FAE89-8BF9-3BC7-9955-FD8EF24AD561}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{DC4FAE89-8BF9-3BC7-9955-FD8EF24AD561}\InprocServer32" Name="CodeBase" Value="file:///[#fil1939053144B7A62094A3ABC6AA1EB583]" Type="string" Action="write" />
             </Component>
-            <Component Id="cmp29F4D3155943A4C4D62A20AE7C9D33BD" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{E795FCD6-95B6-41E5-A4E7-19E71080E8D6}">
+            <Component Id="cmp29F4D3155943A4C4D62A20AE7C9D33BD" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{6B7E3310-FA93-47C8-A3AA-0F0F7D29AECA}">
                 <File Id="filC1AB3E54C1C821DEC933DD6EEEAC8382" KeyPath="yes" Source="!(wix.peeknpokeloc)\MessagePack.dll" />
             </Component>
-            <Component Id="cmpCAC28084A6B0ACA78C87304F5710C9E8" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{D9440230-99BC-4E1B-9434-F837C94D8D0C}">
+            <Component Id="cmpCAC28084A6B0ACA78C87304F5710C9E8" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{75B44BAC-5DB4-4F1B-AE9D-38586D988ADA}">
                 <File Id="filA1F7031E433F683A5C25DD19680DBC0D" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Expression.Drawing.dll" />
             </Component>
-            <Component Id="cmp9AC3C4D4170D77C99FC7F8A9E7B563E9" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{C4B4170A-DEC2-4648-9D2B-6EF272D25DAB}">
+            <Component Id="cmp9AC3C4D4170D77C99FC7F8A9E7B563E9" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{72B3C2C1-A135-42F7-8938-381DB48672BE}">
                 <File Id="fil39CE52179242CCD906FDD5ADCB6CD385" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Configuration.Abstractions.dll" />
             </Component>
-            <Component Id="cmp47EE5F6449EB8378ECBE77F2586B02C7" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{A18335F1-5B2D-405F-891A-8842E21EC144}">
+            <Component Id="cmp47EE5F6449EB8378ECBE77F2586B02C7" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{4F3E50CD-0096-4389-A49E-AAFB6C3ACA09}">
                 <File Id="fil65685C0A6078E7964C29F4D59FF5B803" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Configuration.Binder.dll" />
             </Component>
-            <Component Id="cmp4C0BD7C80DADB54544BFE840C7630665" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{047B97BA-5473-4458-ADF3-8CBC631AB334}">
+            <Component Id="cmp4C0BD7C80DADB54544BFE840C7630665" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{CEF981A7-EF0E-4A0C-9BEA-0EF2E81010FD}">
                 <File Id="fil2FB33D47F5A656549571DD50D45A5F6C" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Configuration.dll" />
             </Component>
-            <Component Id="cmp0E17A232ECBA0CF55F86B3F1ADD4D1EF" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{6EF2DE70-F268-4AE0-9B2B-821854750A6D}">
+            <Component Id="cmp0E17A232ECBA0CF55F86B3F1ADD4D1EF" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{B41CF6B6-1591-4380-B437-DE71A36EB52C}">
                 <File Id="filB2375C14CEAF00E7706A2D673BDCB25A" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
             </Component>
-            <Component Id="cmpBE9480351EEFE7C74431E06DF424006C" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{71EC542D-FF13-473B-AEA2-88FE6C334C12}">
+            <Component Id="cmpBE9480351EEFE7C74431E06DF424006C" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{174E92B9-EA7B-4C95-8123-650074051FCC}">
                 <File Id="fil8076D1D4313542EE3A90A57937DF8DD7" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.DependencyInjection.dll" />
             </Component>
-            <Component Id="cmp6482F1E813FE3FB66DA40E3779F58B07" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{8CAE9B63-8EED-4EA2-9C9B-AEFFABF2D8E1}">
+            <Component Id="cmp6482F1E813FE3FB66DA40E3779F58B07" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{FAA631D3-DD6C-4724-B9EF-F980D6D657BF}">
                 <File Id="filA6AAF91FEBB3F9B752074BCAC26D89F7" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Logging.Abstractions.dll" />
             </Component>
-            <Component Id="cmpE1EA0F2F582ACD5A734BC9FBA8336C1B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{43416302-EC2B-4A1D-BE5E-B01A9D32A003}">
+            <Component Id="cmpE1EA0F2F582ACD5A734BC9FBA8336C1B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{7E865B26-3A34-4078-A9AE-7FD4198A233F}">
                 <File Id="fil3AE53CD47748DB2AB862196DFFCAF1FE" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Logging.Configuration.dll" />
             </Component>
-            <Component Id="cmp30858929C30D913BA221014F3A96C67D" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{584F2DDF-07B3-4259-A01A-F7D8CAE5D747}">
+            <Component Id="cmp30858929C30D913BA221014F3A96C67D" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{72D3FAD5-45B1-4418-BCD9-A8165582E16F}">
                 <File Id="fil5C5E75132AEB55BCAA8F1A2A18BCE47E" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Logging.Console.dll" />
             </Component>
-            <Component Id="cmp08BEC3C337691620CF32CF870BAE8B90" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{3CCC077D-31CA-4BD7-901A-915E24B42C77}">
+            <Component Id="cmp08BEC3C337691620CF32CF870BAE8B90" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F008C4B4-CF42-4364-A260-2A2DF2C1F5FD}">
                 <File Id="filF3951B5D7DF181F200B6693A98A92788" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Logging.dll" />
             </Component>
-            <Component Id="cmp63874C8A08C20F898CAA1A5E338AF2AC" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{A98CF1AD-E3DA-4002-B007-4D14CADEEC23}">
+            <Component Id="cmp63874C8A08C20F898CAA1A5E338AF2AC" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{EFACE461-51CC-4B96-A0F4-551EA13238F3}">
                 <File Id="fil296FB713491C6102487414B1EE3A3024" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
             </Component>
-            <Component Id="cmp84182A4539EB676BE8A666AF922B2233" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{495C2B0F-4DA4-4112-B4D2-388CB4B48B66}">
+            <Component Id="cmp84182A4539EB676BE8A666AF922B2233" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{C66D4858-F7E3-47F7-9682-729922457F7B}">
                 <File Id="fil1C1AE0589B47FFC5EDA6433DCBE03496" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Options.dll" />
             </Component>
-            <Component Id="cmpF4BA9CDA77CD98371F11E001FB1CBD6D" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{04AEBB90-2E1C-4504-8BF9-2AA5DB2F0E58}">
+            <Component Id="cmpF4BA9CDA77CD98371F11E001FB1CBD6D" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{3BA14C4B-7695-4531-BDDC-7DBF355E3ED6}">
                 <File Id="fil8D6FCA6837BBC5C6A724DB9B193C02C1" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.Extensions.Primitives.dll" />
             </Component>
-            <Component Id="cmp8B9E9A0B25D0CFC50E0BB53101E30ECB" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{693B2CDB-6577-431D-ADA2-0F13D2E93770}">
+            <Component Id="cmp8B9E9A0B25D0CFC50E0BB53101E30ECB" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{E2CA4EC0-FEE0-4675-9B79-250FE54D4712}">
                 <File Id="fil3BE1F73AD405657021A74D12C6AF1DF3" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.IO.RecyclableMemoryStream.dll" />
             </Component>
-            <Component Id="cmpB9C93C139FA9F1F3BD790CCEA01BA0AE" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{D2F1920D-F4E3-4ADD-A9BB-3CC9279FB143}">
+            <Component Id="cmpB9C93C139FA9F1F3BD790CCEA01BA0AE" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{BBB81578-27E1-4D49-A9BB-7185BD70C06A}">
                 <File Id="fil3890DC9DE4150369DCB731BF03B1CE6F" KeyPath="yes" Source="!(wix.peeknpokeloc)\Microsoft.NET.StringTools.dll" />
             </Component>
-            <Component Id="cmpADF0B64635EC6EB401F0580270088B01" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{35DFCC73-EBBB-4492-8A84-D8F0E63C3743}">
+            <Component Id="cmpADF0B64635EC6EB401F0580270088B01" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{941D6363-E231-483D-8AAA-2D750A4C44FF}">
                 <File Id="fil77DCC6DC447D0B9C7952CA54A0E10C54" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisLib2.dll" />
             </Component>
-            <Component Id="cmp47EE110E325969AEB3A6BECAD75F571A" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{B95060B8-0767-411E-A842-7E126D26AD99}">
+            <Component Id="cmp47EE110E325969AEB3A6BECAD75F571A" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F60B8266-7363-46D7-8F55-0DBD644763A0}">
                 <File Id="filFD3591E5A5347C93951C8D1D0ED6B0DD" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisLib2.pdb" />
             </Component>
-            <Component Id="cmp9093BE858D6181EC28CC7CB7507ADDA5" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{54A5FF60-CEEC-42E8-AF73-590D9159EF3A}">
+            <Component Id="cmp9093BE858D6181EC28CC7CB7507ADDA5" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{7317DE74-59F6-41A5-BC29-9C0BC0DFD94B}">
                 <File Id="fil7BA2760492CD530F08F78D9265518363" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisPeeknPoke.deps.json" />
             </Component>
-            <Component Id="cmpB3535BD2B4B209FAE2F1ACAB43EA3470" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{A28EC10C-CBF7-43D0-99EE-4B18BB6C0E3C}">
+            <Component Id="cmpB3535BD2B4B209FAE2F1ACAB43EA3470" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{8E9756DC-5DEA-48AE-9037-051463CB7008}">
                 <File Id="filB49FE26446155883B58637B847CE12A9" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisPeeknPoke.dll" />
             </Component>
-            <Component Id="cmp9459FC0EE9E1AC483A76D98D9FB62E30" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{472BCF17-F714-417D-BC7B-107BD80466AA}">
+            <Component Id="cmp9459FC0EE9E1AC483A76D98D9FB62E30" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{8E0FA953-D4C0-42D2-B8F0-BB9BEB8D6B58}">
                 <File Id="fil8A698F8BB65199C7D3D4C2CFD9240DFE" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisPeeknPoke.exe" />
             </Component>
-            <Component Id="cmpAC4158E2C09428D351467D92E34DF552" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{5DE398BB-4F81-40D4-A886-E8A40B0A5EA6}">
+            <Component Id="cmpAC4158E2C09428D351467D92E34DF552" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{516C523C-0366-487B-AC91-2B546453F581}">
                 <File Id="fil0CA5E9646FFADD734CFF7178FB38A8D2" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisPeeknPoke.pdb" />
             </Component>
-            <Component Id="cmp8792EB31D9EFAB3C8435E11CDA214A5B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{C5A20A1C-56EE-4589-935C-644F119497E6}">
+            <Component Id="cmp8792EB31D9EFAB3C8435E11CDA214A5B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{758CC18D-DB89-4D45-B7CF-502EB5E3F2F8}">
                 <File Id="filF3F0A27EEB1E1400D332F7865CE79725" KeyPath="yes" Source="!(wix.peeknpokeloc)\OrbisPeeknPoke.runtimeconfig.json" />
             </Component>
-            <Component Id="cmp9CCADC5E540F4BFDBB75DBFA4BB773D8" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{EA9AE3D6-4257-4C36-92BA-93996A6E3513}">
+            <Component Id="cmp9CCADC5E540F4BFDBB75DBFA4BB773D8" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{C529B717-415A-4C29-8E3B-C5C4F2002A61}">
                 <File Id="fil0BB50EB47D2FE447EDC3DE784672C107" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.dll" />
             </Component>
-            <Component Id="cmp5891D3DE315B25F32BBB898A1D7EF4E1" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{A5C563FA-D6BE-410B-9C6A-9636FDD74752}">
+            <Component Id="cmp5891D3DE315B25F32BBB898A1D7EF4E1" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{25B97266-03D4-43C5-A918-16D6BFD763F2}">
                 <File Id="filAD5B4B65A8ED83F9989DE291BCF9EF34" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.Extensions.Logging.dll" />
             </Component>
-            <Component Id="cmpE3925C84C190BEC6538AB4D965FB9C97" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{AAB6F9F7-F0B5-4CAC-8737-CD76CAF53663}">
+            <Component Id="cmpE3925C84C190BEC6538AB4D965FB9C97" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{39333127-5997-44B9-933F-1A0A5DE1E6AE}">
                 <File Id="filA3A713312170094DACFB82DDE20DAC09" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.Extensions.Logging.File.dll" />
             </Component>
-            <Component Id="cmpE9BD9C68EDAE34F0551BD6C935BE6C81" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{54DE866F-205E-449B-AEDB-50ACBA094EAE}">
+            <Component Id="cmpE9BD9C68EDAE34F0551BD6C935BE6C81" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{D8F2A7C1-951B-4860-B131-4B028C5F258E}">
                 <File Id="fil23B11850B47BAEEE2F0E2A0CED4A3D65" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.Formatting.Compact.dll" />
             </Component>
-            <Component Id="cmp8224CDF35EB6605EA058309CAA8B0F65" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{E409AEB3-B682-44A2-8C2D-6E8B8D40CBBF}">
+            <Component Id="cmp8224CDF35EB6605EA058309CAA8B0F65" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{3CBCFAD0-0E0B-4AD4-9DBF-26B63D8C92A5}">
                 <File Id="filBEF8CA2B8A9807D4748A9447DC52E532" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.Sinks.Async.dll" />
             </Component>
-            <Component Id="cmp40B43764A5D7F28AF460E88FDA3BC328" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{0533BCD8-A151-47A2-A2C3-96037D3FA378}">
+            <Component Id="cmp40B43764A5D7F28AF460E88FDA3BC328" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{21CED921-EEC1-4A71-A2B2-0ED78AE63575}">
                 <File Id="fil71D6CDB4CF9FEC9183343A25D00FDCA5" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.Sinks.File.dll" />
             </Component>
-            <Component Id="cmp554D0BB99B41712D03034B9D7A584512" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{2F40494C-681D-4C5C-A493-CED0D4EF9CB4}">
+            <Component Id="cmp554D0BB99B41712D03034B9D7A584512" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{52FE46D7-9D48-4C34-94B4-60F86DE98325}">
                 <File Id="fil8FC75C711D9C86DBF62116F2AB3BA2A5" KeyPath="yes" Source="!(wix.peeknpokeloc)\Serilog.Sinks.RollingFile.dll" />
             </Component>
-            <Component Id="cmpE66CAD241463C2CE6D21FEED6E9DC05B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{6EDA5751-7948-478F-B5EC-DAED71A8BA96}">
+            <Component Id="cmpE66CAD241463C2CE6D21FEED6E9DC05B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{654B82BB-9029-410B-8F21-588F6BFFABF2}">
                 <File Id="fil39E812017A696D287A79472EE3F2809B" KeyPath="yes" Source="!(wix.peeknpokeloc)\SimpleUI.dll" />
             </Component>
-            <Component Id="cmp2305FC552D4A08AEB34286E4786298D3" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{4A19FC9C-8911-44D7-A888-B87797DCCE00}">
+            <Component Id="cmp2305FC552D4A08AEB34286E4786298D3" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{9590579E-0658-44E2-A555-01732AA26394}">
                 <File Id="filECDB40C819B33D730E828BBA74C9E373" KeyPath="yes" Source="!(wix.peeknpokeloc)\SimpleUI.pdb" />
             </Component>
-            <Component Id="cmp3A616B5720DFEB76F5E518B6D5A52BED" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{FC42175E-C75B-4D07-AD05-460A68CD4DDA}">
+            <Component Id="cmp3A616B5720DFEB76F5E518B6D5A52BED" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{AF385910-7A92-4E7E-AA0C-8410A8043597}">
                 <Class Id="{14AFF8FF-3E7B-38FC-9085-9D3CE7D3BAA8}" Context="InprocServer32" Description="SQLite.StoreAsTextAttribute" ThreadingModel="both" ForeignServer="mscoree.dll">
                     <ProgId Id="SQLite.StoreAsTextAttribute" Description="SQLite.StoreAsTextAttribute" />
                 </Class>
@@ -405,110 +405,110 @@
                 <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{F1F3ACC0-7921-36ED-AB12-B3658AF6CDF7}\1.8.116.0" Name="CodeBase" Value="file:///[#filEABB5C1023B040FCDE8100EE763DEBF5]" Type="string" Action="write" />
             </Component>
-            <Component Id="cmp7B2EF210B10F949476EE8D94852FB243" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{DA232A0D-5951-4739-99B0-26116B3852A2}">
+            <Component Id="cmp7B2EF210B10F949476EE8D94852FB243" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F49D7488-A11D-4300-8A74-038464DC66D4}">
                 <File Id="fil0D4C55A0C8A0C0F1BE6A3C9CE2760DD9" KeyPath="yes" Source="!(wix.peeknpokeloc)\SQLitePCLRaw.batteries_v2.dll" />
             </Component>
-            <Component Id="cmp03E78256856807F16782A6609B7F3CFA" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{E0A1D1E1-2B1F-4823-9676-29C33CC46447}">
+            <Component Id="cmp03E78256856807F16782A6609B7F3CFA" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{573260C1-BB20-4C16-99A6-C68C7C302243}">
                 <File Id="filBA99B91951DE9C37F4873484C693E864" KeyPath="yes" Source="!(wix.peeknpokeloc)\SQLitePCLRaw.core.dll" />
             </Component>
-            <Component Id="cmpF8AEFA6D33573F8D69A99C62DFD69A50" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F25FCB2C-20A8-432F-AE9F-BF0DE36DF1A5}">
+            <Component Id="cmpF8AEFA6D33573F8D69A99C62DFD69A50" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{58F79EEE-BB96-4579-B77C-72354CCA5BB8}">
                 <File Id="filAFB5090F7C1199283B8CD4924C67719D" KeyPath="yes" Source="!(wix.peeknpokeloc)\SQLitePCLRaw.nativelibrary.dll" />
             </Component>
-            <Component Id="cmp7267783398AF1A3D49C0D6C56FF7922B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{2645DD37-C5C4-4D79-B7B5-F20EC9CCB8A4}">
+            <Component Id="cmp7267783398AF1A3D49C0D6C56FF7922B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{08755EE9-E08D-4B02-B865-EFD15B93C862}">
                 <File Id="filE0C6D3688EF23187934DC80C96D91EDE" KeyPath="yes" Source="!(wix.peeknpokeloc)\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
             </Component>
-            <Component Id="cmp9E880E80F690C46F67B3687A3E88506B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{BF091F7E-7AC9-45FA-AE33-395B2717259A}">
+            <Component Id="cmp9E880E80F690C46F67B3687A3E88506B" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{1948067F-21E3-4455-AE40-27CD32AC012C}">
                 <File Id="fil34457509DFF5ECCE08DD05B2B4840BCC" KeyPath="yes" Source="!(wix.peeknpokeloc)\System.Data.SqlClient.dll" />
             </Component>
-            <Component Id="cmp18B8BC14D6611CFAD92144FC2F977AB8" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{64850888-EF29-4D14-98F3-14A2CD1FA34A}">
+            <Component Id="cmp18B8BC14D6611CFAD92144FC2F977AB8" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{6664AF50-9A00-47AB-96AE-45E3B90894E9}">
                 <File Id="fil44A109762CC7FDA4E512B72EB67A483D" KeyPath="yes" Source="!(wix.peeknpokeloc)\System.Data.SQLite.dll" />
             </Component>
-            <Component Id="cmp071C148B679DE7C0D5DF448173EEF3F3" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F7859279-256E-4701-8451-94E7F433D5AE}">
+            <Component Id="cmp071C148B679DE7C0D5DF448173EEF3F3" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{3E9BDA39-8EF7-4141-B666-0705E2D9FC13}">
                 <File Id="filBA88AA1E47BA8094F2196070603FF802" KeyPath="yes" Source="!(wix.peeknpokeloc)\System.Data.SQLite.EF6.dll" />
             </Component>
-            <Component Id="cmp05434EA87C4D61EE9A873119AF6E501F" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{BA31872F-DC54-4A48-B0A9-5A9AC4C24DE5}">
+            <Component Id="cmp05434EA87C4D61EE9A873119AF6E501F" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{D737EA50-F94E-4D78-AA7E-4E690C57FE9D}">
                 <File Id="fil0F20262BDCDD089105611817FD64EBDD" KeyPath="yes" Source="!(wix.peeknpokeloc)\System.Json.dll" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Class" Value="System.Json.JsonType" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="Assembly" Value="System.Json, Version=2.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="Record\{CE88CA2C-64EF-3315-B6F7-D5F788B62EC3}\2.0.8.0" Name="CodeBase" Value="file:///[#fil0F20262BDCDD089105611817FD64EBDD]" Type="string" Action="write" />
             </Component>
-            <Component Id="cmp1E91AC09EB543F039CB6EDE8CA737540" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{BE61A26B-B549-438D-97B1-886AC8C89AB8}">
+            <Component Id="cmp1E91AC09EB543F039CB6EDE8CA737540" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{8319E391-B7E9-422A-B27A-8D571FE371EB}">
                 <File Id="filDF7A2BA6EF8EF4BFD7EEA6D54EC40160" KeyPath="yes" Source="!(wix.peeknpokeloc)\System.Text.Encodings.Web.dll" />
             </Component>
-            <Component Id="cmp8D34544E229650BF98A58F546C9DF19D" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{C2FF409F-43C4-4576-A3E8-8F94C5F75136}">
+            <Component Id="cmp8D34544E229650BF98A58F546C9DF19D" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{A53D033D-1B58-4BCF-B728-2404EE55AAD6}">
                 <File Id="filA731D38A7D5580994290AE5EC5BFD376" KeyPath="yes" Source="!(wix.peeknpokeloc)\System.Text.Json.dll" />
             </Component>
-            <Component Id="cmp2776642932B8A917D2347A97363D0373" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{F76FE189-B114-46D4-B7D1-E1763112C789}">
+            <Component Id="cmp2776642932B8A917D2347A97363D0373" Directory="dirC0E3ED179125C2E4235F1C0A928F71CE" Guid="{1A2CF7CB-C3AD-4600-B8DC-0CD6AB5860D1}">
                 <File Id="fil96D59D87562BC8C392AD26DBFDCE6C92" KeyPath="yes" Source="!(wix.peeknpokeloc)\TinyIpc.dll" />
             </Component>
-            <Component Id="cmpDF1E5852B9C4A8E144B1B8EA3FA5DAF6" Directory="dir919E120F8F66233B99DE510248462E55" Guid="{F28470A2-89E1-40F7-AB37-A1EBFD9301E2}">
+            <Component Id="cmpDF1E5852B9C4A8E144B1B8EA3FA5DAF6" Directory="dir919E120F8F66233B99DE510248462E55" Guid="{286D4E0D-CA5D-4796-ADAC-B5BB5303BCCA}">
                 <File Id="fil0F80A5FE4283524EF9879A55DB383624" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\alpine-x64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpA6A9713172BCC5CBE04A035D103ACC58" Directory="dirF922759147EAAA417DC277F96B8662CD" Guid="{F5BFBA41-5295-4AB9-8133-D1C17FCE43E9}">
+            <Component Id="cmpA6A9713172BCC5CBE04A035D103ACC58" Directory="dirF922759147EAAA417DC277F96B8662CD" Guid="{43140134-DFB3-4D04-B785-FAF6F8BEBAC6}">
                 <File Id="fil35C9ECA09344B1A6C1F666CFA0EE40FE" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll" />
             </Component>
-            <Component Id="cmpE8F6C83E2C191132687578AE14BCDCCC" Directory="dir9C72CF9C996CE40E01F3C84ECDB32334" Guid="{6CD55226-7B62-44BA-B408-820A6552C3B6}">
+            <Component Id="cmpE8F6C83E2C191132687578AE14BCDCCC" Directory="dir9C72CF9C996CE40E01F3C84ECDB32334" Guid="{ACAA71E3-D965-4BBC-8C0A-DAAF52B93E4E}">
                 <File Id="filF820AE0CF394AF1850C18BDD35C1E801" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-arm\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpE08BBD055CDA675EDDC8063DD2FADDAB" Directory="dir71882758CD1F3D517B073B70F0D5A10B" Guid="{8E465369-525F-40AB-A733-95B31B19DBE0}">
+            <Component Id="cmpE08BBD055CDA675EDDC8063DD2FADDAB" Directory="dir71882758CD1F3D517B073B70F0D5A10B" Guid="{75D5EFD1-0E55-49F8-82DC-7E7FF4A91CEB}">
                 <File Id="filDFFA2436FB86296AF1C1A3776ADADEF0" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-arm64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpCE082E108584BEF90037269003F0B8FF" Directory="dirEE592ACD98AC3A64D8CD44FB54F51DB0" Guid="{DF59D4A3-23E3-4A9A-9A15-08D5460EF312}">
+            <Component Id="cmpCE082E108584BEF90037269003F0B8FF" Directory="dirEE592ACD98AC3A64D8CD44FB54F51DB0" Guid="{BDFEF36D-AD42-4D0D-8539-DB908C44B234}">
                 <File Id="fil9DCD56FBC65CA7096548AD02DE3D4915" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-armel\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpD5329CFEECE7AEB7BCBA7FE5138339E0" Directory="dir4539FEEF33520C08D6057A7FDC7F0E10" Guid="{D8D692B2-0F2E-4BDB-A67A-14068FFF6A62}">
+            <Component Id="cmpD5329CFEECE7AEB7BCBA7FE5138339E0" Directory="dir4539FEEF33520C08D6057A7FDC7F0E10" Guid="{87052232-9128-4FF8-A39D-B067A02DBF83}">
                 <File Id="fil7F6EA88D6B2711FC545B4BB140B6B4BD" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-mips64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp8AAB2B7FC8963DD6003B804CA8F13F99" Directory="dir3DBD0649780E3CA9729D5BBB6E876B84" Guid="{04DCF60D-21C5-4795-99EE-DE26BBAB3C7F}">
+            <Component Id="cmp8AAB2B7FC8963DD6003B804CA8F13F99" Directory="dir3DBD0649780E3CA9729D5BBB6E876B84" Guid="{8EB461FD-9CAB-4B34-A83E-B7133ED11174}">
                 <File Id="fil19B05F938E3CA1175CC85822F24326A6" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmpE19152997D200CB28FBF45C33CAE8D51" Directory="dirE62DED8585C5987FBEE61C01E0EF917C" Guid="{495AC013-673F-4D44-95EE-490ABDD66114}">
+            <Component Id="cmpE19152997D200CB28FBF45C33CAE8D51" Directory="dirE62DED8585C5987FBEE61C01E0EF917C" Guid="{DE98F1DD-65A8-429F-800C-5D16A88BD0E3}">
                 <File Id="fil56DEC66EFAFF1071B2167DE24CE25392" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-x64\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp5CC442EAB75CBC8A10C62122801C52EF" Directory="dirE62DED8585C5987FBEE61C01E0EF917C" Guid="{EE5272AF-9C1E-44B4-BA10-FF96C0B9502B}">
+            <Component Id="cmp5CC442EAB75CBC8A10C62122801C52EF" Directory="dirE62DED8585C5987FBEE61C01E0EF917C" Guid="{DD67EBE7-AE4F-4A8B-871D-C146906558B3}">
                 <File Id="filDFFACE61A140354DBFB73C88E4B6A9A7" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-x64\native\SQLite.Interop.dll" />
             </Component>
-            <Component Id="cmp267D1D342906E9626E3E418ECB9EB7B2" Directory="dir62FD7352A1B92CBD8B9AE2A7CD23093F" Guid="{D4446FE5-40B0-46F0-AC51-576C0BE83F13}">
+            <Component Id="cmp267D1D342906E9626E3E418ECB9EB7B2" Directory="dir62FD7352A1B92CBD8B9AE2A7CD23093F" Guid="{FF9FED51-58E5-4921-B506-1B006534C0A1}">
                 <File Id="fil4ADAC180BBE367337B1E0B50034C6181" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\linux-x86\native\libe_sqlite3.so" />
             </Component>
-            <Component Id="cmp8E00DA2B70D94BD5773E3B2CE5F6F4FD" Directory="dir3D5202673B8C5C591BC2969BE7E1D073" Guid="{32A1D957-1D87-4F2C-81A5-76BE0D1D6684}">
+            <Component Id="cmp8E00DA2B70D94BD5773E3B2CE5F6F4FD" Directory="dir3D5202673B8C5C591BC2969BE7E1D073" Guid="{38A8D3E9-CDAC-4081-8ADD-5785B5AB6D3D}">
                 <File Id="filB26CB8DABBFA7CFB9C5B24F738D31506" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\osx-x64\native\libe_sqlite3.dylib" />
             </Component>
-            <Component Id="cmpFAC9C54592827D2C3C341E2DD7C4171C" Directory="dir3D5202673B8C5C591BC2969BE7E1D073" Guid="{60C6AD72-9B61-4869-838F-075271C70214}">
+            <Component Id="cmpFAC9C54592827D2C3C341E2DD7C4171C" Directory="dir3D5202673B8C5C591BC2969BE7E1D073" Guid="{929872E0-0945-4E9A-AFA5-F7B2E176962B}">
                 <File Id="fil9753AFA937C5078BCBE7F093AA9BED3D" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\osx-x64\native\SQLite.Interop.dll" />
             </Component>
-            <Component Id="cmpD2F1B3F2041FBADA20F9A93072566330" Directory="dir3F1AE761EB3C5E5A411527DAD5142BEC" Guid="{E2D89D07-CE4F-4045-A3A2-DC5A5CE8B1CA}">
+            <Component Id="cmpD2F1B3F2041FBADA20F9A93072566330" Directory="dir3F1AE761EB3C5E5A411527DAD5142BEC" Guid="{1CEAD767-A8C8-4E96-BAC0-31B0FD41F562}">
                 <File Id="fil6AC7A3D2A6E05950321ED24F6CFE6AB1" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
             </Component>
-            <Component Id="cmpE6736FA27BA383E114370D0F817252E8" Directory="dir00F9D668D3A0D8DF3E44F8202E08E6CB" Guid="{1BD1C6D2-BAA9-4E98-9E59-39BFE27934B1}">
+            <Component Id="cmpE6736FA27BA383E114370D0F817252E8" Directory="dir00F9D668D3A0D8DF3E44F8202E08E6CB" Guid="{C7F4CBF7-648D-4B5B-9385-876B4F472276}">
                 <File Id="fil8E39953CDCC64EACAC1C300DCF0BD1B7" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
             </Component>
-            <Component Id="cmp2A244863802BCEF8C0F9FB55B226853C" Directory="dirEA57B1E278644A59C31042268F6B00D8" Guid="{9A8F71D4-F43A-4994-B8CB-E92238293BCF}">
+            <Component Id="cmp2A244863802BCEF8C0F9FB55B226853C" Directory="dirEA57B1E278644A59C31042268F6B00D8" Guid="{784E465C-8E0D-4B1B-A6C5-8E8E51C69380}">
                 <File Id="fil65CC9F321C4D311B4989B5A50505A1DA" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-arm\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmp3C1153F1467DEC871AEED569955D176C" Directory="dir3912B400C570923B078F774C4307E104" Guid="{C69A7404-A307-4346-9C7F-DA3D17B0944A}">
+            <Component Id="cmp3C1153F1467DEC871AEED569955D176C" Directory="dir3912B400C570923B078F774C4307E104" Guid="{EF63A72D-BA11-4F1D-AD18-CB7E07D0E293}">
                 <File Id="fil57C23D2DDC8706ACFCD68D14AA3A1DF2" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-arm64\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmp089AAA6B67B175E346110D253A53C877" Directory="dir3912B400C570923B078F774C4307E104" Guid="{7B57E23D-7F92-4E37-8DB0-294A60835CF5}">
+            <Component Id="cmp089AAA6B67B175E346110D253A53C877" Directory="dir3912B400C570923B078F774C4307E104" Guid="{57EAE96A-BA37-4F6D-924A-9B271E3D9029}">
                 <File Id="fil364E404D369B918A8B818D56CE6FC326" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-arm64\native\sni.dll" />
             </Component>
-            <Component Id="cmpAF4D46D1158456E341A0266885513C3A" Directory="dir6CAC75D6C6CE92736181B0444DBB7019" Guid="{7B70C1AE-F4CE-4CC2-899F-B05D1569F8DD}">
+            <Component Id="cmpAF4D46D1158456E341A0266885513C3A" Directory="dir6CAC75D6C6CE92736181B0444DBB7019" Guid="{4264E400-E21F-4759-B577-5EA5BA697219}">
                 <File Id="fil2113F4E331C9D7426E1F9AE03F3A8691" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-x64\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmpA7D1045D978BD6607CAB99650A89F423" Directory="dir6CAC75D6C6CE92736181B0444DBB7019" Guid="{C7869EA9-2667-4460-832C-65D5EBBF9981}">
+            <Component Id="cmpA7D1045D978BD6607CAB99650A89F423" Directory="dir6CAC75D6C6CE92736181B0444DBB7019" Guid="{55FAAF96-FFE8-4961-85A1-C0BCC6923CF7}">
                 <File Id="fil146F643460D1E5A2DE62EE12F0298E8C" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-x64\native\sni.dll" />
             </Component>
-            <Component Id="cmp5F22E5CEF613E82091449DD50C062026" Directory="dir6CAC75D6C6CE92736181B0444DBB7019" Guid="{2A5F67A4-5A95-49B0-912C-C560BDDBB4CD}">
+            <Component Id="cmp5F22E5CEF613E82091449DD50C062026" Directory="dir6CAC75D6C6CE92736181B0444DBB7019" Guid="{E77E50FE-94ED-456F-95FD-B6FA8430E4B4}">
                 <File Id="fil48F08AC0D5F5C3A3B3FBD71C2BFA9607" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-x64\native\SQLite.Interop.dll" />
             </Component>
-            <Component Id="cmp79C9D183EFED729CDD5AE14DD0FAB184" Directory="dir2E1428032CA76BE8BC61C3360625113F" Guid="{A7094ACC-C803-4185-B463-53221E4FCAE3}">
+            <Component Id="cmp79C9D183EFED729CDD5AE14DD0FAB184" Directory="dir2E1428032CA76BE8BC61C3360625113F" Guid="{07C752BE-0057-45CD-AEC0-A2BF87883450}">
                 <File Id="fil079C7F7711C977FAFC4846E768115324" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-x86\native\e_sqlite3.dll" />
             </Component>
-            <Component Id="cmpFD82D52D90FA2B1DF8116A290A76C340" Directory="dir2E1428032CA76BE8BC61C3360625113F" Guid="{48B4FC38-6BE1-487B-A7AA-83DD2429EA60}">
+            <Component Id="cmpFD82D52D90FA2B1DF8116A290A76C340" Directory="dir2E1428032CA76BE8BC61C3360625113F" Guid="{F2A2A9C4-6C46-4B48-8F91-CF66BD00C033}">
                 <File Id="fil5025EB4764BCE3EDF0D4F5B00DB6BBE9" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-x86\native\sni.dll" />
             </Component>
-            <Component Id="cmpAD022A2DD9991999BA00BE00C138527F" Directory="dir2E1428032CA76BE8BC61C3360625113F" Guid="{13D0A4A3-C61B-4125-83EB-F61FDCE232A4}">
+            <Component Id="cmpAD022A2DD9991999BA00BE00C138527F" Directory="dir2E1428032CA76BE8BC61C3360625113F" Guid="{FEC273AE-7D41-4D9F-A7ED-203D543F0ADB}">
                 <File Id="fil8B7C2A608DC009EA6D8257F1C2B13471" KeyPath="yes" Source="!(wix.peeknpokeloc)\runtimes\win-x86\native\SQLite.Interop.dll" />
             </Component>
         </ComponentGroup>

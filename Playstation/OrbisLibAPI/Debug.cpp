@@ -8,7 +8,7 @@
 
 #define HelperPrxPath "/data/Orbis Suite/OrbisLibGeneralHelper.sprx"
 
-void Debug::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
+void Debug::HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet)
 {
 	if (Packet->Command > API_DBG_GET_CURRENT)
 	{

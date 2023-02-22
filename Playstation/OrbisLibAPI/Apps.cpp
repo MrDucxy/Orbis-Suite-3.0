@@ -6,7 +6,7 @@
 #include <orbis/SysCore.h>
 #include <orbis/SystemService.h>
 
-void Apps::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
+void Apps::HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet)
 {
 	char titleId[10];
 	memset(titleId, 0, sizeof(titleId));

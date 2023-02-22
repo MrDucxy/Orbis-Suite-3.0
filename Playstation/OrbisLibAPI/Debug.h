@@ -10,7 +10,7 @@ public:
 
 	Debug();
 	~Debug();
-	void HandleAPI(OrbisNetId Sock, APIPacket* Packet);
+	void HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet);
 
 private:
 	bool TryDetach(int pid);

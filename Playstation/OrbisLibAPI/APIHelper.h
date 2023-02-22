@@ -4,18 +4,17 @@
 void SendStatus(OrbisNetId Sock, int status);
 int RecieveInt(OrbisNetId Sock);
 
-template<class T> T* RecievePacket(OrbisNetId Sock)
+template<class T> std::shared_ptr<T> RecievePacket(OrbisNetId Sock)
 {
-	auto Packet = (T*)malloc(sizeof(T));
+	auto packet = std::make_shared<T>();
 
-	if (sceNetRecv(Sock, Packet, sizeof(T), 0) < 0)
+	if (sceNetRecv(Sock, packet.get(), sizeof(T), 0) < 0)
 	{
 		SendStatus(Sock, APIResults::API_ERROR_GENERAL);
-		free(Packet);
 		return nullptr;
 	}
 
 	SendStatus(Sock, APIResults::API_OK);
 
-	return Packet;
+	return packet;
 }

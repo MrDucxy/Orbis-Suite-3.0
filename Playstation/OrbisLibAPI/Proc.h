@@ -5,7 +5,7 @@ class Proc
 public:
 	Proc();
 	~Proc();
-	void HandleAPI(OrbisNetId Sock, APIPacket* Packet);
+	void HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet);
 
 	void SendProcessList(OrbisNetId Sock);
 

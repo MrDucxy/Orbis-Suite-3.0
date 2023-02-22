@@ -3,8 +3,9 @@
 #include "APIHelper.h"
 #include "Debug.h"
 #include <orbis/SysCore.h>
+#include <memory>
 
-void Target::HandleAPI(OrbisNetId Sock, APIPacket* Packet)
+void Target::HandleAPI(OrbisNetId Sock, std::shared_ptr<APIPacket> Packet)
 {
 	switch (Packet->Command)
 	{
@@ -79,8 +80,7 @@ Target::~Target()
 
 void Target::SendTargetInfo(OrbisNetId Sock)
 {
-	auto Packet = (TargetInfoPacket*)malloc(sizeof(TargetInfoPacket));
-	memset(Packet, 0, sizeof(TargetInfoPacket));
+	auto Packet = std::make_unique<TargetInfoPacket>();
 
 	Packet->SDKVersion = GetSDKVersion();
 	Packet->SoftwareVersion = GetUpdateVersion();
@@ -148,9 +148,7 @@ void Target::SendTargetInfo(OrbisNetId Sock)
 	memcpy(&Packet->Ram, &SystemMonitor::RAM, sizeof(MemoryInfo));
 	memcpy(&Packet->VRam, &SystemMonitor::VRAM, sizeof(MemoryInfo));*/
 
-	sceNetSend(Sock, Packet, sizeof(TargetInfoPacket), 0);
-
-	free(Packet);
+	sceNetSend(Sock, Packet.get(), sizeof(TargetInfoPacket), 0);
 }
 
 void Target::DoNotify(OrbisNetId Sock)
