@@ -14,7 +14,7 @@ The next version of Orbis Suite completely rewritten with a new GUI. Now launcha
 - Reimplimented Debug Kit features for a retail console. (Like launching homebrew from the App_Home.)
 - Many More!..
 
-### ![OrbisLib API Guide](https://github.com/MrDucxy/Orbis-Suite-3.0/blob/master/Guide.md)
+### [OrbisLib API Guide](https://github.com/MrDucxy/Orbis-Suite-3.0/blob/master/Guide.md)
 
 # NeighborHood
 ![](https://i.imgur.com/qXyssyK.png)
