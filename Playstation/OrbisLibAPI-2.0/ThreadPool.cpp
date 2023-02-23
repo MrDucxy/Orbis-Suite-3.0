@@ -1,10 +1,10 @@
-#include "Common.h"
+#include "stdafx.h"
 #include "ThreadPool.h"
 
 bool ThreadPool::ShouldRun;
 std::mutex ThreadPool::JobQueueMtx;
 std::condition_variable ThreadPool::MtxCondition;
-std::vector<OrbisPthread> ThreadPool::ThreadsPool;
+std::vector<ScePthread> ThreadPool::ThreadsPool;
 std::queue<std::function<void()>> ThreadPool::JobQueue;
 
 void ThreadPool::WorkingLoop()
@@ -31,7 +31,7 @@ void ThreadPool::WorkingLoop()
 
 			job();
 		}
-		catch(const std::exception& ex)
+		catch (const std::exception& ex)
 		{
 			klog("Std Error: %s\n", ex.what());
 		}
@@ -59,7 +59,7 @@ void ThreadPool::Init(int poolSize)
 				return nullptr;
 			}, nullptr, threadName);
 
-		scePthreadSetaffinity(ThreadsPool.at(i), 0x7f); // SCE_KERNEL_CPUMASK_7CPU_ALL
+		scePthreadSetaffinity(ThreadsPool.at(i), SCE_KERNEL_CPUMASK_7CPU_ALL);
 	}
 }
 
@@ -72,7 +72,7 @@ void ThreadPool::Term()
 
 	MtxCondition.notify_all();
 
-	for (OrbisPthread& activeThread : ThreadsPool)
+	for (auto& activeThread : ThreadsPool)
 	{
 		scePthreadJoin(activeThread, nullptr);
 	}

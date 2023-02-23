@@ -141,8 +141,7 @@
                            LineInfoVisible="True" 
                            ColumnInfoVisible="True" 
                            GroupSeparatorVisible="false"
-                           Font="Segoe UI"
-                           
+                       
                            InfoForeColor="186, 105, 105"
                            ForeColor="220, 220, 220"
                            BackColor="60, 63, 65"

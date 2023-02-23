@@ -11,9 +11,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="LncUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="build.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LncUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
