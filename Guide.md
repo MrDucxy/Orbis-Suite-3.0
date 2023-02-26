@@ -69,16 +69,11 @@ Let's run our application and test out our new code. Upon clicking the refresh b
 
 <img src="https://i.imgur.com/rxw4BCv.png" height="250">
 
-Now that we have our refresh button working and we can see all of our targets, we need a way of selecting one. This is as simple as using the listbox's `selectedIndexChanged` event. Yet again, double click the listbox to create this event. This time we are going to select the target by it's name based on what is highlighted/selected in the listbox. This is done using the code below.
+Now that we have our refresh button working and we can see all of our targets, we need a way of selecting one. This is as simple as using the listbox's `selectedIndexChanged` event. Yet again, double click the listbox to create this event. This time we are going to select the target by it's name based on what is highlighted/selected in the listbox.
 
-```c#
-private void targetListBox_SelectedIndexChanged(object sender, EventArgs e)
-{
-    //Find the target using the selected item's text and set it to the SelectedTarget property.
-    TargetManager.SelectedTarget = TargetManager.GetTarget(targetListBox.GetItemText(targetListBox.SelectedItem));
-}
-```
 We are also going to want a way to confirm that the above code works. For testing purposes, let's create a messagebox after we set the selected target.
+
+This is all done using the following code.
 
 ```c#
 private void targetListBox_SelectedIndexChanged(object sender, EventArgs e)
