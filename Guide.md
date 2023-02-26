@@ -2,6 +2,7 @@
 # OrbisLib2 Beginners Guide
 Hey! This is a writeup on the OrbisLib2 API for C# to help users get started. Not everything is yet added, but will be in the coming days.
 
+The project for this guide can be found [here](https://github.com/MrDucxy/Orbis-Suite-3.0/tree/master/OrbisLib%20Guide%20Example)
 
 ## Getting Started
 ### Pre-Requisites
